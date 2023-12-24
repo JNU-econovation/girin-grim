@@ -9,15 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        main1: "#FE910D",
-        main2: "#FFC619",
-        main3: "#DE9E66",
-
-        black1: "#12151A",
-        black2: "#656567",
-        black3: "#9F9F9F",
-        black4: "#B9B9B9",
-        black5: "#EDEDED",
+        main: "#ff9a15",
+        grey: "#b0b0b0",
+        input_bg: "#f2f2f2",
       },
     },
   },
