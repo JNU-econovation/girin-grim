@@ -11,6 +11,11 @@ import java.util.List;
 @Getter
 public class MemberReqDto {
 
+    @Getter
+    public static class EmailValidationReqDto {
+        private String email;
+    }
+
 
     @Getter
     public static class JoinReqDto {
