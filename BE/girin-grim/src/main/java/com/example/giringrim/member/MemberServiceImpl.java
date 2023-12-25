@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class MemberServiceImpl implements MemberService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
+    @Transactional
     public void join(MemberReqDto.JoinReqDto joinReqDto) {
         String encodedPassword = passwordEncoder.encode(joinReqDto.getPassword());
         Member member = joinReqDto.toEntity(encodedPassword);
@@ -36,6 +39,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void emailValidation(String email) {
         Member member = memberRepository.findByEmail(email);
         if(member != null){
@@ -44,6 +48,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public void nicknameValidation(String nickname) {
         Member member = memberRepository.findByNickname(nickname);
         if(member != null){
