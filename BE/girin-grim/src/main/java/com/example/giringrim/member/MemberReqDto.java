@@ -16,6 +16,11 @@ public class MemberReqDto {
         private String email;
     }
 
+    @Getter
+    public static class NicknameValidationReqDto {
+        private String nickname;
+    }
+
 
     @Getter
     public static class JoinReqDto {
