@@ -6,6 +6,7 @@ import com.example.giringrim.utils.exception.ErrorMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class UnivService {
         univRepository.save(new University("성균관대학교", "Seoul"));
     }
 
+    @Transactional(readOnly = true)
     public UnivResponseDto.GetUnivListDto getUnivList(String region, String keyword){
 
         if(keyword != null){
