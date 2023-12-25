@@ -33,6 +33,14 @@ public class MemberReqDto {
         @Getter
         public static class FavUniversityDto {
             private String name;
+
+            public FavUniversity toEntity(Member member){
+                return FavUniversity.builder()
+                        .name(name)
+                        .member(member)
+                        .build();
+            }
         }
+
     }
 }
