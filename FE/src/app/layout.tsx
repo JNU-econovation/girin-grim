@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import { ReactQuery } from "@/context/ReackQuery";
+import Recoil from "@/context/Recoil";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +20,12 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        <Header />
-        {children}
+        <ReactQuery>
+          <Recoil>
+            <Header />
+            {children}
+          </Recoil>
+        </ReactQuery>
       </body>
     </html>
   );
