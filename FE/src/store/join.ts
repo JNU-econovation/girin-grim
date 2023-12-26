@@ -8,5 +8,7 @@ export const joinForm = atom<Form>({
     passwordCheck: "",
     name: "",
     agree: false,
+    emailCheck: false,
+    nameCheck: false,
   },
 });

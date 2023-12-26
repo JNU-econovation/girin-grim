@@ -11,7 +11,6 @@ type Props = {
   button: {
     exist: boolean;
     component?: JSX.Element | null;
-    url: string;
   };
   type: string;
   notice: string;
@@ -24,8 +23,8 @@ export default function JoinInput({
   icon,
   type,
   notice,
-  button: { exist, component, url },
-}: Props) {
+  button: { exist, component },
+}: Readonly<Props>) {
   const [value, setValue] = useRecoilState(joinForm);
 
   const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {

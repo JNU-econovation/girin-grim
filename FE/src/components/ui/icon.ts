@@ -6,3 +6,4 @@ export { default as Email } from "./icons/Email";
 export { default as Password } from "./icons/Password";
 export { default as ISchool } from "./icons/ISchool";
 export { default as Nick } from "./icons/Nick";
+export { default as Toggle } from "./icons/Toggle";

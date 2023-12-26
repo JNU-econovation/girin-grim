@@ -4,4 +4,6 @@ type Form = {
   passwordCheck: string;
   name: string;
   agree: boolean;
+  emailCheck: boolean;
+  nameCheck: boolean;
 };
