@@ -1,3 +1,5 @@
+//TODO: 아이콘 Image에서 SVG로 변경
+
 export { default as Logo } from "./icons/Logo";
 export { default as Layer } from "./icons/Layer";
 export { default as Search } from "./icons/Search";

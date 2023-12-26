@@ -7,6 +7,7 @@ export const joinForm = atom<Form>({
     password: "",
     passwordCheck: "",
     name: "",
+    university: [{ name: "전남대학교" }],
     agree: false,
     emailCheck: false,
     nameCheck: false,

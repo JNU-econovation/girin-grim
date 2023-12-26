@@ -1,1 +1,2 @@
-export const checkEmail = "/api/member/join";
+export const checkEmail = "/api/member/email";
+export const submitUserInfo = "api/member/join";
