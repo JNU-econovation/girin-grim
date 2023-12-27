@@ -8,12 +8,7 @@ public interface MemberService {
     void join(MemberReqDto.JoinReqDto joinReqDto);
 
     /*
-    *   이메일 중복 검사 메소드
+    *   이메일, 닉네임 중복 검사 메소드
      */
-    void emailValidation(String email);
-
-    /*
-    *   닉네임 중복 검사 메소드
-     */
-    void nicknameValidation(String nickname);
+    void joinValidation(String email, String nickname);
 }

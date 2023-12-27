@@ -40,13 +40,23 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional(readOnly = true)
-    public void emailValidation(String email) {
-        Member member = memberRepository.findByEmail(email);
-        if(member != null){
-            throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
+    public void joinValidation(String email, String nickname) {
+        if(nickname == null){
+            Member member = memberRepository.findByEmail(email);
+            if(member != null){
+                throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
+            }
         }
+        else{
+            Member member = memberRepository.findByNickname(nickname);
+            if(member != null){
+                throw new NicknameAlreadyExistException(ErrorMessage.NICKNAME_ALREADY_EXIST);
+            }
+        }
+
     }
 
+    /*
     @Override
     @Transactional(readOnly = true)
     public void nicknameValidation(String nickname) {
@@ -56,9 +66,7 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
-    @Override
-    public void login(MemberReqDto.LoginReqDto loginReqDto) {
 
-    }
+     */
 
 }

@@ -24,20 +24,11 @@ public class MemberController {
     }
 
     /*
-     * 회원가입할때 이메일 중복체크
+     * 회원가입할때 이메일, 닉네임 중복체크
      */
-    @PostMapping("/member/login/email")
-    public ResponseEntity<?> emailValidation(@RequestBody MemberReqDto.EmailValidationReqDto reqDto){
-        memberService.emailValidation(reqDto.getEmail());
-        return ApiResponseGenerator.success(HttpStatus.OK);
-    }
-
-    /*
-     * 회원가입할때 닉네임 중복체크
-     */
-    @GetMapping("/member/login/nickname")
-    public ResponseEntity<?> nicknameValidation(@RequestBody MemberReqDto.NicknameValidationReqDto reqDto){
-        memberService.nicknameValidation(reqDto.getNickname());
+    @GetMapping("/member/join")
+    public ResponseEntity<?> joinValidation(@RequestParam(value = "email", required = false) String email, @RequestParam(value = "nickname", required = false) String nickname){
+        memberService.joinValidation(email, nickname);
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
