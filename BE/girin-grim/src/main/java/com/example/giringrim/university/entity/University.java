@@ -1,4 +1,4 @@
-package com.example.giringrim.university;
+package com.example.giringrim.university.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

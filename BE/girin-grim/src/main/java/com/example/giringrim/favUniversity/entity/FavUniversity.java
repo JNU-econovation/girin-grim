@@ -1,6 +1,6 @@
-package com.example.giringrim.favUniversity;
+package com.example.giringrim.favUniversity.entity;
 
-import com.example.giringrim.member.Member;
+import com.example.giringrim.member.entity.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

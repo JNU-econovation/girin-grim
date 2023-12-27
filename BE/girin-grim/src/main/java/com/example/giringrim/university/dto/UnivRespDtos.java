@@ -1,12 +1,13 @@
-package com.example.giringrim.university;
+package com.example.giringrim.university.dto;
 
+import com.example.giringrim.university.entity.University;
 import lombok.Getter;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
-public class UnivResponseDto {
+public class UnivRespDtos {
 
     @Getter
     public static class GetUnivListDto{
