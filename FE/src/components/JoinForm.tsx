@@ -19,7 +19,7 @@ export default function JoinForm() {
   };
 
   const submitJoinForm = async () => {
-    if (data.passwordCheck == data.password) {
+    if (data.passwordCheck !== data.password) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
@@ -52,6 +52,7 @@ export default function JoinForm() {
             title={item.title}
             placeholder={item.placeholder}
             icon={item.icon}
+            pattern={item.pattern}
             button={{
               ...item.button,
               component: item.button.component as React.ReactElement<any, any>,

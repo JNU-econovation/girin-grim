@@ -7,6 +7,7 @@ type Props = {
   id: string;
   title: string;
   placeholder: string;
+  pattern: string | RegExp;
   icon: JSX.Element | null;
   button: {
     exist: boolean;
@@ -20,6 +21,7 @@ export default function JoinInput({
   id,
   title,
   placeholder,
+  // pattern,
   icon,
   type,
   notice,
@@ -28,6 +30,12 @@ export default function JoinInput({
   const [value, setValue] = useRecoilState(joinForm);
 
   const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (id === "email") {
+      setValue({ ...value, emailCheck: false });
+    }
+    if (id === "name") {
+      setValue({ ...value, nameCheck: false });
+    }
     setValue({ ...value, [id]: e.target.value });
   };
   return (
