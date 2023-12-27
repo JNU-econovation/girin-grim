@@ -47,7 +47,6 @@ public class MemberController {
     /*
      * 프로필 조회 메서드
      */
-
     @GetMapping("/member/{memberId}")
     public ResponseEntity<?> getProfile(@PathVariable("memberId") Long memberId){
         MemberRespDtos.ProfileRespDto profileResDto = memberService.getProfile(memberId);

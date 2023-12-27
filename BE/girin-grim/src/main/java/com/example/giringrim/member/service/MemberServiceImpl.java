@@ -37,7 +37,6 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(member);
 
         if(joinReqDto.getUniversity().isEmpty() || joinReqDto.getUniversity().size() >=10){
-            //TODO 대학교 선택을 하지 않았을 때, 10개 이상 선택했을때 예외처리
             throw new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY);
         }
         joinReqDto.getUniversity().forEach(university -> {
@@ -79,11 +78,14 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberRespDtos.ProfileRespDto getProfile(Long memberId) {
+        //TODO : 본인의 프로필을 조회하는지 타인의 프로필을 조회하는지 로직 구분
         Member member = memberRepository.findById(memberId).orElseThrow(
+                //TODO : 존재하지 않는 회원일 경우 예외
            //     () -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_MEMBER)
         );
 
         List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(memberId);
         return new MemberRespDtos.ProfileRespDto(member, favUniversityList, false);
+        //TODO : 본인의 프로필을 조회하는 경우에는 true를 넘겨줌
     }
 }
