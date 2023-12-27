@@ -1,10 +1,15 @@
-package com.example.giringrim.member;
+package com.example.giringrim.member.service;
 
-import com.example.giringrim.favUniversity.FavUniversity;
+import com.example.giringrim.favUniversity.entity.FavUniversity;
+import com.example.giringrim.member.dto.MemberReqDtos;
+import com.example.giringrim.member.dto.MemberRespDtos;
+import com.example.giringrim.member.entity.Member;
 import com.example.giringrim.member.exception.EmailAlreadyExistException;
-import com.example.giringrim.favUniversity.FavUniversityRepository;
+import com.example.giringrim.favUniversity.repository.FavUniversityRepository;
 import com.example.giringrim.member.exception.NicknameAlreadyExistException;
 import com.example.giringrim.member.exception.UniversitySelectionException;
+import com.example.giringrim.member.repository.MemberRepository;
+import com.example.giringrim.member.service.MemberService;
 import com.example.giringrim.utils.exception.ErrorMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

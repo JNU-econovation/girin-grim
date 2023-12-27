@@ -1,4 +1,4 @@
-package com.example.giringrim.member;
+package com.example.giringrim.member.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;

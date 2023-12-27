@@ -1,6 +1,7 @@
-package com.example.giringrim.member;
+package com.example.giringrim.member.dto;
 
-import com.example.giringrim.favUniversity.FavUniversity;
+import com.example.giringrim.favUniversity.entity.FavUniversity;
+import com.example.giringrim.member.entity.Member;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;

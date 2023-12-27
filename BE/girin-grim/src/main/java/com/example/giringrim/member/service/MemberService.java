@@ -1,4 +1,7 @@
-package com.example.giringrim.member;
+package com.example.giringrim.member.service;
+
+import com.example.giringrim.member.dto.MemberReqDtos;
+import com.example.giringrim.member.dto.MemberRespDtos;
 
 public interface MemberService {
 

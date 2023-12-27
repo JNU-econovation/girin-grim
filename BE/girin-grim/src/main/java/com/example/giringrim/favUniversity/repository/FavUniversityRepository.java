@@ -1,5 +1,6 @@
-package com.example.giringrim.favUniversity;
+package com.example.giringrim.favUniversity.repository;
 
+import com.example.giringrim.favUniversity.entity.FavUniversity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
