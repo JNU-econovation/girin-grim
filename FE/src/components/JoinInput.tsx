@@ -40,6 +40,7 @@ export default function JoinInput({
           </div>
         )}
         <input
+          id={id}
           type={type}
           placeholder={placeholder}
           className={`w-full p-4 h-[3.75rem] rounded-[0.3rem] outline-none border-2 font-nanum text-input_title text-[0.87rem] ${

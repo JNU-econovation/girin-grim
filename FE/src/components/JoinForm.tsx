@@ -6,6 +6,7 @@ import { useRecoilValue } from "recoil";
 import { joinForm } from "@/store/join";
 import { join } from "@/apis/apis";
 import { useRouter } from "next/navigation";
+import AgreementCheckbox from "./AgreementCheckbox";
 
 export default function JoinForm() {
   const data = useRecoilValue(joinForm);
@@ -18,10 +19,24 @@ export default function JoinForm() {
   };
 
   const submitJoinForm = async () => {
-    const data = await join(submitData); //TODO: 회원가입 여부 확인 및 오류 확인
+    if (data.passwordCheck == data.password) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+    if (!data.emailCheck || !data.nameCheck || !data.agree) {
+      alert("중복 확인 및 필수 동의사항을 동의해주세요!");
+      return;
+    }
+
+    const { success, response, error } = await join(submitData); //TODO: 회원가입 여부 확인 및 오류 확인, 반환타입 정의
+    if (error) {
+      alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
+      return;
+    }
     alert("회원가입이 완료되었습니다.");
     router.push("/login");
   };
+
   return (
     <form
       onSubmit={(e) => {
@@ -46,15 +61,7 @@ export default function JoinForm() {
           />
         );
       })}
-      <div className="flex items-center gap-2">
-        <input type="checkbox" id="scales" name="scales" />
-        <label
-          htmlFor="scales"
-          className="text-[0.875rem] text-[#525252] text-sm"
-        >
-          개인정보 수집 및 이용에 대한 동의
-        </label>
-      </div>
+      <AgreementCheckbox />
       <SubmitBtn />
     </form>
   );
