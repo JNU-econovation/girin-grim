@@ -1,5 +1,6 @@
 package com.example.giringrim.member;
 
+import com.example.giringrim.favUniversity.FavUniversity;
 import com.example.giringrim.member.exception.EmailAlreadyExistException;
 import com.example.giringrim.favUniversity.FavUniversityRepository;
 import com.example.giringrim.member.exception.NicknameAlreadyExistException;
@@ -10,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -23,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional
-    public void join(MemberReqDto.JoinReqDto joinReqDto) {
+    public void join(MemberReqDtos.JoinReqDto joinReqDto) {
         String encodedPassword = passwordEncoder.encode(joinReqDto.getPassword());
         Member member = joinReqDto.toEntity(encodedPassword);
         memberRepository.save(member);
@@ -56,17 +59,26 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
-    /*
     @Override
-    @Transactional(readOnly = true)
-    public void nicknameValidation(String nickname) {
-        Member member = memberRepository.findByNickname(nickname);
-        if(member != null){
-            throw new NicknameAlreadyExistException(ErrorMessage.NICKNAME_ALREADY_EXIST);
+    public void login(MemberReqDtos.LoginReqDto loginReqDto) {
+        Member member = memberRepository.findByEmail(loginReqDto.getEmail());
+        if(member == null){
+            //TODO : 이메일이 틀림
+         //   throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_EMAIL);
+        }
+        if(!passwordEncoder.matches(loginReqDto.getPassword(), member.getPassword())){
+            //TODO : 비밀번호가 틀림
+         //   throw new IllegalArgumentException(ErrorMessage.WRONG_PASSWORD);
         }
     }
 
+    @Override
+    public MemberRespDtos.ProfileRespDto getProfile(Long memberId) {
+        Member member = memberRepository.findById(memberId).orElseThrow(
+           //     () -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_MEMBER)
+        );
 
-     */
-
+        List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(memberId);
+        return new MemberRespDtos.ProfileRespDto(member, favUniversityList, false);
+    }
 }

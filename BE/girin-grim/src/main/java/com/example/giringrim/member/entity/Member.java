@@ -37,7 +37,7 @@ public class Member {
     private String address;
 
     @Column
-    private BigDecimal crayon;
+    private BigDecimal coin;
 
     @Builder
     public Member(Long id, String nickname, String email, String password){

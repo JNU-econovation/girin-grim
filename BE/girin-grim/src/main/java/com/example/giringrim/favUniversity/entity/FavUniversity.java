@@ -21,7 +21,7 @@ public class FavUniversity {
     private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Member_id")
+    @JoinColumn(name = "member_id")
     Member member;
 
     @Builder

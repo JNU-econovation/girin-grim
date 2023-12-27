@@ -8,11 +8,17 @@ import com.example.giringrim.university.exception.UnivNotExistException;
 import com.example.giringrim.utils.ApiResponse;
 import com.example.giringrim.utils.ApiResponseGenerator;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler{
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Object processValidationError(MethodArgumentNotValidException ex) {
+        return ApiResponseGenerator.fail(ex.getBindingResult().getAllErrors().get(0).getDefaultMessage(), HttpStatus.BAD_REQUEST);
+    }
 
     @ExceptionHandler(EmailAlreadyExistException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(EmailAlreadyExistException e){
