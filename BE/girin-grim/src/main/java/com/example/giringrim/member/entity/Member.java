@@ -1,4 +1,4 @@
-package com.example.giringrim.member;
+package com.example.giringrim.member.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -37,7 +37,7 @@ public class Member {
     private String address;
 
     @Column
-    private BigDecimal crayon;
+    private BigDecimal coin;
 
     @Builder
     public Member(Long id, String nickname, String email, String password){

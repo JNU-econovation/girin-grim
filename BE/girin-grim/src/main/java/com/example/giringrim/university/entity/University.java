@@ -1,17 +1,17 @@
-package com.example.giringrim.favUniversity;
+package com.example.giringrim.university.entity;
 
-import com.example.giringrim.member.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "FAVUNIVERSITY")
-public class FavUniversity {
+@Table(name = "UNIVERSITY")
+public class University {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,13 +20,13 @@ public class FavUniversity {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Member_id")
-    Member member;
+    @Column(nullable = false)
+    private String region;
 
     @Builder
-    public FavUniversity(String name, Member member){
+    public University(String name, String region){
         this.name = name;
-        this.member = member;
+        this.region = region;
     }
 }
+

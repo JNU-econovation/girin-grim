@@ -1,6 +1,6 @@
-package com.example.giringrim.member;
+package com.example.giringrim.member.repository;
 
-import com.example.giringrim.member.Member;
+import com.example.giringrim.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository <Member, Long> {
