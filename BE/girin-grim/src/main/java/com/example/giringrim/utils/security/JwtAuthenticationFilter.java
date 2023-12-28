@@ -1,7 +1,6 @@
 package com.example.giringrim.utils.security;
 
 import com.example.giringrim.member.entity.Member;
-import com.example.giringrim.utils.UserDetailsImpl;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

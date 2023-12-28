@@ -1,4 +1,4 @@
-package com.example.giringrim.utils;
+package com.example.giringrim.utils.security;
 
 import com.example.giringrim.member.entity.Member;
 import lombok.RequiredArgsConstructor;
