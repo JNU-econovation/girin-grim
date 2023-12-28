@@ -29,6 +29,16 @@ public class TokenGenerator {
         return new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS512.getJcaName());
     }
 
+    //Access 토큰 생성하는 함수
+    public String createAccessToken(Member member) {
+        return Jwts.builder().setSubject(member.getEmail()) // 정보 저장
+                .setHeaderParam("typ", "JWT")
+                .setIssuedAt(new Date()) // 토큰 발행 시간
+                .setExpiration(calcExpirationDateTime(ACCESS_TOKEN)) // 토큰 만료 시간
+                .signWith(createKey(), SignatureAlgorithm.HS256)  // 암호화 알고리즘 및 secretKey
+                .compact();
+    }
+
     //두 종류의 토큰 만료 시간 설정
     private Date calcExpirationDateTime(final String type) {
         LocalDateTime currentTime = LocalDateTime.now();
