@@ -4,12 +4,12 @@ import com.example.giringrim.favUniversity.entity.FavUniversity;
 import com.example.giringrim.member.dto.MemberReqDtos;
 import com.example.giringrim.member.dto.MemberRespDtos;
 import com.example.giringrim.member.entity.Member;
-import com.example.giringrim.member.exception.EmailAlreadyExistException;
+import com.example.giringrim.member.exception.*;
 import com.example.giringrim.favUniversity.repository.FavUniversityRepository;
-import com.example.giringrim.member.exception.NicknameAlreadyExistException;
-import com.example.giringrim.member.exception.UniversitySelectionException;
 import com.example.giringrim.member.repository.MemberRepository;
 import com.example.giringrim.member.service.MemberService;
+import com.example.giringrim.university.entity.University;
+import com.example.giringrim.university.repository.UnivRepository;
 import com.example.giringrim.utils.exception.ErrorMessage;
 import com.example.giringrim.utils.security.TokenGenerator;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +30,7 @@ public class MemberServiceImpl implements MemberService {
     private final FavUniversityRepository favUniversityRepository;
     private final PasswordEncoder passwordEncoder;
     private final TokenGenerator tokenGenerator;
+    private final UnivRepository univRepository;
 
     @Override
     @Transactional
@@ -38,10 +39,19 @@ public class MemberServiceImpl implements MemberService {
         Member member = joinReqDto.toEntity(encodedPassword);
         memberRepository.save(member);
 
+        //선택한 대학교가 1개 이상 10개 이하인지 확인
         if(joinReqDto.getUniversity().isEmpty() || joinReqDto.getUniversity().size() >=10){
-            throw new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY);
+            throw new UniversityCountException(ErrorMessage.WRONG_UNIVERSITY_COUNT);
         }
         joinReqDto.getUniversity().forEach(university -> {
+            //전국 대학교 목록에 존재하는 대학교인지 확인
+            University univ = univRepository.findByName(university.getName()).orElseThrow(
+                    () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
+            );
+            //한명의 멤버가 중복된 대학교를 보냈는지 확인
+            if(favUniversityRepository.findByNameAndMemberId(university.getName(), member.getId()).isPresent()){
+                throw new UniversityDuplicationException(ErrorMessage.SELECTED_DUPLICATED_UNIVERSITY);
+            }
             favUniversityRepository.save(university.toEntity(member));
         });
 
