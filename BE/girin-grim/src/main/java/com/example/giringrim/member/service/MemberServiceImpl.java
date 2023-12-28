@@ -59,6 +59,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional(readOnly = true)
     public void joinValidation(String email, String nickname) {
+        //TODO : 파라미터가 2개 요청왔을때 예외처리
         if(nickname == null){
             Member member = memberRepository.findByEmail(email).orElseThrow(
                     () -> new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST)
@@ -89,6 +90,7 @@ public class MemberServiceImpl implements MemberService {
         //accessToken, refreshToken 생성
         String accessToken = tokenGenerator.createAccessToken(member);
         String refreshToken = tokenGenerator.createRefreshToken(member);
+        //TODO : refreshToken은 추후에 redis나 db에 저장
 
         return new MemberRespDtos.LoginRespDto(accessToken, refreshToken);
     }

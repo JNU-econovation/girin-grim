@@ -2,7 +2,7 @@ package com.example.giringrim.university.controller;
 
 import com.example.giringrim.university.service.UnivService;
 import com.example.giringrim.university.dto.UnivRespDtos;
-import com.example.giringrim.utils.ApiResponseGenerator;
+import com.example.giringrim.utils.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

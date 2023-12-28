@@ -3,7 +3,7 @@ package com.example.giringrim.member.controller;
 import com.example.giringrim.member.dto.MemberReqDtos;
 import com.example.giringrim.member.dto.MemberRespDtos;
 import com.example.giringrim.member.service.MemberServiceImpl;
-import com.example.giringrim.utils.ApiResponseGenerator;
+import com.example.giringrim.utils.common.ApiResponseGenerator;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

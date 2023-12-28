@@ -4,8 +4,8 @@ import com.example.giringrim.member.exception.*;
 ;
 import com.example.giringrim.university.exception.RegionNotExistException;
 import com.example.giringrim.university.exception.UnivNotExistException;
-import com.example.giringrim.utils.ApiResponse;
-import com.example.giringrim.utils.ApiResponseGenerator;
+import com.example.giringrim.utils.common.ApiResponse;
+import com.example.giringrim.utils.common.ApiResponseGenerator;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler{
     }
 
 
-    //로그인
+    //로그인 (/member/login)
     @ExceptionHandler(MemberNotExistException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(MemberNotExistException e){
         return ApiResponseGenerator.fail(ErrorMessage.MEMBER_NOT_EXIST.getMessage(), HttpStatus.BAD_REQUEST);
@@ -58,7 +58,7 @@ public class GlobalExceptionHandler{
     }
 
 
-    //대학교 검색
+    //대학교 검색 (/uni?name={name}&region={region})
     @ExceptionHandler(UnivNotExistException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(UnivNotExistException e){
         return ApiResponseGenerator.fail(ErrorMessage.UNIV_NOT_EXIST.getMessage(), HttpStatus.NOT_FOUND);

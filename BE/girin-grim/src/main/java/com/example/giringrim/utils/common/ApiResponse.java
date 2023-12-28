@@ -1,4 +1,4 @@
-package com.example.giringrim.utils;
+package com.example.giringrim.utils.common;
 
 import com.example.giringrim.utils.exception.Error;
 import lombok.AllArgsConstructor;
