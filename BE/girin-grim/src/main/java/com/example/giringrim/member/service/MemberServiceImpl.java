@@ -7,7 +7,6 @@ import com.example.giringrim.member.entity.Member;
 import com.example.giringrim.member.exception.*;
 import com.example.giringrim.favUniversity.repository.FavUniversityRepository;
 import com.example.giringrim.member.repository.MemberRepository;
-import com.example.giringrim.member.service.MemberService;
 import com.example.giringrim.university.entity.University;
 import com.example.giringrim.university.repository.UnivRepository;
 import com.example.giringrim.utils.exception.ErrorMessage;
@@ -75,15 +74,19 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    @Transactional
     public MemberRespDtos.LoginRespDto login(MemberReqDtos.LoginReqDto loginReqDto) {
 
         Member member = memberRepository.findByEmail(loginReqDto.getEmail()).orElseThrow(
-           //     () -> new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST)
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
+
+        //비밀번호 일치 여부 확인
         if(!passwordEncoder.matches(loginReqDto.getPassword(), member.getPassword())){
-            //TODO : 비밀번호가 틀림
-         //   throw new IllegalArgumentException(ErrorMessage.WRONG_PASSWORD);
+            throw new PasswordMatchException(ErrorMessage.PASSWORD_NOT_MATCH);
         }
+
+        //accessToken, refreshToken 생성
         String accessToken = tokenGenerator.createAccessToken(member);
         String refreshToken = tokenGenerator.createRefreshToken(member);
 
