@@ -65,4 +65,13 @@ public class TokenGenerator {
         return Date.from(expirationDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
 
     }
+
+    public Claims extractToken(String jwt) {
+        String token = jwt.substring(7);
+        return Jwts.parserBuilder()
+                .setSigningKey(createKey())
+                .build()
+                .parseClaimsJws(token)
+                .getBody();
+    }
 }
