@@ -29,5 +29,20 @@ public class TokenGenerator {
         return new SecretKeySpec(apiKeySecretBytes, SignatureAlgorithm.HS512.getJcaName());
     }
 
+    //두 종류의 토큰 만료 시간 설정
+    private Date calcExpirationDateTime(final String type) {
+        LocalDateTime currentTime = LocalDateTime.now();
+        LocalDateTime expirationDateTime;
 
+        if(Objects.equals(type, "access")){
+            expirationDateTime = currentTime
+                    .plusHours(1);
+        }
+        else{
+            expirationDateTime = currentTime
+                    .plusDays(7);
+        }
+        return Date.from(expirationDateTime.atZone(java.time.ZoneId.systemDefault()).toInstant());
+
+    }
 }
