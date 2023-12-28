@@ -8,7 +8,7 @@ spring:
     username: ${USERNAME}
     password: ${PASSWORD}
   jpa:
-    #   defer-datasource-initialization: true
+    defer-datasource-initialization: true
     properties:
       hibernate:
         show_sql: true
