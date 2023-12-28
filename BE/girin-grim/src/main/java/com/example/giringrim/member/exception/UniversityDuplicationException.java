@@ -4,11 +4,11 @@ import com.example.giringrim.utils.exception.ErrorMessage;
 import lombok.Getter;
 
 @Getter
-public class UniversitySelectionException extends RuntimeException{
+public class UniversityDuplicationException extends RuntimeException{
 
     private final ErrorMessage errorMessage;
 
-    public UniversitySelectionException(ErrorMessage errorMessage) {
+    public UniversityDuplicationException(ErrorMessage errorMessage) {
         this.errorMessage = errorMessage;
     }
 }

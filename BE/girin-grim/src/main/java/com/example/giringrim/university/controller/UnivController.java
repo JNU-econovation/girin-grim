@@ -2,7 +2,7 @@ package com.example.giringrim.university.controller;
 
 import com.example.giringrim.university.service.UnivService;
 import com.example.giringrim.university.dto.UnivRespDtos;
-import com.example.giringrim.utils.ApiResponseGenerator;
+import com.example.giringrim.utils.common.ApiResponseGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UnivController {
 
     private final UnivService univService;
-
-    @GetMapping("/init")
-    public ResponseEntity<?> initUniv(){
-        univService.initUniv();
-        return ApiResponseGenerator.success(HttpStatus.OK);
-    }
 
     @GetMapping("/uni")
     public ResponseEntity<?> getUnivList(@RequestParam(value = "region") String region, @RequestParam(value = "q", required = false) String keyword){
