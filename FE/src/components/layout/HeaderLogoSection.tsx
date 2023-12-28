@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo, User } from "./ui/icon";
+import { Logo, User } from "../common/icon";
 
 export default function HeaderLogoSection() {
   return (
