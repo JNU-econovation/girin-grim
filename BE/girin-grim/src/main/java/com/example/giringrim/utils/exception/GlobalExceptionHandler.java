@@ -1,8 +1,7 @@
 package com.example.giringrim.utils.exception;
 
-import com.example.giringrim.member.exception.EmailAlreadyExistException;
-import com.example.giringrim.member.exception.NicknameAlreadyExistException;
-import com.example.giringrim.member.exception.UniversitySelectionException;
+import com.example.giringrim.member.exception.*;
+;
 import com.example.giringrim.university.exception.RegionNotExistException;
 import com.example.giringrim.university.exception.UnivNotExistException;
 import com.example.giringrim.utils.ApiResponse;
@@ -30,9 +29,9 @@ public class GlobalExceptionHandler{
         return ApiResponseGenerator.fail(ErrorMessage.NICKNAME_ALREADY_EXIST.getMessage(), HttpStatus.LOCKED);
     }
 
-    @ExceptionHandler(UniversitySelectionException.class)
-    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException (UniversitySelectionException e){
-        return ApiResponseGenerator.fail(ErrorMessage.SELECTED_WRONG_UNIVERSITY.getMessage(), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(UniversityCountException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException (UniversityCountException e){
+        return ApiResponseGenerator.fail(ErrorMessage.WRONG_UNIVERSITY_COUNT.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UnivNotExistException.class)
@@ -43,6 +42,16 @@ public class GlobalExceptionHandler{
     @ExceptionHandler(RegionNotExistException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(RegionNotExistException e){
         return ApiResponseGenerator.fail(ErrorMessage.REGION_NOT_EXIST.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UniversitySelectionException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(UniversitySelectionException e){
+        return ApiResponseGenerator.fail(ErrorMessage.SELECTED_WRONG_UNIVERSITY.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UniversityDuplicationException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(UniversityDuplicationException e){
+        return ApiResponseGenerator.fail(ErrorMessage.SELECTED_DUPLICATED_UNIVERSITY.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 
