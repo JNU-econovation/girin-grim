@@ -20,14 +20,6 @@ public class UnivService {
 
     private final UnivRepository univRepository;
 
-    public void initUniv(){
-        univRepository.save(new University("전남대학교", "Gwangju"));
-        univRepository.save(new University("조선대학교", "Gwangju"));
-        univRepository.save(new University("호남대학교", "Gwangju"));
-        univRepository.save(new University("서울대학교", "Seoul"));
-        univRepository.save(new University("성균관대학교", "Seoul"));
-    }
-
     @Transactional(readOnly = true)
     public UnivRespDtos.GetUnivListDto getUnivList(String region, String keyword){
 

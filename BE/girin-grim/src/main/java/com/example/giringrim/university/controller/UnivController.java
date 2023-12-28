@@ -18,12 +18,6 @@ public class UnivController {
 
     private final UnivService univService;
 
-    @GetMapping("/init")
-    public ResponseEntity<?> initUniv(){
-        univService.initUniv();
-        return ApiResponseGenerator.success(HttpStatus.OK);
-    }
-
     @GetMapping("/uni")
     public ResponseEntity<?> getUnivList(@RequestParam(value = "region") String region, @RequestParam(value = "q", required = false) String keyword){
         UnivRespDtos.GetUnivListDto respDto = univService.getUnivList(region, keyword);
