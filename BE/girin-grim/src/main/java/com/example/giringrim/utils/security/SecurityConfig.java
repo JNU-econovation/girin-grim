@@ -63,17 +63,16 @@ public class SecurityConfig {
         //커스텀 필터 등록
         http.apply(new SecurityFilterManagerImpl());
 
+        // 인증 실패 처리
         http.exceptionHandling(handling ->
                 handling.authenticationEntryPoint(((request, response, authException) -> {
                     log.info("에러1");
-                    ApiResponseGenerator.fail("로그인이 필요합니다.", HttpStatus.UNAUTHORIZED);
                 })));
 
-        // 9. 권한 실패 처리
+        // 권한 실패 처리
         http.exceptionHandling(handling ->
                 handling.accessDeniedHandler(((request, response, accessDeniedException) -> {
                     log.info("에러2");
-                    ApiResponseGenerator.fail("인증이 필요합니다.", HttpStatus.FORBIDDEN);
                 })));
 
 
