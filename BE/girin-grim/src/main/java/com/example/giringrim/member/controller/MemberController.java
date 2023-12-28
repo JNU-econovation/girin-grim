@@ -40,8 +40,8 @@ public class MemberController {
      */
     @PostMapping("/member/login")
     public ResponseEntity<?> login(@Valid @RequestBody MemberReqDtos.LoginReqDto loginReqDto){
-        memberService.login(loginReqDto);
-        return ApiResponseGenerator.success(HttpStatus.OK);
+        MemberRespDtos.LoginRespDto loginRespDto = memberService.login(loginReqDto);
+        return ApiResponseGenerator.success(loginRespDto, HttpStatus.OK);
     }
 
     /*

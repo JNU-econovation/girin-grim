@@ -11,6 +11,7 @@ import com.example.giringrim.member.exception.UniversitySelectionException;
 import com.example.giringrim.member.repository.MemberRepository;
 import com.example.giringrim.member.service.MemberService;
 import com.example.giringrim.utils.exception.ErrorMessage;
+import com.example.giringrim.utils.security.TokenGenerator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,6 +29,7 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final FavUniversityRepository favUniversityRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TokenGenerator tokenGenerator;
 
     @Override
     @Transactional
@@ -49,10 +51,9 @@ public class MemberServiceImpl implements MemberService {
     @Transactional(readOnly = true)
     public void joinValidation(String email, String nickname) {
         if(nickname == null){
-            Member member = memberRepository.findByEmail(email);
-            if(member != null){
-                throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
-            }
+            Member member = memberRepository.findByEmail(email).orElseThrow(
+                    () -> new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST)
+            );
         }
         else{
             Member member = memberRepository.findByNickname(nickname);
@@ -64,16 +65,19 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void login(MemberReqDtos.LoginReqDto loginReqDto) {
-        Member member = memberRepository.findByEmail(loginReqDto.getEmail());
-        if(member == null){
-            //TODO : 이메일이 틀림
-         //   throw new IllegalArgumentException(ErrorMessage.NOT_EXIST_EMAIL);
-        }
+    public MemberRespDtos.LoginRespDto login(MemberReqDtos.LoginReqDto loginReqDto) {
+
+        Member member = memberRepository.findByEmail(loginReqDto.getEmail()).orElseThrow(
+           //     () -> new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST)
+        );
         if(!passwordEncoder.matches(loginReqDto.getPassword(), member.getPassword())){
             //TODO : 비밀번호가 틀림
          //   throw new IllegalArgumentException(ErrorMessage.WRONG_PASSWORD);
         }
+        String accessToken = tokenGenerator.createAccessToken(member);
+        String refreshToken = tokenGenerator.createRefreshToken(member);
+
+        return new MemberRespDtos.LoginRespDto(accessToken, refreshToken);
     }
 
     @Override
