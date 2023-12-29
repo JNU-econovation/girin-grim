@@ -59,9 +59,7 @@ export default function JoinInput({
         />
         {exist && <div>{component}</div>}
       </div>
-      <span className="font-nanum text-[#b0b0b0] text-[0.625rem]">
-        {notice}
-      </span>
+      <span className="font-nanum text-grey text-[0.625rem]">{notice}</span>
     </div>
   );
 }
