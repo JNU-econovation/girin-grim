@@ -4,7 +4,7 @@ import { Layer, Search } from "../common/icon";
 
 export default function HeaderNavSection() {
   return (
-    <section className="flex justify-between">
+    <section className="flex justify-between mt-[0.8rem]">
       <ul className="flex gap-5 font-semibold text-xl mb-4 items-center cursor-pointer">
         <li className="flex items-center gap-3">
           <Layer />
