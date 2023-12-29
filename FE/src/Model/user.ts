@@ -14,3 +14,7 @@ type UserForm = {
   nickname: string;
   university: { name: string }[];
 };
+type LoginUser = {
+  email: string;
+  password: string;
+};

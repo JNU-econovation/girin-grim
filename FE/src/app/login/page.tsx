@@ -1,7 +1,6 @@
-import AgreementCheckbox from "@/components/common/AgreementCheckbox";
-import StyledBtn from "@/components/common/StyledBtn";
 import LoginForm from "@/components/login/LoginForm";
 import LoginHeader from "@/components/login/LoginHeader";
+import LoginRedirect from "@/components/login/LoginRedirect";
 
 export default function LoginPage() {
   return (
@@ -9,8 +8,7 @@ export default function LoginPage() {
     <section className="w-[32rem] mt-[9.56rem] mx-auto">
       <LoginHeader />
       <LoginForm />
-      <AgreementCheckbox text="로그인 상태 유지" style="mt-[1rem]" />
-      <StyledBtn text="로그인" style="mt-[2.4rem]" />
+      <LoginRedirect />
     </section>
   );
 }

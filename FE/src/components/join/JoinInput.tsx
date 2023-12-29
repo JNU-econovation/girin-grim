@@ -1,6 +1,6 @@
 "use client";
 
-import { joinForm } from "@/store/join";
+import { joinState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
 type Props = {
@@ -27,7 +27,7 @@ export default function JoinInput({
   notice,
   button: { exist, component },
 }: Readonly<Props>) {
-  const [value, setValue] = useRecoilState(joinForm);
+  const [value, setValue] = useRecoilState(joinState);
 
   const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (id === "email") {

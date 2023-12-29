@@ -1,5 +1,5 @@
 "use client";
-import { joinForm } from "@/store/join";
+import { joinState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function AgreementCheckbox({ text, style }: Readonly<Props>) {
-  const [form, setForm] = useRecoilState(joinForm);
+  const [form, setForm] = useRecoilState(joinState);
 
   const handleAgreement = (isChecked: boolean) => {
     setForm({ ...form, agree: isChecked });

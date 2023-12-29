@@ -3,13 +3,13 @@ import { formComponent } from "@/constants/formComponent";
 import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
 import { useRecoilValue } from "recoil";
-import { joinForm } from "@/store/join";
+import { joinState } from "@/store/JoinState";
 import { join } from "@/apis/apis";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../common/AgreementCheckbox";
 
 export default function JoinForm() {
-  const data = useRecoilValue(joinForm);
+  const data = useRecoilValue(joinState);
   const router = useRouter();
   const submitData = {
     email: data.email,

@@ -1,3 +1,6 @@
+import { LoginState } from "@/store/LoginState";
+import { useRecoilState } from "recoil";
+
 type Props = {
   title: string;
   type?: string;
@@ -11,6 +14,7 @@ export default function LoginInput({
   icon,
   placeholder,
 }: Readonly<Props>) {
+  const [login, setLogin] = useRecoilState<LoginUser>(LoginState);
   return (
     <div className="mt-[1.8rem]">
       <label
@@ -28,6 +32,13 @@ export default function LoginInput({
           type={type}
           className="w-full h-[3.75rem] px-14 shrink-0 rounded-[0.4rem] outline-none border-2"
           placeholder={placeholder}
+          value={login[title as keyof LoginUser]}
+          onChange={(e) => {
+            setLogin((prev: LoginUser) => ({
+              ...prev,
+              [type]: e.target.value,
+            }));
+          }}
         />
       </div>
     </div>

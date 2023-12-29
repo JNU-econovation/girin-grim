@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
-export const joinForm = atom<Form>({
-  key: "joinForm",
+export const joinState = atom<Form>({
+  key: "joinState",
   default: {
     email: "",
     password: "",
