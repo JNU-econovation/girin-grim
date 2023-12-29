@@ -12,7 +12,7 @@ export default function LoginInput({
   placeholder,
 }: Readonly<Props>) {
   return (
-    <div className="mt-[2rem]">
+    <div className="mt-[1.8rem]">
       <label
         htmlFor="email"
         className="font-nanum text-[0.625rem] text-[400] text-color656"

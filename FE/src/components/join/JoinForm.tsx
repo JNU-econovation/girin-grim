@@ -6,7 +6,7 @@ import { useRecoilValue } from "recoil";
 import { joinForm } from "@/store/join";
 import { join } from "@/apis/apis";
 import { useRouter } from "next/navigation";
-import AgreementCheckbox from "./AgreementCheckbox";
+import AgreementCheckbox from "../common/AgreementCheckbox";
 
 export default function JoinForm() {
   const data = useRecoilValue(joinForm);
@@ -62,7 +62,7 @@ export default function JoinForm() {
           />
         );
       })}
-      <AgreementCheckbox />
+      <AgreementCheckbox text="개인정보 수집 및 이용에 대한 동의" />
       <SubmitBtn />
     </form>
   );
