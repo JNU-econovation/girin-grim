@@ -1,16 +1,21 @@
-import { joinForm } from "@/store/join";
-import React from "react";
+"use client";
+import { joinState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
-export default function AgreementCheckbox() {
-  const [form, setForm] = useRecoilState(joinForm);
+type Props = {
+  text: string;
+  style?: string;
+};
+
+export default function AgreementCheckbox({ text, style }: Readonly<Props>) {
+  const [form, setForm] = useRecoilState(joinState);
 
   const handleAgreement = (isChecked: boolean) => {
     setForm({ ...form, agree: isChecked });
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className={`flex items-center gap-2 ${style}`}>
       <input
         type="checkbox"
         id="scales"
@@ -22,7 +27,7 @@ export default function AgreementCheckbox() {
         htmlFor="scales"
         className="text-[0.875rem] text-[#525252] text-sm"
       >
-        개인정보 수집 및 이용에 대한 동의
+        {text}
       </label>
     </div>
   );

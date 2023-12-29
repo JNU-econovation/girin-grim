@@ -3,13 +3,13 @@ import { formComponent } from "@/constants/formComponent";
 import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
 import { useRecoilValue } from "recoil";
-import { joinForm } from "@/store/join";
+import { joinState } from "@/store/JoinState";
 import { join } from "@/apis/apis";
 import { useRouter } from "next/navigation";
-import AgreementCheckbox from "./AgreementCheckbox";
+import AgreementCheckbox from "../common/AgreementCheckbox";
 
 export default function JoinForm() {
-  const data = useRecoilValue(joinForm);
+  const data = useRecoilValue(joinState);
   const router = useRouter();
   const submitData = {
     email: data.email,
@@ -62,7 +62,7 @@ export default function JoinForm() {
           />
         );
       })}
-      <AgreementCheckbox />
+      <AgreementCheckbox text="개인정보 수집 및 이용에 대한 동의" />
       <SubmitBtn />
     </form>
   );

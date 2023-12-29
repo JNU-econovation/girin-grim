@@ -1,4 +1,4 @@
-import JoinForm from "@/components/JoinForm";
+import JoinForm from "@/components/join/JoinForm";
 
 export default function JoinPage() {
   return (

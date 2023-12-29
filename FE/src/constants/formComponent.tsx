@@ -1,6 +1,6 @@
-import ToggleBtn from "@/components/ToggleBtn";
-import DuplicateCheckButton from "../components/DuplicateCheckButton";
-import { Email, Nick, Password, ISchool } from "../components/ui/icon";
+import ToggleBtn from "@/components/join/ToggleBtn";
+import DuplicateCheckButton from "../components/join/DuplicateCheckButton";
+import { Email, Nick, Password, ISchool } from "../components/common/icon";
 
 export const formComponent = [
   {

@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* input[id="list"] {
+  display: none;
+}
+
+.checkbox_img {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("https://s.wemep.co.kr/ui/v2.8.307/dist/pc/css/spr/common.png")
+    0 -438px no-repeat;
+  vertical-align: top;
+}
+
+input[id="list"]:checked + label span {
+  background-position: -75px -438px;
+} */

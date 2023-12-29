@@ -1,6 +1,6 @@
 "use client";
 
-import { Layer, Search } from "./ui/icon";
+import { Layer, Search } from "../common/icon";
 
 export default function HeaderNavSection() {
   return (

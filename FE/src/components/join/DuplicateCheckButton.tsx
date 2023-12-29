@@ -1,6 +1,6 @@
 "use client";
 import { checkDuplicate } from "@/apis/apis";
-import { joinForm } from "@/store/join";
+import { joinState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default function DuplicateCheckButton({ type }: Props) {
-  const [form, setForm] = useRecoilState(joinForm);
+  const [form, setForm] = useRecoilState(joinState);
   const text = type === "email" ? "이메일" : "닉네임";
 
   //handler
