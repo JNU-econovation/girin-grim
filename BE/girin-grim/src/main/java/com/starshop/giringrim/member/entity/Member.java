@@ -1,6 +1,7 @@
 package com.starshop.giringrim.member.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -37,7 +38,8 @@ public class Member {
     private String address;
 
     @Column
-    private BigDecimal coin;
+    private BigDecimal coin = BigDecimal.valueOf(500000);
+
 
     @Builder
     public Member(Long id, String nickname, String email, String password){
@@ -45,7 +47,6 @@ public class Member {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
-
     }
 
 }
