@@ -2,6 +2,7 @@ package com.starshop.giringrim.member.dto;
 
 import com.starshop.giringrim.favUniversity.entity.FavUniversity;
 import com.starshop.giringrim.member.entity.Member;
+import com.starshop.giringrim.university.entity.University;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -31,11 +32,11 @@ public class MemberReqDtos {
 
         @Getter
         public static class FavUniversityDto {
-            private String name;
+            private Long universityId;
 
-            public FavUniversity toEntity(Member member){
+            public FavUniversity toEntity(Member member, University univ){
                 return FavUniversity.builder()
-                        .name(name)
+                        .name(univ.getName())
                         .member(member)
                         .build();
             }
