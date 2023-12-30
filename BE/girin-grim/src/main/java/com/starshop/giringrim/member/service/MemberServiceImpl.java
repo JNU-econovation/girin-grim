@@ -12,8 +12,10 @@ import com.starshop.giringrim.university.entity.University;
 import com.starshop.giringrim.university.repository.UnivRepository;
 import com.starshop.giringrim.utils.exception.ErrorMessage;
 import com.starshop.giringrim.utils.security.TokenGenerator;
+import com.starshop.giringrim.utils.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional
     public void join(MemberReqDtos.JoinReqDto joinReqDto) {
+
         String encodedPassword = passwordEncoder.encode(joinReqDto.getPassword());
         Member member = joinReqDto.toEntity(encodedPassword);
         memberRepository.save(member);
@@ -45,14 +48,14 @@ public class MemberServiceImpl implements MemberService {
         }
         joinReqDto.getUniversity().forEach(university -> {
             //전국 대학교 목록에 존재하는 대학교인지 확인
-            University univ = univRepository.findByName(university.getName()).orElseThrow(
+            University univ = univRepository.findById(university.getUniversityId()).orElseThrow(
                     () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
             );
-            //한명의 멤버가 중복된 대학교를 보냈는지 확인
-            if(favUniversityRepository.findByNameAndMemberId(university.getName(), member.getId()).isPresent()){
+            //한명의 멤버에 대해서 중복된 대학교를 보냈는지 확인
+            if(favUniversityRepository.findByNameAndMemberId(univ.getName(), member.getId()).isPresent()){
                 throw new UniversityDuplicationException(ErrorMessage.SELECTED_DUPLICATED_UNIVERSITY);
             }
-            favUniversityRepository.save(university.toEntity(member));
+            favUniversityRepository.save(university.toEntity(member, univ));
         });
 
     }
@@ -97,15 +100,24 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public MemberRespDtos.ProfileRespDto getProfile(Long memberId) {
-        //TODO : 본인의 프로필을 조회하는지 타인의 프로필을 조회하는지 로직 구분
+    @Transactional(readOnly = true)
+    public MemberRespDtos.ProfileRespDto getProfile(Long memberId, String memberEmail) {
+        //pathvariable로 받은 id가 존재하지 않는 회원이면 예외
         Member member = memberRepository.findById(memberId).orElseThrow(
-                //TODO : 존재하지 않는 회원일 경우 예외
-           //     () -> new IllegalArgumentException(ErrorMessage.NOT_EXIST_MEMBER)
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
+        boolean isMine = true;
 
+        //pathvariable로 받은 id와 로그인한 사용자의 id가 다른지 확인
+        if(!member.getEmail().equals(memberEmail)){
+            isMine = false;
+            return new MemberRespDtos.ProfileRespDto(member,isMine);
+
+        }
         List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(memberId);
-        return new MemberRespDtos.ProfileRespDto(member, favUniversityList, false);
-        //TODO : 본인의 프로필을 조회하는 경우에는 true를 넘겨줌
+        return new MemberRespDtos.ProfileRespDto(member, favUniversityList, isMine);
+
     }
+
+    
 }
