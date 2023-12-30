@@ -16,8 +16,9 @@ public enum ErrorMessage {
         SELECTED_DUPLICATED_UNIVERSITY("중복된 대학교를 선택하셨습니다."),
 
         //로그인
-        MEMBER_NOT_EXIST("존재하지 않는 회원입니다."),
+        MEMBER_NOT_EXIST("존재하지 않는 회원입니다."), //헤더 로그인 정보, 프로필 조회
         PASSWORD_NOT_MATCH("비밀번호가 일치하지 않습니다."),
+
 
 
         /*

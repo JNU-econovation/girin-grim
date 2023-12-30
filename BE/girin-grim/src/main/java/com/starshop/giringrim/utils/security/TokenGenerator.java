@@ -20,6 +20,8 @@ public class TokenGenerator {
     private final String ACCESS_TOKEN = "access";
     private final String REFRESH_TOKEN = "refresh";
 
+    private final String PREFIX_TOKEN = "Bearer ";
+
 
     private static String SECRET_KEY = "secretsecretsecretsecretsecretsecretsecretsecretsecretsecretsecretsecret";
 
@@ -30,22 +32,26 @@ public class TokenGenerator {
 
     //Access 토큰 생성하는 함수
     public String createAccessToken(Member member) {
-        return Jwts.builder().setSubject(member.getEmail()) // 정보 저장
+        String token = Jwts.builder().setSubject(member.getEmail()) // 정보 저장
                 .setHeaderParam("typ", "JWT")
                 .setIssuedAt(new Date()) // 토큰 발행 시간
                 .setExpiration(calcExpirationDateTime(ACCESS_TOKEN)) // 토큰 만료 시간
                 .signWith(createKey(), SignatureAlgorithm.HS256)  // 암호화 알고리즘 및 secretKey
                 .compact();
+
+        return PREFIX_TOKEN + token;
     }
 
     //Refresh 토큰 생성하는 함수
     public String createRefreshToken(Member member) {
-        return Jwts.builder().setSubject(member.getEmail()) // 정보 저장
+         String token = Jwts.builder().setSubject(member.getEmail()) // 정보 저장
                 .setHeaderParam("typ", "JWT")
                 .setIssuedAt(new Date()) // 토큰 발행 시간
                 .setExpiration(calcExpirationDateTime(REFRESH_TOKEN)) // 토큰 만료 시간
                 .signWith(createKey(), SignatureAlgorithm.HS256)  // 암호화 알고리즘 및 secretKey
                 .compact();
+
+         return PREFIX_TOKEN + token;
     }
 
     //두 종류의 토큰 만료 시간 설정
