@@ -10,3 +10,5 @@ export { default as ISchool } from "./icons/ISchool";
 export { default as Nick } from "./icons/Nick";
 export { default as Toggle } from "./icons/Toggle";
 export { default as ToggleArrow } from "./icons/ToggleArrow";
+export { default as Banner } from "./icons/Banner";
+export { default as Setting } from "./icons/Setting";
