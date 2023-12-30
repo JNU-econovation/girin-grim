@@ -32,9 +32,14 @@ public class MemberRespDtos {
             this.isMine = isMine;
         }
 
+        public ProfileRespDto(Member member, boolean isMine){
+            this.member = new MemberDto(member);
+            this.isMine = isMine;
+        }
+
         @Getter
         public static class MemberDto{
-            private Long id;
+            private Long memberId;
             private String nickname;
             private String email;
             private String image;
@@ -44,7 +49,7 @@ public class MemberRespDtos {
             private List<FavUniversityDto> university;
 
             public MemberDto(Member member, List<FavUniversity> favUniversities){
-                this.id = member.getId();
+                this.memberId = member.getId();
                 this.nickname = member.getNickname();
                 this.email = member.getEmail();
                 this.image = member.getImage();
@@ -56,14 +61,37 @@ public class MemberRespDtos {
                         .toList();
             }
 
+            public MemberDto(Member member){
+                this.memberId = member.getId();
+                this.nickname = member.getNickname();
+                this.email = null;
+                this.image = member.getImage();
+                this.aboutMe = member.getAboutMe();
+                this.address = null;
+                this.coin = null;
+            }
+
             @Getter
             public static class FavUniversityDto{
+                private Long universityId;
                 private String name;
 
                 public FavUniversityDto(FavUniversity favUniversity){
+                    this.universityId = favUniversity.getId();
                     this.name = favUniversity.getName();
                 }
             }
+        }
+    }
+
+    @Getter
+    public static class HeaderInfoRespDto{
+        private Long memberId;
+        private String image;
+
+        public HeaderInfoRespDto(Member member){
+            this.memberId = member.getId();
+            this.image = member.getImage();
         }
     }
 }
