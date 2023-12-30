@@ -2,6 +2,7 @@ package com.starshop.giringrim.utils.security;
 
 import com.starshop.giringrim.member.entity.Member;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -54,7 +55,7 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
             //다음 필터로 넘어감
             filterChain.doFilter(request, response);
-        } catch (Exception e) {
+        } catch (JwtException e) {
             //TODO : 세밀한 예외처리 필요
             log.info("Invalid JWT signature.");
         }
