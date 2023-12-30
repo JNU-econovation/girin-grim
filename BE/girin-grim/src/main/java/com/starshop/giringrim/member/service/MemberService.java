@@ -2,6 +2,7 @@ package com.starshop.giringrim.member.service;
 
 import com.starshop.giringrim.member.dto.MemberReqDtos;
 import com.starshop.giringrim.member.dto.MemberRespDtos;
+import com.starshop.giringrim.utils.security.UserDetailsImpl;
 
 public interface MemberService {
 
@@ -23,6 +24,11 @@ public interface MemberService {
     /*
     *   프로필 조회 메소드
      */
-    MemberRespDtos.ProfileRespDto getProfile(Long memberId);
+    MemberRespDtos.ProfileRespDto getProfile(Long memberId, String memberEmail);
+
+    /*
+    *   헤더 로그인 정보 메소드
+     */
+    MemberRespDtos.HeaderInfoRespDto getHeaderInfo(UserDetailsImpl userDetails);
 
 }

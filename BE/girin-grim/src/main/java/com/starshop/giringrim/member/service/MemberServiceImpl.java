@@ -119,5 +119,20 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
-    
+    @Override
+    @Transactional(readOnly = true)
+    public MemberRespDtos.HeaderInfoRespDto getHeaderInfo(UserDetailsImpl userDetails) {
+        //로그인 안 한 사용자 일 경우
+        String role = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(role.equals("anonymousUser")){
+            throw new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST);
+        }
+
+        //로그인 한 사용자 정보를 조회
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        return new MemberRespDtos.HeaderInfoRespDto(member);
+    }
 }
