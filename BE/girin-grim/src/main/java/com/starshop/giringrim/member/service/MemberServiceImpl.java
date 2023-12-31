@@ -38,6 +38,12 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public void join(MemberReqDtos.JoinReqDto joinReqDto) {
 
+        memberRepository.findByEmail(joinReqDto.getEmail()).ifPresent(
+                member -> {
+                    throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
+                }
+        );
+
         String encodedPassword = passwordEncoder.encode(joinReqDto.getPassword());
         Member member = joinReqDto.toEntity(encodedPassword);
         memberRepository.save(member);
