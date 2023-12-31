@@ -1,8 +1,10 @@
+import { HomeFeedProps } from "./../hooks/useFeeds";
 //TODO: 반환 타입 지정하기
 
-import { joinURL, loginURL } from "@/constants/urls";
+import { homeURL, joinURL, loginURL } from "@/constants/urls";
 import { Server } from "./axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
+import { HomeFeed } from "@/Model/Feed";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -53,4 +55,16 @@ export const login = async (submitData: LoginUser) => {
       //   // 존재하지 않는 이메일입니다.
       // }
     });
+};
+
+export const getHomeFeed = async ({
+  category,
+  sort,
+  univ,
+  q,
+}: HomeFeedProps): Promise<HomeFeed> => {
+  const data = await Server.get(homeURL, {
+    params: { category, sort, univ, q },
+  }).then((res) => res.data);
+  return data;
 };
