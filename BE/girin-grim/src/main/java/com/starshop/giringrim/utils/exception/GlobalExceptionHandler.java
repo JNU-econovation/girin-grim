@@ -1,5 +1,8 @@
 package com.starshop.giringrim.utils.exception;
 
+import com.starshop.giringrim.funding.exception.FundingDurationUnavailableException;
+import com.starshop.giringrim.funding.exception.FundingEstimateUnavailableException;
+import com.starshop.giringrim.funding.exception.FundingStartUnavailableException;
 import com.starshop.giringrim.member.exception.*;
 import com.starshop.giringrim.university.exception.RegionNotExistException;
 import com.starshop.giringrim.university.exception.UnivNotExistException;
@@ -69,6 +72,22 @@ public class GlobalExceptionHandler{
     }
 
 
+    //펀딩 생성 (/funding)
+
+    @ExceptionHandler(FundingStartUnavailableException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(FundingStartUnavailableException e){
+        return ApiResponseGenerator.fail(ErrorMessage.FUNDING_START_DATE_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FundingDurationUnavailableException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(FundingDurationUnavailableException e){
+        return ApiResponseGenerator.fail(ErrorMessage.FUNDING_DURATION_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(FundingEstimateUnavailableException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(FundingEstimateUnavailableException e){
+        return ApiResponseGenerator.fail(ErrorMessage.FUNDING_ESTIMATE_DATE_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
 
 }

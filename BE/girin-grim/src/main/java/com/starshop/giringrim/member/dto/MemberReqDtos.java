@@ -28,11 +28,11 @@ public class MemberReqDtos {
         private String password;
 
 
-        private List<FavUniversityDto> university;
+        private List<FavUniversityDto> favUniversity;
 
         @Getter
         public static class FavUniversityDto {
-            private Long universityId;
+            private Long favUniversityId;
 
             public FavUniversity toEntity(Member member, University univ){
                 return FavUniversity.builder()

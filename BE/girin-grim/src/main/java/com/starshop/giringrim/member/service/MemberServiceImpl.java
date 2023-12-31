@@ -38,17 +38,23 @@ public class MemberServiceImpl implements MemberService {
     @Transactional
     public void join(MemberReqDtos.JoinReqDto joinReqDto) {
 
+        memberRepository.findByEmail(joinReqDto.getEmail()).ifPresent(
+                member -> {
+                    throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
+                }
+        );
+
         String encodedPassword = passwordEncoder.encode(joinReqDto.getPassword());
         Member member = joinReqDto.toEntity(encodedPassword);
         memberRepository.save(member);
 
         //선택한 대학교가 1개 이상 10개 이하인지 확인
-        if(joinReqDto.getUniversity().isEmpty() || joinReqDto.getUniversity().size() >=10){
+        if(joinReqDto.getFavUniversity().isEmpty() || joinReqDto.getFavUniversity().size() >=10){
             throw new UniversityCountException(ErrorMessage.WRONG_UNIVERSITY_COUNT);
         }
-        joinReqDto.getUniversity().forEach(university -> {
+        joinReqDto.getFavUniversity().forEach(university -> {
             //전국 대학교 목록에 존재하는 대학교인지 확인
-            University univ = univRepository.findById(university.getUniversityId()).orElseThrow(
+            University univ = univRepository.findById(university.getFavUniversityId()).orElseThrow(
                     () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
             );
             //한명의 멤버에 대해서 중복된 대학교를 보냈는지 확인
