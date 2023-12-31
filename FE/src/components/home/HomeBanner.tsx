@@ -1,4 +1,3 @@
-import React from "react";
 import { Banner } from "../common/icon";
 
 export default function HomeBanner() {
