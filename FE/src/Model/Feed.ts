@@ -8,15 +8,15 @@ export type HomeFeed = {
 };
 
 type Feed = {
-  fundingId: 1;
-  title: "펀딩 제목1";
-  image: "url형태";
-  university: "전남대";
-  rate: 70;
-  shortDiscription: "짧은 설명";
-  dueDate: 3;
+  fundingId: number;
+  title: string;
+  image: string;
+  university: string;
+  rate: number;
+  shortDiscription: string;
+  dueDate: number;
   member: {
-    memberId: 1;
-    nickname: "홍길동";
+    memberId: number;
+    nickname: string;
   };
 };

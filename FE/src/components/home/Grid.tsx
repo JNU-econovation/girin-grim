@@ -11,16 +11,39 @@ const defaultHomeFeedState: HomeFeedProps = {
 
 export default function Grid() {
   const { data, isLoading, error } = useFeeds(defaultHomeFeedState);
+  if (!data || isLoading) return <div>loading...</div>;
+
   const {
     response: { funding },
-  } = data!;
+  } = data;
 
   return (
     <div className="w-full grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
-      <Feed />
-      {funding.map((funding) => (
-        <Feed key={funding.fundingId} />
-      ))}
+      {funding.map(
+        ({
+          image,
+          dueDate,
+          fundingId,
+          member: { nickname, memberId },
+          rate,
+          shortDiscription,
+          title,
+          university,
+        }) => (
+          <Feed
+            fundgingId={fundingId}
+            key={fundingId}
+            image={image}
+            dueDate={dueDate}
+            nickname={nickname}
+            rate={rate}
+            short={shortDiscription}
+            title={title}
+            university={university}
+            memberId={memberId}
+          />
+        )
+      )}
     </div>
   );
 }
