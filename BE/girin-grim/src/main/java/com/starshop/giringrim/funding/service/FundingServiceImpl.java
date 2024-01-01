@@ -1,5 +1,7 @@
 package com.starshop.giringrim.funding.service;
 
+import com.starshop.giringrim.favUniversity.entity.FavUniversity;
+import com.starshop.giringrim.favUniversity.repository.FavUniversityRepository;
 import com.starshop.giringrim.funding.entity.Funding;
 import java.time.*;
 import com.starshop.giringrim.funding.exception.FundingDurationUnavailableException;
@@ -23,6 +25,7 @@ import com.starshop.giringrim.utils.exception.ErrorMessage;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +44,7 @@ public class FundingServiceImpl implements FundingService {
     private final ItemRepository itemRepository;
     private final UnivRepository univRepository;
     private final MemberRepository memberRepository;
+    private final FavUniversityRepository favUniversityRepository;
 
     @Override
     @Transactional
@@ -68,9 +72,8 @@ public class FundingServiceImpl implements FundingService {
         if(!uploadDto.getFunding().getEndTime().isAfter(uploadDto.getFunding().getStartTime())){
             throw new FundingDurationUnavailableException(ErrorMessage.FUNDING_DURATION_UNAVAILABLE);
         }
-        //펀딩 시작예정시간이 시작시간과 종료시간 사이가 아닐 경우
-        if(uploadDto.getFunding().getEstimatedStartTime().isBefore(uploadDto.getFunding().getStartTime()) ||
-                uploadDto.getFunding().getEstimatedStartTime().isAfter(uploadDto.getFunding().getEndTime())){
+        //펀딩 실행예정시간이 펀딩 종료시간 이후가 아닐 경우
+        if(uploadDto.getFunding().getEstimatedStartTime().isBefore(uploadDto.getFunding().getEndTime())){
             throw new FundingEstimateUnavailableException(ErrorMessage.FUNDING_ESTIMATE_DATE_UNAVAILABLE);
         }
 
@@ -150,5 +153,7 @@ public class FundingServiceImpl implements FundingService {
         );
         return new FundingRespDtos.FundingDescriptionDto(funding);
     }
+
+    
 
 }
