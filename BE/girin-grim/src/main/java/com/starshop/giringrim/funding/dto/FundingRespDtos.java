@@ -18,16 +18,31 @@ import java.util.stream.Collectors;
 public class FundingRespDtos {
 
     @Getter
-    public static class UploadFunding {
+    public static class GetFundingDto {
 
         private Boolean isMine;
+        private BigDecimal coin;
+        private MemberDto member;
         private FundingDto funding;
         private List<OptionsDTO> options;
 
-        public UploadFunding(boolean isMine, FundingDto funding, List<OptionsDTO> optionList) {
+        public GetFundingDto(boolean isMine, BigDecimal coin, MemberDto member, FundingDto funding, List<OptionsDTO> optionList) {
             this.isMine = isMine;
+            this.coin = coin;
+            this.member = member;
             this.funding = funding;
             this.options = optionList;
+        }
+
+        @Getter
+        public static class MemberDto{
+            private Long memberId;
+            private String nickname;
+
+            public MemberDto(Member member) {
+                this.memberId = member.getId();
+                this.nickname = member.getNickname();
+            }
         }
 
         @Getter
@@ -93,7 +108,14 @@ public class FundingRespDtos {
         }
     }
 
-   
+    @Getter
+    public static class FundingDescriptionDto {
+        private String longDescription;
+
+        public FundingDescriptionDto(Funding funding) {
+            this.longDescription = funding.getLongDescription();
+        }
+    }
 
 
 }

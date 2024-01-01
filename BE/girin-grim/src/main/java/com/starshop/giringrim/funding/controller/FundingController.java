@@ -34,7 +34,7 @@ public class FundingController {
      */
     @GetMapping("/funding/{fundingId}")
     public ResponseEntity<?> getFunding(@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        FundingRespDtos.UploadFunding fundingDto = fundingServiceImpl.getFunding(fundingId, userDetails);
+        FundingRespDtos.GetFundingDto fundingDto = fundingServiceImpl.getFunding(fundingId, userDetails);
         return ApiResponseGenerator.success(fundingDto, HttpStatus.OK);
     }
 
@@ -47,5 +47,5 @@ public class FundingController {
         FundingRespDtos.FundingDescriptionDto fundingDescription = fundingServiceImpl.getFundingDescription(id);
         return ApiResponseGenerator.success(fundingDescription, HttpStatus.OK);
     }
-    
+
 }
