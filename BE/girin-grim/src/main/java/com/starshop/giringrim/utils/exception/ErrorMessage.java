@@ -32,7 +32,8 @@ public enum ErrorMessage {
          */
         FUNDING_START_DATE_UNAVAILABLE("펀딩 시작 날짜가 현재 날짜보다 빠릅니다."),
         FUNDING_DURATION_UNAVAILABLE("펀딩 기간이 올바르지 않습니다."),
-        FUNDING_ESTIMATE_DATE_UNAVAILABLE("펀딩 시작 예정날짜가 올바르지 않습니다.");
+        FUNDING_ESTIMATE_DATE_UNAVAILABLE("펀딩 시작 예정날짜가 올바르지 않습니다."),
+        FUNDING_NOT_EXIST("존재하지 않는 펀딩입니다.");
 
         private final String message;
 

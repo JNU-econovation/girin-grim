@@ -2,6 +2,7 @@ package com.starshop.giringrim.utils.exception;
 
 import com.starshop.giringrim.funding.exception.FundingDurationUnavailableException;
 import com.starshop.giringrim.funding.exception.FundingEstimateUnavailableException;
+import com.starshop.giringrim.funding.exception.FundingNotExistException;
 import com.starshop.giringrim.funding.exception.FundingStartUnavailableException;
 import com.starshop.giringrim.member.exception.*;
 import com.starshop.giringrim.university.exception.RegionNotExistException;
@@ -89,5 +90,10 @@ public class GlobalExceptionHandler{
         return ApiResponseGenerator.fail(ErrorMessage.FUNDING_ESTIMATE_DATE_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    //펀딩 조회 (/funding/{fundingId})
+    @ExceptionHandler(FundingNotExistException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(FundingNotExistException e){
+        return ApiResponseGenerator.fail(ErrorMessage.FUNDING_NOT_EXIST.getMessage(), HttpStatus.NOT_FOUND);
+    }
 
 }
