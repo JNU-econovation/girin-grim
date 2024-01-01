@@ -29,5 +29,17 @@ public class FundingController {
 
     }
 
+    /*
+    *   펀딩 아이디로 펀딩 조회
+     */
+    @GetMapping("/funding/{fundingId}")
+    public ResponseEntity<?> getFunding(@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        FundingRespDtos.UploadFunding fundingDto = fundingServiceImpl.getFunding(fundingId, userDetails);
+        return ApiResponseGenerator.success(fundingDto, HttpStatus.OK);
+    }
+
+
     
+
+
 }
