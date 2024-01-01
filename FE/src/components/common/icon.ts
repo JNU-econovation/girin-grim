@@ -12,3 +12,6 @@ export { default as Toggle } from "./icons/Toggle";
 export { default as ToggleArrow } from "./icons/ToggleArrow";
 export { default as Banner } from "./icons/Banner";
 export { default as Setting } from "./icons/Setting";
+export { default as All } from "./icons/All";
+export { default as Donate } from "./icons/Donate";
+export { default as Gift } from "./icons/Gift";
