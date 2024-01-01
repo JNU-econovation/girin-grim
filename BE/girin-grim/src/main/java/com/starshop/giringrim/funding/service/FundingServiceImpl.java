@@ -102,7 +102,7 @@ public class FundingServiceImpl implements FundingService {
 
     @Override
     @Transactional(readOnly = true)
-    public FundingRespDtos.UploadFunding getFunding(Long id, UserDetailsImpl userDetails) {
+    public FundingRespDtos.GetFundingDto getFunding(Long id, UserDetailsImpl userDetails) {
 
         boolean isMine = true;
         //pathvariable로 받은 id로 펀딩 조회해오기
@@ -113,23 +113,37 @@ public class FundingServiceImpl implements FundingService {
         List<Option> options = optionRepository.findAllByFundingId(funding.getId());
 
         //옵션 아이디로 아이템 조회해오기
-        List<FundingRespDtos.UploadFunding.OptionsDTO> optionDTOs = new ArrayList<>();
+        List<FundingRespDtos.GetFundingDto.OptionsDTO> optionDTOs = new ArrayList<>();
         for (Option option : options) {
             List<Item> items = itemRepository.findAllByOptionId(option.getId());
-            optionDTOs.add(new FundingRespDtos.UploadFunding.OptionsDTO(option, items));
+            optionDTOs.add(new FundingRespDtos.GetFundingDto.OptionsDTO(option, items));
         }
 
-        //로그인을 안 한 사용자, 본인의 펀딩 글이 아니라면 isMine은 false
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        FundingRespDtos.GetFundingDto.MemberDto memberDto = new FundingRespDtos.GetFundingDto.MemberDto(funding.getMember());
+
+        //로그인을 안 한 사용자, 본인의 펀딩 글이 아니라면 isMine은 false, coin은 null
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
         if(role.equals("anonymousUser") || (!Objects.equals(funding.getMember().getEmail(), userDetails.getEmail()))){
             isMine = false;
-            return new FundingRespDtos.UploadFunding(isMine, FundingRespDtos.UploadFunding.FundingDto.of(funding), optionDTOs);
+            return new FundingRespDtos.GetFundingDto(isMine, null, memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
         }
 
         //로그인을 한 사용자이고 본인의 펀딩 글이 아니라면 isMine은 true
-        return new FundingRespDtos.UploadFunding(isMine, FundingRespDtos.UploadFunding.FundingDto.of(funding), optionDTOs);
+        return new FundingRespDtos.GetFundingDto(isMine,member.getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
 
     }
 
-   
+    @Override
+    @Transactional(readOnly = true)
+    public FundingRespDtos.FundingDescriptionDto getFundingDescription(Long id) {
+        Funding funding = fundingRepository.findById(id).orElseThrow(
+                () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)
+        );
+        return new FundingRespDtos.FundingDescriptionDto(funding);
+    }
+
 }
