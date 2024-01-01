@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -21,6 +22,7 @@ public class Funding extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @Column(length = 255, nullable = false)
     private String title;
@@ -85,5 +87,15 @@ public class Funding extends BaseEntity {
     }
 
 
+    public boolean isProgress() {
+        //현재시간이 펀딩 시작시간보다 늦고 펀딩 종료시간보다 이르면 진행중
+        return LocalDateTime.now().isAfter(startTime) && LocalDateTime.now().isBefore(endTime);
+    }
+
+    public int getDueDate() {
+        long minutes = ChronoUnit.MINUTES.between(startTime, endTime);
+        return (int) (minutes / (60 * 24));
+    }
 }
+
 
