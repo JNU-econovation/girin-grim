@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -119,21 +120,25 @@ public class FundingServiceImpl implements FundingService {
             optionDTOs.add(new FundingRespDtos.GetFundingDto.OptionsDTO(option, items));
         }
 
-        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
-                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
-        );
-
         FundingRespDtos.GetFundingDto.MemberDto memberDto = new FundingRespDtos.GetFundingDto.MemberDto(funding.getMember());
 
-        //로그인을 안 한 사용자, 본인의 펀딩 글이 아니라면 isMine은 false, coin은 null
+        //로그인을 안 한 사용자, 본인의 펀딩 글이 아니라면 isMine은 false,
+        //로그인을 안 한 사용자면 coin은 null
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
-        if(role.equals("anonymousUser") || (!Objects.equals(funding.getMember().getEmail(), userDetails.getEmail()))){
+        if(role.equals("anonymousUser")){
             isMine = false;
             return new FundingRespDtos.GetFundingDto(isMine, null, memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
         }
 
-        //로그인을 한 사용자이고 본인의 펀딩 글이 아니라면 isMine은 true
-        return new FundingRespDtos.GetFundingDto(isMine,member.getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+        Optional<Member> member = memberRepository.findByEmail(userDetails.getEmail());
+        //본인의 펀딩 글이 아닐 경우
+        if(!Objects.equals(funding.getMember().getEmail(), userDetails.getEmail())){
+            isMine = false;
+            return new FundingRespDtos.GetFundingDto(isMine, member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+        }
+
+        //로그인을 한 사용자이고 본인의 펀딩 글이라면 isMine은 true
+        return new FundingRespDtos.GetFundingDto(isMine,member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
 
     }
 
