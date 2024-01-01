@@ -41,7 +41,7 @@ export default function Feed({
         {short}
       </p>
       <div className="w-full mt-[0.56rem] flex flex-col gap-[0.375rem]">
-        <progress max={100} value={60} />
+        <progress max={100} value={rate} />
         <div className="w-full flex justify-between text-[0.87rem] font-[700]">
           <span className=" text-main">D-{dueDate}</span>
           <span className=" text-color999">{rate}%</span>
