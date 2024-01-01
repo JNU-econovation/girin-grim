@@ -27,7 +27,7 @@ public class PaymentService {
 
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentDetailsDto getPaymentDetails(Long fundingId, UserDetailsImpl userDetails) {
-        //서포터
+        //서포터 정보
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
@@ -40,15 +40,16 @@ public class PaymentService {
         if(!funding.isProgress()){
             throw new PaymentDurationException(ErrorMessage.PAYMENT_DURATION_UNAVAILABLE);
         }
-        //크리에이터 닉네임
+        //크리에이터의 닉네임
         Member creator = funding.getMember();
 
         //크리에이터는 본인의 펀딩에 후원할 수 없으므로 userDetails의 멤버와 펀딩 작성자의 멤버 정보가 같으면 예외
         if(member.getId().equals(creator.getId())){
-            //TODO : 예외처리
             throw new PaymentUnavailableException(ErrorMessage.PAYMENT_UNAVAILABLE);
         }
         return new PaymentRespDtos.PaymentDetailsDto(creator.getNickname(), member, funding);
     }
 
+
+   
 }
