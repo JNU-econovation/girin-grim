@@ -15,7 +15,12 @@ public interface FundingService {
     /*
     *   펀딩 아이디값으로 펀딩 조회
      */
-    FundingRespDtos.UploadFunding getFunding(Long id, UserDetailsImpl userDetails);
+    FundingRespDtos.GetFundingDto getFunding(Long id, UserDetailsImpl userDetails);
 
-   
+    /*
+    *   펀딩 아이디값으로 펀딩 설명 조회
+     */
+    FundingRespDtos.FundingDescriptionDto getFundingDescription(Long id);
+
+
 }
