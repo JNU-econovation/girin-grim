@@ -18,7 +18,7 @@ export default function Grid() {
   } = data;
 
   return (
-    <div className="w-full grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
+    <div className="w-full mt-[0.5rem] grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
       {funding.map(
         ({
           image,

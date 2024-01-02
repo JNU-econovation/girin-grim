@@ -42,7 +42,7 @@ export default function Univ() {
   ];
   const univText = univ.map(({ name }) => name).join(", ");
   return (
-    <div className="mt-[1.4rem] text-color999 font-nanum text-[0.875rem] flex gap-[0.4rem] underline">
+    <div className="mt-[1.2rem] text-colorb9b font-nanum text-[0.875rem] flex gap-[0.4rem] underline">
       <Setting />
       <div>
         <span className="font-bold">관심 대학</span>

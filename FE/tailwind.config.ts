@@ -24,6 +24,7 @@ const config: Config = {
         colorb9b: "#b9b9b9",
         colorede: "#ededed",
         colord9d: "#d9d9d9",
+        colore7e: "#e7e7e7",
       },
       fontFamily: {
         nanum: "[font-family:'NanumSquare_Neo-Regular',Helvetica]",
