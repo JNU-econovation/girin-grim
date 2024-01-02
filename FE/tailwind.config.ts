@@ -10,13 +10,13 @@ const config: Config = {
     extend: {
       colors: {
         main: "#ff9a15",
-        grey: "#b0b0b0",
 
         textGrey: "#525252",
         input_title: "#717184",
         input_bg: "#f2f2f2",
         bgGrey: "#f5f5f5",
 
+        colorb0b: "#b0b0b0",
         color999: "#9999a7",
         color121: "#12151A",
         color656: "#656567",

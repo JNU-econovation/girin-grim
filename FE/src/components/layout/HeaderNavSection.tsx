@@ -21,14 +21,14 @@ export default function HeaderNavSection() {
           {category && <Category />}
         </li>
         <li
-          className="text-grey relative"
+          className="text-colorb0b relative"
           onMouseEnter={() => setUniv(true)}
           onMouseLeave={() => setUniv(false)}
         >
           대학
           {univ && <University />}
         </li>
-        <li className="text-grey">추천</li>
+        <li className="text-colorb0b">추천</li>
         <li className=" text-main">펀딩 올리기</li>
       </ul>
       <form className="flex items-center">
