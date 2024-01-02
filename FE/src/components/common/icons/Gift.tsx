@@ -5,8 +5,8 @@ export default function Gift() {
     <Image
       src="/assets/Gift.svg"
       alt="category Gift select"
-      width={18}
-      height={14}
+      width={27}
+      height={20}
       className="ml-[0.1rem]"
     />
   );

@@ -5,8 +5,8 @@ export default function Donate() {
     <Image
       src="/assets/Donate.svg"
       alt="category Donate select"
-      width={18}
-      height={17}
+      width={27}
+      height={25}
     />
   );
 }

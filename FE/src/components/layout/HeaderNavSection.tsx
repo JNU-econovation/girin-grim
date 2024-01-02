@@ -6,15 +6,15 @@ import Category from "./Category";
 import University from "./University";
 
 export default function HeaderNavSection() {
-  const [category, setCategory] = useState(false);
-  const [univ, setUniv] = useState(false);
+  const [category, setCategory] = useState(true);
+  const [univ, setUniv] = useState(true);
   return (
     <section className="flex justify-between mt-[0.8rem] font-nanum">
       <ul className="flex gap-6 font-semibold text-xl mb-4 items-center cursor-pointer">
         <li
           className="flex items-center gap-[2.4rem] relative"
-          onMouseEnter={() => setCategory(true)}
-          onMouseLeave={() => setCategory(false)}
+          // onMouseEnter={() => setCategory(true)}
+          // onMouseLeave={() => setCategory(false)}
         >
           <Layer />
           카테고리
@@ -22,11 +22,11 @@ export default function HeaderNavSection() {
         </li>
         <li
           className="text-colorb0b relative"
-          onMouseEnter={() => setUniv(true)}
-          onMouseLeave={() => setUniv(false)}
+          // onMouseEnter={() => setUniv(true)}
+          // onMouseLeave={() => setUniv(false)}
         >
           대학
-          {univ && <University />}
+          {/* {univ && <University />} */}
         </li>
         <li className="text-colorb0b">추천</li>
         <li className=" text-main">펀딩 올리기</li>

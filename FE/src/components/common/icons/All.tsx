@@ -5,8 +5,8 @@ export default function All() {
     <Image
       src="/assets/All.svg"
       alt="category all select"
-      width={18}
-      height={19}
+      width={28}
+      height={28}
       className="ml-[0.1rem]"
     />
   );
