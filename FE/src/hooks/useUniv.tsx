@@ -3,7 +3,7 @@
 import { TResponse } from "@/Model/Response";
 import { Univs } from "@/Model/Univ";
 import { getUnivList } from "@/apis/apis";
-import { UnivStateQ, UnivStateRegion } from "@/store/UnivState";
+import { UnivStateQ, UnivStateRegion } from "@/store/HeaderState";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
 

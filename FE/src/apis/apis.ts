@@ -7,7 +7,7 @@ import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
 import { HomeFeed } from "@/Model/Feed";
 import { Region, Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
-import { UnivState } from "@/store/UnivState";
+import { UnivState } from "@/store/HeaderState";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(

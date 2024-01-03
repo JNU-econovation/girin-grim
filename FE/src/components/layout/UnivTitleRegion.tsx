@@ -1,6 +1,6 @@
 import UnivTitle from "../common/UnivTitle";
 import { useRecoilValue } from "recoil";
-import { UnivStateRegion } from "@/store/UnivState";
+import { UnivStateRegion } from "@/store/HeaderState";
 
 export default function UnivTitleRegion() {
   const region = useRecoilValue(UnivStateRegion);

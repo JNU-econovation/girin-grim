@@ -1,5 +1,5 @@
 import { Regions, Univ } from "@/Model/Univ";
-import { UnivState } from "@/store/UnivState";
+import { UnivState } from "@/store/HeaderState";
 
 type Props =
   | {

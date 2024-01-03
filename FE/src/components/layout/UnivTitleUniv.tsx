@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import UnivTitle from "../common/UnivTitle";
-import { UnivStateQ, UnivStateRegion } from "@/store/UnivState";
+import { UnivStateQ, UnivStateRegion } from "@/store/HeaderState";
 
 export default function UnivTitleUniv() {
   const [q, setQ] = useRecoilState(UnivStateQ);
