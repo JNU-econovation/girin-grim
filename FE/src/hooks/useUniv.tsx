@@ -3,14 +3,16 @@
 import { TResponse } from "@/Model/Response";
 import { Univs } from "@/Model/Univ";
 import { getUnivList } from "@/apis/apis";
-import { UnivState } from "@/store/UnivState";
+import { UnivStateQ, UnivStateRegion } from "@/store/UnivState";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
 
 export default function useUniv() {
-  const univ = useRecoilValue(UnivState);
+  const region = useRecoilValue(UnivStateRegion);
+  const q = useRecoilValue(UnivStateQ); //TODO: throttle나 debounce를 적용해야 함
+  const univ = { region: region == "전체" ? "" : region, q };
   const { data, isLoading, error } = useQuery<TResponse<Univs>>({
-    queryKey: ["univ", univ.region, univ.q],
+    queryKey: ["univ", region, q],
     queryFn: async () => await getUnivList(univ),
   });
   return { data, isLoading, error };
