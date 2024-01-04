@@ -96,6 +96,10 @@ public class Funding extends BaseEntity {
         long minutes = ChronoUnit.MINUTES.between(startTime, endTime);
         return (int) (minutes / (60 * 24));
     }
+
+    public int getProgressRate() {
+       return (currentMoney.divide(goalMoney)).multiply(BigDecimal.valueOf(100)).intValue();
+    }
 }
 
 
