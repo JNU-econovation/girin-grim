@@ -129,6 +129,10 @@ public class FundingRespDtos {
             this.funding = funding;
         }
 
+        public HomeDto(List<FundingDto> funding){
+            this.funding = funding;
+        }
+
         @Getter
         public static class FavUniversityDto{
             private Long favUniversityId;
