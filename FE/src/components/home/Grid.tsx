@@ -2,15 +2,15 @@
 import Feed from "../common/Feed";
 import useFeeds, { HomeFeedProps } from "@/hooks/useFeeds";
 
-const defaultHomeFeedState: HomeFeedProps = {
-  category: "gift",
-  sort: "latest",
-  univ: undefined,
-  q: "",
-};
+// const defaultHomeFeedState: HomeFeedProps = {
+//   category: "GIFT",
+//   sort: "latest",
+//   univ: undefined,
+//   q: "",
+// };
 
 export default function Grid() {
-  const { data, isLoading, error } = useFeeds(defaultHomeFeedState);
+  const { data, isLoading, error } = useFeeds();
   if (!data || isLoading) return <div>loading...</div>;
 
   const {

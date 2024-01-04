@@ -64,11 +64,11 @@ export const getHomeFeed = async ({
   //TODO:
   category,
   sort,
-  univ,
+  uni,
   q,
 }: HomeFeedProps): Promise<HomeFeed> => {
   const data = await Server.get(homeURL, {
-    params: { category, sort, univ, q },
+    params: { category, sort, uni, q },
   }).then((res) => res.data);
   return data;
 };

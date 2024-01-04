@@ -13,7 +13,12 @@ export default function Category() {
           {categoryData.map(({ title, icon }) => (
             <button
               key={title}
-              onClick={() => setHome((prev) => ({ ...prev, category: title }))}
+              onClick={() =>
+                setHome((prev) => ({
+                  ...prev,
+                  category: title as "전체" | "기부형" | "수령형",
+                }))
+              }
             >
               <li className="mb-[1.43rem]">
                 <div
