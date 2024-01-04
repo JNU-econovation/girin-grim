@@ -97,5 +97,26 @@ public class FundingRepositoryCustom {
         return category != null ? funding.fundingType.eq(FundingType.valueOf(category)) : null;
     }
 
+    /*
+     *   펀딩 글 리스트 정렬 기준 (default: 최신순(latest))
+     */
+    private OrderSpecifier<?> sortEq(String sort) {
+        QFunding funding = QFunding.funding;
+
+        NumberExpression<BigDecimal> rate = funding.currentMoney.divide(funding.goalMoney).multiply(BigDecimal.valueOf(100));
+
+        //기본값
+        if (sort == null) {
+            return rate.desc();
+        }
+        if (sort.equals("latest")) {
+            return funding.createdAt.desc();
+        } else if (sort.equals("highest")) {
+            return rate.desc();
+        } else {
+            return rate.desc();
+        }
+    }
+
 
 }
