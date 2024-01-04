@@ -61,5 +61,20 @@ public class FundingRepositoryCustom {
 
     }
 
+    /*
+     *   uni 파라미터가 null이면 회원가입 시 설정했던 전국 대학교 아이디값들을 리스트에 담아서 반환
+     *   필터로 대학교 선택했을 경우엔 그 대학교 아이디값만 리스트에 담아서 반환
+     */
+    private List<Long> universityIds(Long universityId, List<Long> universityIds) {
+        List<Long> ids = new ArrayList<>();
+        if(universityId != null) {
+            ids.add(universityId);
+            return ids;
+        }else{
+            ids.addAll(universityIds);
+            return ids;
+        }
+    }
+
 
 }
