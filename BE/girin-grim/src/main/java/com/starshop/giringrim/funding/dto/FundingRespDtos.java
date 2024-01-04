@@ -1,5 +1,7 @@
 package com.starshop.giringrim.funding.dto;
 
+import com.querydsl.core.annotations.QueryProjection;
+import com.starshop.giringrim.favUniversity.entity.FavUniversity;
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;
@@ -117,5 +119,65 @@ public class FundingRespDtos {
         }
     }
 
+    @Getter
+    public static class HomeDto{
+        private List<FavUniversityDto> favUniversity;
+        private List<FundingDto> funding;
+
+        public HomeDto(List<FavUniversity> favUniversity, List<FundingDto> funding){
+            this.favUniversity = favUniversity.stream().map(FavUniversityDto::new).collect(Collectors.toList());
+            this.funding = funding;
+        }
+
+        @Getter
+        public static class FavUniversityDto{
+            private Long favUniversityId;
+            private String name;
+
+            public FavUniversityDto(FavUniversity favUniversity){
+                this.favUniversityId = favUniversity.getId();
+                this.name = favUniversity.getName();
+            }
+
+        }
+
+        @Getter
+        public static class FundingDto{
+            private Long fundingId;
+            private String title;
+            private String image;
+            private String university;
+            private int rate;
+            private String shortDescription;
+            private int dueDate;
+            private MemberDto member;
+
+
+            @QueryProjection
+            public FundingDto(Funding funding, Member member){
+                this.fundingId = funding.getId();
+                this.title = funding.getTitle();
+                this.image = funding.getImage();
+                this.university = funding.getUniversity().getName();
+                this.rate = funding.getProgressRate();
+                this.shortDescription = funding.getShortDescription();
+                this.dueDate = funding.getDueDate();
+                this.member = new MemberDto(member);
+
+            }
+
+
+            @Getter
+            private class MemberDto{
+                private Long memberId;
+                private String nickname;
+
+                public MemberDto(Member member){
+                    this.memberId = member.getId();
+                    this.nickname = member.getNickname();
+                }
+            }
+        }
+    }
 
 }
