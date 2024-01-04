@@ -3,7 +3,7 @@ import { All, Donate, Gift } from "@/components/common/icon";
 export const categoryData = [
   {
     icon: <All />,
-    title: "전체 ",
+    title: "전체",
   },
   {
     icon: <Donate />,

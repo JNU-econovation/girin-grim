@@ -1,3 +1,4 @@
+"use client";
 import { categoryData } from "@/constants/CategoryData";
 import { HomeState } from "@/store/HomeState";
 import { useRecoilState } from "recoil";

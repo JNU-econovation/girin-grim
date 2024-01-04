@@ -10,7 +10,13 @@ type Props =
   | {
       type: "univ";
       data: Univ[];
-      modify: () => void;
+      modify: ({
+        univId,
+        univName,
+      }: {
+        univId: number;
+        univName: string;
+      }) => void;
     };
 
 export default function UnivUl({ data, type, modify }: Props) {
@@ -30,7 +36,7 @@ export default function UnivUl({ data, type, modify }: Props) {
             <button
               className="block"
               key={universityId}
-              onClick={() => modify()}
+              onClick={() => modify({ univId: universityId, univName: name })}
             >
               <li>{name}</li>
             </button>
