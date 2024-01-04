@@ -15,3 +15,4 @@ export { default as Setting } from "./icons/Setting";
 export { default as All } from "./icons/All";
 export { default as Donate } from "./icons/Donate";
 export { default as Gift } from "./icons/Gift";
+export { default as FilterToggle } from "./icons/FilterToggle";
