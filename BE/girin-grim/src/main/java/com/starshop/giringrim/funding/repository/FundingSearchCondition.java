@@ -16,7 +16,7 @@ public class FundingSearchCondition {
     private Pageable pageable;
     //대학교 필터로 설정한 전국대학교(University도메인의 id값)
     private Long universityId;
-    //검색 창에 입력한 키워드 (제목, 작성자(?))
+    //검색 창에 입력한 키워드 (제목)
     private String keyword;
     //카테고리 필터에 설정한 카테고리 (FundingType enum의 name값)
     private String category;

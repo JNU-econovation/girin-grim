@@ -31,4 +31,6 @@ public interface MemberService {
      */
     MemberRespDtos.HeaderInfoRespDto getHeaderInfo(UserDetailsImpl userDetails);
 
+
+
 }

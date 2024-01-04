@@ -129,6 +129,7 @@ public class MemberServiceImpl implements MemberService {
     @Transactional(readOnly = true)
     public MemberRespDtos.HeaderInfoRespDto getHeaderInfo(UserDetailsImpl userDetails) {
         //로그인 안 한 사용자 일 경우
+
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
         if(role.equals("anonymousUser")){
             throw new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST);
@@ -141,4 +142,5 @@ public class MemberServiceImpl implements MemberService {
 
         return new MemberRespDtos.HeaderInfoRespDto(member);
     }
+
 }
