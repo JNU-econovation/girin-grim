@@ -90,5 +90,12 @@ public class FundingRepositoryCustom {
         return universityId != null ? funding.university.id.eq(universityId) : null;
     }
 
+    /*
+     *   카테고리가 일치하는 펀딩 글 리스트
+     */
+    private BooleanExpression categoryEq(String category) {
+        return category != null ? funding.fundingType.eq(FundingType.valueOf(category)) : null;
+    }
+
 
 }
