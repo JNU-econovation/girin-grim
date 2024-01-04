@@ -83,5 +83,12 @@ public class FundingRepositoryCustom {
         return keyword != null ? funding.title.contains(keyword) : null;
     }
 
+    /*
+     *   비로그인일때 uni 파라미터 값으로 대학교 필터링
+     */
+    private BooleanExpression universityIdEq(Long universityId) {
+        return universityId != null ? funding.university.id.eq(universityId) : null;
+    }
+
 
 }
