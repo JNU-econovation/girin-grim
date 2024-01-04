@@ -38,7 +38,7 @@ public class Member {
     private String address;
 
     @Column
-    private BigDecimal coin = BigDecimal.valueOf(500000);
+    private BigDecimal coin;
 
 
     @Builder
