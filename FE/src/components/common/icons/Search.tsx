@@ -7,7 +7,7 @@ export default function Search() {
       width={28}
       height={28}
       alt="Search icon"
-      className="cursor-pointer inline translate-x-[-35px]"
+      className="cursor-pointer inline absolute right-2"
     ></Image>
   );
 }

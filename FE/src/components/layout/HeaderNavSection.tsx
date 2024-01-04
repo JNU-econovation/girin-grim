@@ -49,7 +49,7 @@ export default function HeaderNavSection() {
         <li className="text-colorb0b">추천</li>
         <li className=" text-main">펀딩 올리기</li>
       </ul>
-      <form className="flex items-center">
+      <form className="flex items-center relative">
         <input
           type="text"
           className="bg-input_bg w-[165px] h-[36px] rounded-xl"
