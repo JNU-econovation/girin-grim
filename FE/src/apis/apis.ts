@@ -1,13 +1,20 @@
 import { HomeFeedProps } from "./../hooks/useFeeds";
 //TODO: 반환 타입 지정하기
 
-import { homeURL, joinURL, loginURL, univURL } from "@/constants/urls";
+import {
+  fundingDetailURL,
+  homeURL,
+  joinURL,
+  loginURL,
+  univURL,
+} from "@/constants/urls";
 import { Server } from "./axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
 import { HomeFeed } from "@/Model/Feed";
 import { Region, Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
+import { Funding } from "@/Model/Funding";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -84,5 +91,13 @@ export const getUnivList = async ({
       q,
     },
   }).then((res) => res.data);
+  return data;
+};
+
+export const getFundingDetail = async (
+  fundingId: number
+): Promise<TResponse<Funding>> => {
+  //TODO: 반환 타입 지정하기
+  const data = Server.get(fundingDetailURL + fundingId).then((res) => res.data);
   return data;
 };
