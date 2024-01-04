@@ -76,5 +76,12 @@ public class FundingRepositoryCustom {
         }
     }
 
+    /*
+     *   키워드가 포함된 펀딩 글 리스트
+     */
+    private BooleanExpression keywordEq(String keyword) {
+        return keyword != null ? funding.title.contains(keyword) : null;
+    }
+
 
 }
