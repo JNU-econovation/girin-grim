@@ -25,12 +25,12 @@ public class FundingRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
 
-    public List<FundingRespDtos.HomeDto.FundingDto> search(FundingSearchCondition condition) {
+    public List<FundingRespDtos.HomeDto.FundingDto> searchWithLogin(FundingSearchCondition condition) {
         return queryFactory
                 .select(new QFundingRespDtos_HomeDto_FundingDto(funding, funding.member))
                 .from(funding)
                 .where(
-                        funding.university.id.in(universityIdEq(condition.getUniversityId(), condition.getUniversityIds())),
+                        funding.university.id.in(universityIds(condition.getUniversityId(), condition.getUniversityIds())),
                         keywordEq(condition.getKeyword()),
                         categoryEq(condition.getCategory())
                 )
@@ -42,4 +42,24 @@ public class FundingRepositoryCustom {
                 .fetch();
 
     }
+
+    public List<FundingRespDtos.HomeDto.FundingDto> searchWithNonLogin(FundingSearchCondition condition) {
+        return queryFactory
+                .select(new QFundingRespDtos_HomeDto_FundingDto(funding, funding.member))
+                .from(funding)
+                .where(
+                        universityIdEq(condition.getUniversityId()),
+                        keywordEq(condition.getKeyword()),
+                        categoryEq(condition.getCategory())
+                )
+                .offset(condition.getPageable().getOffset())
+                .limit(condition.getPageable().getPageSize())
+                .orderBy(
+                        sortEq(condition.getSort())
+                )
+                .fetch();
+
+    }
+
+
 }
