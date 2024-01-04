@@ -1,3 +1,4 @@
+import { HomeState } from "@/store/HomeState";
 import { atom } from "recoil";
 
 export type UnivState = {
@@ -13,12 +14,4 @@ export const UnivStateRegion = atom<string>({
 export const UnivStateQ = atom<string>({
   key: "UnivStateQ",
   default: "",
-});
-
-export const HoverState = atom({
-  key: "HoverState",
-  default: {
-    category: true,
-    univ: false,
-  },
 });
