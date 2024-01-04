@@ -5,8 +5,7 @@ import { useRecoilValue } from "recoil";
 
 export default function HomeHeader() {
   const { category } = useRecoilValue(HomeState);
-  const text =
-    category === "" ? "전체" : category === "GIFT" ? "수령형" : "기부형";
+  const text = category === "" ? "전체" : category;
   return (
     <div className="flex mt-[0.875rem] items-end gap-[0.875rem] cursor-default">
       <h1 className="text-color656 font-[700] font-notoKR text-[1.625rem] m-0 p-0">
