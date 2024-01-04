@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 
 export type HomeState = {
-  q: "";
+  q: string;
   uni: {
     univId: number;
     univName: string;

@@ -1,4 +1,3 @@
-import { HomeState } from "@/store/HomeState";
 import { atom } from "recoil";
 
 export type UnivState = {
