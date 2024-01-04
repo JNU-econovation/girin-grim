@@ -11,6 +11,8 @@ import com.starshop.giringrim.funding.exception.FundingStartUnavailableException
 import com.starshop.giringrim.funding.repository.FundingRepository;
 import com.starshop.giringrim.funding.dto.FundingReqDtos;
 import com.starshop.giringrim.funding.dto.FundingRespDtos;
+import com.starshop.giringrim.funding.repository.FundingRepositoryCustom;
+import com.starshop.giringrim.funding.repository.FundingSearchCondition;
 import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.member.exception.MemberNotExistException;
 import com.starshop.giringrim.member.exception.UniversitySelectionException;
@@ -25,7 +27,9 @@ import com.starshop.giringrim.utils.exception.ErrorMessage;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,6 +49,7 @@ public class FundingServiceImpl implements FundingService {
     private final UnivRepository univRepository;
     private final MemberRepository memberRepository;
     private final FavUniversityRepository favUniversityRepository;
+    private final FundingRepositoryCustom fundingRepositoryCustom;
 
     @Override
     @Transactional
@@ -79,6 +84,7 @@ public class FundingServiceImpl implements FundingService {
 
         //로그인 정보에서 Member 객체 얻어와서 Funding 객체에 넣기
         Funding funding = uploadDto.getFunding().toEntity(university, uploadDto.getFunding().getType(), member);
+        System.out.println("펀딩 종류" + uploadDto.getFunding().getType());
         fundingRepository.save(funding);
 
         //TODO : DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 프론트와 상의해서 요청으로 type 받지 않고 백에서 판단해서 처리
@@ -154,6 +160,48 @@ public class FundingServiceImpl implements FundingService {
         return new FundingRespDtos.FundingDescriptionDto(funding);
     }
 
-    
+    @Override
+    @Transactional(readOnly = true)
+    public FundingRespDtos.HomeDto home(Integer page, Long universityId, String fundingType, String keyword, String method, UserDetailsImpl userDetails){
 
+
+        String role = SecurityContextHolder.getContext().getAuthentication().getName();
+        if(role.equals("anonymousUser")){
+            Pageable pageable = PageRequest.of(page,6);
+
+            //회원가입했을때 설정 대학들 없으므로 null
+            List<Long> universityIds = null;
+            FundingSearchCondition condition = new FundingSearchCondition(pageable, universityId, keyword, fundingType, method, universityIds);
+            //펀딩 리스트 얻어오기
+            List<FundingRespDtos.HomeDto.FundingDto> list = fundingRepositoryCustom.searchWithNonLogin(condition);
+            return new FundingRespDtos.HomeDto(list);
+
+        }
+
+        //로그인 한 사용자의 정보를 이용해 favUniversity 리스트 얻어오기
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(member.getId());
+
+        List<Long> universityIds = new ArrayList<>();
+        //사용자가 설정한 관심대학 이름을 가져와서 전국대학 리스트에서 아이디값 추출
+        for(FavUniversity favUniversity : favUniversityList){
+            University university = univRepository.findByName(favUniversity.getName()).orElseThrow(
+                    () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
+            );
+            universityIds.add(university.getId());
+        }
+
+        Pageable pageable = PageRequest.of(page,6);
+
+
+        FundingSearchCondition condition = new FundingSearchCondition(pageable, universityId, keyword, fundingType, method, universityIds);
+        //펀딩 리스트 얻어오기
+        List<FundingRespDtos.HomeDto.FundingDto> list = fundingRepositoryCustom.searchWithLogin(condition);
+
+
+        return new FundingRespDtos.HomeDto(favUniversityList, list);
+    }
 }

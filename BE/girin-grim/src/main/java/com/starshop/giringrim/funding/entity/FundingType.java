@@ -10,13 +10,5 @@ import java.util.stream.Stream;
 @Getter
 public enum FundingType {
     DONATE,
-    GIFT;
-
-
-    @JsonCreator
-    public static FundingType parsing(String inputValue) {
-        return Stream.of(FundingType.values())
-                .findFirst()
-                .orElse(null);
-    }
+    GIFT
 }

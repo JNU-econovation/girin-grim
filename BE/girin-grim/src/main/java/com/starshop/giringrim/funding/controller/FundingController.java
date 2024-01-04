@@ -19,6 +19,17 @@ public class FundingController {
 
     private final FundingServiceImpl fundingServiceImpl;
 
+    @GetMapping("/home")
+    public ResponseEntity<?> home(  @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                    @RequestParam(value="uni", required = false) Long universityId,
+                                    @RequestParam(value = "category", required = false) String fundingType,
+                                    @RequestParam(value = "q", required = false) String keyword,
+                                    @RequestParam(value = "sort", required = false) String method,
+                                    @AuthenticationPrincipal UserDetailsImpl userDetails){
+        FundingRespDtos.HomeDto respDto = fundingServiceImpl.home(page, universityId, fundingType, keyword, method, userDetails);
+        return ApiResponseGenerator.success(respDto, HttpStatus.OK);
+    }
+
     /*
     *   펀딩 작성
      */

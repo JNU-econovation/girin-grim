@@ -76,6 +76,12 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize ->
         authorize
                 .requestMatchers(new AntPathRequestMatcher("/api/funding", "POST")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/funding/{fundingId}/payment", "GET")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/member", "GET")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/funding/payment","GET")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/charge","POST")).authenticated()
+
+
                 .anyRequest().permitAll()
                 );
 

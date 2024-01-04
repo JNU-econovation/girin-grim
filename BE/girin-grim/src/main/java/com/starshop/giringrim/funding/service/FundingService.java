@@ -7,6 +7,7 @@ import com.starshop.giringrim.utils.security.UserDetailsImpl;
 
 public interface FundingService {
 
+
     /*
     *   펀딩 작성하기 메소드
      */
@@ -22,5 +23,9 @@ public interface FundingService {
      */
     FundingRespDtos.FundingDescriptionDto getFundingDescription(Long id);
 
+    /*
+     *   홈 조회 메서드
+     */
+    FundingRespDtos.HomeDto home(Integer page, Long universityId, String fundingType, String keyword, String method, UserDetailsImpl userDetails);
 
 }
