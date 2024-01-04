@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+progress {
+  appearance: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 0.375rem;
+}
+progress::-webkit-progress-bar {
+  @apply bg-colorb9b rounded-lg;
+}
+progress::-webkit-progress-value {
+  @apply bg-main rounded-lg;
+}
+
 /* input[id="list"] {
   display: none;
 }
