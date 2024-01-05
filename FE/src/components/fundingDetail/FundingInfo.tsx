@@ -1,4 +1,5 @@
 import FundingDetailBtnSection from "./FundingDetailBtnSection";
+import FundingInfoCost from "./FundingInfoCost";
 import FundingInfoTag from "./FundingInfoTag";
 import InfoDate from "./InfoDate";
 import InfoHeader from "./InfoHeader";
@@ -12,6 +13,7 @@ export default function FundingInfo() {
       <InfoHeader />
       <InfoDate />
       <InfoOption />
+      <FundingInfoCost />
       <FundingDetailBtnSection />
     </section>
   );
