@@ -15,12 +15,13 @@ export default function FundingDetail({ fundingId }: Props) {
       {data && (
         <>
           {/* TODO: aws 연동 후 w, h 확인하기*/}
-          <Image
+          {/* <Image
             src={data?.response.funding.image}
             alt="funding Image"
             width={600}
             height={600}
-          />
+          /> */}
+          <div className="w-[35.375rem] h-[35.375rem] bg-colorede"></div>
           <FundingInfo />
         </>
       )}
