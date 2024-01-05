@@ -20,3 +20,4 @@ export { default as Tag } from "./icons/Tag";
 export { default as ArrowUp } from "./icons/ArrowUp";
 export { default as ArrowDown } from "./icons/ArrowDown";
 export { default as Delete } from "./icons/Delete";
+export { default as Share } from "./icons/Share";
