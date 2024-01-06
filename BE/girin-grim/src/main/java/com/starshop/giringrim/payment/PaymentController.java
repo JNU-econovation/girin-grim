@@ -36,5 +36,15 @@ public class PaymentController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
+    /*
+    *  충전 페이지 조회
+     */
+    @GetMapping("/charge")
+    public ResponseEntity<?> getChargeDetails(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        PaymentRespDtos.ChargeDetailsDto respDto = paymentService.getChargeDetails(userDetails);
+        return ApiResponseGenerator.success(respDto, HttpStatus.OK);
+    }
+
+
    
 }
