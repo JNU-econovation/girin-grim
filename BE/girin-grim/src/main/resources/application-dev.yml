@@ -18,3 +18,7 @@ spring:
       ddl-auto: create-drop
     database-platform: org.hibernate.dialect.MySQLDialect
 
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
