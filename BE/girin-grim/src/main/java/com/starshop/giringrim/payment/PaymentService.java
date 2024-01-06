@@ -8,13 +8,17 @@ import com.starshop.giringrim.member.exception.MemberNotExistException;
 import com.starshop.giringrim.member.repository.MemberRepository;
 import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.option.OptionRepository;
+import com.starshop.giringrim.payment.details.PaymentDetails;
+import com.starshop.giringrim.payment.details.PaymentDetailsRepository;
+import com.starshop.giringrim.payment.exception.*;
 import com.starshop.giringrim.utils.exception.ErrorMessage;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +28,8 @@ public class PaymentService {
     private final OptionRepository optionRepository;
     private final MemberRepository memberRepository;
     private final FundingRepository fundingRepository;
+    private final PaymentRepository paymentRepository;
+    private final PaymentDetailsRepository paymentDetailsRepository;
 
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentDetailsDto getPaymentDetails(Long fundingId, UserDetailsImpl userDetails) {
@@ -50,6 +56,24 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentDetailsDto(creator.getNickname(), member, funding);
     }
 
+    @Transactional
+    public void chargeCoins(PaymentReqDtos.ChargeDto reqDto, UserDetailsImpl userDetails) {
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+        BigDecimal myCoin = member.getCoin().add(reqDto.getCoin());
 
-   
+        member.chargeCoins(myCoin);
+    }
+
+    @Transactional(readOnly = true)
+    public PaymentRespDtos.ChargeDetailsDto getChargeDetails(UserDetailsImpl userDetails) {
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+        return new PaymentRespDtos.ChargeDetailsDto(member);
+    }
+
+
+    
 }

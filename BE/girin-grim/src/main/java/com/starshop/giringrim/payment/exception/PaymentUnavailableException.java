@@ -1,4 +1,4 @@
-package com.starshop.giringrim.payment;
+package com.starshop.giringrim.payment.exception;
 
 import com.starshop.giringrim.utils.exception.ErrorMessage;
 import lombok.Getter;
