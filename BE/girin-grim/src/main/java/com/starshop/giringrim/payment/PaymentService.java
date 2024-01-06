@@ -66,5 +66,14 @@ public class PaymentService {
         member.chargeCoins(myCoin);
     }
 
+    @Transactional(readOnly = true)
+    public PaymentRespDtos.ChargeDetailsDto getChargeDetails(UserDetailsImpl userDetails) {
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+        return new PaymentRespDtos.ChargeDetailsDto(member);
+    }
+
+
     
 }
