@@ -38,7 +38,7 @@ public class Member {
     private String address;
 
     @Column
-    private BigDecimal coin;
+    private BigDecimal coin = BigDecimal.valueOf(0);
 
 
     @Builder
@@ -47,6 +47,14 @@ public class Member {
         this.nickname = nickname;
         this.email = email;
         this.password = password;
+    }
+
+    public void chargeCoins(BigDecimal coin){
+        this.coin = coin;
+    }
+
+    public void fundingPayment(BigDecimal coin){
+        this.coin = this.coin.subtract(coin);
     }
 
 }
