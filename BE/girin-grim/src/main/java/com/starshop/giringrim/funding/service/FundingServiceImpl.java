@@ -3,11 +3,12 @@ package com.starshop.giringrim.funding.service;
 import com.starshop.giringrim.favUniversity.entity.FavUniversity;
 import com.starshop.giringrim.favUniversity.repository.FavUniversityRepository;
 import com.starshop.giringrim.funding.entity.Funding;
+
+import java.math.BigDecimal;
 import java.time.*;
-import com.starshop.giringrim.funding.exception.FundingDurationUnavailableException;
-import com.starshop.giringrim.funding.exception.FundingEstimateUnavailableException;
-import com.starshop.giringrim.funding.exception.FundingNotExistException;
-import com.starshop.giringrim.funding.exception.FundingStartUnavailableException;
+
+import com.starshop.giringrim.funding.entity.FundingType;
+import com.starshop.giringrim.funding.exception.*;
 import com.starshop.giringrim.funding.repository.FundingRepository;
 import com.starshop.giringrim.funding.dto.FundingReqDtos;
 import com.starshop.giringrim.funding.dto.FundingRespDtos;
@@ -29,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -64,7 +64,6 @@ public class FundingServiceImpl implements FundingService {
                 () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
         );
 
-       // FundingType.parsing(uploadDto.getFunding().getType().toString());
 
         Instant instant = Instant.now();
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
@@ -82,21 +81,30 @@ public class FundingServiceImpl implements FundingService {
             throw new FundingEstimateUnavailableException(ErrorMessage.FUNDING_ESTIMATE_DATE_UNAVAILABLE);
         }
 
-        //로그인 정보에서 Member 객체 얻어와서 Funding 객체에 넣기
-        Funding funding = uploadDto.getFunding().toEntity(university, uploadDto.getFunding().getType(), member);
-        System.out.println("펀딩 종류" + uploadDto.getFunding().getType());
-        fundingRepository.save(funding);
 
-        //TODO : DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 프론트와 상의해서 요청으로 type 받지 않고 백에서 판단해서 처리
+
+        //DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 프론트와 상의해서 요청으로 type 받지 않고 백에서 판단해서 처리
         //옵션이 없다면 기부형이므로 펀딩 생성 후 반환
         if(uploadDto.getOptions() == null) {
+            Funding funding = uploadDto.getFunding().toEntity(university, FundingType.DONATE, member);
+            fundingRepository.save(funding);
             return;
         }
 
+        //로그인 정보에서 Member 객체 얻어와서 Funding 객체에 넣기
+        Funding funding = uploadDto.getFunding().toEntity(university,FundingType.GIFT, member);
+        fundingRepository.save(funding);
+
+        BigDecimal maxGoalMoney = BigDecimal.ZERO;
+        boolean isUnlimited = false;
         //옵션, 아이템
         for(FundingReqDtos.UploadDto.OptionDto optionDto : uploadDto.getOptions()) {
             Option option = optionDto.toEntity(funding);
             optionRepository.save(option);
+            if(optionDto.getQuantity() == -1){
+                isUnlimited = true;
+            }
+            maxGoalMoney = maxGoalMoney.add(optionDto.getPrice().multiply(BigDecimal.valueOf(optionDto.getQuantity())));
             for(FundingReqDtos.UploadDto.OptionDto.ItemDto itemDto : optionDto.getItems()){
                 //TODO : 아이템이 없다면 예외처리
                 Item item = itemDto.toEntity(option);
@@ -104,10 +112,10 @@ public class FundingServiceImpl implements FundingService {
             }
         }
 
-        //TODO : GIFT일 경우 goal money가 총 옵션의 가격까지만 입력 가능, 하지만 옵션 하나라도
-        // quantity가 -1(무제한)일 경우 goal money 제한없음
-
-        //TODO : 기부형일 경우 goal money 제한없음
+        //GIFT일 경우 goal money가 총 옵션의 가격까지만 입력 가능, 하지만 옵션 하나라도 quantity가 -1(무제한)일 경우 goal money 제한없음
+        if(!isUnlimited && maxGoalMoney.compareTo(uploadDto.getFunding().getGoalMoney()) > 0){
+            throw new FundingGoalMoneyException(ErrorMessage.FUNDING_GOAL_MONEY_UNAVAILABLE);
+        }
     }
 
     @Override
@@ -166,6 +174,7 @@ public class FundingServiceImpl implements FundingService {
 
 
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
+        //비로그인 유저일 경우
         if(role.equals("anonymousUser")){
             Pageable pageable = PageRequest.of(page,6);
 
