@@ -5,6 +5,7 @@ import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -52,5 +53,14 @@ public class PaymentRespDtos {
             }
         }
 
+    }
+
+    @Getter
+    public static class ChargeDetailsDto{
+        private BigDecimal coin;
+
+        public ChargeDetailsDto(Member member){
+            this.coin = member.getCoin();
+        }
     }
 }
