@@ -27,5 +27,14 @@ public class PaymentController {
         return ApiResponseGenerator.success(respDto, HttpStatus.OK);
     }
 
-    
+    /*
+    *   충전하기
+     */
+    @PostMapping("/charge")
+    public ResponseEntity<?> chargeCoins(@Valid @RequestBody PaymentReqDtos.ChargeDto reqDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        paymentService.chargeCoins(reqDto, userDetails);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
+   
 }
