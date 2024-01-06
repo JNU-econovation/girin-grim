@@ -24,8 +24,6 @@ public class FundingReqDtos{
         @Getter
         public static class FundingDto {
 
-            @NotNull(message = "유효하지 않은 카테고리가 입력되었습니다.")
-            private FundingType type;
             @NotBlank(message = "제목은 필수 입력 항목입니다.")
             private String title;
             @NotBlank(message = "이미지는 필수 입력 항목입니다.")
