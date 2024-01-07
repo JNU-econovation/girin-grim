@@ -55,5 +55,12 @@ public class PaymentController {
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
- 
+    /*
+    *   결제 정보 상세 내역
+     */
+    @GetMapping("/member/{memberId}/backed/{fundingId}")
+    public ResponseEntity<?> fundingPayment(@PathVariable(value = "memberId") Long memberId, @PathVariable(value = "fundingId") Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        PaymentRespDtos.PaymentHistoryDto respDto = paymentService.fundingHistory(memberId, fundingId, userDetails);
+        return ApiResponseGenerator.success(respDto, HttpStatus.OK);
+    }
 }
