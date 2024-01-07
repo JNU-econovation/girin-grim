@@ -46,5 +46,14 @@ public class PaymentController {
     }
 
 
-   
+    /*
+    *   펀딩 결제
+     */
+    @PostMapping("/funding/{fundingId}/payment")
+    public ResponseEntity<?> fundingPayment(@Valid @RequestBody PaymentReqDtos.FundingPaymentDto reqDto,@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        paymentService.fundingPayment(reqDto, fundingId, userDetails);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
+ 
 }
