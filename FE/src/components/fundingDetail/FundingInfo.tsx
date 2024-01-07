@@ -43,7 +43,7 @@ export default function FundingInfo({
         startTime={startTime}
       />
       <InfoOption options={options} />
-      <FundingInfoCost />
+      <FundingInfoCost coin={coin} />
       <FundingDetailBtnSection />
     </section>
   );

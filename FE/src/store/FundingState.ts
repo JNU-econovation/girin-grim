@@ -1,4 +1,4 @@
-import { FundingOptions } from "@/Model/Funding";
+import { FundingOptions, SelectedOption } from "@/Model/Funding";
 import { getFundingDetail } from "@/apis/apis";
 import { RecoilValueReadOnly, atom, selector } from "recoil";
 
@@ -57,4 +57,21 @@ export const FundingDetailState = selector({
 
       return { data, error };
     },
+});
+
+export const SelectedOptions = atom<SelectedOption[]>({
+  key: "SelectedOptions",
+  default: [],
+});
+
+export const TotalCostState = selector({
+  key: "TotalCostState",
+  get: ({ get }) => {
+    const options = get(SelectedOptions);
+    const totalCost = options.reduce(
+      (acc, cur) => acc + cur.amount * cur.price,
+      0
+    );
+    return totalCost;
+  },
 });

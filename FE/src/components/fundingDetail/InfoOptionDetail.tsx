@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { ArrowDown, ArrowUp } from "../common/icon";
 import DeleteBtn from "./DeleteBtn";
-import { SelectedOption } from "./InfoOption";
+import { SelectedOption } from "@/Model/Funding";
 
 // TODO: 리펙토링 해야함
 

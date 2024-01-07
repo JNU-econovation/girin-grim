@@ -34,3 +34,5 @@ export type FundingOptions = {
     name: string;
   }[];
 };
+
+export type SelectedOption = FundingOptions & { amount: number };

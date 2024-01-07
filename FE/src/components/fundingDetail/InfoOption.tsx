@@ -1,24 +1,27 @@
 "use client";
-import { FundingOptions } from "@/Model/Funding";
+import { FundingOptions, SelectedOption } from "@/Model/Funding";
 import InfoOptionDetail from "./InfoOptionDetail";
 import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { SelectedOptions } from "@/store/FundingState";
 
 type Props = {
   options: FundingOptions[];
 };
 
-export type SelectedOption = FundingOptions & { amount: number };
-
 export default function InfoOption({ options }: Props) {
-  const [selected, setSelected] = useState<SelectedOption[]>([]);
+  const [selected, setSelected] =
+    useRecoilState<SelectedOption[]>(SelectedOptions);
   const [clicked, setClicked] = useState<number | undefined>();
   return (
     <>
       <select
         className="w-full border my-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
         onChange={(e) => {
+          const value = +e.target.value;
+          if (!value) return;
           const selectedOption = {
-            ...options.find((option) => option.optionId === +e.target.value)!,
+            ...options.find((option) => option.optionId === value)!,
             amount: 1,
           };
           if (
@@ -29,7 +32,7 @@ export default function InfoOption({ options }: Props) {
           }
         }}
       >
-        <option>상품을 선택해주세요!</option>
+        <option value={0}>상품을 선택해주세요!</option>
         {options.map((option) => (
           <option value={option.optionId}>{option.name}</option>
         ))}
