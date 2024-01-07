@@ -19,7 +19,7 @@ export async function GET(request: Request) {
             },
           },
           {
-            fundingId: 1,
+            fundingId: 2,
             title: "환경을 생각할랑말랑한 비즈",
             image: "/assets/FeedImage.svg",
             university: "촌남대",
@@ -33,7 +33,7 @@ export async function GET(request: Request) {
             },
           },
           {
-            fundingId: 1,
+            fundingId: 3,
             title: "환경을 생각하는 비즈 만들기 KIT",
             image: "/assets/FeedImage.svg",
             university: "전남대",
@@ -47,7 +47,7 @@ export async function GET(request: Request) {
             },
           },
           {
-            fundingId: 1,
+            fundingId: 4,
             title: "환경을 생각하려다 만 비즈",
             image: "/assets/FeedImage.svg",
             university: "전남대",
@@ -61,7 +61,7 @@ export async function GET(request: Request) {
             },
           },
           {
-            fundingId: 1,
+            fundingId: 5,
             title: "환경을 생각하는 비즈 만들기 KIT",
             image: "/assets/FeedImage.svg",
             university: "전남대",
@@ -75,7 +75,7 @@ export async function GET(request: Request) {
             },
           },
           {
-            fundingId: 1,
+            fundingId: 6,
             title: "환경을 생각하는 비즈 만들기 KIT",
             image: "/assets/FeedImage.svg",
             university: "전남대",

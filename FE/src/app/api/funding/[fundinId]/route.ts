@@ -57,15 +57,15 @@ export async function GET(
             items: [
               {
                 itemId: 4,
-                name: "계란과자2개",
+                name: "솨자니마러ㅣㅑㅊ개",
               },
               {
                 itemId: 5,
-                name: "계란과자2개",
+                name: "옵션이에요..",
               },
               {
                 itemId: 6,
-                name: "계란과자2개",
+                name: "히히",
               },
             ],
           },
@@ -77,15 +77,15 @@ export async function GET(
             items: [
               {
                 itemId: 7,
-                name: "계란과자2개",
+                name: "ㅁㄴㅇ",
               },
               {
                 itemId: 8,
-                name: "계란과자2개",
+                name: "계란과ㅇㄴㄹㅎ자2개",
               },
               {
                 itemId: 9,
-                name: "계란과자2개",
+                name: "계란과ㄴㄴㅎㅇㄹㅎㄴㅇ자2개",
               },
             ],
           },
