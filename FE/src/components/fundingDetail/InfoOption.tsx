@@ -17,11 +17,15 @@ export default function InfoOption({ options }: Props) {
       <select
         className="w-full border my-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
         onChange={(e) => {
-          const selectedOption = options.find(
-            (option) => option.optionId === +e.target.value
-          );
-          if (selectedOption) {
-            setSelected((prev) => [...prev, { ...selectedOption, amount: 1 }]);
+          const selectedOption = {
+            ...options.find((option) => option.optionId === +e.target.value)!,
+            amount: 1,
+          };
+          if (
+            selectedOption &&
+            !selected.find((item) => item.optionId === selectedOption.optionId)
+          ) {
+            setSelected([...selected, selectedOption]);
           }
         }}
       >

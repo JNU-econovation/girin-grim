@@ -15,37 +15,27 @@ export default function InfoOptionDetail({
   const { price, name, items, optionId, quantity, amount } = selected;
   const isClicked = optionId === clicked;
   return (
-    <>
-      <li
-        className={`w-full bg-colorede p-2 my-1 font-semibold rounded-[0.3rem] flex ${
-          clicked !== undefined && !isClicked && "hidden"
-        }`}
+    <li
+      className={`w-full bg-colorede p-2 my-1 font-semibold rounded-[0.3rem] flex ${
+        clicked !== undefined && !isClicked && "hidden"
+      }`}
+    >
+      <div
+        className="flex justify-center items-start mt-2"
+        onClick={() => {
+          if (isClicked) {
+            setClicked(undefined);
+            return;
+          }
+          setClicked(optionId);
+        }}
       >
-        <div
-          className="flex justify-center items-start mt-2"
-          onClick={() => {
-            if (isClicked) {
-              setClicked(undefined);
-              return;
-            }
-            setClicked(optionId);
-          }}
-        >
-          {isClicked ? <ArrowUp /> : <ArrowDown />}
-        </div>
-        <p className="ml-2 shrink-0"> Option | </p>
+        {isClicked ? <ArrowUp /> : <ArrowDown />}
+      </div>
+      <p className="ml-2 shrink-0"> Option | </p>
+      <div className="w-full">
         <div className="w-full flex justify-between">
-          <div>
-            <p>{name}</p>
-            {isClicked && (
-              <ul>
-                {items.map((item) => (
-                  <li> - {item.name}</li>
-                ))}
-              </ul>
-            )}
-          </div>
-
+          <p>{name}</p>
           <div className="flex gap-4">
             <p className="text-color9f9">{price}</p>
             <div className="h-[1.375rem] flex ">
@@ -62,7 +52,14 @@ export default function InfoOptionDetail({
             <Delete />
           </div>
         </div>
-      </li>
-    </>
+        {isClicked && (
+          <ul className="max-h-16 overflow-y-auto w-full">
+            {items.map((item) => (
+              <li> - {item.name}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </li>
   );
 }
