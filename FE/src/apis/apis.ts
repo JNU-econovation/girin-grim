@@ -14,7 +14,7 @@ import { HomeFeed } from "@/Model/Feed";
 import { Region, Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
-import { Funding } from "@/Model/Funding";
+import { FundingDetail } from "@/Model/Funding";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -96,7 +96,7 @@ export const getUnivList = async ({
 
 export const getFundingDetail = async (
   fundingId: number
-): Promise<TResponse<Funding>> => {
+): Promise<TResponse<FundingDetail>> => {
   //TODO: 반환 타입 지정하기
   const data = Server.get(fundingDetailURL + fundingId).then((res) => res.data);
   return data;

@@ -4,7 +4,6 @@ export async function GET(
   request: NextRequest,
   { params: { fundingId } }: { params: { fundingId: number } }
 ) {
-  console.log(fundingId);
   return new Response(
     JSON.stringify({
       success: true,

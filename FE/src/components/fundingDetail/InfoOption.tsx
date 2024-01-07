@@ -1,18 +1,44 @@
+"use client";
+import { FundingOptions } from "@/Model/Funding";
 import InfoOptionDetail from "./InfoOptionDetail";
+import { useState } from "react";
 
-export default function InfoOption() {
+type Props = {
+  options: FundingOptions[];
+};
+
+export type SelectedOption = FundingOptions & { amount: number };
+
+export default function InfoOption({ options }: Props) {
+  const [selected, setSelected] = useState<SelectedOption[]>([]);
+  const [clicked, setClicked] = useState<number | undefined>();
   return (
     <>
-      <select className="w-full border my-3 py-5 px-4 rounded-md outline-none text-colorb9b font-nanum">
-        <option value="">상품을 선택해주세요!</option>
-        {/* 옵션 데이터에 맞게 mapping하기 */}
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
+      <select
+        className="w-full border my-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
+        onChange={(e) => {
+          const selectedOption = options.find(
+            (option) => option.optionId === +e.target.value
+          );
+          if (selectedOption) {
+            setSelected((prev) => [...prev, { ...selectedOption, amount: 1 }]);
+          }
+        }}
+      >
+        <option>상품을 선택해주세요!</option>
+        {options.map((option) => (
+          <option value={option.optionId}>{option.name}</option>
+        ))}
       </select>
       {/* 1f1f1f도 없어서 일단 */}
       <section className="grow">
-        <InfoOptionDetail />
+        {selected.map((option) => (
+          <InfoOptionDetail
+            selected={option}
+            clicked={clicked}
+            setClicked={(v: number | undefined) => setClicked(v)}
+          />
+        ))}
       </section>
     </>
   );
