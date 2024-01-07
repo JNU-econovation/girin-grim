@@ -1,12 +1,17 @@
-import { ArrowDown, ArrowUp, Delete } from "../common/icon";
+"use client";
+import { useState } from "react";
+import { ArrowDown, ArrowUp } from "../common/icon";
 import DeleteBtn from "./DeleteBtn";
 import { SelectedOption } from "./InfoOption";
+
+// TODO: 리펙토링 해야함
 
 type Props = {
   selected: SelectedOption;
   clicked: number | undefined;
   setClicked: (v: number | undefined) => void;
   deleteOption: () => void;
+  setAmount: (amount: number) => void;
 };
 
 export default function InfoOptionDetail({
@@ -14,6 +19,7 @@ export default function InfoOptionDetail({
   clicked,
   setClicked,
   deleteOption,
+  setAmount,
 }: Props) {
   const { price, name, items, optionId, quantity, amount } = selected;
   const isClicked = optionId === clicked;
@@ -38,17 +44,31 @@ export default function InfoOptionDetail({
       <p className="ml-2 shrink-0"> Option | </p>
       <div className="w-full">
         <div className="w-full flex justify-between">
-          <p>{name}</p>
+          <p>
+            {name} ({quantity} 남음)
+          </p>
           <div className="flex gap-4">
             <p className="text-color9f9">{price}</p>
             <div className="h-[1.375rem] flex ">
-              <button className="w-[1.375rem] h-[1.375rem] flex justify-center items-center bg-[#cccccc] text-white rounded-l-[0.2rem] border-y-[1px] border-l-[1px]">
+              <button
+                className="w-[1.375rem] h-[1.375rem] flex justify-center items-center bg-[#cccccc] text-white rounded-l-[0.2rem] border-y-[1px] border-l-[1px]"
+                onClick={() => {
+                  if (amount === quantity) return;
+                  setAmount(amount + 1);
+                }}
+              >
                 +
               </button>
               <div className="w-9 h-full flex justify-center items-center bg-slate-100 text-[0.875rem] border-y-[1px]">
                 {amount}
               </div>
-              <button className="w-[1.375rem]  flex justify-center items-center bg-[#cccccc] text-white rounded-r-[0.2rem] border-y-[1px] border-r-[1px]">
+              <button
+                className="w-[1.375rem]  flex justify-center items-center bg-[#cccccc] text-white rounded-r-[0.2rem] border-y-[1px] border-r-[1px]"
+                onClick={() => {
+                  if (amount === 1) return;
+                  setAmount(amount - 1);
+                }}
+              >
                 -
               </button>
             </div>

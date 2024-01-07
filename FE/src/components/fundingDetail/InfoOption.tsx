@@ -46,6 +46,13 @@ export default function InfoOption({ options }: Props) {
                 selected.filter((item) => item.optionId !== option.optionId)
               );
             }}
+            setAmount={(amount: number) => {
+              setSelected(
+                selected.map((item) =>
+                  item.optionId === option.optionId ? { ...item, amount } : item
+                )
+              );
+            }}
           />
         ))}
       </section>
