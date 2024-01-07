@@ -1,16 +1,19 @@
 import { ArrowDown, ArrowUp, Delete } from "../common/icon";
+import DeleteBtn from "./DeleteBtn";
 import { SelectedOption } from "./InfoOption";
 
 type Props = {
   selected: SelectedOption;
   clicked: number | undefined;
   setClicked: (v: number | undefined) => void;
+  deleteOption: () => void;
 };
 
 export default function InfoOptionDetail({
   selected,
   clicked,
   setClicked,
+  deleteOption,
 }: Props) {
   const { price, name, items, optionId, quantity, amount } = selected;
   const isClicked = optionId === clicked;
@@ -49,7 +52,7 @@ export default function InfoOptionDetail({
                 -
               </button>
             </div>
-            <Delete />
+            <DeleteBtn onCLick={deleteOption} />
           </div>
         </div>
         {isClicked && (

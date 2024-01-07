@@ -41,6 +41,11 @@ export default function InfoOption({ options }: Props) {
             selected={option}
             clicked={clicked}
             setClicked={(v: number | undefined) => setClicked(v)}
+            deleteOption={() => {
+              setSelected(
+                selected.filter((item) => item.optionId !== option.optionId)
+              );
+            }}
           />
         ))}
       </section>
