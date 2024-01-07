@@ -16,7 +16,7 @@ import java.time.temporal.ChronoUnit;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "FUNDING")
+@Table(name = "funding_tb")
 public class Funding extends BaseEntity {
 
     @Id
@@ -99,6 +99,10 @@ public class Funding extends BaseEntity {
 
     public int getProgressRate() {
        return (currentMoney.divide(goalMoney)).multiply(BigDecimal.valueOf(100)).intValue();
+    }
+
+    public void updateCurrentMoney(BigDecimal coin) {
+        this.currentMoney = this.currentMoney.add(coin);
     }
 }
 
