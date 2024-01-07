@@ -39,7 +39,7 @@ public enum ErrorMessage {
         /*
         * Payment 도메인 에러 메세지
          */
-        PAYMENT_UNAVAILABLE("후원할 수 없는 펀딩입니다."),
+        PAYMENT_UNAVAILABLE("본인의 펀딩에 후원할 수 없습니다."),
         PAYMENT_DURATION_UNAVAILABLE("후원할 수 있는 기간이 아닙니다."),
         PAYMENT_ALREADY_DONE("이미 후원한 펀딩입니다."),
         PAYMENT_OPTION_NOT_EXIST("존재하지 않는 옵션입니다"),

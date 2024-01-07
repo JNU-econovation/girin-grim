@@ -110,6 +110,25 @@ public class GlobalExceptionHandler{
         return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_DURATION_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    
+    //결제하기
+    @ExceptionHandler(PaymentAlreadyDoneException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(PaymentAlreadyDoneException e){
+        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_ALREADY_DONE.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(PaymentOptionNotExistException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(PaymentOptionNotExistException e){
+        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_OPTION_NOT_EXIST.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(QuantityNotEnoughException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(QuantityNotEnoughException e){
+        return ApiResponseGenerator.fail(ErrorMessage.QUANTITY_NOT_ENOUGH.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CoinNotEnoughException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(CoinNotEnoughException e){
+        return ApiResponseGenerator.fail(ErrorMessage.COIN_NOT_ENOUGH.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 
 }
