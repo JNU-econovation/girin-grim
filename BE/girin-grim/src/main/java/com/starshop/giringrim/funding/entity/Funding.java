@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
@@ -103,6 +104,10 @@ public class Funding extends BaseEntity {
 
     public void updateCurrentMoney(BigDecimal coin) {
         this.currentMoney = this.currentMoney.add(coin);
+    }
+
+    public BigDecimal increseRate(){
+        return currentMoney.divide(goalMoney, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
     }
 }
 
