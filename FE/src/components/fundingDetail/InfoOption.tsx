@@ -1,7 +1,7 @@
 "use client";
 import { FundingOptions, SelectedOption } from "@/Model/Funding";
 import InfoOptionDetail from "./InfoOptionDetail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { SelectedOptions } from "@/store/FundingState";
 
@@ -13,6 +13,9 @@ export default function InfoOption({ options }: Props) {
   const [selected, setSelected] =
     useRecoilState<SelectedOption[]>(SelectedOptions);
   const [clicked, setClicked] = useState<number | undefined>();
+  useEffect(() => {
+    setSelected([]);
+  }, []);
   return (
     <>
       <select
