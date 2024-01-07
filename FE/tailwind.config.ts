@@ -30,6 +30,7 @@ const config: Config = {
         nanum: "[font-family:'NanumSquare_Neo-Regular',Helvetica]",
         noto: "[font-family:'NotoSansKR-Regular',Helvetica]",
         notoKR: "[font-family:'Noto_Sans_KR-Bold',Helvetica]",
+        esaman: "[font-family:'esamanru_OTF-Bold',Helvetica]",
       },
     },
   },

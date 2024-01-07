@@ -16,3 +16,8 @@ export { default as All } from "./icons/All";
 export { default as Donate } from "./icons/Donate";
 export { default as Gift } from "./icons/Gift";
 export { default as FilterToggle } from "./icons/FilterToggle";
+export { default as Tag } from "./icons/Tag";
+export { default as ArrowUp } from "./icons/ArrowUp";
+export { default as ArrowDown } from "./icons/ArrowDown";
+export { default as Delete } from "./icons/Delete";
+export { default as Share } from "./icons/Share";
