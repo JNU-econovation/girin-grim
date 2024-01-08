@@ -2,6 +2,7 @@
 
 import useFundingDetail from "@/hooks/useFundingDetail";
 import FundingInfo from "./FundingInfo";
+import Image from "next/image";
 // import { useRecoilValue } from "recoil";
 // import { FundingDetailState } from "@/store/FundingState";
 
@@ -19,13 +20,13 @@ export default function FundingDetail({ fundingId }: Props) {
       {data && (
         <>
           {/* TODO: aws 연동 후 w, h 확인하기*/}
-          {/* <Image
-            src={funding.image}
+          <Image
+            src={fundingData.funding.image}
             alt="funding Image"
             width={600}
             height={600}
-          /> */}
-          <div className="w-[35.375rem] h-[35.375rem] bg-colorede shrink-0" />
+          />
+          {/* <div className="w-[35.375rem] h-[35.375rem] bg-colorede shrink-0" /> */}
           <FundingInfo fundingData={fundingData} />
           <div className="bg-main w-full" />
         </>

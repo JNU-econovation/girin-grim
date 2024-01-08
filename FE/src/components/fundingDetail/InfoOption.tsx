@@ -9,7 +9,7 @@ type Props = {
   options: FundingOptions[];
 };
 
-export default function InfoOption({ options }: Props) {
+export default function InfoOption({ options }: Readonly<Props>) {
   const [selected, setSelected] =
     useRecoilState<SelectedOption[]>(SelectedOptions);
   const [clicked, setClicked] = useState<number | undefined>();
@@ -37,13 +37,16 @@ export default function InfoOption({ options }: Props) {
       >
         <option value={0}>상품을 선택해주세요!</option>
         {options.map((option) => (
-          <option value={option.optionId}>{option.name}</option>
+          <option key={option.optionId} value={option.optionId}>
+            {option.name}
+          </option>
         ))}
       </select>
       {/* 1f1f1f도 없어서 일단 */}
       <section className="grow">
         {selected.map((option) => (
           <InfoOptionDetail
+            key={option.optionId}
             selected={option}
             clicked={clicked}
             setClicked={(v: number | undefined) => setClicked(v)}
