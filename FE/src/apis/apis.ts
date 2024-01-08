@@ -11,11 +11,10 @@ import {
 import { Server } from "./axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
 import { HomeFeed } from "@/Model/Feed";
-import { Region, Univs } from "@/Model/Univ";
+import { Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
 import { FundingDetail } from "@/Model/Funding";
-import { get } from "http";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -109,5 +108,15 @@ export const getFundingLongDescription = async (
   const data = Server.get(fundingDetailURL + fundingId + "/description").then(
     (res) => res.data
   );
+  return data;
+};
+
+export const getUser = async (): Promise<
+  TResponse<{
+    memberId: number;
+    image: string;
+  }>
+> => {
+  const data = Server.get("/member").then((res) => res.data);
   return data;
 };
