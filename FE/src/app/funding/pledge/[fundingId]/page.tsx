@@ -1,5 +1,11 @@
 import Pledge from "@/components/pledge/Pledge";
 
-export default function PledgePage() {
-  return <Pledge />;
+type Props = {
+  params: {
+    fundingId: number;
+  };
+};
+
+export default function PledgePage({ params: { fundingId } }: Readonly<Props>) {
+  return <Pledge fundingId={fundingId} />;
 }
