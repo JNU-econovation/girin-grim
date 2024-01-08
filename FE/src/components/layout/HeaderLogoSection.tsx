@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { Logo, ToggleArrow, User } from "../common/icon";
 import UserImage from "./UserImage";
+// import dynamic from "next/dynamic";
+// const UserImage = dynamic(() => import("./UserImage"), { ssr: false });
 
 export default function HeaderLogoSection() {
   const token = localStorage.getItem("accessToken");
