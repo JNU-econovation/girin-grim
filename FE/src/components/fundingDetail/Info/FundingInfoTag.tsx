@@ -1,4 +1,4 @@
-import { Tag } from "../common/icon";
+import { Tag } from "../../common/icon";
 
 type Props = {
   type: "DONATE" | "GIFT";

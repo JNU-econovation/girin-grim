@@ -15,6 +15,7 @@ import { Region, Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
 import { FundingDetail } from "@/Model/Funding";
+import { get } from "http";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -99,5 +100,14 @@ export const getFundingDetail = async (
 ): Promise<TResponse<FundingDetail>> => {
   //TODO: 반환 타입 지정하기
   const data = Server.get(fundingDetailURL + fundingId).then((res) => res.data);
+  return data;
+};
+
+export const getFundingLongDescription = async (
+  fundingId: number
+): Promise<TResponse<{ longDescription: string }>> => {
+  const data = Server.get(fundingDetailURL + fundingId + "/description").then(
+    (res) => res.data
+  );
   return data;
 };

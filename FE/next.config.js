@@ -5,7 +5,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "girin-grim.s3.ap-northeast-2.amazonaws.com",
-        pathname: "/Image.jpg",
+        // pathname: "/Image.jpg",
       },
     ],
   },

@@ -1,5 +1,5 @@
-import StyledBtn from "../common/StyledBtn";
-import { Share } from "../common/icon";
+import StyledBtn from "../../common/StyledBtn";
+import { Share } from "../../common/icon";
 
 export default function FundingDetailBtnSection() {
   return (
