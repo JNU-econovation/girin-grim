@@ -18,7 +18,7 @@ export async function GET(
           fundingId: 1,
           type: "DONATE",
           title: "제목",
-          image: "/assets/FeedImage.svg",
+          image: "https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg",
           university: "삼육보건대학교",
           shortDescription: "짧은 설명",
           startTime: "2024-01-03T09:36:00",
