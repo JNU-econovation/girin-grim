@@ -12,7 +12,7 @@ export default function InfoSection({
   const { endTime, title, type, university } = data.response.funding;
   const { Dday } = getDateData(endTime);
   return (
-    <section className="w-full mt-8">
+    <section className="w-full my-8 bg-white">
       <div className="w-full h-full max-w-7xl mx-auto border-[0.15rem] flex gap-8 items-center py-4 px-6 rounded-[0.31rem] border-colorb9b">
         <div
           style={{

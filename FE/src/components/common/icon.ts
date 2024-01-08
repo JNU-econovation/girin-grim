@@ -21,3 +21,5 @@ export { default as ArrowUp } from "./icons/ArrowUp";
 export { default as ArrowDown } from "./icons/ArrowDown";
 export { default as Delete } from "./icons/Delete";
 export { default as Share } from "./icons/Share";
+export { default as Phone } from "./icons/Phone";
+export { default as Address } from "./icons/Address";
