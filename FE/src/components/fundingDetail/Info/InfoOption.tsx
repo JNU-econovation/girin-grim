@@ -51,6 +51,7 @@ export default function InfoOption({ options }: Readonly<Props>) {
             clicked={clicked}
             setClicked={(v: number | undefined) => setClicked(v)}
             deleteOption={() => {
+              setClicked(undefined);
               setSelected(
                 selected.filter((item) => item.optionId !== option.optionId)
               );
