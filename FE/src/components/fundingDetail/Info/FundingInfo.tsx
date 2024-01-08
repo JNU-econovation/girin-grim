@@ -44,7 +44,7 @@ export default function FundingInfo({
       />
       <InfoOption options={options} />
       <FundingInfoCost coin={coin} />
-      <FundingDetailBtnSection />
+      <FundingDetailBtnSection fundingId={fundingId} />
     </section>
   );
 }
