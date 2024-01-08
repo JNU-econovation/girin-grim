@@ -1,7 +1,10 @@
+"use client";
 import Link from "next/link";
 import { Logo, ToggleArrow, User } from "../common/icon";
+import UserImage from "./UserImage";
 
 export default function HeaderLogoSection() {
+  const token = localStorage.getItem("accessToken");
   return (
     <div className="w-full flex justify-between items-center mt-[1.5rem]">
       <div />
@@ -9,7 +12,7 @@ export default function HeaderLogoSection() {
         <Logo />
       </Link>
       <div className="flex gap-[0.625rem]">
-        <User />
+        {token ? <UserImage /> : <User />}
         <ToggleArrow />
       </div>
     </div>
