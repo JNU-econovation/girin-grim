@@ -8,9 +8,9 @@ import InfoOption from "./InfoOption";
 
 export default function FundingInfo({
   fundingData,
-}: {
+}: Readonly<{
   fundingData: FundingDetail;
-}) {
+}>) {
   const {
     coin,
     funding: {
@@ -41,6 +41,7 @@ export default function FundingInfo({
         estimateStartTime={estimateStartTime}
         goalMoney={goalMoney}
         startTime={startTime}
+        rate={rate}
       />
       <InfoOption options={options} />
       <FundingInfoCost coin={coin} />

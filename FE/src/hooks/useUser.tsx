@@ -10,7 +10,5 @@ export default function useUser() {
       return getUser();
     },
   });
-  console.log(data);
-  console.log(error);
   return { data, isLoading, error };
 }
