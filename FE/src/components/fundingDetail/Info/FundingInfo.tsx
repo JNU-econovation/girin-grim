@@ -26,7 +26,7 @@ export default function FundingInfo({
       title,
       type,
     },
-    isMine,
+    isMine, //TODO: 여부에 따라 버튼 다르게 보여주기
     member,
     options,
   } = fundingData;

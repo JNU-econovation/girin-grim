@@ -1,5 +1,6 @@
 import { FundingOptions, SelectedOption } from "@/Model/Funding";
 import { getFundingDetail } from "@/apis/apis";
+import { getLocalData, updateLocalOption } from "@/utils/localData";
 import { RecoilValueReadOnly, atom, selector } from "recoil";
 
 //TODO: 타입 지정하기
@@ -75,3 +76,16 @@ export const TotalCostState = selector({
     return totalCost;
   },
 });
+
+// export const SelectedOptions = selector<SelectedOption[]>({
+//   key: "SelectedOptions",
+//   get: ({ get }) => {
+//     const options = get(SelectedOptionsAtom);
+//     return options;
+//   },
+//   set: ({ set }, newValue) => {
+//     const options = getLocalData().options;
+//     updateLocalOption(options);
+//     set(SelectedOptionsAtom, newValue);
+//   },
+// });

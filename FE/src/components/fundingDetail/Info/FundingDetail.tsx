@@ -3,8 +3,6 @@
 import useFundingDetail from "@/hooks/useFundingDetail";
 import FundingInfo from "./FundingInfo";
 import Image from "next/image";
-// import { useRecoilValue } from "recoil";
-// import { FundingDetailState } from "@/store/FundingState";
 
 type Props = {
   fundingId: number;
@@ -26,7 +24,6 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
             width={600}
             height={600}
           />
-          {/* <div className="w-[35.375rem] h-[35.375rem] bg-colorede shrink-0" /> */}
           <FundingInfo fundingData={fundingData} />
           <div className="bg-main w-full" />
         </>

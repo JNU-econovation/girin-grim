@@ -1,7 +1,7 @@
 import StyledBtn from "../common/StyledBtn";
 import { useRecoilValue } from "recoil";
 import { SelectedOptions } from "@/store/FundingState";
-import { postPayment } from "@/apis/apis";
+// import { postPayment } from "@/apis/apis";
 
 export default function PaymentBtn() {
   const options = useRecoilValue(SelectedOptions);

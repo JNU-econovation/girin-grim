@@ -8,9 +8,9 @@ export default function Payment() {
   const totalCost = useRecoilValue(TotalCostState);
   const { data, error, isLoading } = useCharge();
   return (
-    <div className="relative w-full py-11 px-10 z-50">
+    <div className="relative py-11 px-10 z-50">
       <p className="text-[1.375rem] font-semibold">결제 정보를 확인해주세요.</p>
-      <div className="w-full mt-8">
+      <div className=" mt-8">
         <p className="text-end font-semibold text-color999">
           My Coin : {data ? data.response.coin : ""}
         </p>
