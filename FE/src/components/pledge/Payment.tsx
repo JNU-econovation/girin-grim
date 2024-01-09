@@ -17,7 +17,6 @@ export default function Payment() {
         </p>
       </div>
       <hr className="border-color999 border-2 mt-5" />
-      <PaymentBg />
       <StyledBtn text="결제하기" />
     </div>
   );
