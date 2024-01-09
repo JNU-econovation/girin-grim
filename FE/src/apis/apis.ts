@@ -14,7 +14,7 @@ import { HomeFeed } from "@/Model/Feed";
 import { Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
-import { FundingDetail } from "@/Model/Funding";
+import { FundingDetail, Pledge } from "@/Model/Funding";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -118,5 +118,13 @@ export const getUser = async (): Promise<
   }>
 > => {
   const data = Server.get("/member").then((res) => res.data);
+  return data;
+};
+
+export const getPledge = async (
+  fundingId: number
+): Promise<TResponse<Pledge>> => {
+  const pledgeUrl = `/funding/${fundingId}/pledge`;
+  const data = Server.get(pledgeUrl).then((res) => res.data);
   return data;
 };

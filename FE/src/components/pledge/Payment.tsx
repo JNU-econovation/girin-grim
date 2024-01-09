@@ -1,7 +1,9 @@
+import { TotalCostState } from "@/store/FundingState";
 import StyledBtn from "../common/StyledBtn";
-import PaymentBg from "./PaymentBg";
+import { useRecoilValue } from "recoil";
 
 export default function Payment() {
+  const totalCost = useRecoilValue(TotalCostState);
   return (
     <div className="relative w-full py-11 px-10 z-50">
       <p className="text-[1.375rem] font-semibold">결제 정보를 확인해주세요.</p>
@@ -12,7 +14,7 @@ export default function Payment() {
         <p className="text-end flex justify-between items-center text-[1.375rem] text-[#696969]">
           <span>최종 결제 금액 : </span>
           <span className="font-black text-[2.5rem] text-color121">
-            {"100000"}
+            {totalCost}
           </span>
         </p>
       </div>
