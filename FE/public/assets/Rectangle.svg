@@ -1,0 +1,27 @@
+      <svg
+        width="532"
+        height="30"
+        viewBox="0 0 532 30"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 0H532V20C532 25.5228 527.523 30 522 30H9.99999C4.47715 30 0 25.5228 0 20V0Z"
+          fill="white"
+        />
+      </svg>
+      <svg
+        width="508"
+        height="3"
+        viewBox="0 0 508 3"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M1 1.5H507"
+          stroke="#B9B9B9"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="20 10"
+        />
+      </svg>
