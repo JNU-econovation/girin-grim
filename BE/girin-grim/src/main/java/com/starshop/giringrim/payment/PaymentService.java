@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +40,7 @@ public class PaymentService {
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentDetailsDto getPaymentDetails(Long fundingId, UserDetailsImpl userDetails) {
         //서포터 정보
-        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+        Member supporter = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
 
@@ -55,10 +56,10 @@ public class PaymentService {
         Member creator = funding.getMember();
 
         //크리에이터는 본인의 펀딩에 후원할 수 없으므로 userDetails의 멤버와 펀딩 작성자의 멤버 정보가 같으면 예외
-        if(member.getId().equals(creator.getId())){
+        if(supporter.getId().equals(creator.getId())){
             throw new PaymentUnavailableException(ErrorMessage.PAYMENT_UNAVAILABLE);
         }
-        return new PaymentRespDtos.PaymentDetailsDto(creator.getNickname(), member, funding);
+        return new PaymentRespDtos.PaymentDetailsDto(creator, supporter, funding);
     }
 
     @Transactional
@@ -87,6 +88,11 @@ public class PaymentService {
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
+
+        //TODO : 권한 없음
+        if(!Objects.equals(reqDto.getMemberId(), member.getId())){
+            throw new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST);
+        }
 
         Funding funding = fundingRepository.findById(fundingId).orElseThrow(
                 () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)

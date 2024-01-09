@@ -18,14 +18,25 @@ public class PaymentRespDtos {
 
     @Getter
     public static class PaymentDetailsDto{
-        private String nickname;
+        private MemberDto member;
         private FundingDto funding;
         private SupporterDto supporter;
 
-        public PaymentDetailsDto(String nickname ,Member member, Funding funding){
-            this.nickname = nickname;
+        public PaymentDetailsDto(Member creator ,Member supporter, Funding funding){
+            this.member = new MemberDto(creator);
             this.funding = new FundingDto(funding);
-            this.supporter = new SupporterDto(member);
+            this.supporter = new SupporterDto(supporter);
+        }
+
+        @Getter
+        public static class MemberDto{
+            private Long memberId;
+            private String nickanme;
+
+            public MemberDto(Member member){
+                this.memberId = member.getId();
+                this.nickanme = member.getNickname();
+            }
         }
 
         @Getter

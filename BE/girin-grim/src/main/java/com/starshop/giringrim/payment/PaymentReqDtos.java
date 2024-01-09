@@ -13,6 +13,7 @@ import java.util.List;
 public class PaymentReqDtos {
     @Getter
     public static class FundingPaymentDto{
+        private Long memberId;
         private FundingType type;
         private List<OptionDto> options;
         private BigDecimal price;
