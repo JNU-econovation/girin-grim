@@ -32,6 +32,7 @@ export type FundingOptions = {
   }[];
 };
 
+/**기존 funding의 option에 amount값 추가된 타입 */
 export type SelectedOption = FundingOptions & { amount: number };
 
 export type Pledge = {

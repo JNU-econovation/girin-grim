@@ -1,8 +1,8 @@
 import { TotalCostState } from "@/store/FundingState";
-import StyledBtn from "../common/StyledBtn";
 import { useRecoilValue } from "recoil";
 import useCharge from "@/hooks/useCharge";
 import Agreement from "./Agreement";
+import PaymentBtn from "./PaymentBtn";
 
 export default function Payment() {
   const totalCost = useRecoilValue(TotalCostState);
@@ -23,7 +23,7 @@ export default function Payment() {
       </div>
       <hr className="border-color999 border-2 mt-5" />
       <Agreement />
-      <StyledBtn text="결제하기" />
+      <PaymentBtn />
     </div>
   );
 }

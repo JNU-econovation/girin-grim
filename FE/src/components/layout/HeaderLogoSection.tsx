@@ -2,13 +2,17 @@
 import Link from "next/link";
 import { Logo, ToggleArrow, User } from "../common/icon";
 import UserImage from "./UserImage";
-// import dynamic from "next/dynamic";
-// const UserImage = dynamic(() => import("./UserImage"), { ssr: false });
+import { useEffect, useState } from "react";
 
 export default function HeaderLogoSection() {
-  const token = localStorage.getItem("accessToken");
+  const [token, setToken] = useState("");
+  useEffect(() => {
+    const t = localStorage.getItem("accessToken");
+    if (!t) return;
+    setToken(t);
+  }, []);
   return (
-    <div className="w-full flex justify-between items-center mt-[1.5rem]">
+    <div className="flex justify-between items-center mt-6">
       <div />
       <Link href="/">
         <Logo />

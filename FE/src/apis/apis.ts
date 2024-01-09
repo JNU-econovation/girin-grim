@@ -14,7 +14,7 @@ import { HomeFeed } from "@/Model/Feed";
 import { Univs } from "@/Model/Univ";
 import { TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
-import { FundingDetail, Pledge } from "@/Model/Funding";
+import { FundingDetail, FundingOptions, Pledge } from "@/Model/Funding";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -133,5 +133,21 @@ export const getPledge = async (
 
 export const getCharge = async () => {
   const data = Server.get("/charge").then((res) => res.data);
+  return data;
+};
+
+export const postPayment = async (
+  memberId: number,
+  type: "DONATE" | "GIFT",
+  option: FundingOptions,
+  price: number
+) => {
+  const body = {
+    memberId,
+    type,
+    option,
+    price,
+  };
+  const data = Server.post(`/funding/payment`, body).then((res) => res.data);
   return data;
 };
