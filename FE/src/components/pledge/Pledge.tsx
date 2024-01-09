@@ -13,7 +13,7 @@ export default function Pledge({ fundingId }: Readonly<{ fundingId: number }>) {
       <InfoSection funding={funding} member={member} />
       <div className="w-full bg-colorede pb-4">
         <section className="w-full max-w-7xl mx-auto grid grid-cols-[3fr_2fr] gap-3">
-          <OptinsSection />
+          <OptinsSection supporter={supporter} />
           <CostInfo />
         </section>
       </div>

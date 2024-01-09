@@ -1,11 +1,18 @@
-import { defaultSuppotInfoData } from "@/constants/Pledge";
+import { formatSuppotData } from "@/utils/dataFomet";
 
-export default function SuppotInfo() {
+type Props = {
+  supporter: {
+    address: string;
+  };
+};
+
+export default function SuppotInfo({ supporter }: Props) {
+  const suppotData = formatSuppotData(supporter.address);
   return (
     <section className="m-[1.14rem]">
       <div className="flex text-[1.25rem] w-full px-6 py-4 bg-colore7e rounded-md gap-6">
         <ul>
-          {defaultSuppotInfoData.map(({ icon, title, value }) => (
+          {suppotData.map(({ icon, title, value }) => (
             <li
               key={title}
               className="grid grid-cols-[1fr_3fr_20fr] items-center w-full pl-10 gap-5"

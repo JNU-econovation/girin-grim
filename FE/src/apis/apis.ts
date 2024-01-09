@@ -124,7 +124,7 @@ export const getUser = async (): Promise<
 export const getPledge = async (
   fundingId: number
 ): Promise<TResponse<Pledge>> => {
-  const pledgeUrl = `/funding/${fundingId}/pledge`;
+  const pledgeUrl = `/funding/${fundingId}/payment`;
   const data = Server.get(pledgeUrl).then((res) => res.data);
   return data;
 };

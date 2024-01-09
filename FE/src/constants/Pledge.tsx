@@ -9,6 +9,6 @@ export const defaultSuppotInfoData = [
   {
     icon: <Address />,
     title: "주소",
-    value: "광주광역시 북구 용봉로 77 정보화본부 1층 101호",
+    value: "",
   },
 ];

@@ -3,7 +3,13 @@ import Options from "./Options";
 import SuppotInfo from "./SuppotInfo";
 import { SelectedOptions } from "@/store/FundingState";
 
-export default function OptinsSection() {
+type Props = {
+  supporter: {
+    address: string;
+  };
+};
+
+export default function OptinsSection({ supporter }: Props) {
   const options = useRecoilValue(SelectedOptions);
   return (
     <section className="w-full bg-white p-10 font-nanum min-h-[100vh]">
@@ -18,7 +24,7 @@ export default function OptinsSection() {
         후원자 정보
       </h2>
       <div className="border-2 mt-2 rounded-md">
-        <SuppotInfo />
+        <SuppotInfo supporter={supporter} />
       </div>
     </section>
   );
