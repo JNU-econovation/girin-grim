@@ -29,7 +29,9 @@ export default function InfoSection({
             <h1 className="text-[2.5rem] font-black text-color121 mt-2 mb-1">
               {title}
             </h1>
-            <p className="font-black text-color999 text-[1.5rem]">D{dueDate}</p>
+            <p className="font-black text-color999 text-[1.5rem]">
+              D-{dueDate}
+            </p>
           </div>
         </div>
       </Link>

@@ -1,15 +1,18 @@
 import { TotalCostState } from "@/store/FundingState";
 import StyledBtn from "../common/StyledBtn";
 import { useRecoilValue } from "recoil";
+import useCharge from "@/hooks/useCharge";
+import Agreement from "./Agreement";
 
 export default function Payment() {
   const totalCost = useRecoilValue(TotalCostState);
+  const { data, error, isLoading } = useCharge();
   return (
     <div className="relative w-full py-11 px-10 z-50">
       <p className="text-[1.375rem] font-semibold">결제 정보를 확인해주세요.</p>
       <div className="w-full mt-8">
         <p className="text-end font-semibold text-color999">
-          My Coin : {"80000"}
+          My Coin : {data ? data.response.coin : ""}
         </p>
         <p className="text-end flex justify-between items-center text-[1.375rem] text-[#696969]">
           <span>최종 결제 금액 : </span>
@@ -19,6 +22,7 @@ export default function Payment() {
         </p>
       </div>
       <hr className="border-color999 border-2 mt-5" />
+      <Agreement />
       <StyledBtn text="결제하기" />
     </div>
   );

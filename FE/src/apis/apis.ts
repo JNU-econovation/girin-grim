@@ -111,6 +111,8 @@ export const getFundingLongDescription = async (
   return data;
 };
 
+//TODO: url 전역변수로 관리하기!!!!!
+
 export const getUser = async (): Promise<
   TResponse<{
     memberId: number;
@@ -126,5 +128,10 @@ export const getPledge = async (
 ): Promise<TResponse<Pledge>> => {
   const pledgeUrl = `/funding/${fundingId}/payment`;
   const data = Server.get(pledgeUrl).then((res) => res.data);
+  return data;
+};
+
+export const getCharge = async () => {
+  const data = Server.get("/charge").then((res) => res.data);
   return data;
 };
