@@ -10,6 +10,7 @@ import com.starshop.giringrim.option.item.Item;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,7 +59,7 @@ public class FundingRespDtos {
             private LocalDateTime startTime;
             private LocalDateTime endTime;
             private LocalDateTime estimateStartTime;
-            private int rate;
+            private BigDecimal rate;
             private BigDecimal curMoney;
             private BigDecimal goalMoney;
 
@@ -72,7 +73,7 @@ public class FundingRespDtos {
                 this.startTime = funding.getStartTime();
                 this.endTime = funding.getEndTime();
                 this.estimateStartTime = funding.getEstimatedStartTime();
-                this.rate = (funding.getCurrentMoney().divide(funding.getGoalMoney())).multiply(BigDecimal.valueOf(100)).intValue();
+                this.rate = funding.increseRate();
                 this.curMoney = funding.getCurrentMoney();
                 this.goalMoney = funding.getGoalMoney();
             }
@@ -95,7 +96,8 @@ public class FundingRespDtos {
                 this.price = option.getPrice();
                 this.name = option.getName();
                 this.quantity = option.getQuantity();
-                this.items = itemList.stream().map(item -> new ItemDTO(item)).collect(Collectors.toList());            }
+                this.items = itemList.stream().map(ItemDTO::new).collect(Collectors.toList());
+            }
         }
 
         @Getter

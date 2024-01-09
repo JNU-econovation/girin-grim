@@ -1,27 +1,42 @@
 package com.starshop.giringrim.payment;
 
+
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;
+import com.starshop.giringrim.option.Option;
+import com.starshop.giringrim.option.item.Item;
+import com.starshop.giringrim.payment.details.PaymentDetails;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 public class PaymentRespDtos {
 
     @Getter
     public static class PaymentDetailsDto{
-        private String nickname;
+        private MemberDto member;
         private FundingDto funding;
         private SupporterDto supporter;
 
-        public PaymentDetailsDto(String nickname ,Member member, Funding funding){
-            this.nickname = nickname;
+        public PaymentDetailsDto(Member creator ,Member supporter, Funding funding){
+            this.member = new MemberDto(creator);
             this.funding = new FundingDto(funding);
-            this.supporter = new SupporterDto(member);
+            this.supporter = new SupporterDto(supporter);
+        }
+
+        @Getter
+        public static class MemberDto{
+            private Long memberId;
+            private String nickanme;
+
+            public MemberDto(Member member){
+                this.memberId = member.getId();
+                this.nickanme = member.getNickname();
+            }
         }
 
         @Getter
@@ -61,6 +76,74 @@ public class PaymentRespDtos {
 
         public ChargeDetailsDto(Member member){
             this.coin = member.getCoin();
+        }
+    }
+
+    @Getter
+    public static class PaymentHistoryDto{
+        private BigDecimal totalPrice;
+        private MemberDto member;
+        private String address;
+        private FundingDto funding;
+        private List<OptionsDto> options;
+
+        public PaymentHistoryDto(BigDecimal totalPrice, Member member, String address, Funding funding, List<OptionsDto> optionsDto){
+            this.totalPrice = totalPrice;
+            this.member = new MemberDto(member);
+            this.address = address;
+            this.funding = new FundingDto(funding);
+            this.options = optionsDto;
+        }
+
+        @Getter
+        public static class MemberDto{
+            private String nickname;
+
+            public MemberDto(Member member){
+                this.nickname = member.getNickname();
+            }
+        }
+
+        @Getter
+        public static class FundingDto{
+            private FundingType type;
+            private String title;
+            private String image;
+            private String university;
+
+            public FundingDto(Funding funding){
+                this.type = funding.getFundingType();
+                this.title = funding.getTitle();
+                this.image = funding.getImage();
+                this.university = funding.getUniversity().getName();
+            }
+        }
+        @Getter
+        public static class OptionsDto {
+            private Long optionId;
+            private String name;
+            private BigDecimal price;
+            private Long quantity;
+            private List<ItemDto> items;
+
+            public OptionsDto(Option option, PaymentDetails paymentDetails, List<Item> itemList) {
+                this.optionId = option.getId();
+                this.price = option.getPrice();
+                this.name = option.getName();
+                this.quantity = paymentDetails.getQuantity();
+                this.items = itemList.stream().map(ItemDto::new).collect(Collectors.toList());
+            }
+
+            @Getter
+            public static class ItemDto {
+                private Long itemId;
+                private String name;
+
+                public ItemDto(Item item) {
+                    this.itemId = item.getId();
+                    this.name = item.getItemName();
+                }
+            }
         }
     }
 }

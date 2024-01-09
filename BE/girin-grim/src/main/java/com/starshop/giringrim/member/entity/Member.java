@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name="MEMBER")
+@Table(name="member_tb")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
