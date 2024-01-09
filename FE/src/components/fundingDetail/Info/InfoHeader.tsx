@@ -3,7 +3,10 @@ type Props = {
   shortDescription: string;
 };
 
-export default function InfoHeader({ title, shortDescription }: Props) {
+export default function InfoHeader({
+  title,
+  shortDescription,
+}: Readonly<Props>) {
   return (
     <>
       <h1 className="text-[2.5rem] font-black text-color121">{title}</h1>

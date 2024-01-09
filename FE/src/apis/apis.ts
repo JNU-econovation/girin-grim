@@ -12,9 +12,9 @@ import { Server } from "./axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
 import { HomeFeed } from "@/Model/Feed";
 import { Univs } from "@/Model/Univ";
-import { TResponse } from "@/Model/Response";
+import { TPostResponse, TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
-import { FundingDetail } from "@/Model/Funding";
+import { FundingDetail, FundingOptions, Pledge } from "@/Model/Funding";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -111,6 +111,8 @@ export const getFundingLongDescription = async (
   return data;
 };
 
+//TODO: url 전역변수로 관리하기!!!!!
+
 export const getUser = async (): Promise<
   TResponse<{
     memberId: number;
@@ -118,5 +120,34 @@ export const getUser = async (): Promise<
   }>
 > => {
   const data = Server.get("/member").then((res) => res.data);
+  return data;
+};
+
+export const getPledge = async (
+  fundingId: number
+): Promise<TResponse<Pledge>> => {
+  const pledgeUrl = `/funding/${fundingId}/payment`;
+  const data = Server.get(pledgeUrl).then((res) => res.data);
+  return data;
+};
+
+export const getCharge = async () => {
+  const data = Server.get("/charge").then((res) => res.data);
+  return data;
+};
+
+export const postPayment = async (
+  memberId: number,
+  type: "DONATE" | "GIFT",
+  option: FundingOptions[],
+  price: number
+): Promise<TPostResponse> => {
+  const body = {
+    memberId,
+    type,
+    option,
+    price,
+  };
+  const data = Server.post(`/funding/payment`, body).then((res) => res.data);
   return data;
 };

@@ -3,3 +3,14 @@ export type TResponse<T> = {
   response: T;
   error: any;
 };
+export type TPostResponse =
+  | {
+      success: true;
+      response: null;
+      error: null;
+    }
+  | {
+      success: false;
+      response: null;
+      error: any;
+    };

@@ -1,10 +1,7 @@
 export type FundingDetail = {
   isMine: boolean;
   coin: number;
-  member: {
-    memberId: number;
-    nickname: string;
-  };
+  member: FundingMember;
   funding: Funding;
   options: FundingOptions[];
 };
@@ -35,4 +32,28 @@ export type FundingOptions = {
   }[];
 };
 
+/**기존 funding의 option에 amount값 추가된 타입 */
 export type SelectedOption = FundingOptions & { amount: number };
+
+export type Pledge = {
+  member: FundingMember;
+  funding: PledgeFunding;
+  supporter: {
+    // coin: 500000;
+    address: string;
+  };
+};
+
+export type PledgeFunding = {
+  fundingId: number;
+  type: "DONATE" | "GIFT";
+  title: string;
+  image: string;
+  university: string;
+  dueDate: number;
+};
+
+export type FundingMember = {
+  memberId: number;
+  nickname: string;
+};

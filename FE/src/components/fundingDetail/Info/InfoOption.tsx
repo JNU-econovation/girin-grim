@@ -4,6 +4,7 @@ import InfoOptionDetail from "./InfoOptionDetail";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { SelectedOptions } from "@/store/FundingState";
+import { updateLocalOption } from "@/utils/localData";
 
 type Props = {
   options: FundingOptions[];
@@ -16,10 +17,13 @@ export default function InfoOption({ options }: Readonly<Props>) {
   useEffect(() => {
     setSelected([]);
   }, []);
+  useEffect(() => {
+    updateLocalOption(selected);
+  }, [selected]);
   return (
     <>
       <select
-        className="w-full border my-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
+        className="border my-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
         onChange={(e) => {
           const value = +e.target.value;
           if (!value) return;

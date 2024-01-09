@@ -2,19 +2,23 @@
 import Link from "next/link";
 import { Logo, ToggleArrow, User } from "../common/icon";
 import UserImage from "./UserImage";
-// import dynamic from "next/dynamic";
-// const UserImage = dynamic(() => import("./UserImage"), { ssr: false });
+import { useEffect, useState } from "react";
+import { CheckIsLoggedIn } from "@/utils/localData";
 
 export default function HeaderLogoSection() {
-  const token = localStorage.getItem("accessToken");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    const loggedIn = CheckIsLoggedIn();
+    setIsLoggedIn(loggedIn);
+  }, []);
   return (
-    <div className="w-full flex justify-between items-center mt-[1.5rem]">
+    <div className="flex justify-between items-center mt-6">
       <div />
       <Link href="/">
         <Logo />
       </Link>
       <div className="flex gap-[0.625rem]">
-        {token ? <UserImage /> : <User />}
+        {isLoggedIn ? <UserImage /> : <User />}
         <ToggleArrow />
       </div>
     </div>

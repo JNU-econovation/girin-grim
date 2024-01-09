@@ -9,7 +9,11 @@ type Props = {
   university: string;
 };
 
-export default function FundingInfoTag({ type, member, university }: Props) {
+export default function FundingInfoTag({
+  type,
+  member,
+  university,
+}: Readonly<Props>) {
   const typeText = type === "DONATE" ? "기부형" : "수령형";
   return (
     <p className="flex gap-1 text-color656">

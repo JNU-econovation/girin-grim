@@ -3,7 +3,7 @@
 import { TotalCostState } from "@/store/FundingState";
 import { useRecoilValue } from "recoil";
 
-export default function FundingInfoCost({ coin }: { coin: number }) {
+export default function FundingInfoCost({ coin }: Readonly<{ coin: number }>) {
   const cost = useRecoilValue(TotalCostState);
   return (
     <section className="w-full text-end">

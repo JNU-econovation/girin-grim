@@ -8,9 +8,9 @@ import InfoOption from "./InfoOption";
 
 export default function FundingInfo({
   fundingData,
-}: {
+}: Readonly<{
   fundingData: FundingDetail;
-}) {
+}>) {
   const {
     coin,
     funding: {
@@ -26,7 +26,7 @@ export default function FundingInfo({
       title,
       type,
     },
-    isMine,
+    isMine, //TODO: 여부에 따라 버튼 다르게 보여주기
     member,
     options,
   } = fundingData;
@@ -41,10 +41,11 @@ export default function FundingInfo({
         estimateStartTime={estimateStartTime}
         goalMoney={goalMoney}
         startTime={startTime}
+        rate={rate}
       />
       <InfoOption options={options} />
       <FundingInfoCost coin={coin} />
-      <FundingDetailBtnSection />
+      <FundingDetailBtnSection fundingId={fundingId} />
     </section>
   );
 }
