@@ -8,9 +8,9 @@ export default function InfoSection({
 }: Readonly<{ funding: PledgeFunding; member: FundingMember }>) {
   const { dueDate, fundingId, image, title, type, university } = funding;
   return (
-    <section className="w-full my-8 bg-white">
+    <section className="my-8 bg-white">
       <Link href={`/funding/${fundingId}`}>
-        <div className="w-full h-full max-w-7xl mx-auto border-[0.15rem] flex gap-8 items-center py-4 px-6 rounded-[0.31rem] border-colorb9b">
+        <div className="h-full max-w-7xl mx-auto border-[0.15rem] flex gap-8 items-center py-4 px-6 rounded-[0.31rem] border-colorb9b">
           <div
             style={{
               backgroundImage: `url(${image})`,
@@ -20,7 +20,7 @@ export default function InfoSection({
             }}
             className="w-[20rem] h-[11.6rem] rounded-[0.31rem]"
           />
-          <div className="w-full h-full items-center">
+          <div className="h-full items-center">
             <FundingInfoTag
               member={member}
               type={type}

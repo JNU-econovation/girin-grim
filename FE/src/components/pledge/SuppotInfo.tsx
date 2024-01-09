@@ -10,7 +10,7 @@ export default function SuppotInfo({ supporter }: Props) {
   const suppotData = formatSuppotData(supporter.address);
   return (
     <section className="m-[1.14rem]">
-      <div className="flex text-[1.25rem] w-full px-6 py-4 bg-colore7e rounded-md gap-6">
+      <div className="flex text-[1.25rem] px-6 py-4 bg-colore7e rounded-md gap-6">
         <ul>
           {suppotData.map(({ icon, title, value }) => (
             <li

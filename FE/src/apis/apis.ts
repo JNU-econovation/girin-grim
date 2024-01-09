@@ -12,7 +12,7 @@ import { Server } from "./axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
 import { HomeFeed } from "@/Model/Feed";
 import { Univs } from "@/Model/Univ";
-import { TResponse } from "@/Model/Response";
+import { TPostResponse, TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
 import { FundingDetail, FundingOptions, Pledge } from "@/Model/Funding";
 
@@ -139,9 +139,9 @@ export const getCharge = async () => {
 export const postPayment = async (
   memberId: number,
   type: "DONATE" | "GIFT",
-  option: FundingOptions,
+  option: FundingOptions[],
   price: number
-) => {
+): Promise<TPostResponse> => {
   const body = {
     memberId,
     type,
