@@ -88,7 +88,6 @@ public class PaymentService {
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
 
-        //상품 수령형 일 경우
         Funding funding = fundingRepository.findById(fundingId).orElseThrow(
                 () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)
         );
@@ -192,6 +191,51 @@ public class PaymentService {
 
     }
 
-   
+    @Transactional(readOnly = true)
+    public PaymentRespDtos.PaymentHistoryDto fundingHistory(Long memberId, Long fundingId, UserDetailsImpl userDetails){
+
+        //로그인 사용자 정보 얻어오기
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        Funding funding = fundingRepository.findById(fundingId).orElseThrow(
+                () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)
+        );
+
+        Member creator = funding.getMember();
+
+        //본인의 후원 내역만 조회 가능
+        if(!memberId.equals(member.getId())){
+            throw new IllegalArgumentException("본인의 후원 내역만 조회 가능합니다.");
+        }
+
+        Payment payment = paymentRepository.findByMemberIdFundingId(memberId, fundingId);
+
+        List<PaymentDetails> paymentDetails = paymentDetailsRepository.findByPamentId(payment.getId());
+
+        //구매한 옵션의 총 금액
+        BigDecimal totalPrice = BigDecimal.ZERO;
+
+        //구매한 옵션 정보 담을 리스트
+        List<Option> optionList = new ArrayList<>();
+        for(PaymentDetails details : paymentDetails) {
+            totalPrice = totalPrice.add(details.getTotalPrice());
+            optionList.add(details.getOption());
+        }
+
+        List<PaymentRespDtos.PaymentHistoryDto.OptionsDto> optionDtos = new ArrayList<>();
+
+        //옵션, 아이템을 담을 DTO
+        if(funding.getFundingType() == FundingType.GIFT){
+            int i=0;
+            for (Option option : optionList) {
+                List<Item> items = itemRepository.findAllByOptionId(option.getId());
+                optionDtos.add(new PaymentRespDtos.PaymentHistoryDto.OptionsDto(option, paymentDetails.get(i), items));
+                i++;
+            }
+        }
+        return new PaymentRespDtos.PaymentHistoryDto(totalPrice, creator, member.getAddress(),funding, optionDtos);
+    }
 
 }
