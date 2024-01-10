@@ -25,7 +25,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
             height={600}
           />
           <FundingInfo fundingData={fundingData} />
-          <div className="bg-main w-full" />
+          <div className="bg-main grow" />
         </>
       )}
     </section>

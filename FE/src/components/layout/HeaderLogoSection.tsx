@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { Logo, ToggleArrow } from "../common/icon";
 import Hero from "../common/Hero";

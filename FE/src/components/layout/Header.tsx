@@ -1,4 +1,3 @@
-// import HeaderLogoSection from "./HeaderLogoSection";
 import dynamic from "next/dynamic";
 const HeaderLogoSection = dynamic(() => import("./HeaderLogoSection"), {
   ssr: true,
