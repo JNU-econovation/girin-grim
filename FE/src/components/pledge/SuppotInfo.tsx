@@ -1,4 +1,4 @@
-import { formatSuppotData } from "@/utils/dataFomet";
+import { formatSuppotData } from "@/utils/dataFomat";
 
 type Props = {
   supporter: {
@@ -6,7 +6,7 @@ type Props = {
   };
 };
 
-export default function SuppotInfo({ supporter }: Props) {
+export default function SuppotInfo({ supporter }: Readonly<Props>) {
   const suppotData = formatSuppotData(supporter.address);
   return (
     <section className="m-[1.14rem]">
