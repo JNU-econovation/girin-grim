@@ -23,3 +23,4 @@ export { default as Delete } from "./icons/Delete";
 export { default as Share } from "./icons/Share";
 export { default as Phone } from "./icons/Phone";
 export { default as Address } from "./icons/Address";
+export { default as NameTag } from "./icons/NameTag";

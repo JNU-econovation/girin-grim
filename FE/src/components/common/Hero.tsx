@@ -17,5 +17,6 @@ export default function Hero({ page }: Readonly<Props>) {
     const loggedIn = CheckIsLoggedIn();
     setIsLoggedIn(loggedIn);
   }, []);
-  return <> {isLoggedIn ? <UserImage size={size} /> : <User size={size} />}</>;
+  if (isLoggedIn) return <UserImage size={size} />;
+  return <User size={size} />;
 }
