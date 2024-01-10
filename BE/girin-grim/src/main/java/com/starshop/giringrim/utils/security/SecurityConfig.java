@@ -31,8 +31,8 @@ public class SecurityConfig {
 
 
     public class SecurityFilterManagerImpl extends AbstractHttpConfigurer<SecurityFilterManagerImpl, HttpSecurity> {
-        @Override
-        public void configure(final HttpSecurity builder) throws Exception {
+        public void configure(HttpSecurity builder) throws Exception {
+            System.out.println("로그로그로그");
             final AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
             builder.addFilter(new JwtAuthenticationFilter(authenticationManager, tokenGenerator));
             super.configure(builder);
@@ -58,8 +58,9 @@ public class SecurityConfig {
         http.httpBasic(AbstractHttpConfigurer::disable);
 
         //커스텀 필터 등록
-        http.apply(new SecurityFilterManagerImpl());
-
+        //http.apply(new SecurityFilterManagerImpl());
+        http.with(new SecurityFilterManagerImpl(), securityFilterManager -> {
+        });
         // 인증 실패 처리
         http.exceptionHandling(handling ->
                 handling.authenticationEntryPoint(((request, response, authException) -> {
@@ -80,12 +81,11 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/api/member", "GET")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/funding/payment","GET")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/charge","POST")).authenticated()
-
-
                 .anyRequest().permitAll()
                 );
 
         return http.build();
+
     }
 
 
