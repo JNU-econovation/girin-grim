@@ -1,5 +1,9 @@
-import Hero from "@/components/common/Hero";
+import { User } from "@/components/common/icon";
 
-export default function MemberHero() {
-  return <Hero page="member" />;
+type Props = {
+  url?: string;
+};
+
+export default function MemberHero({ url }: Readonly<Props>) {
+  return <User size="large" url={url} />;
 }

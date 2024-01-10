@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Logo, ToggleArrow } from "../common/icon";
-import Hero from "../common/Hero";
+import HeaderHero from "../common/HeaderHero";
 
 export default function HeaderLogoSection() {
   return (
@@ -12,7 +12,7 @@ export default function HeaderLogoSection() {
         <Logo />
       </Link>
       <div className="flex gap-[0.625rem]">
-        <Hero />
+        <HeaderHero />
         <ToggleArrow />
       </div>
     </div>

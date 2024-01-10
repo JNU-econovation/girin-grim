@@ -1,8 +1,8 @@
 "use client";
-import Hero from "@/components/common/Hero";
 import MemberInfoList from "./MemberInfoList";
 import useUserDetail from "@/hooks/useUserDetail";
 import { formatMemberData } from "@/utils/memberDataFormat";
+import MemberHero from "./MemberHero";
 
 type Props = {
   memberId: number;
@@ -13,7 +13,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
   if (isLoading) return <div>로딩중</div>;
   if (error || !data) return <div>에러</div>;
   const {
-    member: { email, nickname },
+    member: { email, nickname, image },
   } = data.response;
   const InfoData = formatMemberData(data.response.member);
 
@@ -22,7 +22,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
       className="mt-24 relative z-50 flex flex-col items-center max-w-[20rem] w-full mx-auto"
       id="infoSection"
     >
-      <Hero page="member" />
+      <MemberHero url={image} />
       <h1 className="text-[1.625rem] font-black mt-4 cursor-default">
         {nickname}
       </h1>
