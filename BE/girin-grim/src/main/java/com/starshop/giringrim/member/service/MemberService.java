@@ -24,7 +24,7 @@ public interface MemberService {
     /*
     *   프로필 조회 메소드
      */
-    MemberRespDtos.ProfileRespDto getProfile(Long memberId, String memberEmail);
+    MemberRespDtos.ProfileRespDto getProfile(Long memberId, UserDetailsImpl userDetails);
 
     /*
     *   헤더 로그인 정보 메소드

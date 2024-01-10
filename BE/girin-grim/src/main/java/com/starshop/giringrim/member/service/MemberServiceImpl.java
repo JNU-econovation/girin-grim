@@ -107,19 +107,26 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     @Transactional(readOnly = true)
-    public MemberRespDtos.ProfileRespDto getProfile(Long memberId, String memberEmail) {
+    public MemberRespDtos.ProfileRespDto getProfile(Long memberId, UserDetailsImpl userDetails) {
         //pathvariable로 받은 id가 존재하지 않는 회원이면 예외
         Member member = memberRepository.findById(memberId).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
         boolean isMine = true;
 
+        String role = SecurityContextHolder.getContext().getAuthentication().getName();
+        //비로그인 유저일 경우
+        if(role.equals("anonymousUser")){
+            isMine = false;
+            return new MemberRespDtos.ProfileRespDto(member, isMine);
+        }
+
         //pathvariable로 받은 id와 로그인한 사용자의 id가 다른지 확인
-        if(!member.getEmail().equals(memberEmail)){
+        if(!member.getEmail().equals(userDetails.getEmail())){
             isMine = false;
             return new MemberRespDtos.ProfileRespDto(member,isMine);
-
         }
+
         List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(memberId);
         return new MemberRespDtos.ProfileRespDto(member, favUniversityList, isMine);
 
