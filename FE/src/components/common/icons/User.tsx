@@ -1,7 +1,11 @@
+import { HeroFormatSize } from "@/utils/cssFormat";
 import Image from "next/image";
 
-export default function User() {
-  return (
-    <Image src={"/assets/User.svg"} width={40} height={40} alt="Logo"></Image>
-  );
+type Props = {
+  size?: "small" | "medium" | "large";
+};
+
+export default function User({ size }: Readonly<Props>) {
+  const px = HeroFormatSize(size);
+  return <Image src={"/assets/User.svg"} width={px} height={px} alt="Logo" />;
 }
