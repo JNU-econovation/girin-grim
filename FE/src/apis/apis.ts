@@ -15,6 +15,7 @@ import { Univs } from "@/Model/Univ";
 import { TPostResponse, TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
 import { FundingDetail, FundingOptions, Pledge } from "@/Model/Funding";
+import { LoginUser, UserDetail, UserForm } from "@/Model/User";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -149,5 +150,12 @@ export const postPayment = async (
     price,
   };
   const data = Server.post(`/funding/payment`, body).then((res) => res.data);
+  return data;
+};
+
+export const getUserDetail = async (
+  memberId: number
+): Promise<TResponse<UserDetail>> => {
+  const data = await Server.get("/member/" + memberId).then((res) => res.data);
   return data;
 };

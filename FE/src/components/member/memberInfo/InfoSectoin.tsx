@@ -1,66 +1,43 @@
+"use client";
 import Hero from "@/components/common/Hero";
 import MemberInfoList from "./MemberInfoList";
+import useUserDetail from "@/hooks/useUserDetail";
+import { formatMemberData } from "@/utils/memberDataFormat";
 
-const InfoData = [
-  {
-    title: "크레파스",
-    content: "250000",
-    icon: "icon",
-    array: false as false,
-  },
-  {
-    title: "자기소개",
-    content:
-      "안녕하세요 저는 박건규입니다.안녕하세요 저는 박건규입니다.안녕하세요 저는 박건규입니다.안녕하세요 저는 박건규입니다.",
-    icon: null,
-    array: false as false,
-  },
-  {
-    title: "연락처",
-    content: "010-1234-5678",
-    icon: null,
-    array: false as false,
-  },
-  {
-    title: "주소",
-    content: "부산광역시 금정구 부산대학로 63번길 2",
-    icon: null,
-    array: false as false,
-  },
-  {
-    title: "관심 대학",
-    content: [
-      "전남대학교",
-      "전남대학교",
-      "전남대학교",
-      "전남대학교",
-      "전남대학교",
-      "전남대학교",
-      "전남대학교",
-      "전남대학교",
-    ] as string[],
-    icon: null,
-    array: true as true,
-  },
-];
+type Props = {
+  memberId: number;
+};
 
-export default function InfoSectoin() {
+export default function InfoSectoin({ memberId }: Readonly<Props>) {
+  const { data, isLoading, error } = useUserDetail({ memberId });
+  if (isLoading) return <div>로딩중</div>;
+  if (error || !data) return <div>에러</div>;
+  const {
+    member: { email, nickname },
+  } = data.response;
+  const InfoData = formatMemberData(data.response.member);
+
   return (
-    <section className="mt-24 relative z-50 flex flex-col items-center max-w-[20rem] w-full mx-auto">
+    <section
+      className="mt-24 relative z-50 flex flex-col items-center max-w-[20rem] w-full mx-auto"
+      id="infoSection"
+    >
       <Hero page="member" />
       <h1 className="text-[1.625rem] font-black mt-4 cursor-default">
-        박건규박건규건규건규
+        {nickname}
       </h1>
-      <span className="text-md text-[#696969] mt-1 mb-5">205292@jnu.ac.kr</span>
-      {InfoData.map((data, index) => (
-        <MemberInfoList
-          key={index}
-          title={data.title}
-          content={data.content}
-          icon={data.icon}
-          array={data.array}
-        />
-      ))}
+      <span className="text-md text-[#696969] mt-1 mb-5">{email}</span>
+      <div className="flex flex-col">
+        {InfoData.map((data, index) => (
+          <MemberInfoList
+            key={index}
+            title={data.title}
+            content={data.content}
+            icon={data.icon}
+            array={data.array}
+          />
+        ))}
+      </div>
     </section>
   );
 }

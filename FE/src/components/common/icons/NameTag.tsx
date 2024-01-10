@@ -1,12 +1,12 @@
+"use client";
+
 export default function NameTag() {
   const width = 433.125;
-  const height = 759.825;
-  const height1 = 24.75;
+  const height = 24.82;
   return (
     <>
       <svg
         width={width}
-        height={height}
         viewBox="0 0 350 614"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@ export default function NameTag() {
       <svg
         className="absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-6 z-0"
         width={width}
-        height={height1}
+        height={height}
         viewBox="0 0 328 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
