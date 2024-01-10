@@ -106,7 +106,6 @@ public class FundingServiceImpl implements FundingService {
             }
             maxGoalMoney = maxGoalMoney.add(optionDto.getPrice().multiply(BigDecimal.valueOf(optionDto.getQuantity())));
             for(FundingReqDtos.UploadDto.OptionDto.ItemDto itemDto : optionDto.getItems()){
-                //TODO : 아이템이 없다면 예외처리
                 Item item = itemDto.toEntity(option);
                 itemRepository.save(item);
             }

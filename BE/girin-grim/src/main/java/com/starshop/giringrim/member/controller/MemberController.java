@@ -65,7 +65,6 @@ public class MemberController {
      */
     @GetMapping("/member/{memberId}")
     public ResponseEntity<?> getProfile(@PathVariable("memberId") Long memberId, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        System.out.println("진입");
         MemberRespDtos.ProfileRespDto profileResDto = memberService.getProfile(memberId, userDetails);
         return ApiResponseGenerator.success(profileResDto, HttpStatus.OK);
     }
