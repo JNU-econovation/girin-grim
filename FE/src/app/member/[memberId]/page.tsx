@@ -1,5 +1,5 @@
 import MemberFundingGridSection from "@/components/member/FundingList/MemberFundingGridSection";
-import MemberHeader from "@/components/member/MemberHeader";
+import PageTitle from "@/components/common/PageTitle";
 import MemberInfoSection from "@/components/member/memberInfo/MemberInfoSection";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 export default function page({ params: { memberId } }: Props) {
   return (
     <section className="w-full max-w-7xl mx-auto font-nanum">
-      <MemberHeader />
+      <PageTitle title="마이페이지" />
       <MemberInfoSection memberId={memberId} />
       <MemberFundingGridSection memberId={memberId} />
     </section>

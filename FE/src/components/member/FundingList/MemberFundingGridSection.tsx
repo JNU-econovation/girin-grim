@@ -25,7 +25,7 @@ export default function MemberFundingGridSection({
         navItems={navItems}
         setFocus={(f: string) => setFocus(f)}
       />
-      <Grid fundings={funding} />
+      <Grid fundings={funding} page="member" />
     </section>
   );
 }

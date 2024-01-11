@@ -39,6 +39,11 @@ export const setMemberId = (memberId: number) => {
   data.memberId = memberId;
   setLocalData(data.memberId, data.options);
 };
+export const getMemeberId = () => {
+  initLocalData();
+  const data = getLocalData();
+  return data.memberId;
+};
 
 /**옵션을 받아서 로컬 데이터를 업데이트한다. */
 export const updateLocalOption = (option: SelectedOption[]) => {

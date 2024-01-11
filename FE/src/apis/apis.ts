@@ -21,6 +21,7 @@ import {
   Pledge,
 } from "@/Model/Funding";
 import { LoginUser, UserDetail, UserForm } from "@/Model/User";
+import { Backed } from "@/Model/Backed";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -168,6 +169,16 @@ export const getMyFunding = async (
   memberId: number
 ): Promise<TResponse<UserFeed>> => {
   const data = await Server.get(`/member/${memberId}/backed`).then(
+    (res) => res.data
+  );
+  return data;
+};
+
+export const getBacked = async (
+  memberId: number,
+  fundingId: number
+): Promise<TResponse<Backed>> => {
+  const data = await Server.get(`/member/${memberId}/backed/${fundingId}`).then(
     (res) => res.data
   );
   return data;
