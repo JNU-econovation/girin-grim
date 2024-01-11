@@ -2,6 +2,7 @@ package com.starshop.giringrim.utils.common;
 
 import com.starshop.giringrim.utils.exception.Error;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +25,7 @@ public class ApiResponse<B> extends ResponseEntity<B> {
 
     @Getter
     @AllArgsConstructor
+    @Builder
     public static class CustomBody<D> implements Serializable {
         private Boolean success;
         private D response;
