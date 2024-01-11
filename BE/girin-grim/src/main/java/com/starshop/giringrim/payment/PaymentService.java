@@ -22,6 +22,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -106,6 +110,7 @@ public class PaymentService {
             throw new PaymentUnavailableException(ErrorMessage.PAYMENT_UNAVAILABLE);
         }
 
+        /*
         //이미 결제했던 펀딩글이라면 예외
         List<Payment> paymentList = paymentRepository.findByFundingId(funding.getId());
 
@@ -115,6 +120,11 @@ public class PaymentService {
             memberIds.add(memberId);
         }
         if(memberIds.contains(member.getId())){
+            throw new PaymentAlreadyDoneException(ErrorMessage.PAYMENT_ALREADY_DONE);
+        }
+         */
+
+        if(paymentRepository.findByMemberIdFundingId(member.getId(), funding.getId()).isPresent()){
             throw new PaymentAlreadyDoneException(ErrorMessage.PAYMENT_ALREADY_DONE);
         }
 
@@ -170,10 +180,12 @@ public class PaymentService {
             if(member.getCoin().compareTo(totalCoin) < 0){
                 throw new CoinNotEnoughException(ErrorMessage.COIN_NOT_ENOUGH);
             }
-            //멤버의 코인 차감
+            //멤버의 코인 차감, 주소 업데이트
             member.fundingPayment(totalCoin);
-        }else if(reqDto.getType() == FundingType.DONATE){
+            member.updateAddress(reqDto.getAddress());
 
+        }else if(reqDto.getType() == FundingType.DONATE){
+            //기부형
             PaymentDetails paymentDetails = PaymentDetails.builder()
                     .quantity(null)
                     .totalPrice(reqDto.getPrice())
@@ -190,8 +202,9 @@ public class PaymentService {
             if(member.getCoin().compareTo(reqDto.getPrice()) < 0){
                 throw new CoinNotEnoughException(ErrorMessage.COIN_NOT_ENOUGH);
             }
-            //멤버의 코인 차감
+            //멤버의 코인 차감, 주소 업데이트
             member.fundingPayment(reqDto.getPrice());
+            member.updateAddress(reqDto.getAddress());
 
         }
 
@@ -213,10 +226,12 @@ public class PaymentService {
 
         //본인의 후원 내역만 조회 가능
         if(!memberId.equals(member.getId())){
-            throw new IllegalArgumentException("본인의 후원 내역만 조회 가능합니다.");
+            throw new HistoryForbiddenException(ErrorMessage.HISTORY_FORBIDDEN);
         }
 
-        Payment payment = paymentRepository.findByMemberIdFundingId(memberId, fundingId);
+        Payment payment = paymentRepository.findByMemberIdFundingId(memberId, fundingId).orElseThrow(
+                () -> new HistoryNotExistException(ErrorMessage.HISTORY_NOT_EXIST)
+        );
 
         List<PaymentDetails> paymentDetails = paymentDetailsRepository.findByPamentId(payment.getId());
 
@@ -243,5 +258,51 @@ public class PaymentService {
         }
         return new PaymentRespDtos.PaymentHistoryDto(totalPrice, creator, member.getAddress(),funding, optionDtos);
     }
+
+    @Transactional(readOnly = true)
+    public PaymentRespDtos.PaymentListDto fundingHistoryList(Long memberId, UserDetailsImpl userDetails){
+        //로그인 사용자 정보 얻어오기
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        //본인의 후원 내역만 조회 가능
+        if(!memberId.equals(member.getId())) {
+            throw new HistoryForbiddenException(ErrorMessage.HISTORY_FORBIDDEN);
+        }
+
+        List<Payment> paymentList = paymentRepository.findByMemberId(memberId);
+
+        List<Long> fundingIds = new ArrayList<>();
+        for(Payment payment : paymentList){
+            fundingIds.add(payment.getFunding().getId());
+        }
+
+        //후원한 펀딩의 리스트
+        List<Funding> fundingList = fundingRepository.findAllById(fundingIds);
+
+        List<PaymentRespDtos.PaymentListDto.FundingDto> respDtoList = new ArrayList<>();
+        Instant instant = Instant.now();
+        ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+        LocalDateTime ldt = zdt.toLocalDateTime();
+
+        //펀딩 종료 & 달성
+        for (Funding funding : fundingList) {
+            boolean isFinished = false;
+            boolean isSuccess = false;
+
+            if(funding.getEndTime().isAfter(ldt)){
+                isFinished = true;
+            }
+            if(funding.increseRate().compareTo(BigDecimal.valueOf(100)) >= 0){
+                isSuccess = true;
+            }
+            Member creator = funding.getMember();
+            respDtoList.add(new PaymentRespDtos.PaymentListDto.FundingDto(funding, creator, new PaymentRespDtos.PaymentListDto.FundingDto.StateDto(isFinished, isSuccess)));
+        }
+
+        return new PaymentRespDtos.PaymentListDto(respDtoList);
+    }
+
 
 }
