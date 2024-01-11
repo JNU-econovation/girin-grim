@@ -23,7 +23,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
       id="infoSection"
     >
       <MemberHero url={image} />
-      <h1 className="text-[1.625rem] font-black mt-4 cursor-default">
+      <h1 className="text-[1.7rem] font-black mt-4 cursor-default">
         {nickname}
       </h1>
       <span className="text-md text-[#696969] mt-1 mb-5">{email}</span>

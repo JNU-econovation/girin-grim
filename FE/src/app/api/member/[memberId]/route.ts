@@ -5,7 +5,7 @@ export async function GET(request: Request) {
       isMine: true,
       member: {
         memberId: 1,
-        nickname: "박건규",
+        nickname: "스무스무스무스무스무스무",
         email: "qkrrjsrb0@gmail.com",
         image:
           "https://girin-grim.s3.ap-northeast-2.amazonaws.com/_30ecc42f-caeb-40aa-8194-3c6883cbab4c.jpeg",

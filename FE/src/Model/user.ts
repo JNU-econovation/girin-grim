@@ -52,8 +52,8 @@ export type InfoConst =
       array: false;
     }
   | {
+      array: true;
       title: string;
       content: { universityId: number; name: string }[];
       icon: null;
-      array: true;
     };
