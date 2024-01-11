@@ -1,7 +1,12 @@
 package com.starshop.giringrim.utils.security;
 
+import com.starshop.giringrim.utils.exception.ErrorMessage;
+import com.starshop.giringrim.utils.security.exception.ForbiddenException;
+import com.starshop.giringrim.utils.security.exception.UnAuthorizedException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +20,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 
 @Slf4j
@@ -34,12 +40,13 @@ public class SecurityConfig {
         public void configure(HttpSecurity builder) throws Exception {
             System.out.println("로그로그로그");
             final AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
-            builder.addFilter(new JwtAuthenticationFilter(authenticationManager, tokenGenerator));
+            builder.addFilter(new JwtAuthenticationFilter(authenticationManager, tokenGenerator))
+             .addFilterBefore(new JwtExceptionFilter(), JwtAuthenticationFilter.class);
             super.configure(builder);
         }
     }
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, @Autowired @Qualifier("handlerExceptionResolver")HandlerExceptionResolver resolver) throws Exception {
         //csrf disable
         http.csrf(AbstractHttpConfigurer::disable);
 
@@ -58,29 +65,36 @@ public class SecurityConfig {
         http.httpBasic(AbstractHttpConfigurer::disable);
 
         //커스텀 필터 등록
-        //http.apply(new SecurityFilterManagerImpl());
+        //http.apply(new SecurityFilterManagerImpl()); <- deprecated
         http.with(new SecurityFilterManagerImpl(), securityFilterManager -> {
         });
+
         // 인증 실패 처리
         http.exceptionHandling(handling ->
                 handling.authenticationEntryPoint(((request, response, authException) -> {
-                    log.info("에러1");
+         resolver.resolveException(request, response, null, new UnAuthorizedException(ErrorMessage.UNAUTHORIZED_ERROR));
                 })));
 
         // 권한 실패 처리
         http.exceptionHandling(handling ->
                 handling.accessDeniedHandler(((request, response, accessDeniedException) -> {
-                    log.info("에러2");
+                    resolver.resolveException(request, response, null, new ForbiddenException(ErrorMessage.FORBIDDEN_ERROR));
                 })));
 
 
+      //  http.exceptionHandling(handler -> handler.authenticationEntryPoint(entryPoint));
+
         http.authorizeHttpRequests(authorize ->
         authorize
+                .requestMatchers(new AntPathRequestMatcher("/api/member", "GET")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/funding", "POST")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/funding/{fundingId}/payment", "GET")).authenticated()
-                .requestMatchers(new AntPathRequestMatcher("/api/member", "GET")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/funding/{fundingId}/payment", "POST")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/funding/payment","GET")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/charge","POST")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/charge","GET")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/member/{userId}/backed","GET")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/member/{userId}/backed/{fundingId}","POST")).authenticated()
                 .anyRequest().permitAll()
                 );
 
