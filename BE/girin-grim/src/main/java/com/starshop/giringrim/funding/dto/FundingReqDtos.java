@@ -67,6 +67,7 @@ public class FundingReqDtos{
             private String name;
             private BigDecimal price;
             private Long quantity;
+            private Boolean isPickup;
             private List<ItemDto> items;
 
             @Getter
@@ -87,6 +88,7 @@ public class FundingReqDtos{
                         .name(name)
                         .price(price)
                         .quantity(quantity)
+                        .isPickup(isPickup)
                         .build();
             }
         }
