@@ -1,6 +1,6 @@
 "use client";
 import useFeeds from "@/hooks/useFeeds";
-import Grid from "./Grid";
+import Grid from "../common/Grid";
 import HomeHeader from "./HomeHeader";
 import Univ from "./Univ";
 

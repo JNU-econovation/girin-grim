@@ -22,7 +22,7 @@ export default function Feed({
   dueDate,
   rate,
   memberId,
-}: Props) {
+}: Readonly<Props>) {
   return (
     <Link href={`/funding/${fundgingId}`}>
       <section className="font-nanum cursor-default">

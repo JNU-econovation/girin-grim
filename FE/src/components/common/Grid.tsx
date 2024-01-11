@@ -1,12 +1,12 @@
 "use client";
 import { Feed } from "@/Model/Feed";
-import FeedComponent from "../common/Feed";
+import FeedComponent from "./Feed";
 
 type Props = {
   fundings: Feed[];
 };
 
-export default function Grid({ fundings }: Props) {
+export default function Grid({ fundings }: Readonly<Props>) {
   return (
     <>
       <div className="w-full mt-[0.5rem] grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
@@ -17,7 +17,7 @@ export default function Grid({ fundings }: Props) {
             fundingId,
             member: { nickname, memberId },
             rate,
-            shortDiscription,
+            shortDescription,
             title,
             university,
           }) => (
@@ -28,7 +28,7 @@ export default function Grid({ fundings }: Props) {
               dueDate={dueDate}
               nickname={nickname}
               rate={rate}
-              short={shortDiscription}
+              short={shortDescription}
               title={title}
               university={university}
               memberId={memberId}

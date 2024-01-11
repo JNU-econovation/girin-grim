@@ -3,13 +3,17 @@ export type HomeFeed = {
   funding: Feed[];
 };
 
+export type UserFeed = {
+  funding: Feed[];
+};
+
 export type Feed = {
   fundingId: number;
   title: string;
   image: string;
   university: string;
   rate: number;
-  shortDiscription: string;
+  shortDescription: string;
   dueDate: number;
   member: {
     memberId: number;
