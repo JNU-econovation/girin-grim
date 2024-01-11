@@ -3,7 +3,7 @@ import { SelectedOption } from "@/Model/Funding";
 export default function Options({
   option,
 }: Readonly<{ option: SelectedOption }>) {
-  const { amount, items, name, optionId, price, quantity } = option;
+  const { amount, items, name, price } = option;
   return (
     <section className="flex flex-col items-end m-[1.14rem]">
       <div className="flex text-[1.25rem] font-semibold w-full px-6 py-3 bg-colore7e rounded-md">
