@@ -3,6 +3,25 @@ export async function GET(request: Request) {
     JSON.stringify({
       success: true,
       response: {
+        favUniversity: [
+          //회원가입했을때 설정했던 관심대학
+          {
+            favUniversityId: 142,
+            name: "세종사이버대학교",
+          },
+          {
+            favUniversityId: 176,
+            name: "세종대학교",
+          },
+          {
+            favUniversityId: 237,
+            name: "고려대학교 세종캠퍼스",
+          },
+          {
+            favUniversityId: 239,
+            name: "홍익대학교 세종캠퍼스",
+          },
+        ],
         funding: [
           {
             fundingId: 1,
@@ -10,7 +29,7 @@ export async function GET(request: Request) {
             image: "/assets/FeedImage.svg",
             university: "전남대",
             rate: 99,
-            shortDiscription:
+            shortDescription:
               "우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! 우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! ",
             dueDate: 3,
             member: {
@@ -24,7 +43,7 @@ export async function GET(request: Request) {
             image: "/assets/FeedImage.svg",
             university: "촌남대",
             rate: 81,
-            shortDiscription:
+            shortDescription:
               "우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! 우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! ",
             dueDate: 3,
             member: {
@@ -38,7 +57,7 @@ export async function GET(request: Request) {
             image: "/assets/FeedImage.svg",
             university: "전남대",
             rate: 68,
-            shortDiscription:
+            shortDescription:
               "엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄엄청긴 설명 ",
             dueDate: 3,
             member: {
@@ -52,7 +71,7 @@ export async function GET(request: Request) {
             image: "/assets/FeedImage.svg",
             university: "전남대",
             rate: 46,
-            shortDiscription:
+            shortDescription:
               "우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! 우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! ",
             dueDate: 3,
             member: {
@@ -66,7 +85,7 @@ export async function GET(request: Request) {
             image: "/assets/FeedImage.svg",
             university: "전남대",
             rate: 11,
-            shortDiscription:
+            shortDescription:
               "우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! 우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! ",
             dueDate: 3,
             member: {
@@ -80,7 +99,7 @@ export async function GET(request: Request) {
             image: "/assets/FeedImage.svg",
             university: "전남대",
             rate: 2,
-            shortDiscription:
+            shortDescription:
               "우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! 우리 동네의 풍경에 대한 영수증을 지갑에 가져! 정말로! 가져보세요. 블록체인이란 그런 것이니까요! ",
             dueDate: 3,
             member: {

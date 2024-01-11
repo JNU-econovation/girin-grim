@@ -1,4 +1,4 @@
-import { HomeFeedProps } from "./../hooks/useFeeds";
+import { HomeFeedProps } from "../hooks/useFeeds";
 //TODO: 반환 타입 지정하기
 
 import {
@@ -10,11 +10,16 @@ import {
 } from "@/constants/urls";
 import { Server } from "./axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
-import { HomeFeed } from "@/Model/Feed";
+import { HomeFeed, UserFeed } from "@/Model/Feed";
 import { Univs } from "@/Model/Univ";
 import { TPostResponse, TResponse } from "@/Model/Response";
 import { UnivState } from "@/store/HeaderState";
-import { FundingDetail, FundingOptions, Pledge } from "@/Model/Funding";
+import {
+  Funding,
+  FundingDetail,
+  FundingOptions,
+  Pledge,
+} from "@/Model/Funding";
 import { LoginUser, UserDetail, UserForm } from "@/Model/User";
 
 export const checkDuplicate = async (email: string) => {
@@ -69,12 +74,11 @@ export const login = async (submitData: LoginUser) => {
 };
 
 export const getHomeFeed = async ({
-  //TODO:
   category,
   sort,
   uni,
   q,
-}: HomeFeedProps): Promise<HomeFeed> => {
+}: HomeFeedProps): Promise<TResponse<HomeFeed>> => {
   const data = await Server.get(homeURL, {
     params: { category, sort, uni, q },
   }).then((res) => res.data);
@@ -157,5 +161,14 @@ export const getUserDetail = async (
   memberId: number
 ): Promise<TResponse<UserDetail>> => {
   const data = await Server.get("/member/" + memberId).then((res) => res.data);
+  return data;
+};
+
+export const getMyFunding = async (
+  memberId: number
+): Promise<TResponse<UserFeed>> => {
+  const data = await Server.get(`/member/${memberId}/backed`).then(
+    (res) => res.data
+  );
   return data;
 };

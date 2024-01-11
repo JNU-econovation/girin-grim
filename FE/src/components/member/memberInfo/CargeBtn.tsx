@@ -6,11 +6,11 @@ export default function CargeBtn() {
     router.push("/charge");
   };
   return (
-    <div className="w-[3.25rem] h-full">
+    <div className="w-[3.25rem]">
       <StyledBtn
         text="충전"
         handler={() => onCLick()}
-        style="h-full mt-0 text-[0.9rem] font-nanum font-bold"
+        style="h-full mt-0 text-[1rem] font-nanum font-semibold"
       />
     </div>
   );
