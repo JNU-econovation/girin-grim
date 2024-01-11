@@ -3,6 +3,7 @@ import MemberInfoList from "./MemberInfoList";
 import useUserDetail from "@/hooks/useUserDetail";
 import { formatMemberData } from "@/utils/memberDataFormat";
 import MemberHero from "./MemberHero";
+import SettingBtn from "./SettingBtn";
 
 type Props = {
   memberId: number;
@@ -38,6 +39,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
           />
         ))}
       </div>
+      <SettingBtn />
     </section>
   );
 }

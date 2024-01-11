@@ -42,9 +42,7 @@ export default function MemberInfoList({
             // 1.125rem
           >
             {content}
-            {title === "크레파스" && (
-              <Coin size="sm" style="-translate-y-[2px]" />
-            )}
+            {title === "크레파스" && <Coin size="sm" />}
           </span>
           {icon}
         </div>
