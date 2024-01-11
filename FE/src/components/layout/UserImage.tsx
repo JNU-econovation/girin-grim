@@ -1,23 +1,31 @@
 import useUser from "@/hooks/useUser";
-import Image from "next/image";
 import { User } from "../common/icon";
 import Link from "next/link";
 import { setMemberId } from "@/utils/localData";
+import { HeroFormatSize } from "@/utils/cssFormat";
 
-export default function UserImage() {
+type Props = {
+  size?: "small" | "medium" | "large";
+};
+
+export default function UserImage({ size = "small" }: Readonly<Props>) {
   const { data, isLoading, error } = useUser();
+  const sizeClass = HeroFormatSize(size);
   if (isLoading || !data) return <User />;
-
   const { image, memberId } = data.response;
   setMemberId(memberId);
+
   return (
     <Link href={`/member/${memberId}`}>
-      <Image
-        src={image}
-        alt="user icon"
-        width={40}
-        height={40}
-        className="rounded-full"
+      <div
+        className="rounded-full relative z-50"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          width: `${sizeClass}px`,
+          height: `${sizeClass}px`,
+        }}
       />
     </Link>
   );

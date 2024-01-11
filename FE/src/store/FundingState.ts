@@ -1,7 +1,6 @@
 import { FundingOptions, SelectedOption } from "@/Model/Funding";
 import { getFundingDetail } from "@/apis/apis";
-import { getLocalData, updateLocalOption } from "@/utils/localData";
-import { RecoilValueReadOnly, atom, selector } from "recoil";
+import { atom, selector } from "recoil";
 
 //TODO: 타입 지정하기
 
