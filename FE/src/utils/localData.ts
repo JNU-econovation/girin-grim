@@ -47,3 +47,10 @@ export const updateLocalOption = (option: SelectedOption[]) => {
   data.options = option;
   setLocalData(data.memberId, data.options);
 };
+
+/**옵견값만 가져온다. */
+export const getOptionData = () => {
+  initLocalData();
+  const data = getLocalData();
+  return data.options;
+};
