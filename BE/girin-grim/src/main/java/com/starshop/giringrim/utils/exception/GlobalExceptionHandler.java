@@ -7,6 +7,8 @@ import com.starshop.giringrim.university.exception.RegionNotExistException;
 import com.starshop.giringrim.university.exception.UnivNotExistException;
 import com.starshop.giringrim.utils.common.ApiResponse;
 import com.starshop.giringrim.utils.common.ApiResponseGenerator;
+import com.starshop.giringrim.utils.security.exception.ForbiddenException;
+import com.starshop.giringrim.utils.security.exception.UnAuthorizedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -44,6 +46,11 @@ public class GlobalExceptionHandler{
     @ExceptionHandler(UniversityDuplicationException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(UniversityDuplicationException e){
         return ApiResponseGenerator.fail(ErrorMessage.SELECTED_DUPLICATED_UNIVERSITY.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ParameterCountException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(ParameterCountException e){
+        return ApiResponseGenerator.fail(ErrorMessage.PARAMETER_COUNT_ERROR.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 
@@ -102,18 +109,18 @@ public class GlobalExceptionHandler{
     //펀딩 결제 상세조회 (/funding/{fundingId}/payment)
     @ExceptionHandler(PaymentUnavailableException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(PaymentUnavailableException e){
-        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
+        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_UNAVAILABLE.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(PaymentDurationException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(PaymentDurationException e){
-        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_DURATION_UNAVAILABLE.getMessage(), HttpStatus.BAD_REQUEST);
+        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_DURATION_UNAVAILABLE.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     //결제하기
     @ExceptionHandler(PaymentAlreadyDoneException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(PaymentAlreadyDoneException e){
-        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_ALREADY_DONE.getMessage(), HttpStatus.BAD_REQUEST);
+        return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_ALREADY_DONE.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(PaymentOptionNotExistException.class)
@@ -129,6 +136,26 @@ public class GlobalExceptionHandler{
     @ExceptionHandler(CoinNotEnoughException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(CoinNotEnoughException e){
         return ApiResponseGenerator.fail(ErrorMessage.COIN_NOT_ENOUGH.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(HistoryNotExistException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(HistoryNotExistException e){
+        return ApiResponseGenerator.fail(ErrorMessage.HISTORY_NOT_EXIST.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(HistoryForbiddenException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(HistoryForbiddenException e){
+        return ApiResponseGenerator.fail(ErrorMessage.HISTORY_FORBIDDEN.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleForbiddenException(ForbiddenException e){
+        return ApiResponseGenerator.fail(ErrorMessage.FORBIDDEN_ERROR.getMessage(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(UnAuthorizedException.class)
+    public ApiResponse<ApiResponse.CustomBody> handleUnAuthorizedException(UnAuthorizedException e){
+        return ApiResponseGenerator.fail(ErrorMessage.UNAUTHORIZED_ERROR.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
 }
