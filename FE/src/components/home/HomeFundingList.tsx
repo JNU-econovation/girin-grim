@@ -15,7 +15,7 @@ export default function HomeFundingList() {
     <section>
       <Univ favUniversity={favUniversity} />
       <HomeHeader />
-      <Grid fundings={funding} />
+      <Grid fundings={funding} page="home" />
       <ExtendBtn />
     </section>
   );

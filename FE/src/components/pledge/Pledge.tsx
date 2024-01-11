@@ -1,7 +1,7 @@
 "use client";
 import usePledge from "@/hooks/usePledge";
 import CostInfo from "./CostInfo";
-import InfoSection from "./InfoSection";
+import InfoSection from "../common/InfoSection";
 import OptinsSection from "./OptinsSection";
 
 export default function Pledge({ fundingId }: Readonly<{ fundingId: number }>) {

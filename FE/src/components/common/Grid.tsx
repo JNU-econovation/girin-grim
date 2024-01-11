@@ -1,12 +1,13 @@
 "use client";
 import { Feed } from "@/Model/Feed";
-import FeedComponent from "./Feed";
+import HomeFeed from "./HomeFeed";
 
 type Props = {
   fundings: Feed[];
+  page: "home" | "member";
 };
 
-export default function Grid({ fundings }: Readonly<Props>) {
+export default function Grid({ fundings, page }: Readonly<Props>) {
   return (
     <>
       <div className="w-full mt-[0.5rem] grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
@@ -21,7 +22,8 @@ export default function Grid({ fundings }: Readonly<Props>) {
             title,
             university,
           }) => (
-            <FeedComponent
+            <HomeFeed
+              page={page}
               fundgingId={fundingId}
               key={fundingId}
               image={image}
