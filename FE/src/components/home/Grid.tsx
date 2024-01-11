@@ -1,19 +1,16 @@
 "use client";
-import Feed from "../common/Feed";
-import useFeeds from "@/hooks/useFeeds";
+import { Feed } from "@/Model/Feed";
+import FeedComponent from "../common/Feed";
 
-export default function Grid() {
-  const { data, isLoading, error } = useFeeds();
-  if (!data || isLoading) return <div>loading...</div>;
+type Props = {
+  fundings: Feed[];
+};
 
-  const {
-    response: { funding },
-  } = data;
-
+export default function Grid({ fundings }: Props) {
   return (
     <>
       <div className="w-full mt-[0.5rem] grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
-        {funding.map(
+        {fundings.map(
           ({
             image,
             dueDate,
@@ -24,7 +21,7 @@ export default function Grid() {
             title,
             university,
           }) => (
-            <Feed
+            <FeedComponent
               fundgingId={fundingId}
               key={fundingId}
               image={image}

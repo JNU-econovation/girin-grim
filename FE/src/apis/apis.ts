@@ -69,12 +69,11 @@ export const login = async (submitData: LoginUser) => {
 };
 
 export const getHomeFeed = async ({
-  //TODO:
   category,
   sort,
   uni,
   q,
-}: HomeFeedProps): Promise<HomeFeed> => {
+}: HomeFeedProps): Promise<TResponse<HomeFeed>> => {
   const data = await Server.get(homeURL, {
     params: { category, sort, uni, q },
   }).then((res) => res.data);
