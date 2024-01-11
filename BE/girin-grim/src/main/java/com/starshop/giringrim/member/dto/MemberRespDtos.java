@@ -32,10 +32,13 @@ public class MemberRespDtos {
             this.isMine = isMine;
         }
 
+     /*
         public ProfileRespDto(Member member, boolean isMine){
             this.member = new MemberDto(member);
             this.isMine = isMine;
         }
+
+      */
 
         @Getter
         public static class MemberDto{

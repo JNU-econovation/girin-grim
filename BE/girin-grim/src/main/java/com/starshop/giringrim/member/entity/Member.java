@@ -18,7 +18,6 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(length = 45, nullable = false)
     private String nickname;
 
@@ -55,6 +54,10 @@ public class Member {
 
     public void fundingPayment(BigDecimal coin){
         this.coin = this.coin.subtract(coin);
+    }
+
+    public void updateAddress(String address){
+        this.address = address;
     }
 
 }

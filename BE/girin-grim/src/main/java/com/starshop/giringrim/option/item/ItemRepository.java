@@ -8,4 +8,12 @@ import java.util.List;
 public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query("select i from Item i where i.option.id = :id")
     List<Item> findAllByOptionId(Long id);
+
+
+    /*
+    @Query("select i from Item i join fetch i.option join fetch i.option.funding")
+    List<Item> findAllByFundingId();
+    
+     */
+
 }

@@ -5,6 +5,9 @@ import lombok.Getter;
 @Getter
 public enum ErrorMessage {
 
+        UNAUTHORIZED_ERROR("인증되지 않은 사용자입니다."),
+        FORBIDDEN_ERROR("권한이 없습니다."),
+
         /*
         * Member 도메인 에러 메세지
          */
@@ -18,6 +21,7 @@ public enum ErrorMessage {
         //로그인
         MEMBER_NOT_EXIST("유효하지 않은 회원입니다."), //헤더 로그인 정보, 프로필 조회
         PASSWORD_NOT_MATCH("비밀번호가 일치하지 않습니다."),
+        PARAMETER_COUNT_ERROR("파라미터가 2개 이상 요청되었습니다."),
 
 
 
@@ -42,9 +46,11 @@ public enum ErrorMessage {
         PAYMENT_UNAVAILABLE("본인의 펀딩에 후원할 수 없습니다."),
         PAYMENT_DURATION_UNAVAILABLE("후원할 수 있는 기간이 아닙니다."),
         PAYMENT_ALREADY_DONE("이미 후원한 펀딩입니다."),
-        PAYMENT_OPTION_NOT_EXIST("존재하지 않는 옵션입니다"),
+        PAYMENT_OPTION_NOT_EXIST("존재하지 않는 옵션입니다."),
         QUANTITY_NOT_ENOUGH("옵션 재고가 부족합니다."),
-        COIN_NOT_ENOUGH("코인이 부족합니다.");
+        COIN_NOT_ENOUGH("코인이 부족합니다."),
+        HISTORY_NOT_EXIST("후원 내역이 존재하지 않습니다."),
+        HISTORY_FORBIDDEN("본인의 후원 내역만 조회 가능합니다.");
 
         private final String message;
 

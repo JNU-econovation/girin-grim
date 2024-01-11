@@ -7,6 +7,7 @@ import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.option.item.Item;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -89,6 +90,7 @@ public class FundingRespDtos {
             private String name;
             private BigDecimal price;
             private Long quantity;
+            private Boolean isPickup;
             private List<ItemDTO> items;
 
             public OptionsDTO(Option option, List<Item> itemList) {
@@ -96,6 +98,7 @@ public class FundingRespDtos {
                 this.price = option.getPrice();
                 this.name = option.getName();
                 this.quantity = option.getQuantity();
+                this.isPickup = option.getIsPickup();
                 this.items = itemList.stream().map(ItemDTO::new).collect(Collectors.toList());
             }
         }
@@ -105,10 +108,13 @@ public class FundingRespDtos {
             private Long itemId;
             private String name;
 
+
             public ItemDTO(Item item) {
                 this.itemId = item.getId();
                 this.name = item.getItemName();
             }
+
+
         }
     }
 
@@ -153,7 +159,7 @@ public class FundingRespDtos {
             private String title;
             private String image;
             private String university;
-            private int rate;
+            private BigDecimal rate;
             private String shortDescription;
             private int dueDate;
             private MemberDto member;
@@ -165,7 +171,7 @@ public class FundingRespDtos {
                 this.title = funding.getTitle();
                 this.image = funding.getImage();
                 this.university = funding.getUniversity().getName();
-                this.rate = funding.getProgressRate();
+                this.rate = funding.increseRate();
                 this.shortDescription = funding.getShortDescription();
                 this.dueDate = funding.getDueDate();
                 this.member = new MemberDto(member);

@@ -20,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -69,7 +70,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     @Transactional(readOnly = true)
     public void joinValidation(String email, String nickname) {
-        //TODO : 파라미터가 2개 요청왔을때 예외처리
+        if(nickname != null && email != null){
+            throw new ParameterCountException(ErrorMessage.PARAMETER_COUNT_ERROR);
+        }
+
         if(nickname == null){
             Member member = memberRepository.findByEmail(email).orElseThrow(
                     () -> new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST)
@@ -116,15 +120,16 @@ public class MemberServiceImpl implements MemberService {
 
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
         //비로그인 유저일 경우
+        List<FavUniversity> emptyList = new ArrayList<>();
         if(role.equals("anonymousUser")){
             isMine = false;
-            return new MemberRespDtos.ProfileRespDto(member, isMine);
+            return new MemberRespDtos.ProfileRespDto(member,emptyList ,isMine);
         }
 
         //pathvariable로 받은 id와 로그인한 사용자의 id가 다른지 확인
         if(!member.getEmail().equals(userDetails.getEmail())){
             isMine = false;
-            return new MemberRespDtos.ProfileRespDto(member,isMine);
+            return new MemberRespDtos.ProfileRespDto(member,emptyList, isMine);
         }
 
         List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(memberId);

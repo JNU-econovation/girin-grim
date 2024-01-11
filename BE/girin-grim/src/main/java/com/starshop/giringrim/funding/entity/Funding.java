@@ -98,10 +98,6 @@ public class Funding extends BaseEntity {
         return (int) (minutes / (60 * 24));
     }
 
-    public int getProgressRate() {
-       return (currentMoney.divide(goalMoney)).multiply(BigDecimal.valueOf(100)).intValue();
-    }
-
     public void updateCurrentMoney(BigDecimal coin) {
         this.currentMoney = this.currentMoney.add(coin);
     }

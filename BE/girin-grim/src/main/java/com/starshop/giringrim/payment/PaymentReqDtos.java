@@ -16,6 +16,7 @@ public class PaymentReqDtos {
         private Long memberId;
         private FundingType type;
         private List<OptionDto> options;
+        private String address;
         private BigDecimal price;
 
         @Getter
@@ -27,7 +28,7 @@ public class PaymentReqDtos {
 
     @Getter
     public static class ChargeDto{
-        @DecimalMin(value = "0.0", inclusive = false)
+        @DecimalMin(message = "충전 금액은 0원 이상이어야 합니다." ,value = "0.0", inclusive = false)
         private BigDecimal coin;
     }
 }
