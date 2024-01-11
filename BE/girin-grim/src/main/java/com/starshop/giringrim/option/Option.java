@@ -27,15 +27,19 @@ public class Option {
     @Column
     private Long quantity;
 
+    @Column
+    private Boolean isPickup;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "funding_id", nullable = false)
     private Funding funding;
 
     @Builder
-    public Option(String name, BigDecimal price, Long quantity, Funding funding){
+    public Option(String name, BigDecimal price, Long quantity, Boolean isPickup, Funding funding){
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.isPickup = isPickup;
         this.funding = funding;
     }
 
