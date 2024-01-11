@@ -1,6 +1,8 @@
 package com.starshop.giringrim.payment;
 
 
+import com.querydsl.core.annotations.QueryProjection;
+import com.starshop.giringrim.funding.dto.FundingRespDtos;
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;
@@ -146,4 +148,65 @@ public class PaymentRespDtos {
             }
         }
     }
+
+    @Getter
+    public static class PaymentListDto{
+        private List<FundingDto> funding;
+
+        public PaymentListDto(List<FundingDto> fundingDto){
+            this.funding = fundingDto;
+        }
+
+        @Getter
+        public static class FundingDto{
+            private Long fundingId;
+            private String title;
+            private String image;
+            private String university;
+            private BigDecimal rate;
+            private String shortDescription;
+            private int dueDate;
+            private MemberDto member;
+            private StateDto state;
+
+
+            public FundingDto(Funding funding, Member member, StateDto state){
+                this.fundingId = funding.getId();
+                this.title = funding.getTitle();
+                this.image = funding.getImage();
+                this.university = funding.getUniversity().getName();
+                this.rate = funding.increseRate();
+                this.shortDescription = funding.getShortDescription();
+                this.dueDate = funding.getDueDate();
+                this.member = new MemberDto(member);
+                this.state = state;
+
+            }
+            @Getter
+            private class MemberDto{
+                private Long memberId;
+                private String nickname;
+
+                public MemberDto(Member member){
+                    this.memberId = member.getId();
+                    this.nickname = member.getNickname();
+                }
+            }
+
+            @Getter
+            public static class StateDto{
+                private Boolean isFinished;
+                private Boolean isSuccess;
+
+                public StateDto(Boolean isFinished, Boolean isSuccess){
+                    this.isFinished = isFinished;
+                    this.isSuccess = isSuccess;
+                }
+        }
+
+
+
+
+    }
+}
 }
