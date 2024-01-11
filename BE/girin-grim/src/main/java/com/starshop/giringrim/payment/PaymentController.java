@@ -45,12 +45,11 @@ public class PaymentController {
         return ApiResponseGenerator.success(respDto, HttpStatus.OK);
     }
 
-
     /*
     *   펀딩 결제
      */
     @PostMapping("/funding/{fundingId}/payment")
-    public ResponseEntity<?> fundingPayment(@Valid @RequestBody PaymentReqDtos.FundingPaymentDto reqDto,@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<?> fundingPayment(@RequestBody PaymentReqDtos.FundingPaymentDto reqDto,@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         paymentService.fundingPayment(reqDto, fundingId, userDetails);
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
@@ -61,6 +60,12 @@ public class PaymentController {
     @GetMapping("/member/{memberId}/backed/{fundingId}")
     public ResponseEntity<?> fundingPayment(@PathVariable(value = "memberId") Long memberId, @PathVariable(value = "fundingId") Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         PaymentRespDtos.PaymentHistoryDto respDto = paymentService.fundingHistory(memberId, fundingId, userDetails);
+        return ApiResponseGenerator.success(respDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/member/{memberId}/backed")
+    public ResponseEntity<?> fundingPayment(@PathVariable(value = "memberId") Long memberId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        PaymentRespDtos.PaymentListDto respDto = paymentService.fundingHistoryList(memberId, userDetails);
         return ApiResponseGenerator.success(respDto, HttpStatus.OK);
     }
 }
