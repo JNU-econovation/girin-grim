@@ -14,13 +14,7 @@ export const titleArr: TitleArrType = [
   "주소",
   "관심 대학",
 ];
-export const iconArr: IconArrType = [
-  <CargeBtn key={0} />,
-  null,
-  null,
-  null,
-  null,
-];
+export const iconArr: IconArrType = [<CargeBtn />, null, null, null, null];
 export const arrayArr: ArrayArrType = [false, false, false, false, true];
 
 export type IndexArrType = [
