@@ -3,6 +3,7 @@ import useFeeds from "@/hooks/useFeeds";
 import Grid from "../common/Grid";
 import HomeHeader from "./HomeHeader";
 import Univ from "./Univ";
+import ExtendBtn from "./ExtendBtn";
 
 export default function HomeFundingList() {
   const { data, isLoading, error } = useFeeds();
@@ -15,6 +16,7 @@ export default function HomeFundingList() {
       <Univ favUniversity={favUniversity} />
       <HomeHeader />
       <Grid fundings={funding} />
+      <ExtendBtn />
     </section>
   );
 }
