@@ -3,6 +3,7 @@ import Agreement from "./Agreement";
 import PaymentBtn from "./PaymentBtn";
 import { getLocalTotalCost } from "@/utils/payment";
 import { Coin } from "../common/icon";
+import Total from "../common/Total";
 
 export default function Payment({
   type,
@@ -16,15 +17,7 @@ export default function Payment({
         <p className="text-end font-semibold text-color999">
           My Coin : {data ? data.response.coin : ""}
         </p>
-        <p className="text-end flex justify-between items-center text-[1.375rem] text-[#696969]">
-          <span>최종 결제 금액 : </span>
-          <div className="flex items-center gap-3">
-            <span className="font-black text-[2.5rem] text-color121">
-              {totalCost}
-            </span>
-            <Coin size="lg" />
-          </div>
-        </p>
+        <Total totalCost={totalCost} />
       </div>
       <hr className="border-color999 border-2 mt-5" />
       <Agreement />
