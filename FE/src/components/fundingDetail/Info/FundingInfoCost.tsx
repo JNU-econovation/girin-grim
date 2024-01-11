@@ -11,7 +11,7 @@ export default function FundingInfoCost({ coin }: Readonly<{ coin: number }>) {
       <p className="text-color999 font-semibold">My Coin : {coin} ( 충전 )</p>
       <p className="text-xl font-extrabold flex justify-end gap-2 items-center">
         <span className="opacity-70">{cost}</span>
-        <Coin size="sm" />
+        <Coin size="md" />
       </p>
     </section>
   );

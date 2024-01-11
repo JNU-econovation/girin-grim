@@ -1,4 +1,7 @@
 import { InfoConst } from "@/Model/User";
+import { Coin } from "@/components/common/icon";
+
+//TODO: 리펙토링 필요
 
 export default function MemberInfoList({
   title,
@@ -28,13 +31,20 @@ export default function MemberInfoList({
         </div>
       ) : (
         // 기본
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <span
             // TODO: 식을 여기서 쓰는 것이 아니라 다른 곳에 때는게 더 좋아보임
-            className={title === "크레파스" ? "text-[1.3rem] font-bold" : ""}
+            className={
+              title === "크레파스"
+                ? "text-[1.3rem] font-bold flex gap-2 items-center"
+                : ""
+            }
             // 1.125rem
           >
             {content}
+            {title === "크레파스" && (
+              <Coin size="sm" style="-translate-y-[2px]" />
+            )}
           </span>
           {icon}
         </div>

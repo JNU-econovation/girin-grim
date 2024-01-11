@@ -40,20 +40,20 @@ export type UserDetailMemberInfo = {
 
 export type InfoConst =
   | {
-      title: string;
+      title: "크레파스";
       content: string;
-      icon: string;
+      icon: JSX.Element;
       array: false;
     }
   | {
-      title: string;
+      title: "자기소개" | "연락처" | "주소";
       content: string;
       icon: null;
       array: false;
     }
   | {
-      array: true;
-      title: string;
+      title: "관심대학";
       content: { universityId: number; name: string }[];
       icon: null;
+      array: true;
     };

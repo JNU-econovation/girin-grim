@@ -6,7 +6,7 @@ export default function CargeBtn() {
     router.push("/charge");
   };
   return (
-    <div className="w-[3.25rem]">
+    <div className="w-[3.25rem] h-full">
       <StyledBtn
         text="충전"
         handler={() => onCLick()}
