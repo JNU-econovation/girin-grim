@@ -26,7 +26,7 @@ export default function ChargingCoin() {
         </div>
       ))}
       <PaymentAmountDisplay />
-      <BalanceDisplay />
+      <BalanceDisplay total={total} />
     </>
   );
 }

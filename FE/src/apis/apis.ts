@@ -22,6 +22,7 @@ import {
 } from "@/Model/Funding";
 import { LoginUser, UserDetail, UserForm } from "@/Model/User";
 import { Backed } from "@/Model/Backed";
+import { Coin } from "@/Model/Coin";
 
 export const checkDuplicate = async (email: string) => {
   const data = await Server.get(joinURL, { params: { email } }).then(
@@ -137,7 +138,7 @@ export const getPledge = async (
   return data;
 };
 
-export const getCharge = async () => {
+export const getCharge = async (): Promise<TResponse<Coin>> => {
   const data = Server.get("/charge").then((res) => res.data);
   return data;
 };
