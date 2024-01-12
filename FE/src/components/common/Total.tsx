@@ -6,7 +6,7 @@ type Props = {
 
 export default function Total({ totalCost }: Readonly<Props>) {
   return (
-    <p className="text-end flex justify-between items-center text-[1.375rem] text-[#696969]">
+    <div className="text-end flex justify-between items-center text-[1.375rem] text-[#696969]">
       <span>최종 결제 금액 : </span>
       <div className="flex items-center gap-3">
         <span className="font-black text-[2.5rem] text-color121">
@@ -14,6 +14,6 @@ export default function Total({ totalCost }: Readonly<Props>) {
         </span>
         <Coin size="lg" />
       </div>
-    </p>
+    </div>
   );
 }

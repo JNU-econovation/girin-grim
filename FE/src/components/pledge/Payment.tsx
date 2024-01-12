@@ -2,7 +2,6 @@ import useCharge from "@/hooks/useCharge";
 import Agreement from "./Agreement";
 import PaymentBtn from "./PaymentBtn";
 import { getLocalTotalCost } from "@/utils/payment";
-import { Coin } from "../common/icon";
 import Total from "../common/Total";
 
 export default function Payment({
