@@ -108,16 +108,20 @@ public class PaymentRespDtos {
 
         @Getter
         public static class FundingDto{
+            private Long fundingId;
             private FundingType type;
             private String title;
             private String image;
             private String university;
+            private int dueDate;
 
             public FundingDto(Funding funding){
+                this.fundingId = funding.getId();
                 this.type = funding.getFundingType();
                 this.title = funding.getTitle();
                 this.image = funding.getImage();
                 this.university = funding.getUniversity().getName();
+                this.dueDate = funding.getDueDate();
             }
         }
         @Getter

@@ -55,7 +55,7 @@ public class PaymentController {
     }
 
     /*
-    *   결제 정보 상세 내역
+    *   후원한 프로젝트 상세 조회
      */
     @GetMapping("/member/{memberId}/backed/{fundingId}")
     public ResponseEntity<?> fundingPayment(@PathVariable(value = "memberId") Long memberId, @PathVariable(value = "fundingId") Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
@@ -63,6 +63,9 @@ public class PaymentController {
         return ApiResponseGenerator.success(respDto, HttpStatus.OK);
     }
 
+    /*
+    *   후원한 프로젝트 리스트 조회
+     */
     @GetMapping("/member/{memberId}/backed")
     public ResponseEntity<?> fundingPayment(@PathVariable(value = "memberId") Long memberId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         PaymentRespDtos.PaymentListDto respDto = paymentService.fundingHistoryList(memberId, userDetails);
