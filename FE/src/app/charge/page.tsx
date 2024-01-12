@@ -1,3 +1,4 @@
+import ChargeInfo from "@/components/charge/ChargeInfo";
 import ChargeNav from "@/components/charge/ChargeNav";
 import ChargeOptionSection from "@/components/charge/ChargeOptionSection";
 import PageDescription from "@/components/charge/PageDescription";
@@ -14,6 +15,7 @@ export default function page() {
       </section>
       <Receipt>
         <ChargeOptionSection />
+        <ChargeInfo />
       </Receipt>
     </main>
   );
