@@ -5,7 +5,10 @@ import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.university.entity.University;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -13,6 +16,8 @@ import java.util.List;
 public class MemberReqDtos {
 
     @Getter
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class JoinReqDto {
 
         @NotBlank(message = "닉네임을 입력해주세요.")
@@ -31,6 +36,8 @@ public class MemberReqDtos {
         private List<FavUniversityDto> favUniversity;
 
         @Getter
+        @AllArgsConstructor
+        @NoArgsConstructor
         public static class FavUniversityDto {
             private Long favUniversityId;
 
@@ -52,6 +59,7 @@ public class MemberReqDtos {
     }
 
     @Getter
+    @AllArgsConstructor
     public static class LoginReqDto {
         @NotBlank(message = "이메일을 입력해주세요.")
         @Pattern(regexp = "^[a-zA-Z0-9+-\\_.]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", message = "이메일 형식이 올바르지 않습니다.")
