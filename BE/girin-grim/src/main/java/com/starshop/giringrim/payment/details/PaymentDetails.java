@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name="payment_details_tb")
+@Table(name="paymentdetails_tb")
 public class PaymentDetails {
 
     @Id
