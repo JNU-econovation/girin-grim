@@ -25,3 +25,7 @@ export { default as Phone } from "./icons/Phone";
 export { default as Address } from "./icons/Address";
 export { default as NameTag } from "./icons/NameTag";
 export { default as Coin } from "./icons/Coin";
+export { default as Kakao } from "./icons/Kakao";
+export { default as Credit } from "./icons/Credit";
+export { default as BankTransfer } from "./icons/BankTransfer";
+export { default as DevBtn } from "./icons/DevBtn";
