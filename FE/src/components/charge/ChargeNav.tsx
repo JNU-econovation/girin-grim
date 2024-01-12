@@ -6,7 +6,7 @@ export default function ChargeNav() {
   const navItems = ["충전", "충전내역", "사용내역"];
   const [focused, setFocused] = useState("충전");
   return (
-    <div className="w-80">
+    <div className="w-80 ">
       <NavBar
         navItems={navItems}
         focused={focused}
