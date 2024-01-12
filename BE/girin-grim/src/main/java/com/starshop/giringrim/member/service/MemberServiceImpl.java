@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -75,9 +76,10 @@ public class MemberServiceImpl implements MemberService {
         }
 
         if(nickname == null){
-            Member member = memberRepository.findByEmail(email).orElseThrow(
-                    () -> new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST)
-            );
+            Optional<Member> member = memberRepository.findByEmail(email);
+            if(member.isPresent()) {
+                throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
+            }
         }
         else{
             Member member = memberRepository.findByNickname(nickname);
