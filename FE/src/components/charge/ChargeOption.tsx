@@ -1,10 +1,11 @@
 "use client";
 import { paymentOptions } from "@/constants/CategoryData";
-import { useState } from "react";
 import DevBtn from "./DevBtn";
+import { useRecoilState } from "recoil";
+import { SelectedOption } from "@/store/ChargeState";
 
 export default function ChargeOption() {
-  const [selected, setSelected] = useState(-1);
+  const [selected, setSelected] = useRecoilState(SelectedOption);
   return (
     <>
       <h1 className="text-2xl font-extrabold mt-20">충전할 크레파스</h1>

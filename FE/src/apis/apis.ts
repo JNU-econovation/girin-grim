@@ -184,3 +184,11 @@ export const getBacked = async (
   );
   return data;
 };
+
+export const postCharge = async (coin: number): Promise<TPostResponse> => {
+  const data = await Server.post("/charge", {
+    coin,
+  }).then((res) => res.data);
+  console.log(data);
+  return data;
+};

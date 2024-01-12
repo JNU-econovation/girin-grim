@@ -15,7 +15,7 @@ export default function Payment() {
       </div>
       <hr className="border-color999 border-2 mt-5" />
       <ChargeAgreement />
-      <ChargeBtn />
+      <ChargeBtn totalCost={totalCost} />
     </div>
   );
 }
