@@ -1,12 +1,12 @@
 "use client";
-import { TotalCostState } from "@/store/FundingState";
 import Total from "../common/Total";
 import ChargeAgreement from "./ChargeAgreement";
 import ChargeBtn from "./ChargeBtn";
 import { useRecoilValue } from "recoil";
+import { TotalCoin } from "@/store/ChargeState";
 
 export default function Payment() {
-  const totalCost = useRecoilValue(TotalCostState);
+  const totalCost = useRecoilValue(TotalCoin);
   return (
     <div className="relative py-11 px-10 z-50">
       <p className="text-[1.375rem] font-semibold">결제 정보를 확인해주세요.</p>

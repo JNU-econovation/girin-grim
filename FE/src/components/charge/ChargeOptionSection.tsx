@@ -8,8 +8,6 @@ export default function ChargeOptionSection() {
     <section className="py-7 px-12 bg-white pb-80">
       <ChargingCoin />
       <ChargeOption />
-      {/* dev용 컴포넌트 */}
-      <DevBtn />
       <ChargeNoticet />
     </section>
   );

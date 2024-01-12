@@ -29,7 +29,7 @@ export const chargeNotice = [
 ];
 
 export const paymentOptions = [
-  { title: "카카오페이", image: <Kakao /> },
-  { title: "네이버페이", image: <Credit /> },
-  { title: "신용카드", image: <BankTransfer /> },
+  { id: 1, title: "카카오페이", image: <Kakao /> },
+  { id: 2, title: "네이버페이", image: <Credit /> },
+  { id: 3, title: "신용카드", image: <BankTransfer /> },
 ];
