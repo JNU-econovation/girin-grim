@@ -4,9 +4,10 @@ export default function NameTag() {
   const width = 433.125;
   const height = 24.82;
   return (
-    <>
+    <div>
       <svg
         width={width}
+        // height={height}
         viewBox="0 0 350 614"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -55,9 +56,9 @@ export default function NameTag() {
             width="350"
             height="540"
             filterUnits="userSpaceOnUse"
-            color-interpolation-filters="sRGB"
+            colorInterpolationFilters="sRGB"
           >
-            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feFlood floodOpacity="0" result="BackgroundImageFix" />
             <feColorMatrix
               in="SourceAlpha"
               type="matrix"
@@ -86,9 +87,9 @@ export default function NameTag() {
         </defs>
       </svg>
       <svg
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-6 z-0"
+        className=" absolute bottom-0 left-1/2 -translate-x-1/2 -translate-y-6 z-0"
         width={width}
-        height={height}
+        height={24.82}
         viewBox="0 0 328 20"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -98,6 +99,6 @@ export default function NameTag() {
           fill="#FF9A15"
         />
       </svg>
-    </>
+    </div>
   );
 }
