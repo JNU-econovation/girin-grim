@@ -5,7 +5,7 @@ type Props = {
   memberId: number;
 };
 
-export default function BackBtn({ memberId }: Props) {
+export default function BackBtn({ memberId }: Readonly<Props>) {
   const redirectUrl = `/member/${memberId}`;
   const router = useRouter();
   const goBack = () => {

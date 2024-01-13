@@ -1,7 +1,6 @@
 "use client";
 import useBacked from "@/hooks/useBacked";
 import OptionContent from "../../common/OptionContent";
-import PageTitle from "../../common/PageTitle";
 import Total from "../../common/Total";
 import FundingInfo from "./FundingInfo";
 import { formatOptionData } from "@/utils/dataFomat";
