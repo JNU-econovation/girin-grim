@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default function FundingDetail({ fundingId }: Readonly<Props>) {
-  const { data, isLoading, error } = useFundingDetail(fundingId); //TODO: 서버 상태를 qeury가 아닌 recoil로 관리하기
+  const { data, isLoading, error } = useFundingDetail(fundingId);
   if (isLoading || !data) return <div>loading...</div>;
   const fundingData = data.response;
 
@@ -17,7 +17,6 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
     <section className="flex gap-6 font-nanum">
       {data && (
         <>
-          {/* TODO: aws 연동 후 w, h 확인하기*/}
           <Image
             src={fundingData.funding.image}
             alt="funding Image"

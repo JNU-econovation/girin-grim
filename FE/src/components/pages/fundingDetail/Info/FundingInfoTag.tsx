@@ -19,7 +19,7 @@ export default function FundingInfoTag({
     <p className="flex gap-1 text-color656">
       {/* 696969 없어서 656565로. */}
       <Tag />
-      <span className="font-bold">{typeText}</span>
+      <span className="ml-2 font-bold">{typeText}</span>
       <span>{","}</span>
       <span>{university}</span>
       <span>{" >"}</span>
