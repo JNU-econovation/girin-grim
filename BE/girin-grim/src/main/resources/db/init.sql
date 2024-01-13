@@ -359,7 +359,7 @@ INSERT INTO university_tb (id, name, region) VALUES (358, '한국국제대학교
 INSERT INTO university_tb (id, name, region) VALUES (359, '제주국제대학교', '제주');
 INSERT INTO university_tb (id, name, region) VALUES (360, '제주대학교', '제주');
 INSERT INTO university_tb (id, name, region) VALUES (361, '기린대학교', '광주');
-INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (100.0,'밍주','asdf@gmail.com','저의 자기소개 입니다 내 이름은 민주','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
+INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (100.0,'밍밍주','hello@gmail.com','저의 자기소개 입니다 내 이름은 민주','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
 INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (1000000.0,'건규','hi@gmail.com','저의 자기소개 입니다 내 이름은 건규','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
 INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
 VALUES (50000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 1, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목1', 'DONATE');

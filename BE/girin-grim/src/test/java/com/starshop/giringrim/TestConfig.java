@@ -12,7 +12,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 
 
 @ActiveProfiles("test")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public abstract class TestConfig {
     @Autowired
     private DatabaseCleanup databaseCleanup;

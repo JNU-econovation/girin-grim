@@ -1,6 +1,7 @@
 spring:
   sql:
     init:
+      data-locations: classpath:data.sql
       mode: always
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

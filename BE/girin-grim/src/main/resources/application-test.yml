@@ -1,22 +1,21 @@
 spring:
   sql:
- #   init:
-  #    mode: always
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-  # Database Setting Info (Database를 H2로 사용하기 위해 H2연결 정보 입력)
+    init:
+      data-locations: classpath:db/init.sql
+      mode: always
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:tcp://localhost/~/test
+    url: jdbc:h2:mem:test # h2 support in-memory-db
     username: sa
     password:
+    driver-class-name: org.h2.Driver
+
   jpa:
- #   defer-datasource-initialization: true
+    defer-datasource-initialization: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        format_sql: true # log
+
+logging.level:
+  org.hibernate.SQL: debug

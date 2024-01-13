@@ -28,13 +28,13 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Sql(
-        scripts = {"classpath:data.sql"},
+        scripts = {"classpath:db/init.sql"},
         config = @SqlConfig(dataSource = "dataSource"),
-        executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+        executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
 
 )
 @AutoConfigureMockMvc
-class MemberControllerTest extends TestConfig {
+class MemberControllerTest extends TestConfig{
 
     @Autowired
     ObjectMapper objectMapper;
@@ -51,8 +51,10 @@ class MemberControllerTest extends TestConfig {
     @Autowired
     FavUniversityRepository favUniversityRepository;
 
+
     @Autowired
     MockMvc mockMvc;
+
 
     @DisplayName("회원가입 성공 테스트")
     @Test
@@ -77,17 +79,25 @@ class MemberControllerTest extends TestConfig {
         String requestBody = objectMapper.writeValueAsString(joinReqDto);
 
         //when
+
         ResultActions resultActions = mockMvc.perform(
                 post("/api/member/join")
                         .content(requestBody)
                         .contentType(MediaType.APPLICATION_JSON));
+
+
+
+      //  ResponseEntity<String> responseEntity = testRestTemplate.postForEntity("/api/member/join",joinReqDto,String.class);
 
         //then
         String responseBody = new String(resultActions.andReturn().getResponse().getContentAsByteArray(), StandardCharsets.UTF_8);
         System.out.println("테스트 " + responseBody);
 
         resultActions.andExpect(jsonPath("$.success").value("true"));
+
+      //  Assertions.assertEquals(responseEntity.getBody(),"{\"success\":true,\"response\":null,\"error\":null}");
     }
+
 
     @DisplayName("관심대학 설정 테스트_존재하지 않는 대학")
     @Test
