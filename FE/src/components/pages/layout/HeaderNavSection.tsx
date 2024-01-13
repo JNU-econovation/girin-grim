@@ -15,8 +15,8 @@ export default function HeaderNavSection() {
   const [category, setCategory] = useState(false);
   const [univ, setUniv] = useState(false);
   return (
-    <section className="flex justify-between mt-[0.8rem] font-nanum">
-      <ul className="flex gap-6 font-semibold text-xl mb-4 items-center cursor-pointer">
+    <section className="flex justify-between items-center mt-[0.8rem] font-nanum">
+      <ul className="flex gap-6 font-semibold text-xl mb-3 items-center cursor-pointer">
         <li
           className={`flex items-center gap-[2.4rem] relative ${
             hover.category ? "" : "text-colorb0b"
