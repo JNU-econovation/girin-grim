@@ -4,6 +4,7 @@ import StyledBtn from "../../../common/StyledBtn";
 import { Share } from "../../../common/icon";
 import { useRecoilValue } from "recoil";
 import { TotalCostState, TotalDonateState } from "@/store/FundingState";
+import { setDonateCost } from "@/utils/localData";
 
 type Props = {
   fundingId: number;
@@ -35,6 +36,7 @@ export default function FundingDetailBtnSection({
             return;
           }
           router.push("/funding/pledge/" + fundingId);
+          isDonate && setDonateCost(cost);
         }}
       />
     </section>

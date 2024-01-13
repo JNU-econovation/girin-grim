@@ -8,7 +8,7 @@ type Props = {
   options: SelectedOption[];
 };
 
-export default function OptinsSection({ supporter, options }: Props) {
+export default function OptinsSection({ supporter, options }: Readonly<Props>) {
   return (
     <section className="w-full bg-white font-nanum min-h-[100vh] p-10">
       <OptionContent supporter={supporter} options={options} />
