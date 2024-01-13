@@ -23,4 +23,9 @@ public class TestQueryDslConfig {
         return new FundingRepositoryCustom(jpaQueryFactory());
     }
 
+    @Bean
+    public DatabaseCleanup databaseCleanup(){
+        return new DatabaseCleanup();
+    }
+
 }
