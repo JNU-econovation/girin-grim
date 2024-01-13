@@ -94,7 +94,17 @@ public class FundingRepositoryCustom {
      *   카테고리가 일치하는 펀딩 글 리스트
      */
     private BooleanExpression categoryEq(String category) {
-        return category != null ? funding.fundingType.eq(FundingType.valueOf(category)) : null;
+        if(category!=null){
+            if((!category.equals("DONATE")) && (!category.equals("GIFT"))){
+                return null;
+            }else{
+                return funding.fundingType.eq(FundingType.valueOf(category));
+            }
+        }
+        else
+            return null;
+
+      //  return category != null ? funding.fundingType.eq(FundingType.valueOf(category)) : null;
     }
 
     /*
