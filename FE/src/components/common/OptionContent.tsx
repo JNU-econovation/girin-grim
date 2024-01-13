@@ -10,9 +10,14 @@ type Props = {
     address: string;
   };
   options: SelectedOption[];
+  type: "DONATE" | "GIFT";
 };
 
-export default function OptionContent({ supporter, options }: Readonly<Props>) {
+export default function OptionContent({
+  supporter,
+  options,
+  type,
+}: Readonly<Props>) {
   const isDonate = options.length === 0;
   const text = isDonate ? "후원 정보" : "옵션 정보";
 
@@ -31,7 +36,7 @@ export default function OptionContent({ supporter, options }: Readonly<Props>) {
         후원자 정보
       </h2>
       <div className="border-2 mt-2 rounded-md">
-        <SuppotInfo supporter={supporter} />
+        <SuppotInfo supporter={supporter} type={type} />
         <Notice />
       </div>
     </>
