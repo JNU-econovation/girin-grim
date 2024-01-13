@@ -1,5 +1,6 @@
 package com.starshop.giringrim.funding.repository;
 
+import com.starshop.giringrim.DatabaseCleanup;
 import com.starshop.giringrim.TestQueryDslConfig;
 import com.starshop.giringrim.funding.dto.FundingRespDtos;
 import com.starshop.giringrim.funding.entity.Funding;
@@ -8,10 +9,7 @@ import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.member.repository.MemberRepository;
 import com.starshop.giringrim.university.entity.University;
 import com.starshop.giringrim.university.repository.UnivRepository;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
@@ -43,9 +41,13 @@ class FundingRepositoryCustomTest {
     @Autowired
     MemberRepository memberRepository;
 
+    @Autowired
+    DatabaseCleanup databaseCleanup;
 
     @BeforeEach
     void setUp() {
+        databaseCleanup.execute();
+
         Member member = Member.builder()
                 .email("asdf@gmail,com")
                 .password("asdf!1234")

@@ -8,22 +8,16 @@ import com.starshop.giringrim.member.dto.MemberReqDtos;
 import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.member.repository.MemberRepository;
 import com.starshop.giringrim.member.service.MemberService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -34,9 +28,9 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Sql(
-        scripts = {"classpath:init.sql"},
+        scripts = {"classpath:db/init.sql"},
         config = @SqlConfig(dataSource = "dataSource"),
-        executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
+        executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
 
 )
 @AutoConfigureMockMvc
