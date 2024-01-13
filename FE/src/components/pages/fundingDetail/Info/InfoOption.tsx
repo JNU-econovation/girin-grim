@@ -23,7 +23,7 @@ export default function InfoOption({ options }: Readonly<Props>) {
   return (
     <>
       <select
-        className="border my-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
+        className="border mt-2 mb-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
         onChange={(e) => {
           const value = +e.target.value;
           if (!value) return;
@@ -47,7 +47,8 @@ export default function InfoOption({ options }: Readonly<Props>) {
         ))}
       </select>
       {/* 1f1f1f도 없어서 일단 */}
-      <section className="grow">
+      {/* grow 빠짐 */}
+      <section className="">
         {selected.map((option) => (
           <InfoOptionDetail
             key={option.optionId}

@@ -10,7 +10,7 @@ export default function InfoHeader({
   return (
     <>
       <h1 className="text-[2.5rem] font-black text-color121">{title}</h1>
-      <p className=" text-color9f9 ">{shortDescription}</p>
+      <p className=" text-color9f9 grow">{shortDescription}</p>
     </>
   );
 }

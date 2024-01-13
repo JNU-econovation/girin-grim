@@ -1,11 +1,19 @@
 "use client";
 
 import { Coin } from "@/components/common/icon";
-import { TotalCostState } from "@/store/FundingState";
+import { TotalCostState, TotalDonateState } from "@/store/FundingState";
 import { useRecoilValue } from "recoil";
 
-export default function FundingInfoCost({ coin }: Readonly<{ coin: number }>) {
-  const cost = useRecoilValue(TotalCostState);
+type Props = {
+  coin: number;
+  type: string;
+};
+export default function FundingInfoCost({ coin, type }: Readonly<Props>) {
+  const isDonate = type === "DONATE";
+  const cost = isDonate
+    ? useRecoilValue(TotalDonateState)
+    : useRecoilValue(TotalCostState);
+
   return (
     <section className="w-full text-end">
       <p className="text-color999 font-semibold">My Coin : {coin} ( 충전 )</p>

@@ -16,7 +16,7 @@ export async function GET(
         },
         funding: {
           fundingId: 1,
-          type: "DONATE",
+          type: "GIFT",
           title: "제목",
           image: "https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg",
           university: "삼육보건대학교",

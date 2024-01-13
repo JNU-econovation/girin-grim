@@ -28,7 +28,7 @@ export default function InfoOptionDetail({
         clicked !== undefined && !isClicked && "hidden"
       }`}
     >
-      <div
+      <button
         className="flex justify-center items-start mt-2"
         onClick={() => {
           if (isClicked) {
@@ -39,8 +39,8 @@ export default function InfoOptionDetail({
         }}
       >
         {isClicked ? <ArrowUp /> : <ArrowDown />}
-      </div>
-      <p className="ml-2 shrink-0"> Option | </p>
+      </button>
+      <p className="ml-2 shrink-0 mr-1"> Option |</p>
       <div className="w-full">
         <div className="w-full flex justify-between">
           <p>
@@ -52,11 +52,11 @@ export default function InfoOptionDetail({
               <button
                 className="w-[1.375rem] h-[1.375rem] flex justify-center items-center bg-[#cccccc] text-white rounded-l-[0.2rem] border-y-[1px] border-l-[1px]"
                 onClick={() => {
-                  if (amount === quantity) return;
-                  setAmount(amount + 1);
+                  if (amount === 1) return;
+                  setAmount(amount - 1);
                 }}
               >
-                +
+                -
               </button>
               <div className="w-9 h-full flex justify-center items-center bg-slate-100 text-[0.875rem] border-y-[1px]">
                 {amount}
@@ -64,11 +64,11 @@ export default function InfoOptionDetail({
               <button
                 className="w-[1.375rem]  flex justify-center items-center bg-[#cccccc] text-white rounded-r-[0.2rem] border-y-[1px] border-r-[1px]"
                 onClick={() => {
-                  if (amount === 1) return;
-                  setAmount(amount - 1);
+                  if (amount === quantity) return;
+                  setAmount(amount + 1);
                 }}
               >
-                -
+                +
               </button>
             </div>
             <DeleteBtn onCLick={deleteOption} />
