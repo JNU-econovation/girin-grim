@@ -1,4 +1,4 @@
-import { getFundingLongDescription } from "@/apis/apis";
+import { getFundingLongDescription } from "@/apis/funding";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useFundingDescription({

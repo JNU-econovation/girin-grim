@@ -1,5 +1,4 @@
 "use client";
-import { useState } from "react";
 import { ArrowDown, ArrowUp } from "../../common/icon";
 import DeleteBtn from "./DeleteBtn";
 import { SelectedOption } from "@/Model/Funding";
@@ -20,7 +19,7 @@ export default function InfoOptionDetail({
   setClicked,
   deleteOption,
   setAmount,
-}: Props) {
+}: Readonly<Props>) {
   const { price, name, items, optionId, quantity, amount } = selected;
   const isClicked = optionId === clicked;
   return (
@@ -76,9 +75,9 @@ export default function InfoOptionDetail({
           </div>
         </div>
         {isClicked && (
-          <ul className="max-h-16 overflow-y-auto w-full">
+          <ul className="max-h-20 overflow-y-auto w-full">
             {items.map((item) => (
-              <li> - {item.name}</li>
+              <li key={item.itemId}> - {item.name}</li>
             ))}
           </ul>
         )}

@@ -17,7 +17,7 @@ export default function Pledge({ fundingId }: Readonly<{ fundingId: number }>) {
       <InfoSection funding={funding} member={member} />
       <Receipt>
         <OptinsSection supporter={supporter} options={options} />
-        <CostInfo type={funding.type} />
+        <CostInfo type={funding.type} fundingId={fundingId} />
       </Receipt>
     </>
   );

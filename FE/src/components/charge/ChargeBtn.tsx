@@ -1,9 +1,8 @@
 "use client";
-
 import StyledBtn from "../common/StyledBtn";
 import { useRecoilValue } from "recoil";
 import { SelectedOption } from "@/store/ChargeState";
-import { postCharge } from "@/apis/apis";
+import { postCharge } from "@/apis/charge";
 
 type Props = {
   totalCost: number;

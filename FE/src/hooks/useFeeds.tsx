@@ -2,7 +2,7 @@
 
 import { HomeFeed } from "@/Model/Feed";
 import { TResponse } from "@/Model/Response";
-import { getHomeFeed } from "@/apis/apis";
+import { getHomeFeed } from "@/apis/home";
 import { HomeState } from "@/store/HomeState";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";
