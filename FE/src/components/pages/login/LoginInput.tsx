@@ -1,3 +1,4 @@
+import { LoginUser } from "@/Model/User";
 import { LoginState } from "@/store/LoginState";
 import { useRecoilState } from "recoil";
 
