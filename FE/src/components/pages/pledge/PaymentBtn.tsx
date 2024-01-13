@@ -29,5 +29,9 @@ export default function PaymentBtn({ fundingId, type }: Readonly<Props>) {
     if (returnedData.error) text = "결제 실패";
     else alert("결제가 완료되었습니다.");
   };
-  return <StyledBtn text={text} handler={() => onClick()} />;
+  return (
+    <div className="mt-6">
+      <StyledBtn text={text} handler={() => onClick()} />
+    </div>
+  );
 }
