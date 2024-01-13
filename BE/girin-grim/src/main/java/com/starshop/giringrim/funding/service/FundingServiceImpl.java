@@ -173,6 +173,7 @@ public class FundingServiceImpl implements FundingService {
 
 
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
+
         //비로그인 유저일 경우
         if(role.equals("anonymousUser")){
             Pageable pageable = PageRequest.of(page,6);
