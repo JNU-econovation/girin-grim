@@ -19,11 +19,9 @@ export default function HomeHeader() {
           {category} {">"}
         </span>
       </div>
-      <div className="flex items-center gap-1 cursor-default">
+      <div className="flex items-center gap-2 cursor-default">
         <span className="text-colorb9b">달성률 높은 순</span>
         <FilterToggle />
-        {/* <span className="text-colorb9b">최신순</span>
-        <span className="text-colorb9b">댓글순</span> */}
       </div>
     </section>
   );
