@@ -1,6 +1,6 @@
-import MemberFundingGridSection from "@/components/member/FundingList/MemberFundingGridSection";
+import MemberFundingGridSection from "@/components/pages/member/FundingList/MemberFundingGridSection";
 import PageTitle from "@/components/common/PageTitle";
-import MemberInfoSection from "@/components/member/memberInfo/MemberInfoSection";
+import MemberInfoSection from "@/components/pages/member/memberInfo/MemberInfoSection";
 
 type Props = {
   params: {

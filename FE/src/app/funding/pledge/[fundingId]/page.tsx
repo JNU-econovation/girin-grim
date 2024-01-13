@@ -1,4 +1,4 @@
-import Pledge from "@/components/pledge/Pledge";
+import Pledge from "@/components/pages/pledge/Pledge";
 
 type Props = {
   params: {

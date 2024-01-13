@@ -1,5 +1,5 @@
-import DetailDescription from "@/components/fundingDetail/Detail/DetailDescription";
-import FundingDetail from "@/components/fundingDetail/Info/FundingDetail";
+import DetailDescription from "@/components/pages/fundingDetail/Detail/DetailDescription";
+import FundingDetail from "@/components/pages/fundingDetail/Info/FundingDetail";
 
 type Props = {
   params: {

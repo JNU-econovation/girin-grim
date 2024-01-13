@@ -1,4 +1,4 @@
-import CargeBtn from "@/components/member/memberInfo/CargeBtn";
+import CargeBtn from "@/components/pages/member/memberInfo/CargeBtn";
 
 export const indexArr: IndexArrType = [
   "coin",

@@ -6,16 +6,19 @@ import { LocalData } from "@/Model/Local";
  */
 const initLocalData = () => {
   const data = localStorage.getItem("UserData");
-  if (!data) {
-    setLocalData(0, []);
-  }
+  if (!data) setLocalData(0, [], 0);
 };
 
-/**입력받은 memberid, options로 로컬데이터를 저장한다. */
-export const setLocalData = (memberId: number, options: SelectedOption[]) => {
+/**입력받은 memberid, options, cost로 로컬데이터를 저장한다. */
+export const setLocalData = (
+  memberId: number,
+  options: SelectedOption[],
+  DonateCost: number
+) => {
   const data: LocalData = {
     memberId,
     options,
+    DonateCost,
   };
   localStorage.setItem("UserData", JSON.stringify(data));
 };
@@ -37,7 +40,7 @@ export const setMemberId = (memberId: number) => {
   initLocalData();
   const data = getLocalData();
   data.memberId = memberId;
-  setLocalData(data.memberId, data.options);
+  setLocalData(data.memberId, data.options, data.DonateCost);
 };
 export const getMemeberId = () => {
   initLocalData();
@@ -50,7 +53,7 @@ export const updateLocalOption = (option: SelectedOption[]) => {
   initLocalData();
   const data = getLocalData();
   data.options = option;
-  setLocalData(data.memberId, data.options);
+  setLocalData(data.memberId, data.options, data.DonateCost);
 };
 
 /**옵견값만 가져온다. */
@@ -58,4 +61,11 @@ export const getOptionData = () => {
   initLocalData();
   const data = getLocalData();
   return data.options;
+};
+
+export const setDonateCost = (cost: number) => {
+  initLocalData();
+  const data = getLocalData();
+  data.DonateCost = cost;
+  setLocalData(data.memberId, data.options, data.DonateCost);
 };

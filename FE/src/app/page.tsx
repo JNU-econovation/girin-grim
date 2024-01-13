@@ -1,5 +1,5 @@
-import HomeBanner from "@/components/home/HomeBanner";
-import HomeFundingList from "@/components/home/HomeFundingList";
+import HomeBanner from "@/components/pages/home/HomeBanner";
+import HomeFundingList from "@/components/pages/home/HomeFundingList";
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
-import ChargeInfo from "@/components/charge/ChargeInfo";
-import ChargeNav from "@/components/charge/ChargeNav";
-import ChargeOptionSection from "@/components/charge/ChargeOptionSection";
-import PageDescription from "@/components/charge/PageDescription";
+import ChargeInfo from "@/components/pages/charge/ChargeInfo";
+import ChargeNav from "@/components/pages/charge/ChargeNav";
+import ChargeOptionSection from "@/components/pages/charge/ChargeOptionSection";
+import PageDescription from "@/components/pages/charge/PageDescription";
 import PageTitle from "@/components/common/PageTitle";
 import Receipt from "@/components/common/Receipt";
 

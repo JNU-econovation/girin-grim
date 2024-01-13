@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
+import Header from "@/components/pages/layout/Header";
 import { ReactQuery } from "@/context/ReackQuery";
 import Recoil from "@/context/Recoil";
 
