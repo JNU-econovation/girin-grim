@@ -1,6 +1,7 @@
 spring:
   sql:
     init:
+      data-locations: classpath:data.sql
       mode: always
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,8 +18,3 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
-
-decorator:
-  datasource:
-    p6spy:
-      enable-logging: true

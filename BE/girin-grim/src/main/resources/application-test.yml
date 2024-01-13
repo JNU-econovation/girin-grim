@@ -1,4 +1,8 @@
 spring:
+  sql:
+    init:
+      data-locations: classpath:db/init.sql
+      mode: always
   datasource:
     url: jdbc:h2:mem:test # h2 support in-memory-db
     username: sa
@@ -6,6 +10,7 @@ spring:
     driver-class-name: org.h2.Driver
 
   jpa:
+    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
     properties:
