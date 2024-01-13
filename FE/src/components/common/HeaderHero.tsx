@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import UserImage from "../layout/UserImage";
+import UserImage from "../pages/layout/UserImage";
 import { User } from "./icon";
 import { CheckIsLoggedIn } from "@/utils/localData";
 

@@ -1,6 +1,6 @@
-import LoginForm from "@/components/login/LoginForm";
-import LoginHeader from "@/components/login/LoginHeader";
-import LoginRedirect from "@/components/login/LoginRedirect";
+import LoginForm from "@/components/pages/login/LoginForm";
+import LoginHeader from "@/components/pages/login/LoginHeader";
+import LoginRedirect from "@/components/pages/login/LoginRedirect";
 
 export default function LoginPage() {
   return (

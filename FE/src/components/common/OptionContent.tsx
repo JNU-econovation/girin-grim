@@ -1,6 +1,6 @@
 import { SelectedOption } from "@/Model/Funding";
 import Options from "./Options";
-import SuppotInfo from "../pledge/SuppotInfo";
+import SuppotInfo from "../pages/pledge/SuppotInfo";
 import Notice from "./Notice";
 
 type Props = {

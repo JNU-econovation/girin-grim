@@ -1,4 +1,4 @@
-import BackedSection from "@/components/backed/BackedSection";
+import BackedSection from "@/components/pages/backed/BackedSection";
 
 type Props = {
   params: {
