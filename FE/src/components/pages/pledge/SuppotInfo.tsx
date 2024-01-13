@@ -10,8 +10,8 @@ export default function SuppotInfo({ supporter }: Readonly<Props>) {
   const suppotData = formatSuppotData(supporter.address);
   return (
     <section className="m-[1.14rem]">
-      <div className="flex text-[1.25rem] px-6 py-4 bg-colore7e rounded-md gap-6">
-        <ul>
+      <div className="flex text-xl px-6 py-4 bg-colore7e rounded-md gap-6">
+        <ul className="flex flex-col gap-3">
           {suppotData.map(({ icon, title, value }) => (
             <li
               key={title}
