@@ -12,9 +12,6 @@ export default function LoginForm() {
   const onsubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     await login(loginForm);
-
-    // console.log(accessToken);
-    // console.log(refreshToken);
   };
   return (
     <form className="mt-[2.68rem]" onSubmit={onsubmit}>

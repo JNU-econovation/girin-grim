@@ -14,9 +14,20 @@ export async function GET(request: Request) {
         },
         supporter: {
           coin: 500000,
-          address: "광주 용봉동",
+          address: "광주 용봉동", //없다면 null
         },
       },
+      error: null,
+    })
+  );
+}
+
+export async function POST(request: Request) {
+  const body = await request.json();
+  return new Response(
+    JSON.stringify({
+      success: true,
+      response: null,
       error: null,
     })
   );

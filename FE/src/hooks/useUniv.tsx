@@ -1,8 +1,7 @@
 "use client";
-
 import { TResponse } from "@/Model/Response";
 import { Univs } from "@/Model/Univ";
-import { getUnivList } from "@/apis/apis";
+import { getUnivList } from "@/apis/uni";
 import { UnivStateQ, UnivStateRegion } from "@/store/HeaderState";
 import { useQuery } from "@tanstack/react-query";
 import { useRecoilValue } from "recoil";

@@ -1,6 +1,5 @@
 "use client";
-
-import { getFundingDetail } from "@/apis/apis";
+import { getFundingDetail } from "@/apis/funding";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useFundingDetail(fundingId: number) {

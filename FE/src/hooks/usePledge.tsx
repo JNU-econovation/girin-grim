@@ -1,4 +1,5 @@
-import { getPledge } from "@/apis/apis";
+"use client";
+import { getPledge } from "@/apis/funding";
 import { useQuery } from "@tanstack/react-query";
 
 export default function usePledge({

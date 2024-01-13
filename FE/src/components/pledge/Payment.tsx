@@ -4,9 +4,12 @@ import PaymentBtn from "./PaymentBtn";
 import { getLocalTotalCost } from "@/utils/payment";
 import Total from "../common/Total";
 
-export default function Payment({
-  type,
-}: Readonly<{ type: "DONATE" | "GIFT" }>) {
+type Props = {
+  type: "DONATE" | "GIFT";
+  fundingId: number;
+};
+
+export default function Payment({ type, fundingId }: Readonly<Props>) {
   const totalCost = getLocalTotalCost();
   const { data, error, isLoading } = useCharge();
   return (
@@ -20,7 +23,7 @@ export default function Payment({
       </div>
       <hr className="border-color999 border-2 mt-5" />
       <Agreement />
-      <PaymentBtn type={type} />
+      <PaymentBtn type={type} fundingId={fundingId} />
     </div>
   );
 }

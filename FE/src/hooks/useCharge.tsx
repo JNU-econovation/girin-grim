@@ -1,4 +1,4 @@
-import { getCharge } from "@/apis/apis";
+import { getCharge } from "@/apis/charge";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useCharge() {
