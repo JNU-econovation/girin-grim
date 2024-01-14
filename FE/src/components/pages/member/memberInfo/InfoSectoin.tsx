@@ -29,9 +29,9 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
       </h1>
       <span className="text-md text-[#696969] mt-1 mb-5">{email}</span>
       <div className="flex flex-col">
-        {InfoData.map((data, index) => (
+        {InfoData.map((data) => (
           <MemberInfoList
-            key={index}
+            key={data.title}
             title={data.title}
             content={data.content}
             icon={data.icon}

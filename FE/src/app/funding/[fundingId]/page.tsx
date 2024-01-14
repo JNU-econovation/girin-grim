@@ -13,7 +13,7 @@ export default function FundingDetailPage({
   return (
     <section className="w-full max-w-7xl mx-auto mt-6">
       <FundingDetail fundingId={fundingId} />
-      <DetailDescription />
+      <DetailDescription fundingId={fundingId} />
     </section>
   );
 }

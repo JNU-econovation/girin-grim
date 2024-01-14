@@ -1,5 +1,5 @@
 "use client";
-import { checkDuplicate } from "@/apis/apis";
+import { checkDuplicate } from "@/apis/member";
 import { joinState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
@@ -17,6 +17,7 @@ export default function DuplicateCheckButton({ type }: Readonly<Props>) {
     const { success } = await checkDuplicate({
       nickname: form.name,
       email: form.email,
+      type,
     });
 
     if (success) {

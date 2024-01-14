@@ -3,7 +3,7 @@ export type Form = {
   password: string;
   passwordCheck: string;
   name: string;
-  university: { name: string }[];
+  favUniversity: { favUniversityId: number }[];
   agree: boolean;
   emailCheck: boolean;
   nameCheck: boolean;

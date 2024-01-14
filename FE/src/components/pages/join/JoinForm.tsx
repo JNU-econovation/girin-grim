@@ -4,7 +4,7 @@ import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
 import { useRecoilValue } from "recoil";
 import { joinState } from "@/store/JoinState";
-import { join } from "@/apis/apis";
+import { join } from "@/apis/member";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../../common/AgreementCheckbox";
 import Link from "next/link";
@@ -16,7 +16,7 @@ export default function JoinForm() {
     email: data.email,
     password: data.password,
     nickname: data.name,
-    university: data.university,
+    favUniversity: data.favUniversity,
   };
 
   const submitJoinForm = async () => {

@@ -1,5 +1,5 @@
 "use client";
-import { getMyFunding } from "@/apis/apis";
+import { getMyFunding } from "@/apis/member";
 import { useQuery } from "@tanstack/react-query";
 
 type Props = {

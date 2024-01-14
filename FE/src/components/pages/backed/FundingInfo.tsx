@@ -1,8 +1,8 @@
-import { FundingMember, PledgeFunding } from "@/Model/Funding";
+import { BackedFunding, FundingMember } from "@/Model/Funding";
 import InfoSection from "../../common/InfoSection";
 
 type Props = {
-  funding: PledgeFunding;
+  funding: BackedFunding;
   member: FundingMember;
 };
 

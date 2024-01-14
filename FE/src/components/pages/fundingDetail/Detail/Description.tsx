@@ -1,8 +1,10 @@
 import useFundingDescription from "@/hooks/useFundingDescription";
 import Image from "next/image";
 
-export default function Description() {
-  const { data, isLoading, error } = useFundingDescription({ fundingId: 1 });
+export default function Description({
+  fundingId,
+}: Readonly<{ fundingId: number }>) {
+  const { data, isLoading } = useFundingDescription({ fundingId });
   if (isLoading || !data) return <div>loading...</div>;
   const imageUrl = data?.response.longDescription;
   return (

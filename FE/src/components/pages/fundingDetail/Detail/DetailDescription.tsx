@@ -7,13 +7,17 @@ import Description from "./Description";
 
 export type NavList = "상세 설명" | "공지사항" | "문의" | "후기";
 
-export default function DetailDescription() {
+export default function DetailDescription({
+  fundingId,
+}: Readonly<{
+  fundingId: number;
+}>) {
   const [nav, setNav] = useState<string>(navList[0]);
 
   return (
     <section>
       <NavBar nav={nav} setNav={(nav: string) => setNav(nav)} />
-      <Description />
+      <Description fundingId={fundingId} />
     </section>
   );
 }

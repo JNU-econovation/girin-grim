@@ -12,6 +12,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
   const { data, isLoading, error } = useFundingDetail(fundingId);
   if (isLoading || !data) return <div>loading...</div>;
   const fundingData = data.response;
+  console.log(fundingData.funding.image);
 
   return (
     <section className="flex gap-6 font-nanum">

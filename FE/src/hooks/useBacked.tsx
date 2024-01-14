@@ -1,6 +1,6 @@
 "use client";
 
-import { getBacked } from "@/apis/apis";
+import { getBacked } from "@/apis/member";
 import { useQuery } from "@tanstack/react-query";
 
 type Props = {
