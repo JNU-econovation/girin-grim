@@ -1,5 +1,5 @@
 "use client";
-import { getUser } from "@/apis/apis";
+import { getUser } from "@/apis/member";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useUser() {

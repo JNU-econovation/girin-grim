@@ -4,7 +4,7 @@ import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
 import { useRecoilValue } from "recoil";
 import { joinState } from "@/store/JoinState";
-import { join } from "@/apis/apis";
+import { join } from "@/apis/member";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../../common/AgreementCheckbox";
 import Link from "next/link";

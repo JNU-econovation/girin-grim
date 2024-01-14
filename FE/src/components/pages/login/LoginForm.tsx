@@ -5,7 +5,7 @@ import AgreementCheckbox from "../../common/AgreementCheckbox";
 import LoginBtn from "./LoginBtn";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/store/LoginState";
-import { login } from "@/apis/apis";
+import { login } from "@/apis/member";
 
 export default function LoginForm() {
   const loginForm = useRecoilValue(LoginState);

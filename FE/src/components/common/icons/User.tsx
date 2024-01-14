@@ -4,7 +4,7 @@ import Image from "next/image";
 
 type Props = {
   size?: "small" | "medium" | "large";
-  url?: string;
+  url?: string | null;
 };
 
 export default function User({
@@ -14,7 +14,7 @@ export default function User({
   const px = HeroFormatSize(size);
   return (
     <Image
-      src={url}
+      src={defaultUerImageUrl}
       width={px}
       height={px}
       alt="Logo"

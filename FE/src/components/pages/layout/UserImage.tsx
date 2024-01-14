@@ -12,9 +12,10 @@ export default function UserImage({ size = "small" }: Readonly<Props>) {
   const { data, isLoading, error } = useUser();
   const sizeClass = HeroFormatSize(size);
   if (isLoading || !data) return <User />;
-  const { image, memberId } = data.response;
+  let { image, memberId } = data.response;
   setMemberId(memberId);
-
+  image =
+    image || "https://girin-grim.s3.ap-northeast-2.amazonaws.com/avatar.jpeg";
   return (
     <Link href={`/member/${memberId}`}>
       <div

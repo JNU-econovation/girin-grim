@@ -1,4 +1,4 @@
-import { Form } from "@/Model/user";
+import { Form } from "@/Model/User";
 import { atom } from "recoil";
 
 export const joinState = atom<Form>({

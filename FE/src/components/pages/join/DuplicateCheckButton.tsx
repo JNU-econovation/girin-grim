@@ -1,5 +1,5 @@
 "use client";
-import { checkDuplicate } from "@/apis/apis";
+import { checkDuplicate } from "@/apis/member";
 import { joinState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 

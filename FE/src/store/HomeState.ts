@@ -3,7 +3,7 @@ import { atom } from "recoil";
 export type HomeState = {
   q: string;
   uni: {
-    univId: number;
+    univId?: number;
     univName: string;
   };
   sort: "highest" | "latest";
@@ -24,7 +24,7 @@ export const HomeState = atom<HomeState>({
   default: {
     q: "",
     uni: {
-      univId: 0,
+      univId: undefined,
       univName: "",
     },
     sort: "highest",
