@@ -25,7 +25,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
             height={600}
           />
           <FundingInfo fundingData={fundingData} />
-          <GaugeBar />
+          <GaugeBar rate={fundingData.funding.rate} />
         </>
       )}
     </section>

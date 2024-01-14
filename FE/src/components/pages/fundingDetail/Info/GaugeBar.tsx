@@ -1,14 +1,14 @@
 import GaugeBg from "./GaugeBg";
 import Girin from "./Girin";
 
-export default function GaugeBar() {
-  const height = 10;
+export default function GaugeBar({ rate }: Readonly<{ rate: number }>) {
+  const height = rate * 0.3;
   return (
     <section className="relative flex flex-col justify-end items-center pb-2">
-      <Girin height={height} />
+      <Girin height={height} rate={rate} />
       <div className="flex flex-col items-center relative">
         <div
-          className={`w-2 bg-main translate-y-2 h-${height} relative z-20`}
+          className={`w-2 bg-main translate-y-2 relative z-20`}
           style={{
             height: height + "rem",
           }}
