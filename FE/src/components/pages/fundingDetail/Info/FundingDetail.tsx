@@ -3,6 +3,7 @@
 import useFundingDetail from "@/hooks/useFundingDetail";
 import FundingInfo from "./FundingInfo";
 import Image from "next/image";
+import GaugeBar from "./GaugeBar";
 
 type Props = {
   fundingId: number;
@@ -12,7 +13,6 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
   const { data, isLoading, error } = useFundingDetail(fundingId);
   if (isLoading || !data) return <div>loading...</div>;
   const fundingData = data.response;
-  console.log(fundingData.funding.image);
 
   return (
     <section className="flex gap-6 font-nanum">
@@ -25,7 +25,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
             height={600}
           />
           <FundingInfo fundingData={fundingData} />
-          <div className="bg-main grow" />
+          <GaugeBar rate={fundingData.funding.rate} />
         </>
       )}
     </section>
