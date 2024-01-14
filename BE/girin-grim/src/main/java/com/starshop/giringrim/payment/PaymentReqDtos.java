@@ -4,6 +4,8 @@ import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.option.Option;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
@@ -12,6 +14,7 @@ import java.util.List;
 @Getter
 public class PaymentReqDtos {
     @Getter
+    @Builder
     public static class FundingPaymentDto{
         private Long memberId;
         private FundingType type;

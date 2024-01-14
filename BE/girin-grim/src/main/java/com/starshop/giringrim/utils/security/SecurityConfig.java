@@ -40,7 +40,6 @@ public class SecurityConfig {
 
     public class SecurityFilterManagerImpl extends AbstractHttpConfigurer<SecurityFilterManagerImpl, HttpSecurity> {
         public void configure(HttpSecurity builder) throws Exception {
-            System.out.println("로그로그로그");
             final AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
             builder.addFilter(new JwtAuthenticationFilter(authenticationManager, tokenGenerator))
              .addFilterBefore(new JwtExceptionFilter(), JwtAuthenticationFilter.class);
@@ -96,7 +95,7 @@ public class SecurityConfig {
                 .requestMatchers(new AntPathRequestMatcher("/api/charge","POST")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/charge","GET")).authenticated()
                 .requestMatchers(new AntPathRequestMatcher("/api/member/{userId}/backed","GET")).authenticated()
-                .requestMatchers(new AntPathRequestMatcher("/api/member/{userId}/backed/{fundingId}","POST")).authenticated()
+                .requestMatchers(new AntPathRequestMatcher("/api/member/{userId}/backed/{fundingId}","GET")).authenticated()
                 .anyRequest().permitAll()
                 );
 
