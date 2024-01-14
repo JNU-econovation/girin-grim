@@ -12,7 +12,7 @@ export type UserForm = {
   email: string;
   password: string;
   nickname: string;
-  university: { name: string }[];
+  favUniversity: { favUniversityId: number }[];
 };
 export type LoginUser = {
   email: string;

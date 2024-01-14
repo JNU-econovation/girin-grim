@@ -1,5 +1,5 @@
 "use client";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { Setting } from "../../common/icon";
 import { HomeState } from "@/store/HomeState";
 import { FavUniversity } from "@/Model/Feed";
@@ -9,7 +9,7 @@ type Props = {
   favUniversity: FavUniversity[];
 };
 
-export default function Univ({ favUniversity }: Props) {
+export default function Univ({ favUniversity }: Readonly<Props>) {
   const [home, setHome] = useRecoilState(HomeState);
   const isSelected = home.uni.univId !== 0;
   const univText = getUnivText(isSelected, favUniversity);

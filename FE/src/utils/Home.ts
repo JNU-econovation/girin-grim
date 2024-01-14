@@ -8,5 +8,6 @@ export const getUnivText = (
   isSelected: boolean,
   favUniversity: FavUniversity[]
 ) => {
+  !favUniversity && (favUniversity = []);
   return isSelected ? "" : favUniversity.map(({ name }) => name).join(", ");
 };

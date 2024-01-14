@@ -11,7 +11,12 @@ export default function LoginForm() {
   const loginForm = useRecoilValue(LoginState);
   const onsubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    await login(loginForm);
+    const data = await login(loginForm);
+    if (data.success) {
+      alert("로그인 성공");
+    } else {
+      alert(data.error.message);
+    }
   };
   return (
     <form className="mt-[2.68rem]" onSubmit={onsubmit}>

@@ -7,14 +7,17 @@ type Props = {
   type: "email" | "name";
 };
 
-export default function DuplicateCheckButton({ type }: Props) {
+export default function DuplicateCheckButton({ type }: Readonly<Props>) {
   const [form, setForm] = useRecoilState(joinState);
   const text = type === "email" ? "이메일" : "닉네임";
 
   //handler
   const checkIsOkToUse = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const { success } = await checkDuplicate(form.email);
+    const { success } = await checkDuplicate({
+      nickname: form.name,
+      email: form.email,
+    });
 
     if (success) {
       alert(`사용 가능한 ${text}입니다.`);

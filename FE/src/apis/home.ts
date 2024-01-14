@@ -11,7 +11,8 @@ export const getHomeFeed = async ({
   q,
 }: HomeFeedProps): Promise<TResponse<HomeFeed>> => {
   const data = await Server.get(homeURL, {
-    params: { category, sort, uni, q },
+    // params: { category, sort, uni, q },
+    params: { sort, uni, q },
   }).then((res) => res.data);
   return data;
 };

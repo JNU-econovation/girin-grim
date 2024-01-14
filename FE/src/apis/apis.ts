@@ -1,15 +1,20 @@
 import { joinURL, loginURL, headerMemberUrl } from "@/constants/urls";
 import { Server } from "./axios";
-import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
 import { UserFeed } from "@/Model/Feed";
 import { LoginUser, UserDetail, UserForm } from "@/Model/User";
 import { Backed } from "@/Model/Backed";
-import { TResponse } from "@/Model/Response";
+import { TPostResponse, TResponse } from "@/Model/Response";
+import { setToken } from "@/utils/authenticate";
 
-export const checkDuplicate = async (email: string) => {
-  const data = await Server.get(joinURL, { params: { email } }).then(
-    (res) => res.data
-  );
+export const checkDuplicate = async ({
+  email,
+  nickname,
+}: {
+  email: string;
+  nickname: string;
+}) => {
+  const params = email == "" ? { email } : { nickname };
+  const data = await Server.get(joinURL, { params }).then((res) => res.data);
   // .catch((error) => {
   //   if (error.response.status === 400) {
   //     // 요청이 잘못되었습니다.
@@ -23,37 +28,23 @@ export const checkDuplicate = async (email: string) => {
 };
 
 export const join = async (submitData: UserForm) => {
+  submitData.favUniversity.push({ favUniversityId: 1 });
   const data = Server.post(joinURL, submitData).then((res) => res.data.success);
   return data;
 };
 
-export const login = async (submitData: LoginUser) => {
+export const login = async (submitData: LoginUser): Promise<TPostResponse> => {
   //TODO: 에러 처리 추가하기
-  Server.post(loginURL, submitData)
+  return Server.post(loginURL, submitData)
     .then((res) => {
       const {
         response: { accessToken, refreshToken },
       } = res.data;
-      Server.defaults.headers.common["Authorization"] = accessToken; //TODO: Bearer 까지 받아오는지
-
-      localStorage.setItem("accessToken", accessToken); //TODO: 쿠키로 바꾸기
-
-      setTimeout(() => {
-        //accessToken 만료 1분전에 refrechToken 으로 재발급
-      }, TOKEN_EXPIRED_TIME - 6000);
-
-      return true;
+      setToken(accessToken, refreshToken);
+      return res.data;
     })
     .catch((error) => {
-      // if (error.response.status === 400) {
-      //   // 요청이 잘못되었습니다.
-      // }
-      // if (error.response.status === 401) {
-      //   // 비밀번호가 틀렸습니다.
-      // }
-      // if (error.response.status === 404) {
-      //   // 존재하지 않는 이메일입니다.
-      // }
+      return error.response.data;
     });
 };
 
