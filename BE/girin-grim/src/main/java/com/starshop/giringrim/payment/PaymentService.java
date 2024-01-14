@@ -206,6 +206,8 @@ public class PaymentService {
             member.fundingPayment(reqDto.getPrice());
             member.updateAddress(reqDto.getAddress());
 
+        }else{
+            throw new PaymentTypeNotExistException(ErrorMessage.PAYMENT_TYPE_NOT_EXIST);
         }
 
     }
