@@ -7,14 +7,11 @@ type Props = {
   url?: string | null;
 };
 
-export default function User({
-  size = "small",
-  url = defaultUerImageUrl,
-}: Readonly<Props>) {
+export default function User({ size = "small", url }: Readonly<Props>) {
   const px = HeroFormatSize(size);
   return (
     <Image
-      src={defaultUerImageUrl}
+      src={url ?? defaultUerImageUrl}
       width={px}
       height={px}
       alt="Logo"

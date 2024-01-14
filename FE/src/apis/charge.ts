@@ -13,17 +13,11 @@ export const getCharge = async (): Promise<TResponse<Coin>> => {
 };
 
 export const postCharge = async (coin: number): Promise<TPostResponse> => {
-  const data = await Server.post(
-    "/charge",
-    {
-      coin,
+  const body = { coin };
+  const data = await Server.post("/charge", body, {
+    headers: {
+      Authorization: localStorage.getItem("accessToken"),
     },
-    {
-      headers: {
-        Authorization: localStorage.getItem("accessToken"),
-      },
-    }
-  ).then((res) => res.data);
-  console.log(data);
+  }).then((res) => res.data);
   return data;
 };

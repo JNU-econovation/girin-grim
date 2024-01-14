@@ -3,7 +3,7 @@ import useCharge from "@/hooks/useCharge";
 import { Coin } from "../../common/icon";
 
 export default function BalanceDisplay({ total }: Readonly<{ total: number }>) {
-  const { data, error, isLoading } = useCharge();
+  const { data, isLoading } = useCharge();
   if (isLoading || !data) return <div>loading...</div>;
 
   const prevCoins = data.response.coin;

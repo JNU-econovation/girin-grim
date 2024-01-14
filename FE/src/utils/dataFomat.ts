@@ -23,3 +23,26 @@ export const formatOptionData = (
   });
   return optionData;
 };
+
+export const formatPledgeData = (paymentData: {
+  memberId: number;
+  type: "DONATE" | "GIFT";
+  options: FundingOptions[];
+  price: number;
+  address: string;
+}) => {
+  const { memberId, type, options, price, address } = paymentData;
+
+  const newOptions = options.map(({ optionId, quantity }) => ({
+    optionId,
+    quantity,
+  }));
+  const pledgeData = {
+    memberId,
+    type,
+    options: newOptions,
+    price,
+    address,
+  };
+  return pledgeData;
+};

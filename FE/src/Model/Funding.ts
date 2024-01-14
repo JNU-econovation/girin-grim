@@ -46,7 +46,7 @@ export type Pledge = {
 
 export type PledgeFunding = {
   fundingId: number;
-  type: "DONATE" | "GIFT";
+  fundingType: "DONATE" | "GIFT";
   title: string;
   image: string;
   university: string;
@@ -56,4 +56,13 @@ export type PledgeFunding = {
 export type FundingMember = {
   memberId: number;
   nickname: string;
+};
+
+export type BackedFunding = {
+  fundingId: number;
+  type: "DONATE" | "GIFT";
+  title: string;
+  image: string;
+  university: string;
+  dueDate: number;
 };

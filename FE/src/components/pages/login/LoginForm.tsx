@@ -6,17 +6,18 @@ import LoginBtn from "./LoginBtn";
 import { useRecoilValue } from "recoil";
 import { LoginState } from "@/store/LoginState";
 import { login } from "@/apis/member";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const loginForm = useRecoilValue(LoginState);
+  const route = useRouter();
   const onsubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = await login(loginForm);
     if (data.success) {
       alert("로그인 성공");
-    } else {
-      alert(data);
-    }
+      route.push("/");
+    } else alert(data);
   };
   return (
     <form className="mt-[2.68rem]" onSubmit={onsubmit}>

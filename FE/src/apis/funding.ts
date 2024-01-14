@@ -3,6 +3,7 @@ import { TPostResponse, TResponse } from "@/Model/Response";
 import { Server } from "./axios";
 import { fundingDetailURL } from "@/constants/urls";
 import { getToken } from "@/utils/authenticate";
+import { formatPledgeData } from "@/utils/dataFomat";
 
 export const getFundingDetail = async (
   fundingId: number
@@ -34,20 +35,25 @@ export const getPledge = async (
 };
 
 export const postPayment = async (
-  memberId: number,
-  type: "DONATE" | "GIFT",
-  option: FundingOptions[],
-  price: number,
-  fundingId: number
+  fundingId: number,
+  paymentData: {
+    memberId: number;
+    type: "DONATE" | "GIFT";
+    options: FundingOptions[];
+    price: number;
+    address: string;
+  }
 ): Promise<TPostResponse> => {
+  const { memberId, type, options, price, address } =
+    formatPledgeData(paymentData);
   const pledgeUrl = `/funding/${fundingId}/payment`;
   const body = {
     memberId,
     type,
-    option,
+    options,
     price,
+    address,
   };
-  console.log(body);
   const data = await Server.post(pledgeUrl, body, {
     headers: {
       Authorization: getToken(),
@@ -65,7 +71,7 @@ export const postFunding = async () => {
       university: 1, //각 대학의 id
       longDescription:
         "https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg", //대표 이미지로 대체
-      startTime: "2024-01-14T15:43:00",
+      startTime: "2024-01-14T18:15:00",
       endTime: "2024-02-16T00:00:00",
       estimatedStartTime: "2024-02-16T00:00:00", //예상 실행일- 상세정보에서 보여줘야하기때문에 필요함
       goalMoney: 100000,
@@ -124,7 +130,23 @@ export const postFunding = async () => {
       },
     ],
   };
-  const data = await Server.post("/funding", params, {
+  const donateParams = {
+    funding: {
+      //  "type": "DONATE",
+      title: "펀딩 제목1",
+      image: "https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg",
+      shortDescription: "짧은 설명!",
+      university: 1,
+      longDescription:
+        "https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg",
+      startTime: "2024-01-14T18:25:00",
+      endTime: "2024-01-15T22:36:00",
+      estimatedStartTime: "2024-10-15T22:36:00",
+      goalMoney: 100000,
+    },
+    option: [],
+  };
+  const data = await Server.post("/funding", donateParams, {
     headers: {
       Authorization: localStorage.getItem("accessToken"),
     },

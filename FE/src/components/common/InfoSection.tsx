@@ -1,12 +1,12 @@
 import Link from "next/link";
 import FundingInfoTag from "../pages/fundingDetail/Info/FundingInfoTag";
-import { FundingMember, PledgeFunding } from "@/Model/Funding";
+import { FundingMember, BackedFunding } from "@/Model/Funding";
 
 //member는 올란사람이다.
 export default function InfoSection({
   funding,
   member,
-}: Readonly<{ funding: PledgeFunding; member: FundingMember }>) {
+}: Readonly<{ funding: BackedFunding; member: FundingMember }>) {
   const { dueDate, fundingId, image, title, type, university } = funding;
   return (
     <Link href={`/funding/${fundingId}`} className="block my-8 bg-white">
