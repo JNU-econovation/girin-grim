@@ -77,7 +77,7 @@ public class MemberServiceImpl implements MemberService {
 
         if(nickname == null){
             Optional<Member> member = memberRepository.findByEmail(email);
-            if (member.isEmpty()) {
+            if (member.isPresent()) {
                 throw new EmailAlreadyExistException(ErrorMessage.EMAIL_ALREADY_EXIST);
             }
 
