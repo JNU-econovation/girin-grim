@@ -2,9 +2,9 @@ import GaugeBg from "./GaugeBg";
 import Girin from "./Girin";
 
 export default function GaugeBar() {
-  const height = 30;
+  const height = 10;
   return (
-    <section className="relative flex flex-col justify-center items-start">
+    <section className="relative flex flex-col justify-end items-center pb-2">
       <Girin height={height} />
       <div className="flex flex-col items-center relative">
         <div
