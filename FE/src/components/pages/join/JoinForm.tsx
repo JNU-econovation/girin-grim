@@ -16,7 +16,7 @@ export default function JoinForm() {
     email: data.email,
     password: data.password,
     nickname: data.name,
-    university: data.university,
+    favUniversity: data.favUniversity,
   };
 
   const submitJoinForm = async () => {

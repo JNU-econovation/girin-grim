@@ -17,6 +17,7 @@ export default function DuplicateCheckButton({ type }: Readonly<Props>) {
     const { success } = await checkDuplicate({
       nickname: form.name,
       email: form.email,
+      type,
     });
 
     if (success) {

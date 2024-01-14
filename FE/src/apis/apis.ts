@@ -1,34 +1,31 @@
 import { joinURL, loginURL, headerMemberUrl } from "@/constants/urls";
 import { Server } from "./axios";
 import { UserFeed } from "@/Model/Feed";
-import { LoginUser, UserDetail, UserForm } from "@/Model/User";
+import { LoginUser, UserDetail, UserForm } from "@/Model/user";
 import { Backed } from "@/Model/Backed";
 import { TPostResponse, TResponse } from "@/Model/Response";
 import { setToken } from "@/utils/authenticate";
+import { JoinPostResponseError } from "@/constants/responseData";
 
 export const checkDuplicate = async ({
   email,
   nickname,
+  type,
 }: {
   email: string;
   nickname: string;
+  type: "email" | "name";
 }) => {
-  const params = email == "" ? { email } : { nickname };
+  if (type === "email" && email.length === 0) return JoinPostResponseError;
+  if (type === "name" && nickname.length === 0) return JoinPostResponseError;
+
+  const params = type == "email" ? { email } : { nickname };
   const data = await Server.get(joinURL, { params }).then((res) => res.data);
-  // .catch((error) => {
-  //   if (error.response.status === 400) {
-  //     // 요청이 잘못되었습니다.
-  //   }
-  //   if (error.request.status === 423) {
-  //     // 중복
-  //     console.log("중복되었습니다!");
-  //   }
-  // });
   return data;
 };
 
 export const join = async (submitData: UserForm) => {
-  submitData.favUniversity.push({ favUniversityId: 1 });
+  // submitData.favUniversity.push({ favUniversityId: 1 });
   const data = Server.post(joinURL, submitData).then((res) => res.data.success);
   return data;
 };

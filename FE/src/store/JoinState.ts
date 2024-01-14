@@ -1,4 +1,4 @@
-import { Form } from "@/Model/User";
+import { Form } from "@/Model/user";
 import { atom } from "recoil";
 
 export const joinState = atom<Form>({
@@ -8,9 +8,9 @@ export const joinState = atom<Form>({
     password: "",
     passwordCheck: "",
     name: "",
-    university: [{ name: "전남대학교" }],
     agree: false,
     emailCheck: false,
     nameCheck: false,
+    favUniversity: [{ favUniversityId: 0 }],
   },
 });
