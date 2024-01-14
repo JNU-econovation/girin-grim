@@ -15,7 +15,7 @@ export default function LoginForm() {
     if (data.success) {
       alert("로그인 성공");
     } else {
-      alert(data.error.message);
+      alert(data);
     }
   };
   return (

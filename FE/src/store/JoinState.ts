@@ -11,6 +11,6 @@ export const joinState = atom<Form>({
     agree: false,
     emailCheck: false,
     nameCheck: false,
-    favUniversity: [{ favUniversityId: 0 }],
+    favUniversity: [{ favUniversityId: 1 }],
   },
 });

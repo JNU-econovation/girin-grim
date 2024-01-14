@@ -25,13 +25,12 @@ export const checkDuplicate = async ({
 };
 
 export const join = async (submitData: UserForm) => {
-  // submitData.favUniversity.push({ favUniversityId: 1 });
+  console.log(submitData);
   const data = Server.post(joinURL, submitData).then((res) => res.data.success);
   return data;
 };
 
 export const login = async (submitData: LoginUser): Promise<TPostResponse> => {
-  //TODO: 에러 처리 추가하기
   return Server.post(loginURL, submitData)
     .then((res) => {
       const {
@@ -41,7 +40,8 @@ export const login = async (submitData: LoginUser): Promise<TPostResponse> => {
       return res.data;
     })
     .catch((error) => {
-      return error.response.data;
+      console.log(error.message);
+      return error.message;
     });
 };
 
