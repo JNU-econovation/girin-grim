@@ -158,7 +158,7 @@ public class GlobalExceptionHandler{
         return ApiResponseGenerator.fail(ErrorMessage.UNAUTHORIZED_ERROR.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(UnAuthorizedException.class)
+    @ExceptionHandler(PaymentTypeNotExistException.class)
     public ApiResponse<ApiResponse.CustomBody> handleIllegalStateException(UnAuthorizedException e){
         return ApiResponseGenerator.fail(ErrorMessage.PAYMENT_TYPE_NOT_EXIST.getMessage(), HttpStatus.BAD_REQUEST);
     }
