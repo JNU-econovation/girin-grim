@@ -141,18 +141,41 @@ public class FundingServiceImpl implements FundingService {
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
         if(role.equals("anonymousUser")){
             isMine = false;
-            return new FundingRespDtos.GetFundingDto(isMine, null, memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+            return FundingRespDtos.GetFundingDto.builder()
+                    .isMine(isMine)
+                    .coin(null)
+                    .member(memberDto)
+                    .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
+                    .options(optionDTOs)
+                    .build();
+          //  return new FundingRespDtos.GetFundingDto(isMine, null, memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
         }
 
-        Optional<Member> member = memberRepository.findByEmail(userDetails.getEmail());
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
         //본인의 펀딩 글이 아닐 경우
         if(!Objects.equals(funding.getMember().getEmail(), userDetails.getEmail())){
             isMine = false;
-            return new FundingRespDtos.GetFundingDto(isMine, member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+            return FundingRespDtos.GetFundingDto.builder()
+                    .isMine(isMine)
+                    .coin(member.getCoin())
+                    .member(memberDto)
+                    .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
+                    .options(optionDTOs)
+                    .build();
+          //  return new FundingRespDtos.GetFundingDto(isMine, member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
         }
 
         //로그인을 한 사용자이고 본인의 펀딩 글이라면 isMine은 true
-        return new FundingRespDtos.GetFundingDto(isMine,member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+        return FundingRespDtos.GetFundingDto.builder()
+                .isMine(isMine)
+                .coin(member.getCoin())
+                .member(memberDto)
+                .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
+                .options(optionDTOs)
+                .build();
+       // return new FundingRespDtos.GetFundingDto(isMine,member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
 
     }
 

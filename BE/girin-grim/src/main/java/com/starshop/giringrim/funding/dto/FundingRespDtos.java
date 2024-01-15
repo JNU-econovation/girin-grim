@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @Getter
 public class FundingRespDtos {
 
+    @Builder
     @Getter
     public static class GetFundingDto {
 
