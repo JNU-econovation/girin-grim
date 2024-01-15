@@ -14,3 +14,8 @@ export const joinState = atom<Form>({
     favUniversity: [{ favUniversityId: 1 }],
   },
 });
+
+export const imageUrlState = atom<string>({
+  key: "imageUrlState",
+  default: "",
+});
