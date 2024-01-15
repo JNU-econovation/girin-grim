@@ -109,7 +109,7 @@ public class FundingServiceImpl implements FundingService {
         }
 
         //GIFT일 경우 goal money가 총 옵션의 가격까지만 입력 가능, 하지만 옵션 하나라도 quantity가 -1(무제한)일 경우 goal money 제한없음
-        if(!isUnlimited && maxGoalMoney.compareTo(uploadDto.getFunding().getGoalMoney()) < 0){
+        if(!isUnlimited && maxGoalMoney.compareTo(uploadDto.getFunding().getGoalMoney()) > 0){
             throw new FundingGoalMoneyException(ErrorMessage.FUNDING_GOAL_MONEY_UNAVAILABLE);
         }
     }
