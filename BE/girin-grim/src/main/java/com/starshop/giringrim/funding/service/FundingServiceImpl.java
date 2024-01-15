@@ -198,7 +198,6 @@ public class FundingServiceImpl implements FundingService {
     @Transactional(readOnly = true)
     public FundingRespDtos.HomeDto home(Integer page, Long universityId, String fundingType, String keyword, String method, UserDetailsImpl userDetails){
 
-
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
 
         //비로그인 유저일 경우
