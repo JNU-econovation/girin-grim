@@ -30,12 +30,9 @@ export default function JoinInput({
   const [value, setValue] = useRecoilState(joinState);
 
   const handleChagne = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (id === "email") {
-      setValue({ ...value, emailCheck: false });
-    }
-    if (id === "name") {
-      setValue({ ...value, nameCheck: false });
-    }
+    if (id === "email") setValue({ ...value, emailCheck: false });
+    if (id === "name") setValue({ ...value, nameCheck: false });
+
     setValue({ ...value, [id]: e.target.value });
   };
   return (
@@ -51,10 +48,10 @@ export default function JoinInput({
           id={id}
           type={type}
           placeholder={placeholder}
-          className={`w-full p-4 h-[3.75rem] rounded-[0.3rem] outline-none border-2 font-nanum text-input_title text-[0.87rem] ${
+          className={`w-full p-4 h-[3.75rem] rounded-[0.3rem] outline-none border-2 font-nanum text-input_title text-sm ${
             type == "button" ? "" : "pl-[3.12rem]"
           }`}
-          value={type == "button" ? "관심 학교 선택" : value[id]}
+          value={type == "button" ? "관심 학교 선택" : (value[id] as string)}
           onChange={handleChagne}
         />
         {exist && <div>{component}</div>}

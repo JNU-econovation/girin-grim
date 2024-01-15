@@ -8,6 +8,7 @@ import { join } from "@/apis/member";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../../common/AgreementCheckbox";
 import Link from "next/link";
+import UploadImage from "./UploadImage";
 
 export default function JoinForm() {
   const data = useRecoilValue(joinState);
@@ -46,6 +47,7 @@ export default function JoinForm() {
       }}
     >
       {formComponent.map((item) => {
+        if (item.id === "image") return <UploadImage key={item.id} />;
         return (
           <JoinInput
             id={item.id}

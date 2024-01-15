@@ -43,6 +43,19 @@ export const formComponent = [
     notice: "",
   },
   {
+    id: "image",
+    title: "",
+    placeholder: "",
+    pattern: "",
+    icon: <Password />,
+    button: {
+      exist: true,
+      component: <input type="file" />,
+    },
+    type: "password",
+    notice: "",
+  },
+  {
     id: "school",
     title: "School",
     placeholder: "관심 학교 선택",
