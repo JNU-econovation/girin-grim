@@ -202,7 +202,7 @@ public class FundingServiceImpl implements FundingService {
             //회원가입했을때 설정 대학들 없으므로 null
             List<Long> universityIds = null;
             //favUniversity 리스트는 비어있는 리스트로
-            List<FavUniversity> favUniversityList = List.of();
+            List<FavUniversity> favUniversityList = Collections.emptyList();
             FundingSearchCondition condition = new FundingSearchCondition(pageable, universityId, keyword, fundingType, method, universityIds);
             //펀딩 리스트 얻어오기
             List<FundingRespDtos.HomeDto.FundingDto> list = fundingRepositoryCustom.searchWithNonLogin(condition);
@@ -236,4 +236,5 @@ public class FundingServiceImpl implements FundingService {
 
         return new FundingRespDtos.HomeDto(favUniversityList, list);
     }
+
 }

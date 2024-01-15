@@ -31,13 +31,6 @@ public class FundingRespDtos {
         private FundingDto funding;
         private List<OptionsDTO> options;
 
-        public GetFundingDto(boolean isMine, BigDecimal coin, MemberDto member, FundingDto funding, List<OptionsDTO> optionList) {
-            this.isMine = isMine;
-            this.coin = coin;
-            this.member = member;
-            this.funding = funding;
-            this.options = optionList;
-        }
 
         @Getter
         public static class MemberDto{
@@ -50,6 +43,7 @@ public class FundingRespDtos {
             }
         }
 
+        @Builder
         @Getter
         public static class FundingDto{
             private Long fundingId;
@@ -65,25 +59,24 @@ public class FundingRespDtos {
             private BigDecimal curMoney;
             private BigDecimal goalMoney;
 
-            private FundingDto(Funding funding) {
-                this.fundingId = funding.getId();
-                this.type = funding.getFundingType();
-                this.title = funding.getTitle();
-                this.image = funding.getImage();
-                this.university = funding.getUniversity().getName();
-                this.shortDescription = funding.getShortDescription();
-                this.startTime = funding.getStartTime();
-                this.endTime = funding.getEndTime();
-                this.estimateStartTime = funding.getEstimatedStartTime();
-                this.rate = funding.increseRate();
-                this.curMoney = funding.getCurrentMoney();
-                this.goalMoney = funding.getGoalMoney();
-            }
-
             public static FundingDto of(Funding funding){
-                return new FundingDto(funding);
+                return FundingDto.builder()
+                        .fundingId(funding.getId())
+                        .type(funding.getFundingType())
+                        .title(funding.getTitle())
+                        .image(funding.getImage())
+                        .university(funding.getUniversity().getName())
+                        .shortDescription(funding.getShortDescription())
+                        .startTime(funding.getStartTime())
+                        .endTime(funding.getEndTime())
+                        .estimateStartTime(funding.getEstimatedStartTime())
+                        .rate(funding.increseRate())
+                        .curMoney(funding.getCurrentMoney())
+                        .goalMoney(funding.getGoalMoney())
+                        .build();
             }
         }
+
 
         @Getter
         public static class OptionsDTO {
@@ -93,6 +86,7 @@ public class FundingRespDtos {
             private Long quantity;
             private Boolean isPickup;
             private List<ItemDTO> items;
+
 
             public OptionsDTO(Option option, List<Item> itemList) {
                 this.optionId = option.getId();

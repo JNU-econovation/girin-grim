@@ -1,7 +1,7 @@
 package com.starshop.giringrim.funding.repository;
 
-import com.starshop.giringrim.DatabaseCleanup;
-import com.starshop.giringrim.TestQueryDslConfig;
+import com.starshop.giringrim.config.DatabaseCleanup;
+import com.starshop.giringrim.config.TestQueryDslConfig;
 import com.starshop.giringrim.funding.dto.FundingRespDtos;
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;

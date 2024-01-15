@@ -1,23 +1,17 @@
 package com.starshop.giringrim.payment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starshop.giringrim.TestConfig;
-import com.starshop.giringrim.funding.entity.Funding;
+import com.starshop.giringrim.config.TestConfig;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.funding.repository.FundingRepository;
-import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.member.repository.MemberRepository;
-import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -25,10 +19,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

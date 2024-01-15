@@ -1,7 +1,7 @@
 package com.starshop.giringrim.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starshop.giringrim.TestConfig;
+import com.starshop.giringrim.config.TestConfig;
 import com.starshop.giringrim.favUniversity.entity.FavUniversity;
 import com.starshop.giringrim.favUniversity.repository.FavUniversityRepository;
 import com.starshop.giringrim.member.dto.MemberReqDtos;

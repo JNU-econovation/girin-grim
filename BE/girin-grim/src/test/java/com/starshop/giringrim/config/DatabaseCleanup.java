@@ -1,4 +1,4 @@
-package com.starshop.giringrim;
+package com.starshop.giringrim.config;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
