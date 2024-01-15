@@ -1,6 +1,5 @@
 package com.starshop.giringrim.payment;
 
-import com.starshop.giringrim.funding.dto.FundingRespDtos;
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.funding.exception.FundingNotExistException;
@@ -93,7 +92,7 @@ public class PaymentService {
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
 
-        //TODO : 권한 없음
+        //후원자 아이디와 로그인 사용자 아이디가 다를 경우
         if(!Objects.equals(reqDto.getMemberId(), member.getId())){
             throw new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST);
         }
@@ -109,20 +108,6 @@ public class PaymentService {
         if(member.getId().equals(creator.getId())){
             throw new PaymentUnavailableException(ErrorMessage.PAYMENT_UNAVAILABLE);
         }
-
-        /*
-        //이미 결제했던 펀딩글이라면 예외
-        List<Payment> paymentList = paymentRepository.findByFundingId(funding.getId());
-
-        List<Long> memberIds = new ArrayList<>();
-        for (Payment payment : paymentList) {
-            Long memberId = payment.getMember().getId();
-            memberIds.add(memberId);
-        }
-        if(memberIds.contains(member.getId())){
-            throw new PaymentAlreadyDoneException(ErrorMessage.PAYMENT_ALREADY_DONE);
-        }
-         */
 
         if(paymentRepository.findByMemberIdFundingId(member.getId(), funding.getId()).isPresent()){
             throw new PaymentAlreadyDoneException(ErrorMessage.PAYMENT_ALREADY_DONE);
@@ -149,7 +134,7 @@ public class PaymentService {
                 );
 
                 //수량 부족 예외
-                if (quantity > option.getQuantity()) {
+                if (quantity > option.getQuantity() && option.getQuantity() != -1) {
                     throw new QuantityNotEnoughException(ErrorMessage.QUANTITY_NOT_ENOUGH);
                 }
                 //수량이 -1이면 무한대이므로 수량 감소 x , 아닐 경우 수량 감소
