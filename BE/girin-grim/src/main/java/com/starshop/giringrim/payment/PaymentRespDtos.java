@@ -1,8 +1,6 @@
 package com.starshop.giringrim.payment;
 
 
-import com.querydsl.core.annotations.QueryProjection;
-import com.starshop.giringrim.funding.dto.FundingRespDtos;
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;

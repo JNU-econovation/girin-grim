@@ -1,6 +1,6 @@
 package com.starshop.giringrim.payment.details;
 
-import com.starshop.giringrim.member.entity.Member;
+
 import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.payment.Payment;
 import com.starshop.giringrim.utils.BaseEntity;
@@ -29,7 +29,7 @@ public class PaymentDetails extends BaseEntity {
     private BigDecimal totalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "option_id", nullable = true)
+    @JoinColumn(name = "option_id", nullable = true) //기부형의 경우, 옵션이 없으므로
     private Option option;
 
     @ManyToOne(fetch = FetchType.LAZY)
