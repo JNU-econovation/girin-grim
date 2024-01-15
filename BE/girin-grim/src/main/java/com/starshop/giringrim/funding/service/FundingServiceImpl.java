@@ -35,6 +35,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -62,10 +63,10 @@ public class FundingServiceImpl implements FundingService {
                 () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
         );
 
-
         Instant instant = Instant.now();
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
         LocalDateTime ldt = zdt.toLocalDateTime();
+
         //펀딩 시작시간이 현재시간보다 빠를 경우
         if(uploadDto.getFunding().getStartTime().isBefore(ldt)){
             throw new FundingStartUnavailableException(ErrorMessage.FUNDING_START_DATE_UNAVAILABLE);
@@ -79,9 +80,7 @@ public class FundingServiceImpl implements FundingService {
             throw new FundingEstimateUnavailableException(ErrorMessage.FUNDING_ESTIMATE_DATE_UNAVAILABLE);
         }
 
-
-
-        //DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 프론트와 상의해서 요청으로 type 받지 않고 백에서 판단해서 처리
+        //DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 요청으로 type 받지 않고 백에서 판단해서 처리
         //옵션이 없다면 기부형이므로 펀딩 생성 후 반환
         if(uploadDto.getOptions() == null) {
             Funding funding = uploadDto.getFunding().toEntity(university, FundingType.DONATE, member);
@@ -110,7 +109,7 @@ public class FundingServiceImpl implements FundingService {
         }
 
         //GIFT일 경우 goal money가 총 옵션의 가격까지만 입력 가능, 하지만 옵션 하나라도 quantity가 -1(무제한)일 경우 goal money 제한없음
-        if(!isUnlimited && maxGoalMoney.compareTo(uploadDto.getFunding().getGoalMoney()) > 0){
+        if(!isUnlimited && maxGoalMoney.compareTo(uploadDto.getFunding().getGoalMoney()) < 0){
             throw new FundingGoalMoneyException(ErrorMessage.FUNDING_GOAL_MONEY_UNAVAILABLE);
         }
     }
@@ -119,7 +118,9 @@ public class FundingServiceImpl implements FundingService {
     @Transactional(readOnly = true)
     public FundingRespDtos.GetFundingDto getFunding(Long id, UserDetailsImpl userDetails) {
 
+        //본인이 작성한 펀딩인지?
         boolean isMine = true;
+
         //pathvariable로 받은 id로 펀딩 조회해오기
         Funding funding = fundingRepository.findById(id).orElseThrow(
                 () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)
@@ -128,13 +129,18 @@ public class FundingServiceImpl implements FundingService {
         List<Option> options = optionRepository.findAllByFundingId(funding.getId());
 
         //옵션 아이디로 아이템 조회해오기
-        List<FundingRespDtos.GetFundingDto.OptionsDTO> optionDTOs = new ArrayList<>();
-        for (Option option : options) {
-            List<Item> items = itemRepository.findAllByOptionId(option.getId());
-            optionDTOs.add(new FundingRespDtos.GetFundingDto.OptionsDTO(option, items));
-        }
+
+        List<Item> itemList = itemRepository.findAllByFundingId(funding.getId());
+
+        Map<Long, List<Item>> groupedItems = itemList.stream()
+                .collect(Collectors.groupingBy(item -> item.getOption().getId()));
+
+        List<FundingRespDtos.GetFundingDto.OptionsDTO> optionDTOs = options.stream()
+                .map(option -> new FundingRespDtos.GetFundingDto.OptionsDTO(option, groupedItems.get(option.getId())))
+                .toList();
 
         FundingRespDtos.GetFundingDto.MemberDto memberDto = new FundingRespDtos.GetFundingDto.MemberDto(funding.getMember());
+
 
         //로그인을 안 한 사용자, 본인의 펀딩 글이 아니라면 isMine은 false,
         //로그인을 안 한 사용자면 coin은 null
@@ -148,12 +154,13 @@ public class FundingServiceImpl implements FundingService {
                     .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
                     .options(optionDTOs)
                     .build();
-          //  return new FundingRespDtos.GetFundingDto(isMine, null, memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
         }
+
 
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
+
         //본인의 펀딩 글이 아닐 경우
         if(!Objects.equals(funding.getMember().getEmail(), userDetails.getEmail())){
             isMine = false;
@@ -164,8 +171,9 @@ public class FundingServiceImpl implements FundingService {
                     .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
                     .options(optionDTOs)
                     .build();
-          //  return new FundingRespDtos.GetFundingDto(isMine, member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
         }
+
+
 
         //로그인을 한 사용자이고 본인의 펀딩 글이라면 isMine은 true
         return FundingRespDtos.GetFundingDto.builder()
@@ -175,8 +183,6 @@ public class FundingServiceImpl implements FundingService {
                 .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
                 .options(optionDTOs)
                 .build();
-       // return new FundingRespDtos.GetFundingDto(isMine,member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
-
     }
 
     @Override

@@ -10,10 +10,10 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     List<Item> findAllByOptionId(Long id);
 
 
-    /*
-    @Query("select i from Item i join fetch i.option join fetch i.option.funding")
-    List<Item> findAllByFundingId();
+
+    @Query("select i from Item i join fetch i.option join fetch i.option.funding f where f.id = :fundingId")
+    List<Item> findAllByFundingId(Long fundingId);
     
-     */
+
 
 }
