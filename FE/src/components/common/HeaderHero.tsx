@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import UserImage from "../pages/layout/UserImage";
 import { User } from "./icon";
-import { CheckIsLoggedIn } from "@/utils/localData";
+import { CheckIsLoggedIn } from "@/utils/authenticate";
 
 export default function HeaderHero() {
   const size = "small";

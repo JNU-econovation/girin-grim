@@ -1,18 +1,17 @@
-import { Server } from "@/apis/axios";
 import { TOKEN_EXPIRED_TIME } from "@/constants/LoginData";
+import { getCookie, setCookie } from "./cookieUtil";
 
 export const setToken = (accessToken: string, refreshToken: string) => {
-  //TODO: 쿠키로 바꾸기
-
-  Server.defaults.headers.common["Authorization"] = accessToken;
-  console.log(Server.defaults.headers.common["Authorization"]);
-
-  localStorage.setItem("accessToken", accessToken);
+  setCookie("accessToken", accessToken, TOKEN_EXPIRED_TIME);
   setTimeout(() => {
-    //accessToken 만료 1분전에 refrechToken 으로 재발급
+    //TODO: accessToken 만료 1분전에 refrechToken 으로 재발급
   }, TOKEN_EXPIRED_TIME - 6000);
 };
 
-export const getToken = () => {
-  return localStorage.getItem("accessToken");
+export const getToken = () => getCookie("accessToken");
+
+/**로그인 되어있는지 boolean 형식으로 반환 */
+export const CheckIsLoggedIn = (): boolean => {
+  const data = getToken();
+  return data !== null;
 };
