@@ -2,7 +2,6 @@ package com.starshop.giringrim.member.entity;
 
 import com.starshop.giringrim.utils.BaseEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,8 +41,7 @@ public class Member extends BaseEntity {
 
 
     @Builder
-    public Member(Long id, String nickname, String email, String password){
-        this.id = id;
+    public Member(String nickname, String email, String password){
         this.nickname = nickname;
         this.email = email;
         this.password = password;
