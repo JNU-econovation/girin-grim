@@ -18,6 +18,9 @@ import java.util.List;
 
 import static com.starshop.giringrim.funding.entity.QFunding.funding;
 
+/*
+ * 대학교 아이디, 키워드, 카테고리, 정렬 기준으로 펀딩 글 리스트 조회
+ */
 @Repository
 @RequiredArgsConstructor
 public class FundingRepositoryCustom {
