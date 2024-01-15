@@ -1,4 +1,5 @@
 import { formatSuppotData } from "@/utils/dataFomat";
+import AddressComponents from "./AddressComponents";
 
 type Props = {
   supporter: {
@@ -26,7 +27,7 @@ export default function SuppotInfo({ supporter, type }: Readonly<Props>) {
                     <span key={char}>{char}</span>
                   ))}
                 </p>
-                <p>{value}</p>
+                <p>{value ? value : <AddressComponents />}</p>
               </li>
             );
           })}

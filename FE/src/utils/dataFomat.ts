@@ -1,4 +1,9 @@
-import { FundingOptions, SelectedOption } from "@/Model/Funding";
+import {
+  BackedFunding,
+  FundingOptions,
+  PledgeFunding,
+  SelectedOption,
+} from "@/Model/Funding";
 import { defaultSuppotInfoData } from "@/constants/Pledge";
 
 export const formatSuppotData = (address: string) => {
@@ -45,4 +50,10 @@ export const formatPledgeData = (paymentData: {
     address,
   };
   return pledgeData;
+};
+
+export const formatPledgeFundingToBack = (
+  input: PledgeFunding
+): BackedFunding => {
+  return { ...input, type: input.fundingType };
 };

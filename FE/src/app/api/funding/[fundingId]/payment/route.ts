@@ -14,7 +14,7 @@ export async function GET(request: Request) {
         },
         supporter: {
           coin: 500000,
-          address: "광주 용봉동", //없다면 null
+          address: null, //없다면 null
         },
       },
       error: null,
