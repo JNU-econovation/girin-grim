@@ -11,7 +11,6 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -86,6 +85,7 @@ public class FundingRespDtos {
             private Long quantity;
             private Boolean isPickup;
             private List<ItemDTO> items;
+
 
 
             public OptionsDTO(Option option, List<Item> itemList) {

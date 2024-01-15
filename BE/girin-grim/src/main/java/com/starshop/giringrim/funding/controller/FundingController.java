@@ -51,7 +51,7 @@ public class FundingController {
 
 
     /*
-    *   펀딩 아이디로 펀딩 긴 설명 조회
+    *   펀딩 아이디로 펀딩 긴 설명 조회 (사진)
      */
     @GetMapping("/funding/{id}/description")
     public ResponseEntity<?> getFundingDescription(@PathVariable Long id){
