@@ -1,13 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  console.log(request);
-  return NextResponse.redirect(new URL("/join", request.url));
-}
+  const cookie = request.cookies.get("accessToken")?.value;
 
-// See "Matching Paths" below to learn more
-export const config = {
-  matcher: "/login/asfasdf",
-};
+  if (request.nextUrl.pathname.startsWith("/login") && cookie)
+    return NextResponse.redirect(new URL("/", request.url));
+
+  if (request.nextUrl.pathname.startsWith("/join") && cookie)
+    return NextResponse.redirect(new URL("/", request.url));
+
+  if (request.nextUrl.pathname.startsWith("/funding/pledge") && !cookie)
+    return NextResponse.redirect(new URL("/login", request.url));
+
+  return NextResponse.next();
+}
