@@ -33,10 +33,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -180,10 +178,12 @@ public class FundingServiceImpl implements FundingService {
 
             //회원가입했을때 설정 대학들 없으므로 null
             List<Long> universityIds = null;
+            //favUniversity 리스트는 비어있는 리스트로
+            List<FavUniversity> favUniversityList = List.of();
             FundingSearchCondition condition = new FundingSearchCondition(pageable, universityId, keyword, fundingType, method, universityIds);
             //펀딩 리스트 얻어오기
             List<FundingRespDtos.HomeDto.FundingDto> list = fundingRepositoryCustom.searchWithNonLogin(condition);
-            return new FundingRespDtos.HomeDto(list);
+            return new FundingRespDtos.HomeDto(favUniversityList,list);
 
         }
 
