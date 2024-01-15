@@ -3,6 +3,7 @@ package com.starshop.giringrim.payment.details;
 import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.payment.Payment;
+import com.starshop.giringrim.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="paymentdetails_tb")
-public class PaymentDetails {
+public class PaymentDetails extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
