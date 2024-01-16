@@ -16,11 +16,11 @@ export default function Girin({
         alt=""
         width={112}
         height={140}
-        className={`z-30 -top-32 translate-x-1 scale-150`}
+        className={`z-30 -top-32 translate-x-1 translate-y-2 scale-110`}
       />
       <div className="absolute z-40 translate-x-24 -translate-y-14">
         <Bubble />
-        <span className="absolute translate-x-[1.4rem] -translate-y-7 text-white font-semibold">
+        <span className="absolute translate-x-10 -translate-y-9 text-white font-semibold">
           {rate}%
         </span>
       </div>
