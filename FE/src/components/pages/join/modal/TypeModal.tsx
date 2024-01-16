@@ -1,7 +1,7 @@
 import Select from "./Select";
 import Upload from "./Upload";
 
-export default function ImageModal({
+export default function TypeModal({
   close,
   id,
 }: Readonly<{ close: () => void; id: "image" | "school" }>) {

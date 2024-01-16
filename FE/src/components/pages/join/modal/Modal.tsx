@@ -1,4 +1,4 @@
-import ImageModal from "./ImageModal";
+import TypeModal from "./TypeModal";
 
 type Props = {
   close: () => void;
@@ -8,7 +8,7 @@ type Props = {
 export default function Modal({ close, id }: Readonly<Props>) {
   return (
     <section className="relative">
-      <ImageModal close={close} id={id} />
+      <TypeModal close={close} id={id} />
     </section>
   );
 }
