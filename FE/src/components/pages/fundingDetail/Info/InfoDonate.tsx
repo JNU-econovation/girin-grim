@@ -2,7 +2,7 @@
 import { TotalDonateState } from "@/store/FundingState";
 import { useRecoilState } from "recoil";
 
-export default function InfoDonate() {
+export default function InfoDonate({ isOnGoing }: { isOnGoing: boolean }) {
   const [cost, setCost] = useRecoilState(TotalDonateState);
   return (
     <input
@@ -11,6 +11,8 @@ export default function InfoDonate() {
       onChange={(e) => setCost(+e.target.value)}
       value={cost}
       placeholder="후원할 금액을 입력해주세요"
+      disabled={!isOnGoing}
+      min={1000}
     />
   );
 }

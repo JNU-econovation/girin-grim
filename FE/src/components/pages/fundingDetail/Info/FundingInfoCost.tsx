@@ -18,7 +18,7 @@ export default function FundingInfoCost({ coin, type }: Readonly<Props>) {
     <section className="w-full text-end">
       <p className="text-color999 font-semibold">My Coin : {coin} ( 충전 )</p>
       <p className="text-4xl font-extrabold flex justify-end gap-2 items-center">
-        <span className="opacity-70">{cost}</span>
+        <span className="opacity-70">{cost ? cost : 0}</span>
         <Coin size="md" />
       </p>
     </section>

@@ -40,11 +40,17 @@ export default function InfoOption({ options }: Readonly<Props>) {
         }}
       >
         <option value={0}>상품을 선택해주세요!</option>
-        {options.map((option) => (
-          <option key={option.optionId} value={option.optionId}>
-            {option.name}
-          </option>
-        ))}
+        {options.map((option) => {
+          return (
+            <option
+              key={option.optionId}
+              value={option.optionId}
+              disabled={option.quantity == 0}
+            >
+              {option.name} ({option.quantity}개 남음)
+            </option>
+          );
+        })}
       </select>
       {/* 1f1f1f도 없어서 일단 */}
       {/* grow 빠짐 */}

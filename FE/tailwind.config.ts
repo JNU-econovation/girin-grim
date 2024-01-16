@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       colors: {
         main: "#ff9a15",
+        main2: "#ffc619",
 
         textGrey: "#525252",
         input_title: "#717184",

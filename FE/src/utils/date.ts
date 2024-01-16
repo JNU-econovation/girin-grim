@@ -12,3 +12,14 @@ export const getDateData = (d: string) => {
 
   return { year, month, day, Dday };
 };
+
+export const checkIsOnGoing = (startTime: string, endTiem: string) => {
+  const now = Date.now();
+
+  const start = Date.parse(startTime);
+  const end = Date.parse(endTiem);
+
+  const isOnGoing = start < now && now < end;
+
+  return isOnGoing;
+};

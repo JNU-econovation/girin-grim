@@ -1,6 +1,5 @@
 "use client";
 import { Delete, File } from "@/components/common/icon";
-import { uploadFile } from "@/service/aws";
 import { imageFileState, imageUrlState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 

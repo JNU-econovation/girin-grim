@@ -7,11 +7,15 @@ import InfoHeader from "./InfoHeader";
 import InfoOption from "./InfoOption";
 import InfoDonate from "./InfoDonate";
 
+type Props = {
+  fundingData: FundingDetail;
+  isOnGoing: boolean;
+};
+
 export default function FundingInfo({
   fundingData,
-}: Readonly<{
-  fundingData: FundingDetail;
-}>) {
+  isOnGoing,
+}: Readonly<Props>) {
   const {
     coin,
     funding: {
@@ -27,7 +31,7 @@ export default function FundingInfo({
       title,
       type,
     },
-    isMine, //TODO: 여부에 따라 버튼 다르게 보여주기
+    isMine,
     member,
     options,
   } = fundingData;
@@ -44,9 +48,14 @@ export default function FundingInfo({
         rate={rate}
       />
       {type === "GIFT" && <InfoOption options={options} />}
-      {type === "DONATE" && <InfoDonate />}
+      {type === "DONATE" && <InfoDonate isOnGoing={isOnGoing} />}
       <FundingInfoCost coin={coin} type={type} />
-      <FundingDetailBtnSection fundingId={fundingId} type={type} />
+      <FundingDetailBtnSection
+        fundingId={fundingId}
+        type={type}
+        isMine={isMine}
+        isOnGoing={isOnGoing}
+      />
     </section>
   );
 }
