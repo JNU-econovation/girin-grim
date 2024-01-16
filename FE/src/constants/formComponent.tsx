@@ -2,7 +2,21 @@ import ToggleBtn from "@/components/pages/join/ToggleBtn";
 import DuplicateCheckButton from "../components/pages/join/DuplicateCheckButton";
 import { Email, Nick, Password, ISchool } from "../components/common/icon";
 
-export const formComponent = [
+type FormComponent = {
+  id: "email" | "password" | "passwordCheck" | "image" | "school" | "name";
+  title: string;
+  placeholder: string;
+  pattern: string | RegExp;
+  icon: React.ReactElement<any, any>;
+  button: {
+    exist: boolean;
+    component: React.ReactElement<any, any> | null;
+  };
+  type: string;
+  notice: string;
+}[];
+
+export const formComponent: FormComponent = [
   {
     id: "email",
     title: "Email",
@@ -52,7 +66,7 @@ export const formComponent = [
       exist: true,
       component: <input type="file" />,
     },
-    type: "password",
+    type: "image",
     notice: "",
   },
   {

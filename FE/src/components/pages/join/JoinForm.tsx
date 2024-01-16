@@ -3,29 +3,32 @@ import { formComponent } from "@/constants/formComponent";
 import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
 import { useRecoilValue } from "recoil";
-import { joinState } from "@/store/JoinState";
+import { favUniState, joinCheckState, joinState } from "@/store/JoinState";
 import { join } from "@/apis/member";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../../common/AgreementCheckbox";
 import Link from "next/link";
 import UploadImage from "./UploadImage";
+import JoinBtnInput from "./JoinBtnInput";
 
 export default function JoinForm() {
-  const data = useRecoilValue(joinState);
+  const { email, password, passwordCheck, name } = useRecoilValue(joinState);
+  const { emailCheck, nameCheck, agree } = useRecoilValue(joinCheckState);
+  const favUniversity = useRecoilValue(favUniState);
   const router = useRouter();
   const submitData = {
-    email: data.email,
-    password: data.password,
-    nickname: data.name,
-    favUniversity: data.favUniversity,
+    email: email,
+    password: password,
+    nickname: name,
+    favUniversity: favUniversity,
   };
 
   const submitJoinForm = async () => {
-    if (data.passwordCheck !== data.password) {
+    if (passwordCheck !== password) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
-    if (!data.emailCheck || !data.nameCheck || !data.agree) {
+    if (!emailCheck || !nameCheck || !agree) {
       alert("중복 확인 및 필수 동의사항을 동의해주세요!");
       return;
     }
@@ -48,6 +51,8 @@ export default function JoinForm() {
     >
       {formComponent.map((item) => {
         if (item.id === "image") return <UploadImage key={item.id} />;
+        if (item.id === "school")
+          return <JoinBtnInput key={item.id} {...item} />;
         return (
           <JoinInput
             id={item.id}
