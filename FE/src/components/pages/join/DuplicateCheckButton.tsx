@@ -1,14 +1,15 @@
 "use client";
 import { checkDuplicate } from "@/apis/member";
-import { joinState } from "@/store/JoinState";
-import { useRecoilState } from "recoil";
+import { joinCheckState, joinState } from "@/store/JoinState";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 type Props = {
   type: "email" | "name";
 };
 
 export default function DuplicateCheckButton({ type }: Readonly<Props>) {
-  const [form, setForm] = useRecoilState(joinState);
+  const form = useRecoilValue(joinState);
+  const [check, setCheck] = useRecoilState(joinCheckState);
   const text = type === "email" ? "이메일" : "닉네임";
 
   //handler
@@ -22,12 +23,12 @@ export default function DuplicateCheckButton({ type }: Readonly<Props>) {
 
     if (success) {
       alert(`사용 가능한 ${text}입니다.`);
-      if (type === "email") setForm({ ...form, emailCheck: true });
-      else setForm({ ...form, nameCheck: true });
+      if (type === "email") setCheck({ ...check, emailCheck: true });
+      else setCheck({ ...check, nameCheck: true });
     } else {
       alert(`중복된 ${text}입니다.`);
-      if (type === "email") setForm({ ...form, emailCheck: false });
-      else setForm({ ...form, nameCheck: false });
+      if (type === "email") setCheck({ ...check, emailCheck: false });
+      else setCheck({ ...check, nameCheck: false });
     }
   };
 

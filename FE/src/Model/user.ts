@@ -3,16 +3,12 @@ export type Form = {
   password: string;
   passwordCheck: string;
   name: string;
-  favUniversity: { favUniversityId: number }[];
-  agree: boolean;
-  emailCheck: boolean;
-  nameCheck: boolean;
 };
 export type UserForm = {
   email: string;
   password: string;
   nickname: string;
-  favUniversity: { favUniversityId: number }[];
+  favUniversity: FuvUniv[];
 };
 export type LoginUser = {
   email: string;
@@ -57,3 +53,10 @@ export type InfoConst =
       icon: null;
       array: true;
     };
+
+export type FuvUniv = { favUniversityId: number };
+export type JoinCheck = {
+  agree: boolean;
+  emailCheck: boolean;
+  nameCheck: boolean;
+};

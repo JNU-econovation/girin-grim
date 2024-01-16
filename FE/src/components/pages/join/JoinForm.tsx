@@ -2,34 +2,51 @@
 import { formComponent } from "@/constants/formComponent";
 import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
-import { useRecoilValue } from "recoil";
-import { joinState } from "@/store/JoinState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  favUniState,
+  imageFileState,
+  joinCheckState,
+  joinState,
+} from "@/store/JoinState";
 import { join } from "@/apis/member";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../../common/AgreementCheckbox";
 import Link from "next/link";
+import UploadImage from "./UploadImage";
+import JoinBtnInput from "./JoinBtnInput";
+import { uploadFile } from "@/service/aws";
 
 export default function JoinForm() {
-  const data = useRecoilValue(joinState);
+  const { email, password, passwordCheck, name } = useRecoilValue(joinState);
+  const { emailCheck, nameCheck, agree } = useRecoilValue(joinCheckState);
+  const favUniversity = useRecoilValue(favUniState);
   const router = useRouter();
   const submitData = {
-    email: data.email,
-    password: data.password,
-    nickname: data.name,
-    favUniversity: data.favUniversity,
+    email,
+    password,
+    nickname: name,
+    favUniversity: favUniversity,
   };
 
   const submitJoinForm = async () => {
-    if (data.passwordCheck !== data.password) {
+    if (passwordCheck !== password) {
       alert("비밀번호가 일치하지 않습니다.");
       return;
     }
-    if (!data.emailCheck || !data.nameCheck || !data.agree) {
+    if (!emailCheck || !nameCheck || !agree) {
       alert("중복 확인 및 필수 동의사항을 동의해주세요!");
       return;
     }
 
-    const { success, response, error } = await join(submitData); //TODO: 회원가입 여부 확인 및 오류 확인, 반환타입 정의
+    const file = useRecoilValue(imageFileState);
+    let url = process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
+    if (file) {
+      url = await uploadFile(file.name, file);
+      console.log(url);
+    }
+
+    const { success, response, error } = await join(submitData);
     if (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
       return;
@@ -46,6 +63,9 @@ export default function JoinForm() {
       }}
     >
       {formComponent.map((item) => {
+        if (item.id === "image") return <UploadImage key={item.id} />;
+        if (item.id === "school")
+          return <JoinBtnInput key={item.id} {...item} />;
         return (
           <JoinInput
             id={item.id}

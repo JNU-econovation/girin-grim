@@ -29,12 +29,6 @@ export const getLocalData = (): LocalData => {
   return JSON.parse(data!);
 };
 
-/**로그인 되어있는지 boolean 형식으로 반환 */
-export const CheckIsLoggedIn = (): boolean => {
-  const data = localStorage.getItem("accessToken");
-  return data !== null;
-};
-
 /** 로컬상에 memberId만 저장한다. option은 기존의 내용을 그대로 유지한다. */
 export const setMemberId = (memberId: number) => {
   initLocalData();
