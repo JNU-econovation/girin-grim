@@ -17,6 +17,11 @@ export const imageUrlState = atom<string>({
   default: "",
 });
 
+export const imageFileState = atom<File>({
+  key: "imageFileState",
+  default: new File([""], ""),
+});
+
 export const joinCheckState = atom<JoinCheck>({
   key: "joinCheckState",
   default: {

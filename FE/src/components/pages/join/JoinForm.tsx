@@ -2,14 +2,20 @@
 import { formComponent } from "@/constants/formComponent";
 import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
-import { useRecoilValue } from "recoil";
-import { favUniState, joinCheckState, joinState } from "@/store/JoinState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  favUniState,
+  imageFileState,
+  joinCheckState,
+  joinState,
+} from "@/store/JoinState";
 import { join } from "@/apis/member";
 import { useRouter } from "next/navigation";
 import AgreementCheckbox from "../../common/AgreementCheckbox";
 import Link from "next/link";
 import UploadImage from "./UploadImage";
 import JoinBtnInput from "./JoinBtnInput";
+import { uploadFile } from "@/service/aws";
 
 export default function JoinForm() {
   const { email, password, passwordCheck, name } = useRecoilValue(joinState);
@@ -17,8 +23,8 @@ export default function JoinForm() {
   const favUniversity = useRecoilValue(favUniState);
   const router = useRouter();
   const submitData = {
-    email: email,
-    password: password,
+    email,
+    password,
     nickname: name,
     favUniversity: favUniversity,
   };
@@ -33,7 +39,14 @@ export default function JoinForm() {
       return;
     }
 
-    const { success, response, error } = await join(submitData); //TODO: 회원가입 여부 확인 및 오류 확인, 반환타입 정의
+    const file = useRecoilValue(imageFileState);
+    let url = process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
+    if (file) {
+      url = await uploadFile(file.name, file);
+      console.log(url);
+    }
+
+    const { success, response, error } = await join(submitData);
     if (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
       return;

@@ -1,15 +1,17 @@
 "use client";
 import { Delete, File } from "@/components/common/icon";
-import { imageUrlState } from "@/store/JoinState";
+import { uploadFile } from "@/service/aws";
+import { imageFileState, imageUrlState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
 export default function Upload({ close }: Readonly<{ close: () => void }>) {
   const type = ["png", "jpg", "jpeg", "pdf"];
   const [_, setImageUrl] = useRecoilState(imageUrlState);
+  const [file, setFile] = useRecoilState(imageFileState);
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
+      setFile(e.target.files[0]);
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {

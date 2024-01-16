@@ -1,14 +1,14 @@
 "use client";
 import { checkDuplicate } from "@/apis/member";
 import { joinCheckState, joinState } from "@/store/JoinState";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 type Props = {
   type: "email" | "name";
 };
 
 export default function DuplicateCheckButton({ type }: Readonly<Props>) {
-  const [form, setForm] = useRecoilState(joinState);
+  const form = useRecoilValue(joinState);
   const [check, setCheck] = useRecoilState(joinCheckState);
   const text = type === "email" ? "이메일" : "닉네임";
 
