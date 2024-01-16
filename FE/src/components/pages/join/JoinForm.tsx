@@ -41,10 +41,7 @@ export default function JoinForm() {
 
     const file = useRecoilValue(imageFileState);
     let url = process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
-    if (file) {
-      url = await uploadFile(file.name, file);
-      console.log(url);
-    }
+    if (file) url = await uploadFile(file.name, file);
 
     const { success, response, error } = await join(submitData);
     if (error) {
