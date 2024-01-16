@@ -8,15 +8,20 @@ import { setDonateCost } from "@/utils/localData";
 
 type Props = {
   fundingId: number;
+  isMine: boolean;
   type: "DONATE" | "GIFT";
+  isOnGoing: boolean;
 };
 
 export default function FundingDetailBtnSection({
   fundingId,
   type,
+  isMine,
+  isOnGoing,
 }: Readonly<Props>) {
   const router = useRouter();
   const isDonate = type === "DONATE";
+  const text = isOnGoing ? "후원하기" : "후원 가능 기간이 아닙니다!";
   const cost = isDonate
     ? useRecoilValue(TotalDonateState)
     : useRecoilValue(TotalCostState);
@@ -28,7 +33,8 @@ export default function FundingDetailBtnSection({
         <Share />
       </button>
       <StyledBtn
-        text="후원하기"
+        text={text}
+        disable={isMine || !isOnGoing}
         handler={() => {
           if (!isOkToPledge) {
             type === "GIFT" && alert("옵션을 선택해주세요");

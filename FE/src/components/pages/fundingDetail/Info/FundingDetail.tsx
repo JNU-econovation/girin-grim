@@ -29,7 +29,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
             width={600}
             height={600}
           />
-          <FundingInfo fundingData={fundingData} />
+          <FundingInfo fundingData={fundingData} isOnGoing={isOnGoing} />
           <GaugeBar rate={fundingData.funding.rate} isOnGoing={isOnGoing} />
         </>
       )}
