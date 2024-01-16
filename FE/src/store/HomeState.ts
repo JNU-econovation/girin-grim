@@ -2,13 +2,15 @@ import { atom } from "recoil";
 
 export type HomeState = {
   q: string;
-  uni: {
-    univId?: number;
-    univName: string;
-  };
+  uni: HomeUni;
   sort: "highest" | "latest";
   category: "전체" | "기부형" | "수령형";
   page: number;
+};
+
+export type HomeUni = {
+  univId?: number;
+  univName: string;
 };
 
 /**

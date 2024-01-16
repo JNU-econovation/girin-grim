@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 
 export default function Upload({ close }: Readonly<{ close: () => void }>) {
   const type = ["png", "jpg", "jpeg", "pdf"];
-  const [imageUrl, setImageUrl] = useRecoilState(imageUrlState);
+  const [_, setImageUrl] = useRecoilState(imageUrlState);
 
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {

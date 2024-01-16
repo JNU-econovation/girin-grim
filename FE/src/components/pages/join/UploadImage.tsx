@@ -27,7 +27,7 @@ export default function UploadImage() {
       >
         <File />
       </button>
-      {modalOn && <Creator close={() => setModalOn(false)} />}
+      {modalOn && <Creator close={() => setModalOn(false)} id="image" />}
     </div>
   );
 }

@@ -1,13 +1,14 @@
-import Upload from "./Upload";
+import ImageModal from "./ImageModal";
 
-export default function Modal({ close }: Readonly<{ close: () => void }>) {
+type Props = {
+  close: () => void;
+  id: "school" | "image";
+};
+
+export default function Modal({ close, id }: Readonly<Props>) {
   return (
     <section className="relative">
-      <button
-        className="w-full h-full fixed bg-black opacity-30 top-0 left-0"
-        onClick={close}
-      />
-      <Upload close={close} />
+      <ImageModal close={close} id={id} />
     </section>
   );
 }
