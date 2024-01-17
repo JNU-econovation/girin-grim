@@ -100,6 +100,17 @@ public class Funding extends BaseEntity {
     public BigDecimal increseRate(){
         return currentMoney.divide(goalMoney, 2, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
     }
+
+    public void updateFunding(String title, String image, String shortDescription, BigDecimal goalMoney, LocalDateTime startTime, LocalDateTime endTime, LocalDateTime estimatedStartTime, University university){
+        this.title = title;
+        this.image = image;
+        this.shortDescription = shortDescription;
+        this.goalMoney = goalMoney;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.estimatedStartTime = estimatedStartTime;
+        this.university = university;
+    }
 }
 
 

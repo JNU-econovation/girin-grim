@@ -47,4 +47,11 @@ public class Option {
         this.quantity -= quantity;
     }
 
+    public void updateOptions(String name, BigDecimal price, Long quantity, Boolean isPickup){
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.isPickup = isPickup;
+    }
+
 }

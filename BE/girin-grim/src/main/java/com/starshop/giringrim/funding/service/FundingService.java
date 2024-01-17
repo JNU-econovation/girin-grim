@@ -24,6 +24,11 @@ public interface FundingService {
     FundingRespDtos.FundingDescriptionDto getFundingDescription(Long id);
 
     /*
+     *   펀딩 아이디값으로 펀딩 수정
+     */
+    void editFunding(FundingReqDtos.UploadDto uploadDto, Long fundingId);
+
+    /*
      *   홈 조회 메서드
      */
     FundingRespDtos.HomeDto home(Integer page, Long universityId, String fundingType, String keyword, String method, UserDetailsImpl userDetails);
