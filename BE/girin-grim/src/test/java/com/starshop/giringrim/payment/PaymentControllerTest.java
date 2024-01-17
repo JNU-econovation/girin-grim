@@ -124,6 +124,60 @@ class PaymentControllerTest extends TestConfig {
 
     }
 
+    @DisplayName("후원 내역 리스트 조회 테스트")
+    @WithUserDetails("hi@gmail.com")
+    @Test
+    void 후원내역_상세조회_리스트_테스트() throws Exception{
+
+        PaymentReqDtos.FundingPaymentDto reqDto1 = PaymentReqDtos.FundingPaymentDto.builder()
+                .memberId(2L)
+                .type(FundingType.DONATE)
+                .options(Arrays.asList())
+                .address("서울시 강남구")
+                .price(BigDecimal.valueOf(10000))
+                .build();
+
+        Long fundingId1 = 3L;
+
+        String requestBody1 = objectMapper.writeValueAsString(reqDto1);
+
+        //when
+        mockMvc.perform(
+                post("/api/funding/" + fundingId1 + "/payment")
+                        .content(requestBody1)
+                        .contentType(MediaType.APPLICATION_JSON));
+
+
+        PaymentReqDtos.FundingPaymentDto reqDto2 = PaymentReqDtos.FundingPaymentDto.builder()
+                .memberId(2L)
+                .type(FundingType.DONATE)
+                .options(Arrays.asList())
+                .address("서울시 강남구")
+                .price(BigDecimal.valueOf(10000))
+                .build();
+
+        Long fundingId2 = 4L;
+
+        String requestBody2 = objectMapper.writeValueAsString(reqDto2);
+
+        //when
+        mockMvc.perform(
+                post("/api/funding/" + fundingId2 + "/payment")
+                        .content(requestBody2)
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        //when
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/member/{userId}/backed", 2L)
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        String responseBody = new String(resultActions.andReturn().getResponse().getContentAsByteArray(), StandardCharsets.UTF_8);
+        System.out.println("테스트 " + responseBody);
+
+        resultActions.andExpect(jsonPath("$.success").value("true"));
+
+    }
+
 
 
 
