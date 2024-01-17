@@ -118,13 +118,14 @@ public class FundingServiceImpl implements FundingService {
     @Transactional(readOnly = true)
     public FundingRespDtos.GetFundingDto getFunding(Long id, UserDetailsImpl userDetails) {
 
-        //본인이 작성한 펀딩인지?
+        //본인이 작성한 펀딩인지
         boolean isMine = true;
 
         //pathvariable로 받은 id로 펀딩 조회해오기
-        Funding funding = fundingRepository.findById(id).orElseThrow(
+        Funding funding = fundingRepository.findFundingById(id).orElseThrow(
                 () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)
         );
+
         //펀딩 아이디로 옵션 조회해오기
         List<Option> options = optionRepository.findAllByFundingId(funding.getId());
 
@@ -155,7 +156,6 @@ public class FundingServiceImpl implements FundingService {
                     .options(optionDTOs)
                     .build();
         }
-
 
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
