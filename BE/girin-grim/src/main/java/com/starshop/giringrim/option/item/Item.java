@@ -29,5 +29,9 @@ public class Item {
         this.itemName = itemName;
         this.option = option;
     }
+
+    public void updateItem(String itemName){
+        this.itemName = itemName;
+    }
 }
 
