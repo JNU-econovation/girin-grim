@@ -152,15 +152,15 @@ public class PaymentRespDtos {
     }
 
     @Getter
-    public static class PaymentListDto{
+    public static class PaymentListDto {
         private List<FundingDto> funding;
 
-        public PaymentListDto(List<FundingDto> fundingDto){
+        public PaymentListDto(List<FundingDto> fundingDto) {
             this.funding = fundingDto;
         }
 
         @Getter
-        public static class FundingDto{
+        public static class FundingDto {
             private Long fundingId;
             private String title;
             private String image;
@@ -172,7 +172,7 @@ public class PaymentRespDtos {
             private StateDto state;
 
 
-            public FundingDto(Funding funding, Member member, StateDto state){
+            public FundingDto(Funding funding, Member member, StateDto state) {
                 this.fundingId = funding.getId();
                 this.title = funding.getTitle();
                 this.image = funding.getImage();
@@ -184,31 +184,87 @@ public class PaymentRespDtos {
                 this.state = state;
 
             }
+
             @Getter
-            private class MemberDto{
+            private class MemberDto {
                 private Long memberId;
                 private String nickname;
 
-                public MemberDto(Member member){
+                public MemberDto(Member member) {
                     this.memberId = member.getId();
                     this.nickname = member.getNickname();
                 }
             }
 
             @Getter
-            public static class StateDto{
+            public static class StateDto {
                 private Boolean isFinished;
                 private Boolean isSuccess;
 
-                public StateDto(Boolean isFinished, Boolean isSuccess){
+                public StateDto(Boolean isFinished, Boolean isSuccess) {
                     this.isFinished = isFinished;
                     this.isSuccess = isSuccess;
                 }
+            }
+        }
+    }
+
+
+    @Getter
+    public static class CreationListDto {
+        private List<FundingDto> funding;
+
+        public CreationListDto(List<FundingDto> fundingDto) {
+            this.funding = fundingDto;
         }
 
+        @Getter
+        public static class FundingDto {
+            private Long fundingId;
+            private String title;
+            private String image;
+            private String university;
+            private BigDecimal rate;
+            private String shortDescription;
+            private int dueDate;
+            private MemberDto member;
+            private StateDto state;
 
 
+            public FundingDto(Funding funding, Member member, StateDto state) {
+                this.fundingId = funding.getId();
+                this.title = funding.getTitle();
+                this.image = funding.getImage();
+                this.university = funding.getUniversity().getName();
+                this.rate = funding.increseRate();
+                this.shortDescription = funding.getShortDescription();
+                this.dueDate = funding.getDueDate();
+                this.member = new MemberDto(member);
+                this.state = state;
 
+            }
+
+            @Getter
+            private class MemberDto {
+                private Long memberId;
+                private String nickname;
+
+                public MemberDto(Member member) {
+                    this.memberId = member.getId();
+                    this.nickname = member.getNickname();
+                }
+            }
+
+            @Getter
+            public static class StateDto {
+                private Boolean isFinished;
+                private Boolean isSuccess;
+
+                public StateDto(Boolean isFinished, Boolean isSuccess) {
+                    this.isFinished = isFinished;
+                    this.isSuccess = isSuccess;
+                }
+            }
+        }
     }
-}
 }
