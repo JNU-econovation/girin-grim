@@ -90,10 +90,14 @@ public class MemberRespDtos {
     public static class HeaderInfoRespDto{
         private Long memberId;
         private String image;
+        private String email;
+        private String nickname;
 
         public HeaderInfoRespDto(Member member){
             this.memberId = member.getId();
             this.image = member.getImage();
+            this.email = member.getEmail();
+            this.nickname = member.getNickname();
         }
     }
 }

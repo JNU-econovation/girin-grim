@@ -1,5 +1,6 @@
 package com.starshop.giringrim.payment;
 
+import com.starshop.giringrim.funding.dto.FundingRespDtos;
 import com.starshop.giringrim.utils.common.ApiResponseGenerator;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
 import jakarta.validation.Valid;
@@ -67,8 +68,18 @@ public class PaymentController {
     *   후원한 프로젝트 리스트 조회
      */
     @GetMapping("/member/{memberId}/backed")
-    public ResponseEntity<?> fundingPayment(@PathVariable(value = "memberId") Long memberId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseEntity<?> fundingPaymentList(@PathVariable Long memberId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         PaymentRespDtos.PaymentListDto respDto = paymentService.fundingHistoryList(memberId, userDetails);
+        return ApiResponseGenerator.success(respDto, HttpStatus.OK);
+    }
+
+    /*
+     *   올린 펀딩 리스트 조회
+     */
+
+    @GetMapping("/member/{memberId}/created")
+    public ResponseEntity<?> fundingCreatedList(@PathVariable Long memberId){
+        PaymentRespDtos.CreationListDto respDto = paymentService.fundingCreationList(memberId);
         return ApiResponseGenerator.success(respDto, HttpStatus.OK);
     }
 }

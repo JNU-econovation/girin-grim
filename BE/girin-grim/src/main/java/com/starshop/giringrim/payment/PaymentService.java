@@ -249,7 +249,12 @@ public class PaymentService {
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentListDto fundingHistoryList(Long memberId, UserDetailsImpl userDetails){
         //로그인 사용자 정보 얻어오기
-        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+        Member loginedMember = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        //존재하지 않는 멤버 예외
+        Member member = memberRepository.findById(memberId).orElseThrow(
                 () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
         );
 
@@ -266,7 +271,7 @@ public class PaymentService {
         }
 
         //후원한 펀딩의 리스트
-        List<Funding> fundingList = fundingRepository.findFundingByIds(fundingIds);
+        List<Funding> fundingList = fundingRepository.findFundingsByIds(fundingIds);
 
         List<PaymentRespDtos.PaymentListDto.FundingDto> respDtoList = new ArrayList<>();
         Instant instant = Instant.now();
@@ -291,6 +296,41 @@ public class PaymentService {
 
         return new PaymentRespDtos.PaymentListDto(respDtoList);
     }
+
+    @Transactional(readOnly = true)
+    public PaymentRespDtos.CreationListDto fundingCreationList(Long memberId){
+        //조회하고자하는 사람의 아이디로 멤버 조회
+        Member member = memberRepository.findById(memberId).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
+        List<Funding> fundingList = fundingRepository.findFundingsByMemberId(member.getId());
+
+        List<PaymentRespDtos.CreationListDto.FundingDto> respDtoList = new ArrayList<>();
+        Instant instant = Instant.now();
+        ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
+        LocalDateTime ldt = zdt.toLocalDateTime();
+
+        //펀딩 종료 & 달성
+        for (Funding funding : fundingList) {
+            boolean isFinished = false;
+            boolean isSuccess = false;
+
+            if(funding.getEndTime().isAfter(ldt)){
+                isFinished = true;
+            }
+            if(funding.increseRate().compareTo(BigDecimal.valueOf(100)) >= 0){
+                isSuccess = true;
+            }
+            Member creator = funding.getMember();
+            respDtoList.add(new PaymentRespDtos.CreationListDto.FundingDto
+                    (funding, creator, new PaymentRespDtos.CreationListDto.FundingDto.StateDto(isFinished, isSuccess)));
+        }
+
+        return new PaymentRespDtos.CreationListDto(respDtoList);
+
+    }
+
 
 
 }
