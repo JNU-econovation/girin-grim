@@ -25,19 +25,19 @@ public class Funding extends BaseEntity {
     private Long id;
 
 
-    @Column(length = 255, nullable = false)
+    @Column(nullable = false)
     private String title;
 
-    @Column(length = 255)
+    @Column(nullable = false)
     private String image;
 
-    @Column(length = 255)
+    @Column(nullable = false)
     private String shortDescription;
 
-    @Column(length = 255)
+    @Column(nullable = false)
     private String longDescription;
 
-    @Column
+    @Column(nullable = false)
     private BigDecimal currentMoney;
 
     @Column(nullable = false)
@@ -51,9 +51,6 @@ public class Funding extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDateTime estimatedStartTime;
-
-    @Column(columnDefinition = "TEXT")
-    private String notice;
 
     @Enumerated(EnumType.STRING)
     private FundingType fundingType;
@@ -70,8 +67,7 @@ public class Funding extends BaseEntity {
 
 
     @Builder
-    public Funding(Long id, String title, String image, String shortDescription, String longDescription, BigDecimal currentMoney, BigDecimal goalMoney, LocalDateTime startTime, LocalDateTime endTime,LocalDateTime estimatedStartTime, String notice, FundingType fundingType, University university, Member member) {
-        this.id = id;
+    public Funding(String title, String image, String shortDescription, String longDescription, BigDecimal currentMoney, BigDecimal goalMoney, LocalDateTime startTime, LocalDateTime endTime,LocalDateTime estimatedStartTime, FundingType fundingType, University university, Member member) {
         this.title = title;
         this.image = image;
         this.shortDescription = shortDescription;
@@ -81,7 +77,6 @@ public class Funding extends BaseEntity {
         this.startTime = startTime;
         this.endTime = endTime;
         this.estimatedStartTime = estimatedStartTime;
-        this.notice = notice;
         this.fundingType = fundingType;
         this.university = university;
         this.member = member;

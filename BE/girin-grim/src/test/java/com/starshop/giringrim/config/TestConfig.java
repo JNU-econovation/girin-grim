@@ -1,14 +1,9 @@
-package com.starshop.giringrim;
+package com.starshop.giringrim.config;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 
 
 @ActiveProfiles("test")

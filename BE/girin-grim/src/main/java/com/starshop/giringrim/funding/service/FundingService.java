@@ -28,4 +28,5 @@ public interface FundingService {
      */
     FundingRespDtos.HomeDto home(Integer page, Long universityId, String fundingType, String keyword, String method, UserDetailsImpl userDetails);
 
+
 }

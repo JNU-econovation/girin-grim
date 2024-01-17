@@ -19,7 +19,7 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     /*
-    *   펀딩 결제 상세 조회
+    *   펀딩 결제 전 페에지 상세 조회
      */
     @GetMapping("/funding/{fundingId}/payment")
     public ResponseEntity<?> getPaymentDetails(@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails){

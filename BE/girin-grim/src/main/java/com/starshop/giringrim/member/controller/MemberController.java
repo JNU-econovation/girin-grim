@@ -1,11 +1,8 @@
 package com.starshop.giringrim.member.controller;
 
-import com.starshop.giringrim.funding.entity.Funding;
-import com.starshop.giringrim.funding.entity.FundingType;
+
 import com.starshop.giringrim.member.dto.MemberReqDtos;
 import com.starshop.giringrim.member.dto.MemberRespDtos;
-import com.starshop.giringrim.member.entity.Member;
-import com.starshop.giringrim.member.repository.MemberRepository;
 import com.starshop.giringrim.member.service.MemberServiceImpl;
 import com.starshop.giringrim.utils.common.ApiResponseGenerator;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
@@ -15,11 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -54,11 +46,6 @@ public class MemberController {
         MemberRespDtos.LoginRespDto loginRespDto = memberService.login(loginReqDto);
         return ApiResponseGenerator.success(loginRespDto, HttpStatus.OK);
     }
-
-    /*
-     * refreshToken으로 accessToken 재발급
-     */
-   // @PostMapping("/member/refresh")
 
     /*
      * 프로필 조회

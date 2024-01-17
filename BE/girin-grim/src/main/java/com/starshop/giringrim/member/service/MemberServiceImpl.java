@@ -123,16 +123,15 @@ public class MemberServiceImpl implements MemberService {
 
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
         //비로그인 유저일 경우
-        List<FavUniversity> emptyList = new ArrayList<>();
         if(role.equals("anonymousUser")){
             isMine = false;
-            return new MemberRespDtos.ProfileRespDto(member,emptyList ,isMine);
+            return new MemberRespDtos.ProfileRespDto(member,isMine);
         }
 
         //pathvariable로 받은 id와 로그인한 사용자의 id가 다른지 확인
         if(!member.getEmail().equals(userDetails.getEmail())){
             isMine = false;
-            return new MemberRespDtos.ProfileRespDto(member,emptyList, isMine);
+            return new MemberRespDtos.ProfileRespDto(member,isMine);
         }
 
         List<FavUniversity> favUniversityList = favUniversityRepository.findByMemberId(memberId);

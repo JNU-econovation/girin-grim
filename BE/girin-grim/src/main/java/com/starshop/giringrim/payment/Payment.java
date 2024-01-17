@@ -2,6 +2,7 @@ package com.starshop.giringrim.payment;
 
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.member.entity.Member;
+import com.starshop.giringrim.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="payment_tb")
-public class Payment {
+public class Payment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

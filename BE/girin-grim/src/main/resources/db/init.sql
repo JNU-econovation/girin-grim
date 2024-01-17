@@ -361,22 +361,22 @@ INSERT INTO university_tb (id, name, region) VALUES (360, '제주대학교', '�
 INSERT INTO university_tb (id, name, region) VALUES (361, '기린대학교', '광주');
 INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (100.0,'밍밍주','hello@gmail.com','저의 자기소개 입니다 내 이름은 민주','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
 INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (1000000.0,'건규','hi@gmail.com','저의 자기소개 입니다 내 이름은 건규','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (50000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 1, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목1', 'DONATE');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (100000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 1, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목2', 'DONATE');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (300, 100000, '2024-01-12 18:00:00', '2024-01-23 10:00:00', 1, '2024-01-11 09:00:00', 219, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목3', 'DONATE');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (200000000, 100000, '2024-01-20 18:00:00', '2024-01-26 10:00:00', 2, '2024-01-12 09:00:00', 219, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목4', 'DONATE');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (5000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목5', 'DONATE');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (5000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-15 09:00:00', 1, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목6', 'DONATE');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (13000, 1000000, '2024-01-30 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-12 09:00:00', 1, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목7', 'GIFT');
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, notice, short_description, title, funding_type)
-VALUES (0, 1000000, '2024-01-30 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-12 09:00:00', 3, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '공지사항입니다.', '간단한 설명입니다.', '펀딩 제목8', 'GIFT');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description,  short_description, title, funding_type)
+VALUES (50000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 1, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.',  '간단한 설명입니다.', '펀딩 제목1', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, short_description, title, funding_type)
+VALUES (100000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 1, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '간단한 설명입니다.', '펀딩 제목2', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description,  short_description, title, funding_type)
+VALUES (300, 100000, '2024-01-12 18:00:00', '2024-01-23 10:00:00', 1, '2024-01-11 09:00:00', 219, '이미지 URL', '펀딩에 대한 상세 설명입니다.',  '간단한 설명입니다.', '펀딩 제목3', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description,  short_description, title, funding_type)
+VALUES (0, 100000, '2024-01-20 18:00:00', '2024-01-26 10:00:00', 1, '2024-01-12 09:00:00', 219, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '간단한 설명입니다.', '펀딩 제목4', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description,  short_description, title, funding_type)
+VALUES (5000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-15 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.',  '간단한 설명입니다.', '펀딩 제목5', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, short_description, title, funding_type)
+VALUES (5000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-15 09:00:00', 1, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '간단한 설명입니다.', '펀딩 제목6', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description,  short_description, title, funding_type)
+VALUES (13000, 1000000, '2024-01-30 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-12 09:00:00', 1, '이미지 URL', '펀딩에 대한 상세 설명입니다.', '간단한 설명입니다.', '펀딩 제목7', 'GIFT');
+INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description,  short_description, title, funding_type)
+VALUES (0, 1000000, '2024-01-30 18:00:00', '2024-01-25 10:00:00', 2, '2024-01-12 09:00:00', 3, '이미지 URL', '펀딩에 대한 상세 설명입니다.',  '간단한 설명입니다.', '펀딩 제목8', 'GIFT');
 INSERT INTO option_tb(is_pickup, price, funding_id, quantity, name) VALUES (true,13000,7,5,'옵션1번');
 INSERT INTO option_tb(is_pickup, price, funding_id, quantity, name) VALUES (false,3000,7,10,'옵션2번');
 INSERT INTO option_tb(is_pickup, price, funding_id, quantity, name) VALUES (true,500,7,-1,'옵션3번');

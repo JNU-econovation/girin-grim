@@ -1,7 +1,7 @@
 package com.starshop.giringrim.member.entity;
 
+import com.starshop.giringrim.utils.BaseEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name="member_tb")
-public class Member {
+public class Member extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,11 +41,12 @@ public class Member {
 
 
     @Builder
-    public Member(Long id, String nickname, String email, String password){
-        this.id = id;
+    public Member(String nickname, String email, String password, String image, String aboutMe){
         this.nickname = nickname;
         this.email = email;
         this.password = password;
+        this.image = image;
+        this.aboutMe= aboutMe;
     }
 
     public void chargeCoins(BigDecimal coin){

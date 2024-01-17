@@ -23,10 +23,13 @@ public class University {
     @Column(nullable = false)
     private String region;
 
+
     @Builder
     public University(String name, String region){
         this.name = name;
         this.region = region;
     }
+
+
 }
 

@@ -1,4 +1,4 @@
-package com.starshop.giringrim;
+package com.starshop.giringrim.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.starshop.giringrim.funding.repository.FundingRepositoryCustom;

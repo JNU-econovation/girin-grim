@@ -23,8 +23,6 @@ public enum ErrorMessage {
         PASSWORD_NOT_MATCH("비밀번호가 일치하지 않습니다."),
         PARAMETER_COUNT_ERROR("파라미터가 2개 이상 요청되었습니다."),
 
-
-
         /*
         * University 도메인 에러 메세지
          */

@@ -1,13 +1,14 @@
 package com.starshop.giringrim.member.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.starshop.giringrim.TestConfig;
+import com.starshop.giringrim.config.TestConfig;
 import com.starshop.giringrim.favUniversity.entity.FavUniversity;
 import com.starshop.giringrim.favUniversity.repository.FavUniversityRepository;
 import com.starshop.giringrim.member.dto.MemberReqDtos;
 import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.member.repository.MemberRepository;
 import com.starshop.giringrim.member.service.MemberService;
+import com.starshop.giringrim.university.repository.UnivRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,9 @@ class MemberControllerTest extends TestConfig{
 
     @Autowired
     FavUniversityRepository favUniversityRepository;
+
+    @Autowired
+    UnivRepository univRepository;
 
 
     @Autowired
@@ -492,6 +496,40 @@ class MemberControllerTest extends TestConfig{
 
         resultActions.andExpect(jsonPath("$.success").value("false"));
         resultActions.andExpect(jsonPath("$.error.statusCode").value(401));
+
+    }
+
+    @DisplayName("대학 리스트 조회 테스트 (검색)")
+    @Test
+    void 대학_리스트_조회_테스트_이름() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/uni")
+                        .param("region", "광주")
+                        .param("q", "기린대학교")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        //then
+        String responseBody = new String(resultActions.andReturn().getResponse().getContentAsByteArray(), StandardCharsets.UTF_8);
+        System.out.println("테스트 " + responseBody);
+
+        resultActions.andExpect(jsonPath("$.success").value("true"));
+    }
+
+    @DisplayName("대학 리스트 조회 테스트 (지역)")
+    @Test
+    void 대학_리스트_조회_테스트_지역() throws Exception {
+
+        ResultActions resultActions = mockMvc.perform(
+                get("/api/uni")
+                        .param("region", "광주")
+                        .contentType(MediaType.APPLICATION_JSON));
+
+        //then
+        String responseBody = new String(resultActions.andReturn().getResponse().getContentAsByteArray(), StandardCharsets.UTF_8);
+        System.out.println("테스트 " + responseBody);
+
+        resultActions.andExpect(jsonPath("$.success").value("true"));
 
     }
 

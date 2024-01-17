@@ -8,14 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-
-    /*
-    @Query("select p from Payment p where p.funding.id = :fundingId")
-    List<Payment> findByFundingId(Long fundingId);
-
-     */
-
-
     @Query("select p from Payment p where p.funding.id = :fundingId and p.member.id = :memberId")
     Optional<Payment> findByMemberIdFundingId(@Param("memberId") Long memberId, @Param("fundingId") Long fundingId);
 

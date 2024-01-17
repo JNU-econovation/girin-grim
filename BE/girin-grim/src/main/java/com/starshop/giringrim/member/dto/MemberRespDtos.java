@@ -6,6 +6,7 @@ import com.starshop.giringrim.member.entity.Member;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 @Getter
@@ -32,13 +33,10 @@ public class MemberRespDtos {
             this.isMine = isMine;
         }
 
-     /*
         public ProfileRespDto(Member member, boolean isMine){
             this.member = new MemberDto(member);
             this.isMine = isMine;
         }
-
-      */
 
         @Getter
         public static class MemberDto{
@@ -72,6 +70,7 @@ public class MemberRespDtos {
                 this.aboutMe = member.getAboutMe();
                 this.address = null;
                 this.coin = null;
+                this.university= Collections.emptyList();
             }
 
             @Getter

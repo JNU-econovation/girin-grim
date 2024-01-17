@@ -33,10 +33,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -64,10 +63,10 @@ public class FundingServiceImpl implements FundingService {
                 () -> new UniversitySelectionException(ErrorMessage.SELECTED_WRONG_UNIVERSITY)
         );
 
-
         Instant instant = Instant.now();
         ZonedDateTime zdt = instant.atZone(ZoneId.systemDefault());
         LocalDateTime ldt = zdt.toLocalDateTime();
+
         //펀딩 시작시간이 현재시간보다 빠를 경우
         if(uploadDto.getFunding().getStartTime().isBefore(ldt)){
             throw new FundingStartUnavailableException(ErrorMessage.FUNDING_START_DATE_UNAVAILABLE);
@@ -81,9 +80,7 @@ public class FundingServiceImpl implements FundingService {
             throw new FundingEstimateUnavailableException(ErrorMessage.FUNDING_ESTIMATE_DATE_UNAVAILABLE);
         }
 
-
-
-        //DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 프론트와 상의해서 요청으로 type 받지 않고 백에서 판단해서 처리
+        //DONATE인데 옵션이 있거나 GIFT인데 옵션이 없으면 예외처리 - 요청으로 type 받지 않고 백에서 판단해서 처리
         //옵션이 없다면 기부형이므로 펀딩 생성 후 반환
         if(uploadDto.getOptions() == null) {
             Funding funding = uploadDto.getFunding().toEntity(university, FundingType.DONATE, member);
@@ -121,41 +118,71 @@ public class FundingServiceImpl implements FundingService {
     @Transactional(readOnly = true)
     public FundingRespDtos.GetFundingDto getFunding(Long id, UserDetailsImpl userDetails) {
 
+        //본인이 작성한 펀딩인지
         boolean isMine = true;
+
         //pathvariable로 받은 id로 펀딩 조회해오기
-        Funding funding = fundingRepository.findById(id).orElseThrow(
+        Funding funding = fundingRepository.findFundingById(id).orElseThrow(
                 () -> new FundingNotExistException(ErrorMessage.FUNDING_NOT_EXIST)
         );
+
         //펀딩 아이디로 옵션 조회해오기
         List<Option> options = optionRepository.findAllByFundingId(funding.getId());
 
         //옵션 아이디로 아이템 조회해오기
-        List<FundingRespDtos.GetFundingDto.OptionsDTO> optionDTOs = new ArrayList<>();
-        for (Option option : options) {
-            List<Item> items = itemRepository.findAllByOptionId(option.getId());
-            optionDTOs.add(new FundingRespDtos.GetFundingDto.OptionsDTO(option, items));
-        }
+
+        List<Item> itemList = itemRepository.findAllByFundingId(funding.getId());
+
+        Map<Long, List<Item>> groupedItems = itemList.stream()
+                .collect(Collectors.groupingBy(item -> item.getOption().getId()));
+
+        List<FundingRespDtos.GetFundingDto.OptionsDTO> optionDTOs = options.stream()
+                .map(option -> new FundingRespDtos.GetFundingDto.OptionsDTO(option, groupedItems.get(option.getId())))
+                .toList();
 
         FundingRespDtos.GetFundingDto.MemberDto memberDto = new FundingRespDtos.GetFundingDto.MemberDto(funding.getMember());
+
 
         //로그인을 안 한 사용자, 본인의 펀딩 글이 아니라면 isMine은 false,
         //로그인을 안 한 사용자면 coin은 null
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
         if(role.equals("anonymousUser")){
             isMine = false;
-            return new FundingRespDtos.GetFundingDto(isMine, null, memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+            return FundingRespDtos.GetFundingDto.builder()
+                    .isMine(isMine)
+                    .coin(null)
+                    .member(memberDto)
+                    .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
+                    .options(optionDTOs)
+                    .build();
         }
 
-        Optional<Member> member = memberRepository.findByEmail(userDetails.getEmail());
+        Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
+                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
+        );
+
         //본인의 펀딩 글이 아닐 경우
         if(!Objects.equals(funding.getMember().getEmail(), userDetails.getEmail())){
             isMine = false;
-            return new FundingRespDtos.GetFundingDto(isMine, member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
+            return FundingRespDtos.GetFundingDto.builder()
+                    .isMine(isMine)
+                    .coin(member.getCoin())
+                    .member(memberDto)
+                    .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
+                    .options(optionDTOs)
+                    .build();
         }
 
-        //로그인을 한 사용자이고 본인의 펀딩 글이라면 isMine은 true
-        return new FundingRespDtos.GetFundingDto(isMine,member.get().getCoin(), memberDto, FundingRespDtos.GetFundingDto.FundingDto.of(funding), optionDTOs);
 
+
+        //로그인을 한 사용자이고 본인의 펀딩 글이라면 isMine은 true
+        return FundingRespDtos.GetFundingDto.builder()
+                .isMine(isMine)
+                .coin(member.getCoin())
+                .member(memberDto)
+                .funding(FundingRespDtos.GetFundingDto.FundingDto.of(funding))
+                .options(optionDTOs)
+                .build();
     }
 
     @Override
@@ -171,7 +198,6 @@ public class FundingServiceImpl implements FundingService {
     @Transactional(readOnly = true)
     public FundingRespDtos.HomeDto home(Integer page, Long universityId, String fundingType, String keyword, String method, UserDetailsImpl userDetails){
 
-
         String role = SecurityContextHolder.getContext().getAuthentication().getName();
 
         //비로그인 유저일 경우
@@ -180,10 +206,12 @@ public class FundingServiceImpl implements FundingService {
 
             //회원가입했을때 설정 대학들 없으므로 null
             List<Long> universityIds = null;
+            //favUniversity 리스트는 비어있는 리스트로
+            List<FavUniversity> favUniversityList = Collections.emptyList();
             FundingSearchCondition condition = new FundingSearchCondition(pageable, universityId, keyword, fundingType, method, universityIds);
             //펀딩 리스트 얻어오기
             List<FundingRespDtos.HomeDto.FundingDto> list = fundingRepositoryCustom.searchWithNonLogin(condition);
-            return new FundingRespDtos.HomeDto(list);
+            return new FundingRespDtos.HomeDto(favUniversityList,list);
 
         }
 
@@ -213,4 +241,5 @@ public class FundingServiceImpl implements FundingService {
 
         return new FundingRespDtos.HomeDto(favUniversityList, list);
     }
+
 }
