@@ -35,6 +35,8 @@ public class MemberReqDtos {
 
         private List<FavUniversityDto> favUniversity;
 
+        private String image;
+
         @Getter
         @AllArgsConstructor
         @NoArgsConstructor
@@ -54,6 +56,8 @@ public class MemberReqDtos {
                     .nickname(nickname)
                     .email(email)
                     .password(encodedPassword)
+                    .image(image)
+                    .aboutMe("자기소개가 입력되지 않았습니다. ‘수정하기’ 버튼을 눌러 본인을 소개해보세요!")
                     .build();
         }
     }

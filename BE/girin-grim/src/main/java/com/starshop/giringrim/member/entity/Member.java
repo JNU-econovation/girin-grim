@@ -41,10 +41,12 @@ public class Member extends BaseEntity {
 
 
     @Builder
-    public Member(String nickname, String email, String password){
+    public Member(String nickname, String email, String password, String image, String aboutMe){
         this.nickname = nickname;
         this.email = email;
         this.password = password;
+        this.image = image;
+        this.aboutMe= aboutMe;
     }
 
     public void chargeCoins(BigDecimal coin){
