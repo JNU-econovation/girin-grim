@@ -16,7 +16,7 @@ export default function StyledBtn({
   return (
     <button
       disabled={disable}
-      className={`w-full h-[4.375rem] bg-main text-white font-nanum text-[1.5rem] tracking-[1.3px] rounded-[8px] ${style} ${
+      className={`w-full h-[4.375rem] bg-main text-white font-nanum text-[1.5rem] tracking-[1.3px] rounded-[8px] overflow-hidden ${style} ${
         disable ? "cursor-default" : "cursor-pointer"
       }"}`}
       style={{ opacity: disable ? 0.5 : 1 }}

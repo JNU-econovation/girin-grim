@@ -19,6 +19,7 @@ import { uploadFile } from "@/service/aws";
 
 export default function JoinForm() {
   const { email, password, passwordCheck, name } = useRecoilValue(joinState);
+  const file = useRecoilValue(imageFileState);
   const { emailCheck, nameCheck, agree } = useRecoilValue(joinCheckState);
   const favUniversity = useRecoilValue(favUniState);
   const router = useRouter();
@@ -27,6 +28,7 @@ export default function JoinForm() {
     password,
     nickname: name,
     favUniversity: favUniversity,
+    image: process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL,
   };
 
   const submitJoinForm = async () => {
@@ -39,9 +41,7 @@ export default function JoinForm() {
       return;
     }
 
-    const file = useRecoilValue(imageFileState);
-    let url = process.env.NEXT_PUBLIC_DEFAULT_IMAGE_URL;
-    if (file) url = await uploadFile(file.name, file);
+    if (file) submitData.image = await uploadFile(file.name, file);
 
     const { success, response, error } = await join(submitData);
     if (error) {

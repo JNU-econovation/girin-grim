@@ -20,14 +20,14 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
 
   return (
     <section
-      className="mt-24 relative z-50 flex flex-col items-center max-w-[20rem] w-full mx-auto"
+      className="mt-24 z-50 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
       id="infoSection"
     >
       <MemberHero url={image} />
-      <h1 className="text-[1.7rem] font-black mt-4 cursor-default">
+      <h1 className="text-[1.7rem] font-black mt-2 cursor-default">
         {nickname}
       </h1>
-      <span className="text-md text-[#696969] mt-1 mb-5">{email}</span>
+      <span className="text-md text-[#696969] mb-5">{email}</span>
       <div className="flex flex-col">
         {InfoData.map((data) => (
           <MemberInfoList

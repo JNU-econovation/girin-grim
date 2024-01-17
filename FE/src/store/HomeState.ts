@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-export type HomeState = {
+export type THomeState = {
   q: string;
   uni: HomeUni;
   sort: "highest" | "latest";
@@ -21,7 +21,7 @@ export type HomeUni = {
  * 4. category: 카테고리 : "전체" | "기부형" | "수령형". 서버 요청시 꼭 영어로 변경하기
  * 5. page: 페이지 : number
  */
-export const HomeState = atom<HomeState>({
+export const HomeState = atom<THomeState>({
   key: "HomeState",
   default: {
     q: "",
@@ -33,4 +33,9 @@ export const HomeState = atom<HomeState>({
     category: "전체",
     page: 0,
   },
+});
+
+export const HomeUniSelectedState = atom({
+  key: "HomeUniSelectedState",
+  default: false,
 });

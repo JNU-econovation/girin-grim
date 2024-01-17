@@ -14,7 +14,7 @@ export default function AddressComponents() {
         <p>{address}</p>
         <button
           onClick={onClick}
-          className="px-2 py-1 bg-slate-300 rounded-lg text-sm font-semibold shrink-0 my-auto"
+          className="px-2 py-1 bg-color999 rounded-lg text-sm font-md shrink-0 my-auto text-white"
         >
           수정
         </button>
@@ -26,11 +26,11 @@ export default function AddressComponents() {
         type="text"
         value={address}
         onChange={(e) => setAddress(e.target.value)}
-        className="border-2 rounded-md px-3 py-1 text-sm"
+        className="border-2 rounded-md px-3 py-1 text-sm outline-none"
       />
       <button
         onClick={onClick}
-        className="px-2 bg-slate-300 rounded-lg ml-4 py-1 text-sm font-semibold"
+        className="px-2 bg-color999 rounded-lg ml-4 py-1 text-sm font-medium text-white"
       >
         입력
       </button>

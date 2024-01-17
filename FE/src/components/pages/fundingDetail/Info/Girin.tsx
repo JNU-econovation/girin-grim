@@ -18,7 +18,7 @@ export default function Girin({
         height={140}
         className={`z-30 -top-32 translate-x-1 translate-y-2 scale-110`}
       />
-      <div className="absolute z-40 translate-x-24 -translate-y-14">
+      <div className="absolute z-40 translate-x-[7.5rem] -translate-y-[4.5rem]">
         <Bubble />
         <span className="absolute translate-x-10 -translate-y-9 text-white font-semibold">
           {rate}%

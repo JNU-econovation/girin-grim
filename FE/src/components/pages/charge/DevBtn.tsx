@@ -6,7 +6,7 @@ type Props = {
 export default function DevBtn({ setSelected, selected }: Props) {
   return (
     <button
-      className="w-full h-28 mt-5 text-xl font-bold bg-slate-200 border-2 rounded-md cursor-default shadow-sm"
+      className="w-full h-28 mt-5 text-xl font-bold bg-slate-200 border-2 rounded-md cursor-default shadow-sm text-[#d94d4d]"
       onClick={() => setSelected()}
       style={{
         borderColor: 0 == selected ? "#FFD600" : "#E4E4E4",

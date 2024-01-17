@@ -9,7 +9,7 @@ export default function HeaderForm() {
   const [homme, setHomme] = useRecoilState(HomeState);
   return (
     <form
-      className="flex items-center relative"
+      className="flex items-center relative -translate-y-2 "
       onSubmit={(e) => {
         e.preventDefault();
         setHomme({ ...homme, q: text });
@@ -17,7 +17,7 @@ export default function HeaderForm() {
     >
       <input
         type="text"
-        className="bg-input_bg w-[165px] h-[36px] rounded-xl"
+        className="bg-input_bg w-44 h-[36px] rounded-xl"
         value={text}
         onChange={(e) => setText(e.target.value)}
       />

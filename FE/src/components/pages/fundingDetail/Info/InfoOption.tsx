@@ -23,7 +23,7 @@ export default function InfoOption({ options }: Readonly<Props>) {
   return (
     <>
       <select
-        className="border mt-2 mb-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
+        className="border-2 mt-2 mb-3 py-4 px-4 rounded-md outline-none text-color999 font-nanum"
         onChange={(e) => {
           const value = +e.target.value;
           if (!value) return;

@@ -39,7 +39,7 @@ export default function PaymentBtn({
   };
 
   return (
-    <div className="mt-6">
+    <div className="mt-4">
       <StyledBtn text={text} handler={() => onClick()} />
     </div>
   );
