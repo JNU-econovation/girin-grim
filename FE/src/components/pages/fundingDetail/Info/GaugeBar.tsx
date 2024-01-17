@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function GaugeBar({ rate, isOnGoing }: Readonly<Props>) {
-  const height = rate * 0.26;
+  const height = rate * 0.29;
   return (
     <section className="relative flex flex-col justify-end items-center pb-2">
       <Girin height={height} rate={rate} />
