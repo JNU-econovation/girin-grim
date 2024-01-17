@@ -8,7 +8,6 @@ import { formatPledgeData } from "@/utils/dataFomat";
 export const getFundingDetail = async (
   fundingId: number
 ): Promise<TResponse<FundingDetail>> => {
-  //TODO: 반환 타입 지정하기
   const data = Server.get(fundingDetailURL + fundingId).then((res) => res.data);
   return data;
 };

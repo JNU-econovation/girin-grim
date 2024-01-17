@@ -20,7 +20,7 @@ export default function InfoOptionDetail({
   deleteOption,
   setAmount,
 }: Readonly<Props>) {
-  const { price, name, items, optionId, quantity, amount } = selected;
+  const { price, name, items, optionId, quantity, amount, isPickup } = selected;
   const isClicked = optionId === clicked;
   return (
     <li
@@ -77,9 +77,16 @@ export default function InfoOptionDetail({
         </div>
         {isClicked && (
           <ul className="max-h-20 overflow-y-auto w-full">
-            {items.map((item) => (
-              <li key={item.itemId}> - {item.name}</li>
-            ))}
+            {items.map((item, index) => {
+              if (isPickup && index == 0)
+                return (
+                  <li key={item.itemId} className="text-[#d94d4d]">
+                    {" "}
+                    - {item.name}
+                  </li>
+                );
+              return <li key={item.itemId}> - {item.name}</li>;
+            })}
           </ul>
         )}
       </div>
