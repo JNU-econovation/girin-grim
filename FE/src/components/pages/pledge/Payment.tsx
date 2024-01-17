@@ -22,7 +22,7 @@ export default function Payment({ type, fundingId, address }: Readonly<Props>) {
         )}
         <Total type={type} />
       </div>
-      <hr className="border-color999 border-2 mt-5" />
+      <hr className="border-colorb9b border mt-5" />
       <Agreement />
       <PaymentBtn type={type} fundingId={fundingId} address={address} />
     </div>

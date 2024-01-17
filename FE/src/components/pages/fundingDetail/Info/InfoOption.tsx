@@ -23,31 +23,29 @@ export default function InfoOption({ options }: Readonly<Props>) {
   return (
     <>
       <select
-        className="border mt-2 mb-3 py-4 px-4 rounded-md outline-none text-colorb9b font-nanum"
+        className="border-2 mt-2 mb-3 py-4 px-4 rounded-md outline-none text-color999 font-nanum"
         onChange={(e) => {
           const value = +e.target.value;
           if (!value) return;
           const selectedOption = {
-            ...options.find((option) => option.optionId === value)!,
+            ...options.find(({ optionId }) => optionId === value)!,
             amount: 1,
           };
           if (
             selectedOption &&
-            !selected.find((item) => item.optionId === selectedOption.optionId)
+            !selected.find(
+              ({ optionId }) => optionId === selectedOption.optionId
+            )
           ) {
             setSelected([...selected, selectedOption]);
           }
         }}
       >
         <option value={0}>상품을 선택해주세요!</option>
-        {options.map((option) => {
+        {options.map(({ name, optionId, quantity }) => {
           return (
-            <option
-              key={option.optionId}
-              value={option.optionId}
-              disabled={option.quantity == 0}
-            >
-              {option.name} ({option.quantity}개 남음)
+            <option key={optionId} value={optionId} disabled={quantity == 0}>
+              {name} ({quantity === -1 ? "제한 없음" : quantity + "개 남음"})
             </option>
           );
         })}

@@ -19,8 +19,8 @@ export default function HeaderNavSection() {
     <section className="flex justify-between items-center mt-[0.8rem] font-nanum">
       <ul className="flex gap-6 font-semibold text-xl mb-3 items-center cursor-pointer">
         <li
-          className={`flex items-center gap-[2.4rem] relative ${
-            hover.category ? "" : "text-colorb0b"
+          className={`flex items-center gap-[2rem] relative ${
+            hover.category ? "text-[#3d3d3d]" : "text-colorb0b"
           } `}
           onMouseEnter={() => {
             setCategory(true);
@@ -36,7 +36,9 @@ export default function HeaderNavSection() {
           {category && <Category />}
         </li>
         <li
-          className={`${hover.univ ? "" : "text-colorb0b"} relative`}
+          className={`${
+            hover.univ ? "text-[#3d3d3d]" : "text-colorb0b"
+          } relative`}
           onMouseEnter={() => {
             setUniv(true);
             setHover({ category: false, univ: true });

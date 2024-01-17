@@ -7,7 +7,7 @@ export default function Layer() {
       width={40}
       height={46}
       alt="category"
-      className="translate-y-[3.2px]"
+      className="translate-y-[0.3rem]"
     ></Image>
   );
 }

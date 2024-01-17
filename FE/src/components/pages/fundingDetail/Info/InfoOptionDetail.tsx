@@ -44,7 +44,8 @@ export default function InfoOptionDetail({
       <div className="w-full">
         <div className="w-full flex justify-between">
           <p>
-            {name} ({quantity} 남음)
+            {name}
+            {/* ({quantity === -1 ? "제한 없음" : quantity + "개 남음"}) */}
           </p>
           <div className="flex gap-4">
             <p className="text-color9f9">{price}</p>

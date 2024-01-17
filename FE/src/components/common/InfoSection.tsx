@@ -10,7 +10,7 @@ export default function InfoSection({
   const { dueDate, fundingId, image, title, type, university } = funding;
   return (
     <Link href={`/funding/${fundingId}`} className="block my-8 bg-white">
-      <div className="h-full max-w-7xl mx-auto border-[0.15rem] border-colorb9b flex gap-8 items-center py-4 px-6 rounded-[0.31rem]">
+      <div className="h-full max-w-7xl mx-auto border-[0.15rem] border-colore7e flex gap-8 items-center py-4 px-6 rounded-[0.31rem]">
         <div
           style={{
             backgroundImage: `url(${image})`,

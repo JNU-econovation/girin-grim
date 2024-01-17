@@ -13,7 +13,7 @@ export default function Rectangle() {
       />
       <path
         d="M13 29.5H519"
-        stroke="#B9B9B9"
+        stroke="#D9D9D9"
         stroke-width="2"
         stroke-linecap="round"
         stroke-dasharray="20 10"

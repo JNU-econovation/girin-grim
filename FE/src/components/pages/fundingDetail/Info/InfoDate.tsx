@@ -34,13 +34,12 @@ export default function InfoDate({
   } = getDateData(estimateStartTime);
   return (
     <>
-      <div className="flex justify-between mt-10">
+      <div className="flex justify-between mt-2">
         <p className="">
           모인 금액 / 목표 금액 | {` ${curMoney} / ${goalMoney}원`}
         </p>
         <p className="text-main font-bold font-esaman">{rate}%</p>
       </div>
-      {/* 7171이 없어서  */}
       <div className="flex justify-between text-color999 my-1">
         <p className="">
           펀딩 기간 |{" "}
