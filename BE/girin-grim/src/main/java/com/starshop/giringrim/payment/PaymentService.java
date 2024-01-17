@@ -266,7 +266,7 @@ public class PaymentService {
         }
 
         //후원한 펀딩의 리스트
-        List<Funding> fundingList = fundingRepository.findAllById(fundingIds);
+        List<Funding> fundingList = fundingRepository.findFundingByIds(fundingIds);
 
         List<PaymentRespDtos.PaymentListDto.FundingDto> respDtoList = new ArrayList<>();
         Instant instant = Instant.now();
@@ -285,7 +285,8 @@ public class PaymentService {
                 isSuccess = true;
             }
             Member creator = funding.getMember();
-            respDtoList.add(new PaymentRespDtos.PaymentListDto.FundingDto(funding, creator, new PaymentRespDtos.PaymentListDto.FundingDto.StateDto(isFinished, isSuccess)));
+            respDtoList.add(new PaymentRespDtos.PaymentListDto.FundingDto
+                    (funding, creator, new PaymentRespDtos.PaymentListDto.FundingDto.StateDto(isFinished, isSuccess)));
         }
 
         return new PaymentRespDtos.PaymentListDto(respDtoList);
