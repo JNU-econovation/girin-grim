@@ -14,7 +14,10 @@ const makeInfoData = (memberData: UserDetailMemberInfo, data: InfoConst[]) => {
     const title = titleArr[i];
     const icon = iconArr[i];
     const array = arrayArr[i];
-    const content = memberData[index as keyof UserDetailMemberInfo];
+    const content =
+      index == "email"
+        ? "010-1234-2345"
+        : memberData[index as keyof UserDetailMemberInfo];
     if (content === null) continue;
 
     const item = {

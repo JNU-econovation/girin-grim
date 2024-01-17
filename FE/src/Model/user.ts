@@ -36,22 +36,14 @@ export type UserDetailMemberInfo = {
 
 export type InfoConst =
   | {
-      title: "크레파스";
-      content: string;
-      icon: JSX.Element;
-      array: false;
-    }
-  | {
-      title: "자기소개" | "연락처" | "주소";
-      content: string;
-      icon: null;
-      array: false;
-    }
-  | {
       title: "관심대학";
       content: { universityId: number; name: string }[];
       icon: null;
-      array: true;
+    }
+  | {
+      title: "크레파스" | "자기소개" | "연락처" | "주소";
+      content: string;
+      icon: JSX.Element | null;
     };
 
 export type FuvUniv = { favUniversityId: number };
