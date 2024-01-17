@@ -1,7 +1,4 @@
-import dynamic from "next/dynamic";
-const HeaderLogoSection = dynamic(() => import("./HeaderLogoSection"), {
-  ssr: true,
-});
+import HeaderLogoSection from "./HeaderLogoSection";
 import HeaderNavSection from "./HeaderNavSection";
 
 export default function Header() {

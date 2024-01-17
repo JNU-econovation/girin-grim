@@ -15,8 +15,8 @@ export default function LoginForm() {
     e.preventDefault();
     const data = await login(loginForm);
     if (data.success) {
-      alert("로그인 성공");
       route.push("/");
+      window.location.reload();
     } else alert(data);
   };
   return (

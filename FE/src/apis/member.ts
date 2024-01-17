@@ -48,6 +48,8 @@ export const getUser = async (): Promise<
   TResponse<{
     memberId: number;
     image: string;
+    email: string;
+    name: string;
   }>
 > => {
   const data = await Server.get(headerMemberUrl, {
