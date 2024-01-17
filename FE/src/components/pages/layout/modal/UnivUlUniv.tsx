@@ -11,6 +11,9 @@ export default function UnivUlUniv() {
   const { data, isLoading, error } = useUniv();
   return (
     <>
+      {isLoading && (
+        <div className="grow bg-colorede rounded-[0.31rem] px-[1.5rem] py-[0.48rem] overflow-y-auto font-normal text-[0.875rem] mt-3"></div>
+      )}
       {data && (
         <UnivUl
           data={data.response.university}
