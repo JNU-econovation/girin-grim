@@ -15,3 +15,7 @@ export const CheckIsLoggedIn = (): boolean => {
   const data = getToken();
   return data !== null;
 };
+
+export const logout = () => {
+  setCookie("accessToken", "", -1);
+};

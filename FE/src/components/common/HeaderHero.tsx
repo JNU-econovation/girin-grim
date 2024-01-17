@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import UserImage from "../pages/layout/UserImage";
 import { User } from "./icon";
 import { CheckIsLoggedIn } from "@/utils/authenticate";
+import Link from "next/link";
 
 export default function HeaderHero() {
   const size = "small";
@@ -13,5 +14,9 @@ export default function HeaderHero() {
     setIsLoggedIn(loggedIn);
   }, []);
   if (isLoggedIn) return <UserImage size={size} />;
-  return <User size={size} />;
+  return (
+    <Link href={"/login"}>
+      <User size={size} />
+    </Link>
+  );
 }

@@ -10,6 +10,6 @@ export const HeroFormatClass = (size?: "small" | "medium" | "large") => {
     : "w-30 h-30";
 };
 
-export const HeroFormatSize = (size?: "small" | "medium" | "large") => {
+export const HeroFormatSize = (size?: "small" | "medium" | "large"): number => {
   return size === "small" ? 40 : size === "medium" ? 80 : 120;
 };
