@@ -148,7 +148,7 @@ export const postFunding = async () => {
     },
     option: [],
   };
-  const data = await Server.post("/funding", params, {
+  const data = await Server.post("/funding", donateParams, {
     headers: {
       Authorization: getToken(),
     },

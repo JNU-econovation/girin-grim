@@ -34,7 +34,7 @@ export default function InfoDate({
   } = getDateData(estimateStartTime);
   return (
     <>
-      <div className="flex justify-between mt-10">
+      <div className="flex justify-between mt-2">
         <p className="">
           모인 금액 / 목표 금액 | {` ${curMoney} / ${goalMoney}원`}
         </p>
