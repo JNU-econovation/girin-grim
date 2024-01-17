@@ -13,9 +13,9 @@ export type Funding = {
   image: string;
   university: string;
   shortDescription: string;
-  startTime: "2024-01-03T09:36:00" | string;
-  endTime: "2024-10-13T22:36:00" | string;
-  estimateStartTime: "2024-10-12T22:36:00" | string;
+  startTime: string;
+  endTime: string;
+  estimateStartTime: string;
   rate: number;
   curMoney: number;
   goalMoney: number;
@@ -26,6 +26,7 @@ export type FundingOptions = {
   name: string;
   price: number;
   quantity: number;
+  isPickup: boolean;
   items: {
     itemId: number;
     name: string;
