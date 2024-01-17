@@ -2,7 +2,6 @@ package com.starshop.giringrim.utils.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.starshop.giringrim.utils.common.ApiResponse;
-import com.starshop.giringrim.utils.common.ApiResponseGenerator;
 import com.starshop.giringrim.utils.exception.Error;
 import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
