@@ -28,6 +28,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
             alt="funding Image"
             width={600}
             height={600}
+            className="w-[600px] h-[600px]"
           />
           <FundingInfo fundingData={fundingData} isOnGoing={isOnGoing} />
           <GaugeBar rate={fundingData.funding.rate} isOnGoing={isOnGoing} />
