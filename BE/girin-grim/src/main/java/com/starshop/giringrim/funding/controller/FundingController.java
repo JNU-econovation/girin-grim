@@ -49,6 +49,15 @@ public class FundingController {
         return ApiResponseGenerator.success(fundingDto, HttpStatus.OK);
     }
 
+    /*
+     *   펀딩 아이디로 펀딩 수정
+     */
+    @PutMapping("/funding/{fundingId}")
+    public ResponseEntity<?> editFunding(@Valid @RequestBody FundingReqDtos.UploadDto uploadDto, @PathVariable Long fundingId){
+        fundingServiceImpl.editFunding(uploadDto, fundingId);
+        return ApiResponseGenerator.success(HttpStatus.OK);
+    }
+
 
     /*
     *   펀딩 아이디로 펀딩 긴 설명 조회 (사진)

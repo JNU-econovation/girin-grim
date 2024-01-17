@@ -40,6 +40,7 @@ public class FundingRespDtos {
                 this.memberId = member.getId();
                 this.nickname = member.getNickname();
             }
+
         }
 
         @Builder
