@@ -15,7 +15,7 @@ public interface FundingRepository extends JpaRepository<Funding, Long> {
     @Query("select f from Funding f join fetch f.member join fetch f.university where f.id in :id")
     List<Funding> findFundingsByIds(List<Long> id);
 
-    @Query("select f from Funding f where f.member.id = :id")
+    @Query("select f from Funding f join fetch f.university where f.member.id = :id")
     List<Funding> findFundingsByMemberId(Long id);
 
 
