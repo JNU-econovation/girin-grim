@@ -5,7 +5,7 @@ import BalanceDisplay from "./BalanceDisplay";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { TotalCoin } from "@/store/ChargeState";
 import { getInsufficient } from "@/utils/localData";
-import { Coin } from "@/components/common/icon";
+import RequireDisplay from "./RequireDisplay";
 
 export default function ChargingCoin() {
   const [total, setTotal] = useRecoilState(TotalCoin);
@@ -31,15 +31,7 @@ export default function ChargingCoin() {
       ))}
       <PaymentAmountDisplay />
       <BalanceDisplay total={total} />
-      {require > 0 && (
-        <div className="flex justify-between font-bold text-[#C32A3C] mt-3">
-          <p>부족한 크레파스</p>
-          <div className="flex items-center gap-1">
-            <p>{require}</p>
-            <Coin size="sm" />
-          </div>
-        </div>
-      )}
+      {require > 0 && <RequireDisplay require={require} />}
     </>
   );
 }
