@@ -6,6 +6,7 @@ import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.option.item.Item;
 import com.starshop.giringrim.university.entity.University;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -18,6 +19,7 @@ public class FundingReqDtos{
     @Getter
     public static class UploadDto {
 
+        @Valid
         private FundingDto funding;
         private List<OptionDto> options;
 
