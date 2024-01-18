@@ -35,3 +35,8 @@ export const favUniState = atom<FavUniversity[]>({
   key: "favUniState",
   default: [],
 });
+
+export const onFileModalState = atom<boolean>({
+  key: "onFileModalState",
+  default: false,
+});
