@@ -8,7 +8,9 @@ export const getCharge = async (): Promise<TResponse<Coin>> => {
     headers: {
       Authorization: localStorage.getItem("accessToken"),
     },
-  }).then((res) => res.data);
+  })
+    .then((res) => res.data)
+    .catch((err) => err.response.data);
   return data;
 };
 
