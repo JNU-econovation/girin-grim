@@ -29,7 +29,9 @@ export const getPledge = async (
     headers: {
       Authorization: getToken(),
     },
-  }).then((res) => res.data);
+  })
+    .then((res) => res.data)
+    .catch((err) => err.response.data);
   return data;
 };
 
