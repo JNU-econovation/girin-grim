@@ -4,6 +4,7 @@ import useUserDetail from "@/hooks/useUserDetail";
 import { formatMemberData } from "@/utils/memberDataFormat";
 import MemberHero from "./MemberHero";
 import SettingBtn from "./SettingBtn";
+import MemberInfoUnivList from "./MemberInfoUnivList";
 
 type Props = {
   memberId: number;
@@ -29,17 +30,21 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
       </h1>
       <span className="text-md text-[#696969] mb-5">{email}</span>
       <div className="flex flex-col">
-        {InfoData.map((data) => (
-          <MemberInfoList
-            key={data.title}
-            title={data.title}
-            content={data.content}
-            icon={data.icon}
-            array={data.array}
-          />
-        ))}
+        {InfoData.map(({ content, icon, title }) => {
+          if (title == "관심대학")
+            return <MemberInfoUnivList content={content} title={title} />;
+
+          return (
+            <MemberInfoList
+              key={title}
+              title={title}
+              content={content}
+              icon={icon}
+            />
+          );
+        })}
       </div>
-      <SettingBtn />
+      {/* <SettingBtn /> */}
     </section>
   );
 }

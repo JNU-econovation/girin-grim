@@ -12,7 +12,7 @@ export const titleArr: TitleArrType = [
   "자기소개",
   "연락처",
   "주소",
-  "관심 대학",
+  "관심대학",
 ];
 export const iconArr: IconArrType = [<CargeBtn />, null, null, null, null];
 export const arrayArr: ArrayArrType = [false, false, false, false, true];
@@ -29,7 +29,7 @@ export type TitleArrType = [
   "자기소개",
   "연락처",
   "주소",
-  "관심 대학"
+  "관심대학"
 ];
 
 export type IconArrType = [JSX.Element, null, null, null, null];
