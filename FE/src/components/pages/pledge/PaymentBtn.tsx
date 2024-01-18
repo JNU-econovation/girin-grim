@@ -33,9 +33,15 @@ export default function PaymentBtn({
       address: address ? address : "",
       price: total,
     });
+    const { error, success } = returnedData;
     setIsLoading(false);
-    if (returnedData.error) text = "결제 실패";
-    else alert("결제가 완료되었습니다.");
+    if (!success) {
+      text = "결제 실패";
+      console.error;
+      alert(error.message);
+      return;
+    }
+    alert("결제가 완료되었습니다.");
   };
 
   return (
