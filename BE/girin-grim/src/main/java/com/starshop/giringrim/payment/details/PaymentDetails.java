@@ -2,7 +2,7 @@ package com.starshop.giringrim.payment.details;
 
 
 import com.starshop.giringrim.option.Option;
-import com.starshop.giringrim.payment.Payment;
+import com.starshop.giringrim.payment.entity.Payment;
 import com.starshop.giringrim.utils.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

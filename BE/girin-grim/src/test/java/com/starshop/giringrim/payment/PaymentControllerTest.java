@@ -5,6 +5,7 @@ import com.starshop.giringrim.config.TestConfig;
 import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.funding.repository.FundingRepository;
 import com.starshop.giringrim.member.repository.MemberRepository;
+import com.starshop.giringrim.payment.dto.PaymentReqDtos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
