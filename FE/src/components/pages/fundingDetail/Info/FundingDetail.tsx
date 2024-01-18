@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function FundingDetail({ fundingId }: Readonly<Props>) {
-  const { data, isLoading, error } = useFundingDetail(fundingId);
+  const { data, isLoading } = useFundingDetail(fundingId);
   if (isLoading || !data) return <div>loading...</div>;
   const fundingData = data.response;
   const isOnGoing = checkIsOnGoing(

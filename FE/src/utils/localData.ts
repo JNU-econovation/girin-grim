@@ -6,6 +6,7 @@ import { LocalData } from "@/Model/Local";
  */
 const initLocalData = () => {
   const data = localStorage.getItem("UserData");
+  initInsufficient();
   if (!data) setLocalData(0, [], 0);
 };
 
@@ -62,4 +63,17 @@ export const setDonateCost = (cost: number) => {
   const data = getLocalData();
   data.DonateCost = cost;
   setLocalData(data.memberId, data.options, data.DonateCost);
+};
+
+export const initInsufficient = () => {
+  localStorage.setItem("require", "0");
+};
+
+export const getInsufficient = () => {
+  const data = localStorage.getItem("require");
+  return data ? parseInt(data) : 0;
+};
+
+export const setInsufficient = (cost: number) => {
+  localStorage.setItem("require", cost.toString());
 };

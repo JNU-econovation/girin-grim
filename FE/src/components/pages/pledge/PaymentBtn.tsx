@@ -1,11 +1,12 @@
 "use client";
-import { getLocalData } from "@/utils/localData";
+import { getLocalData, setInsufficient } from "@/utils/localData";
 import StyledBtn from "../../common/StyledBtn";
 import { calTotalCost, getDonateCost } from "@/utils/payment";
 import { useState } from "react";
 import { postPayment } from "@/apis/funding";
 import { useRecoilValue } from "recoil";
 import { addressState } from "@/store/PledgeState";
+import { useRouter } from "next/router";
 
 type Props = {
   fundingId: number;
@@ -33,9 +34,20 @@ export default function PaymentBtn({
       address: address ? address : "",
       price: total,
     });
+    const { error, success } = returnedData;
     setIsLoading(false);
-    if (returnedData.error) text = "결제 실패";
-    else alert("결제가 완료되었습니다.");
+    if (!success) {
+      text = "결제 실패";
+      console.error;
+      alert(error.message);
+      if (error.message == "코인이 부족합니다.") {
+        setInsufficient(total);
+        const router = useRouter();
+        router.push("/charge");
+      }
+      return;
+    }
+    alert("결제가 완료되었습니다.");
   };
 
   return (

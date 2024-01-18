@@ -3,7 +3,7 @@ import { FundingOptions, SelectedOption } from "@/Model/Funding";
 import InfoOptionDetail from "./InfoOptionDetail";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { SelectedOptions } from "@/store/FundingState";
+import { SelectedOptions, TotalDonateState } from "@/store/FundingState";
 import { updateLocalOption } from "@/utils/localData";
 
 type Props = {
@@ -13,13 +13,13 @@ type Props = {
 export default function InfoOption({ options }: Readonly<Props>) {
   const [selected, setSelected] =
     useRecoilState<SelectedOption[]>(SelectedOptions);
+  const [_, setCost] = useRecoilState(TotalDonateState);
   const [clicked, setClicked] = useState<number | undefined>();
   useEffect(() => {
     setSelected([]);
+    setCost(0);
   }, []);
-  useEffect(() => {
-    updateLocalOption(selected);
-  }, [selected]);
+  useEffect(() => updateLocalOption(selected), [selected]);
   return (
     <>
       <select

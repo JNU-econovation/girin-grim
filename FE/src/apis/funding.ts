@@ -1,4 +1,9 @@
-import { FundingDetail, FundingOptions, Pledge } from "@/Model/Funding";
+import {
+  FundingDetail,
+  FundingOptions,
+  Pledge,
+  SelectedOption,
+} from "@/Model/Funding";
 import { TPostResponse, TResponse } from "@/Model/Response";
 import { Server } from "./axios";
 import { fundingDetailURL } from "@/constants/urls";
@@ -40,7 +45,7 @@ export const postPayment = async (
   paymentData: {
     memberId: number;
     type: "DONATE" | "GIFT";
-    options: FundingOptions[];
+    options: SelectedOption[];
     price: number;
     address: string;
   }
@@ -59,7 +64,9 @@ export const postPayment = async (
     headers: {
       Authorization: getToken(),
     },
-  }).then((res) => res.data);
+  })
+    .then((res) => res.data)
+    .catch((err) => err.response.data);
   return data;
 };
 
