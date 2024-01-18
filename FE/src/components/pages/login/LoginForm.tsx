@@ -17,7 +17,9 @@ export default function LoginForm() {
     if (data.success) {
       route.push("/");
       window.location.reload();
-    } else alert(data);
+      return;
+    }
+    alert(data.error.message);
   };
   return (
     <form className="mt-[2.68rem]" onSubmit={onsubmit}>

@@ -40,10 +40,7 @@ export const login = async (submitData: LoginUser): Promise<TPostResponse> => {
       setToken(accessToken, refreshToken);
       return res.data;
     })
-    .catch((error) => {
-      console.log(error.message);
-      return error.message;
-    });
+    .catch((error) => error.response.data);
 };
 
 export const getUser = async (): Promise<
