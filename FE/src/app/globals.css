@@ -16,6 +16,12 @@ progress::-webkit-progress-value {
   @apply bg-main rounded-lg;
 }
 
+input::-webkit-inner-spin-button {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 /* input[id="list"] {
   display: none;
 }

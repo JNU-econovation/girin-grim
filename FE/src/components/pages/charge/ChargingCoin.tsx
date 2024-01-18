@@ -18,7 +18,14 @@ export default function ChargingCoin() {
           Charging coin
         </span>
       </div>
-      <p className="text-black text-6xl font-extrabold mt-5">{total}</p>
+      <input
+        className="text-black text-6xl font-extrabold mt-5 outline-none w-full "
+        value={total}
+        type="number"
+        min={0}
+        max={9999999999}
+        onChange={(e) => setTotal(+e.target.value)}
+      />
       <div className="bg-main mt-2 pt-1" />
       {paymentUnits.map((unit) => (
         <button
