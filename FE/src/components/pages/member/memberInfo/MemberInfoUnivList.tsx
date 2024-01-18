@@ -9,6 +9,7 @@ export default function MemberInfoUnivList({
   title,
   content,
 }: Readonly<Props>) {
+  console.log(content);
   return (
     <div className={`w-full grid grid-cols-[2fr_6fr] gap-7 my-1 `}>
       <div className="w-full font-bold text-xl flex justify-between">
@@ -17,9 +18,9 @@ export default function MemberInfoUnivList({
         ))}
       </div>
       <div className="h-full max-h-24 overflow-scroll">
-        {content.map((data) => (
-          <span key={data.universityId} className="block">
-            {data.name}
+        {content.map(({ name, universityId }) => (
+          <span key={universityId} className="block">
+            {name}
           </span>
         ))}
       </div>

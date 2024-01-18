@@ -1,3 +1,4 @@
+import SettingBtn from "@/components/pages/member/memberInfo/SettingBtn";
 import Image from "next/image";
 
 export default function NameTag() {
@@ -15,6 +16,7 @@ export default function NameTag() {
           height: `${height}px`,
         }}
       />
+      <SettingBtn />
     </section>
   );
 }

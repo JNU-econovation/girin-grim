@@ -44,7 +44,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
           );
         })}
       </div>
-      <SettingBtn />
+      {/* <SettingBtn /> */}
     </section>
   );
 }
