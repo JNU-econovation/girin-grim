@@ -39,6 +39,7 @@ export default function Upload({ close }: Readonly<{ close: () => void }>) {
           type="file"
           className="sr-only"
           onChange={handleUpload}
+          accept={type.map((item) => `.${item}`).join(",")}
         />
       </label>
       <ul className="flex gap-2 mt-4">
