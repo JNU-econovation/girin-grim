@@ -359,17 +359,59 @@ INSERT INTO university_tb (id, name, region) VALUES (358, '한국국제대학교
 INSERT INTO university_tb (id, name, region) VALUES (359, '제주국제대학교', '제주');
 INSERT INTO university_tb (id, name, region) VALUES (360, '제주대학교', '제주');
 INSERT INTO university_tb (id, name, region) VALUES (361, '기린대학교', '광주');
-INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (100.0,'밍밍주','hello@gmail.com','저의 자기소개 입니다 내 이름은 민주','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
-INSERT INTO member_tb(coin, nickname, email, about_me, image, password) VALUES (1000000.0,'건규','hi@gmail.com','저의 자기소개 입니다 내 이름은 건규','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
-INSERT INTO favuniversity_tb(member_id, name) VALUES (1, '기린대학교');
-INSERT INTO favuniversity_tb(member_id, name) VALUES (1, '전남대학교');
-INSERT INTO favuniversity_tb(member_id, name) VALUES (1, '제주대학교');
+INSERT INTO member_tb(coin, nickname, email, about_me, address, image, password) VALUES (10000,'에코노베이션','asdf@gmail.com','저는 관리자 입니다.', '광주광역시 북구 용봉동','이미지','{bcrypt}$2a$10$TDHSYFfDf8f2YAk.qoxvke94y4KQEITjfq6fvq4AfoYpgw6AQdnCC');
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 100000, NOW(), '2024-01-26 00:00:00', '2024-01-26 00:00:00', 1, '2024-01-13 00:00:00', 361, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '일상에서 감정이입하기 좋은 귀여운 디자인으로 구성되어 있습니다. 노트북, 핸드폰, 수첩 등 어디에든 붙일 수 있는 다양한 크기의 스티커가 포함되어 있어 일상에 즐거움을 더해줄 거에요!', '다이어리에 붙일 수 있는 귀여운 스티커', 'GIFT');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (1, '킹받는 오리의 일상', 10000, -1, true);
+INSERT INTO item_tb(option_id, item_name) VALUES (1, '[현장수령형] 1월 25일 스토리움 *23#부스');
+INSERT INTO item_tb(option_id, item_name) VALUES (1, '스티커 1pc');
+INSERT INTO item_tb(option_id, item_name) VALUES (1, '포장지');
+INSERT INTO item_tb(option_id, item_name) VALUES (1, '포인트 카드 1pc');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (1, '비오는 날 쌍둥이', 10000, -1, true);
+INSERT INTO item_tb(option_id, item_name) VALUES (2, '[현장수령형] 1월 25일 스토리움 *23#부스');
+INSERT INTO item_tb(option_id, item_name) VALUES (2, '스티커 1pc');
+INSERT INTO item_tb(option_id, item_name) VALUES (2, '포장지');
+INSERT INTO item_tb(option_id, item_name) VALUES (2, '포인트 카드 1pc');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (1, '뒝구르르 냥냥이', 10000, -1, true);
+INSERT INTO item_tb(option_id, item_name) VALUES (3, '스티커 1pc');
+INSERT INTO item_tb(option_id, item_name) VALUES (3, '포장지');
+INSERT INTO item_tb(option_id, item_name) VALUES (3, '포인트 카드 1pc');
 
-INSERT INTO favuniversity_tb(member_id, name) VALUES (2, '기린대학교');
-INSERT INTO favuniversity_tb(member_id, name) VALUES (2, '포항공과대학교');
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 9999999, NOW(), '2024-01-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 361, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '휴대폰 케이스는 우리 생활에서 빠질 수 없는 부분이 되었고, 이를 더 친환경적으로 만들어 보았습니다. 휴지를 재활용하여 자연 분해되는 휴대폰 케이스를 사용해보세요!', '자연을 사랑하는 마음을 담은 휴지로 만든 휴대폰 케이스', 'GIFT');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (2, '2023공기 1개', 9999999, 1, true);
+INSERT INTO item_tb(option_id, item_name) VALUES (4, '[현장수령형] 1월 25일 스토리움 *23#부스');
 
-INSERT INTO funding_tb(current_money, goal_money, end_time, estimated_start_time,member_id, start_time, university_id, image, long_description, short_description, title, funding_type)
-VALUES (50000, 100000, '2024-01-20 18:00:00', '2024-01-25 10:00:00', 1, '2024-01-12 09:00:00', 361, '이미지 URL', '펀딩에 대한 상세 설명입니다.','간단한 설명입니다.', '펀딩 제목1', 'DONATE');
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 25000, NOW(), '2024-01-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 361, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '작년의 공기, 과거의 추억이 녹아있는 맛. 작년 공기를 마시며 과거를 회상하고, 지금의 자신을 발견해 미래를 계획해보세요!', '과거의 물결은 바로 지금의 해변을 만든다.', 'GIFT');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (3, '휴대폰 케이스', 25000, 1, true);
+INSERT INTO item_tb(option_id, item_name) VALUES (5, '[현장수령형] 1월 25일 스토리움 *23#부스');
+
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 100000, NOW(), '2024-01-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 361, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '우리의 친구 ‘기리니’는 매일 많은 양의 신선한 식료품을 필요로 합니다. 그러나 식량 구입 비용이 점점 더 부담스러워져 어려움을 겪고있습니다. 기린에게 필요한 사료를 구입하는데 도움을 주세요!', '우리의 ‘기리니’에게 사료를 선물해주세요!', 'DONATE');
+
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 75000, NOW(), '2024-01-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 361, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '강도희, 곽민주, 박건규로 구성된 팀, *23#팀의 매력을 얻어가세요!', '*23#팀의 관심과 사랑을 받아가세요!', 'GIFT');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (5, '도희', 10000, 1, false);
+INSERT INTO item_tb(option_id, item_name) VALUES (6, '관심의 인삿말 1회');
+INSERT INTO item_tb(option_id, item_name) VALUES (6, '사랑의 눈길 1회');
+INSERT INTO item_tb(option_id, item_name) VALUES (6, '하루동안 TMI 금지');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (5, '민주', 10000, 1, false);
+INSERT INTO item_tb(option_id, item_name) VALUES (7, '다낭에서의 인삿말 1회');
+INSERT INTO item_tb(option_id, item_name) VALUES (7, '다낭에서의 사랑의 눈길 1회');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (5, '건규', 10000, 1, false);
+INSERT INTO item_tb(option_id, item_name) VALUES (8, '관심: 어! 너 오늘 ~한 것 같아!');
+INSERT INTO item_tb(option_id, item_name) VALUES (8, '사랑: 개발보다 너가 더 좋아.');
+INSERT INTO item_tb(option_id, item_name) VALUES (8, '공감: 아! 그랬구나!');
+
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 400000, NOW(), '2024-12-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 361, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '안녕하세요, 기린대 학생 여러분! 유기묘 문제를 해결하고, 고양이들의 건강과 행복을 증진시키기 위해 펀딩을 열었습니다.', '예대 냥이를 위한 중성화 펀딩에 동참해주세요!', 'DONATE');
+
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 100000, NOW(), '2024-02-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 219, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '전남대의 IT 동아리 에코노베이션을 소개합니다. 전공 무관, 당신이 IT 개발에 관심만 있다면 언제든지 환영합니다.', '에코노베이션을 알립니다!', 'DONATE');
+
+INSERT INTO funding_tb(current_money, goal_money, created_at, end_time, estimated_start_time, member_id, start_time, university_id, image, long_description, short_description, title, funding_type) VALUES (0, 150000, NOW(), '2024-01-26 00:00:00', '2024-01-27 00:00:00', 1, '2024-01-13 00:00:00', 219, 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg', 'https://girin-grim.s3.ap-northeast-2.amazonaws.com/DetailImage.jpg', '달달한 사탕이 추운 겨울날 지친 당신에게 활기를 찾아줄거에요. 맛있는 사탕! 위대한 사탕!', '일상에 달달한 활기 어떠세요?', 'GIFT');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (8, '과일의 활기', 20000, 20, false);
+INSERT INTO item_tb(option_id, item_name) VALUES (9, '청포도 사탕 1pc');
+INSERT INTO item_tb(option_id, item_name) VALUES (9, '딸기 사탕 1pc');
+INSERT INTO item_tb(option_id, item_name) VALUES (9, '레몬 사탕 1pc');
+INSERT INTO option_tb(funding_id, name, price, quantity, is_pickup) VALUES (8, '카페인의 활기', 20000, 10, false);
+INSERT INTO item_tb(option_id, item_name) VALUES (10, '커피 사탕 3pc');
+
+
 
 
 
