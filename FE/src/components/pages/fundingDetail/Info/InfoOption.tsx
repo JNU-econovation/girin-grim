@@ -19,10 +19,7 @@ export default function InfoOption({ options }: Readonly<Props>) {
     setSelected([]);
     setCost(0);
   }, []);
-  useEffect(() => {
-    console.log(selected);
-    updateLocalOption(selected);
-  }, [selected]);
+  useEffect(() => updateLocalOption(selected), [selected]);
   return (
     <>
       <select
