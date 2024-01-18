@@ -1,5 +1,6 @@
 package com.starshop.giringrim.funding.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.querydsl.core.annotations.QueryProjection;
 import com.starshop.giringrim.favUniversity.entity.FavUniversity;
 import com.starshop.giringrim.funding.entity.Funding;
@@ -7,11 +8,13 @@ import com.starshop.giringrim.funding.entity.FundingType;
 import com.starshop.giringrim.member.entity.Member;
 import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.option.item.Item;
+import com.starshop.giringrim.university.entity.University;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -152,17 +155,22 @@ public class FundingRespDtos {
             private String image;
             private String university;
             private BigDecimal rate;
+            @JsonIgnore
+            private LocalDateTime startTime;
+            @JsonIgnore
+            private LocalDateTime endTime;
             private String shortDescription;
             private int dueDate;
             private MemberDto member;
 
 
+/*
             @QueryProjection
-            public FundingDto(Funding funding, Member member){
+            public FundingDto(Funding funding, Member member, University university){
                 this.fundingId = funding.getId();
                 this.title = funding.getTitle();
                 this.image = funding.getImage();
-                this.university = funding.getUniversity().getName();
+                this.university = university.getName();
                 this.rate = funding.increseRate();
                 this.shortDescription = funding.getShortDescription();
                 this.dueDate = funding.getDueDate();
@@ -170,15 +178,31 @@ public class FundingRespDtos {
 
             }
 
+ */
+            @QueryProjection
+            public FundingDto(Long fundingId, String title, String image, String university, BigDecimal rate, int dueDate,String shortDescription, Long memberId, String nickname){
+                this.fundingId = fundingId;
+                this.title = title;
+                this.image = image;
+                this.university = university;
+                this.rate = rate;
+                this.dueDate = dueDate;
+                this.shortDescription = shortDescription;
+                this.member = new MemberDto(memberId, nickname);
+
+            }
+
+
+
 
             @Getter
             private class MemberDto{
                 private Long memberId;
                 private String nickname;
 
-                public MemberDto(Member member){
-                    this.memberId = member.getId();
-                    this.nickname = member.getNickname();
+                public MemberDto(Long id, String nickname){
+                    this.memberId = id;
+                    this.nickname = nickname;
                 }
             }
         }

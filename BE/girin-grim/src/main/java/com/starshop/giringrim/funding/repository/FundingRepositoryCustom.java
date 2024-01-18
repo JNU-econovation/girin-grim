@@ -3,6 +3,7 @@ package com.starshop.giringrim.funding.repository;
 
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.NumberExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.starshop.giringrim.funding.dto.FundingRespDtos;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.querydsl.core.types.dsl.MathExpressions.*;
 import static com.starshop.giringrim.funding.entity.QFunding.funding;
 
 /*
@@ -30,7 +32,16 @@ public class FundingRepositoryCustom {
 
     public List<FundingRespDtos.HomeDto.FundingDto> searchWithLogin(FundingSearchCondition condition) {
         return queryFactory
-                .select(new QFundingRespDtos_HomeDto_FundingDto(funding, funding.member))
+                .select(new QFundingRespDtos_HomeDto_FundingDto(
+                        funding.id.as("fundingId"),
+                        funding.title,
+                        funding.image,
+                        funding.university.name.as("university"),
+                        funding.currentMoney.divide(funding.goalMoney).multiply(BigDecimal.valueOf(100)).as("rate"),
+                        Expressions.dateTimeTemplate(Integer.class,"TIMESTAMPDIFF(DAY, {0}, {1})", funding.startTime, funding.endTime).as("dueDate"),
+                        funding.shortDescription,
+                        funding.member.id,
+                        funding.member.nickname))
                 .from(funding)
                 .where(
                         funding.university.id.in(universityIds(condition.getUniversityId(), condition.getUniversityIds())),
@@ -46,9 +57,19 @@ public class FundingRepositoryCustom {
 
     }
 
+
     public List<FundingRespDtos.HomeDto.FundingDto> searchWithNonLogin(FundingSearchCondition condition) {
         return queryFactory
-                .select(new QFundingRespDtos_HomeDto_FundingDto(funding, funding.member))
+                .select(new QFundingRespDtos_HomeDto_FundingDto(
+                        funding.id.as("fundingId"),
+                        funding.title,
+                        funding.image,
+                        funding.university.name.as("university"),
+                        round(funding.currentMoney.divide(funding.goalMoney), 2).multiply(BigDecimal.valueOf(100)).as("rate"),
+                        Expressions.dateTimeTemplate(Integer.class,"TIMESTAMPDIFF(DAY, {0}, {1})", funding.startTime, funding.endTime).as("dueDate"),
+                        funding.shortDescription,
+                        funding.member.id.as("memberId"),
+                        funding.member.nickname))
                 .from(funding)
                 .where(
                         universityIdEq(condition.getUniversityId()),
@@ -63,6 +84,9 @@ public class FundingRepositoryCustom {
                 .fetch();
 
     }
+
+
+
 
     /*
      *   uni 파라미터가 null이면 회원가입 시 설정했던 전국 대학교 아이디값들을 리스트에 담아서 반환
@@ -130,6 +154,7 @@ public class FundingRepositoryCustom {
             return rate.desc();
         }
     }
+
 
 
 }
