@@ -1,9 +1,17 @@
 "use client";
-import { TotalDonateState } from "@/store/FundingState";
+import { SelectedOption } from "@/Model/Funding";
+import { SelectedOptions, TotalDonateState } from "@/store/FundingState";
+import { updateLocalOption } from "@/utils/localData";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 export default function InfoDonate({ isOnGoing }: { isOnGoing: boolean }) {
   const [cost, setCost] = useRecoilState(TotalDonateState);
+  const [_, setSelected] = useRecoilState<SelectedOption[]>(SelectedOptions);
+  useEffect(() => {
+    setSelected([]);
+    setCost(0);
+  }, []);
   return (
     <input
       type="number"
