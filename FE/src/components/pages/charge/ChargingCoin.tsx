@@ -2,7 +2,7 @@
 import { paymentUnits } from "@/constants/ChargeDate";
 import PaymentAmountDisplay from "./PaymentAmountDisplay";
 import BalanceDisplay from "./BalanceDisplay";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { TotalCoin } from "@/store/ChargeState";
 import { getInsufficient } from "@/utils/localData";
 import RequireDisplay from "./RequireDisplay";
