@@ -2,10 +2,10 @@
 import { paymentUnits } from "@/constants/ChargeDate";
 import PaymentAmountDisplay from "./PaymentAmountDisplay";
 import BalanceDisplay from "./BalanceDisplay";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { TotalCoin } from "@/store/ChargeState";
 import { getInsufficient } from "@/utils/localData";
-import { Coin } from "@/components/common/icon";
+import RequireDisplay from "./RequireDisplay";
 
 export default function ChargingCoin() {
   const [total, setTotal] = useRecoilState(TotalCoin);
@@ -18,7 +18,14 @@ export default function ChargingCoin() {
           Charging coin
         </span>
       </div>
-      <p className="text-black text-6xl font-extrabold mt-5">{total}</p>
+      <input
+        className="text-black text-6xl font-extrabold mt-5 outline-none w-full "
+        value={total}
+        type="number"
+        min={0}
+        max={9999999999}
+        onChange={(e) => setTotal(+e.target.value)}
+      />
       <div className="bg-main mt-2 pt-1" />
       {paymentUnits.map((unit) => (
         <button
@@ -31,15 +38,7 @@ export default function ChargingCoin() {
       ))}
       <PaymentAmountDisplay />
       <BalanceDisplay total={total} />
-      {require > 0 && (
-        <div className="flex justify-between font-bold text-[#C32A3C] mt-3">
-          <p>부족한 크레파스</p>
-          <div className="flex items-center gap-1">
-            <p>{require}</p>
-            <Coin size="sm" />
-          </div>
-        </div>
-      )}
+      {require > 0 && <RequireDisplay require={require} />}
     </>
   );
 }

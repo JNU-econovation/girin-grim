@@ -12,7 +12,7 @@ export default function Total({
   totalCost,
   isColon = true,
 }: Readonly<Props>) {
-  if (!totalCost)
+  if (totalCost === undefined)
     totalCost = type == "DONATE" ? getDonateCost() : getLocalTotalCost();
   return (
     <div className="text-end flex justify-between items-center text-[1.375rem] text-[#696969]">
