@@ -2,6 +2,8 @@ import useCharge from "@/hooks/useCharge";
 import Agreement from "./Agreement";
 import PaymentBtn from "./PaymentBtn";
 import Total from "../../common/Total";
+import { logout } from "@/utils/authenticate";
+import { useRouter } from "next/navigation";
 
 type Props = {
   type: "DONATE" | "GIFT";
@@ -10,7 +12,14 @@ type Props = {
 };
 
 export default function Payment({ type, fundingId, address }: Readonly<Props>) {
-  const { data, error, isLoading } = useCharge();
+  const { data } = useCharge();
+  if (data && data.success == false) {
+    const router = useRouter();
+    alert("토큰이 만료되었습니다! 다시 로그인 해주세요.");
+    logout();
+    router.replace("/login");
+    return;
+  }
   return (
     <div className="relative py-11 px-10 z-50">
       <p className="text-[1.375rem] font-semibold">결제 정보를 확인해주세요.</p>

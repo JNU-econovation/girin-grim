@@ -2,9 +2,9 @@ import { getCharge } from "@/apis/charge";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useCharge() {
-  const { data, error, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["useCarge"],
     queryFn: () => getCharge(),
   });
-  return { data, error, isLoading };
+  return { data, isLoading };
 }
