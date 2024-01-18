@@ -14,9 +14,9 @@ export default function Rectangle() {
       <path
         d="M13 29.5H519"
         stroke="#D9D9D9"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-dasharray="20 10"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeDasharray="20 10"
       />
     </svg>
   );

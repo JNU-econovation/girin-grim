@@ -15,7 +15,7 @@ export default function User({ size = "small", url }: Readonly<Props>) {
       width={px}
       height={px}
       alt="Logo"
-      className="rounded-full"
+      className="rounded-full -z-50 relative"
     />
   );
 }

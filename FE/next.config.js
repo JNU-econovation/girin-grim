@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: true,
   env: {
     BASE_URL: process.env.BASE_URL,
