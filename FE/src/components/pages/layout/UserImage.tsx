@@ -22,7 +22,7 @@ export default function UserImage({ size = "small" }: Readonly<Props>) {
     <>
       <Link href={`/member/${memberId}`}>
         <div
-          className="rounded-full relative z-50"
+          className="rounded-full relative z-50 bg-colore7e"
           style={{
             backgroundImage: `url(${image})`,
             backgroundSize: "cover",
