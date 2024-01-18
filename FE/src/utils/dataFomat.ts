@@ -16,7 +16,7 @@ export const formatOptionData = (
   options: FundingOptions[]
 ): SelectedOption[] => {
   const optionData: SelectedOption[] = options.map((option) => {
-    const { items, name, optionId, price, quantity } = option;
+    const { items, name, optionId, price, quantity, isPickup } = option;
     return {
       items,
       name,
@@ -24,7 +24,7 @@ export const formatOptionData = (
       price,
       quantity,
       amount: quantity,
-      // isPickup: false,
+      isPickup,
     };
   });
   return optionData;
