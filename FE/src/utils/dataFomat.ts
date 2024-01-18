@@ -24,6 +24,7 @@ export const formatOptionData = (
       price,
       quantity,
       amount: quantity,
+      // isPickup: false,
     };
   });
   return optionData;
@@ -32,15 +33,15 @@ export const formatOptionData = (
 export const formatPledgeData = (paymentData: {
   memberId: number;
   type: "DONATE" | "GIFT";
-  options: FundingOptions[];
+  options: SelectedOption[];
   price: number;
   address: string;
 }) => {
   const { memberId, type, options, price, address } = paymentData;
 
-  const newOptions = options.map(({ optionId, quantity }) => ({
+  const newOptions = options.map(({ optionId, amount }) => ({
     optionId,
-    quantity,
+    quantity: amount,
   }));
   const pledgeData = {
     memberId,

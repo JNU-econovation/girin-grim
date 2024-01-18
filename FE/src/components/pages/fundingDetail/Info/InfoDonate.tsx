@@ -1,7 +1,6 @@
 "use client";
 import { SelectedOption } from "@/Model/Funding";
 import { SelectedOptions, TotalDonateState } from "@/store/FundingState";
-import { updateLocalOption } from "@/utils/localData";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 

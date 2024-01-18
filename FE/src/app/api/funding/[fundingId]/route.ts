@@ -8,7 +8,7 @@ export async function GET(
     JSON.stringify({
       success: true,
       response: {
-        isMine: true,
+        isMine: false,
         coin: 500000.0, //로그인한 사용자의 코인
         member: {
           memberId: 1,
@@ -16,7 +16,7 @@ export async function GET(
         },
         funding: {
           fundingId: 1,
-          type: "DONATE",
+          type: "GIFT",
           title: "제목",
           image: "https://girin-grim.s3.ap-northeast-2.amazonaws.com/Image.jpg",
           university: "삼육보건대학교",
@@ -33,7 +33,7 @@ export async function GET(
             optionId: 1,
             name: "옵션1",
             price: 10000.0,
-            quantity: 3,
+            quantity: -1,
             items: [
               {
                 itemId: 1,
