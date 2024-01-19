@@ -4,6 +4,7 @@ import useUserDetail from "@/hooks/useUserDetail";
 import { formatMemberData } from "@/utils/memberDataFormat";
 import MemberHero from "./MemberHero";
 import MemberInfoUnivList from "./MemberInfoUnivList";
+import useReset from "@/hooks/useReset";
 
 type Props = {
   memberId: number;
@@ -17,7 +18,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
     member: { email, nickname, image },
   } = data.response;
   const InfoData = formatMemberData(data.response.member);
-
+  useReset();
   return (
     <section
       className="mt-24 z-30 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
