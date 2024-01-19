@@ -25,6 +25,7 @@ export default function PaymentBtn({
   address = address ? address : useRecoilValue(addressState);
 
   const onClick = async () => {
+    const router = useRouter();
     const total = type == "DONATE" ? getDonateCost() : calTotalCost(options);
     setIsLoading(true);
     const returnedData = await postPayment(fundingId, {
@@ -42,7 +43,6 @@ export default function PaymentBtn({
       alert(error.message);
       if (error.message == "코인이 부족합니다.") {
         setInsufficient(total);
-        const router = useRouter();
         router.push("/charge");
       }
       return;
