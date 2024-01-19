@@ -4,12 +4,13 @@ import Grid from "../../common/Grid";
 import HomeHeader from "./HomeHeader";
 import Univ from "./Univ";
 import ExtendBtn from "./ExtendBtn";
+import useReset from "@/hooks/useReset";
 
 export default function HomeFundingList() {
-  const { data, isLoading, error } = useFeeds();
+  const { data, isLoading } = useFeeds();
   if (!data || isLoading) return <div>loading...</div>;
-
   const { favUniversity, funding } = data.response;
+  useReset();
 
   return (
     <section>

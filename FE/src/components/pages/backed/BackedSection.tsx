@@ -5,6 +5,7 @@ import Total from "../../common/Total";
 import FundingInfo from "./FundingInfo";
 import { formatOptionData } from "@/utils/dataFomat";
 import BackBtn from "./BackBtn";
+import { redirect, useRouter } from "next/navigation";
 
 type Props = {
   fundingId: number;
@@ -15,8 +16,11 @@ export default function BackedSection({
   fundingId,
   memberId,
 }: Readonly<Props>) {
-  const { data, error, isLoading } = useBacked({ fundingId, memberId });
+  const router = useRouter();
+  const { data, isLoading } = useBacked({ fundingId, memberId });
+  console.log(data);
   if (isLoading || !data) return <div>로딩중</div>;
+  if (!data.success) router.back();
   const { funding, member, options, address, totalPrice } = data.response;
   const formatttedOptions = formatOptionData(options);
   const supporter = {
