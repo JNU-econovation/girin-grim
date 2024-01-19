@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/pages/layout/Header";
 import { ReactQuery } from "@/context/ReackQuery";
 import Recoil from "@/context/Recoil";
+import { Footer } from "@/components/common/icon";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,13 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={inter.className}>
+      <body>
         <ReactQuery>
           <Recoil>
             <Header />
             {children}
           </Recoil>
         </ReactQuery>
+        <Footer />
       </body>
     </html>
   );
