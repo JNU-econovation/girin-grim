@@ -2,7 +2,7 @@ import { atom } from "recoil";
 
 export type UnivState = {
   region: string;
-  q: string;
+  q?: string;
 };
 
 export const UnivStateRegion = atom<string>({

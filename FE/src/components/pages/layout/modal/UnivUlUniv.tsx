@@ -8,7 +8,7 @@ import { HomeState, HomeUniSelectedState } from "@/store/HomeState";
 export default function UnivUlUniv() {
   const [_, setHome] = useRecoilState(HomeState);
   const [__, isSelected] = useRecoilState(HomeUniSelectedState);
-  const { data, isLoading, error } = useUniv();
+  const { data, isLoading } = useUniv();
   return (
     <>
       {isLoading && (
