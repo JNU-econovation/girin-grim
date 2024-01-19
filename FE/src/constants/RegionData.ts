@@ -31,11 +31,11 @@ export const Locations: Regions = [
   },
   {
     regionId: 7,
-    name: "충남",
+    name: "광주",
   },
   {
     regionId: 8,
-    name: "전북",
+    name: "경기",
   },
   {
     regionId: 9,
@@ -43,7 +43,7 @@ export const Locations: Regions = [
   },
   {
     regionId: 10,
-    name: "경기",
+    name: "전북",
   },
   {
     regionId: 11,
@@ -55,7 +55,7 @@ export const Locations: Regions = [
   },
   {
     regionId: 13,
-    name: "경남",
+    name: "충남",
   },
   {
     regionId: 14,
@@ -63,10 +63,14 @@ export const Locations: Regions = [
   },
   {
     regionId: 15,
-    name: "세종",
+    name: "경남",
   },
   {
     regionId: 16,
+    name: "세종",
+  },
+  {
+    regionId: 17,
     name: "제주",
   },
 ];
