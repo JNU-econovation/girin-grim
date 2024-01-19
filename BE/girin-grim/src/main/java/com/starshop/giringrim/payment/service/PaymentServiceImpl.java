@@ -252,10 +252,6 @@ public class PaymentService {
 
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentListDto fundingHistoryList(Long memberId, UserDetailsImpl userDetails){
-        //로그인 사용자 정보 얻어오기
-        Member loginedMember = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
-                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
-        );
 
         //존재하지 않는 멤버 예외
         Member member = memberRepository.findById(memberId).orElseThrow(

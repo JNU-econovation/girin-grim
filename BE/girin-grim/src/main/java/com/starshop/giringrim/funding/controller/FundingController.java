@@ -2,6 +2,7 @@ package com.starshop.giringrim.funding.controller;
 
 import com.starshop.giringrim.funding.dto.FundingReqDtos;
 import com.starshop.giringrim.funding.dto.FundingRespDtos;
+import com.starshop.giringrim.funding.service.FundingService;
 import com.starshop.giringrim.funding.service.FundingServiceImpl;
 import com.starshop.giringrim.utils.common.ApiResponseGenerator;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class FundingController {
 
-    private final FundingServiceImpl fundingServiceImpl;
+    private final FundingService fundingService;
 
     @GetMapping("/home")
     public ResponseEntity<?> home(  @RequestParam(value = "page", defaultValue = "0") Integer page,
@@ -26,7 +27,7 @@ public class FundingController {
                                     @RequestParam(value = "q", required = false) String keyword,
                                     @RequestParam(value = "sort", required = false) String method,
                                     @AuthenticationPrincipal UserDetailsImpl userDetails){
-        FundingRespDtos.HomeDto respDto = fundingServiceImpl.home(page, universityId, fundingType, keyword, method, userDetails);
+        FundingRespDtos.HomeDto respDto = fundingService.home(page, universityId, fundingType, keyword, method, userDetails);
         return ApiResponseGenerator.success(respDto, HttpStatus.OK);
     }
 
@@ -35,7 +36,7 @@ public class FundingController {
      */
     @PostMapping("/funding")
     public ResponseEntity<?> createFunding(@Valid @RequestBody FundingReqDtos.UploadDto uploadDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        fundingServiceImpl.createFunding(uploadDto, userDetails.getEmail());
+        fundingService.createFunding(uploadDto, userDetails.getEmail());
         return ApiResponseGenerator.success(HttpStatus.OK);
 
     }
@@ -45,7 +46,7 @@ public class FundingController {
      */
     @GetMapping("/funding/{fundingId}")
     public ResponseEntity<?> getFunding(@PathVariable Long fundingId, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        FundingRespDtos.GetFundingDto fundingDto = fundingServiceImpl.getFunding(fundingId, userDetails);
+        FundingRespDtos.GetFundingDto fundingDto = fundingService.getFunding(fundingId, userDetails);
         return ApiResponseGenerator.success(fundingDto, HttpStatus.OK);
     }
 
@@ -54,7 +55,7 @@ public class FundingController {
      */
     @PutMapping("/funding/{fundingId}")
     public ResponseEntity<?> editFunding(@Valid @RequestBody FundingReqDtos.UploadDto uploadDto, @PathVariable Long fundingId){
-        fundingServiceImpl.editFunding(uploadDto, fundingId);
+        fundingService.editFunding(uploadDto, fundingId);
         return ApiResponseGenerator.success(HttpStatus.OK);
     }
 
@@ -64,7 +65,7 @@ public class FundingController {
      */
     @GetMapping("/funding/{id}/description")
     public ResponseEntity<?> getFundingDescription(@PathVariable Long id){
-        FundingRespDtos.FundingDescriptionDto fundingDescription = fundingServiceImpl.getFundingDescription(id);
+        FundingRespDtos.FundingDescriptionDto fundingDescription = fundingService.getFundingDescription(id);
         return ApiResponseGenerator.success(fundingDescription, HttpStatus.OK);
     }
 
