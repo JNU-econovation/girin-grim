@@ -3,6 +3,7 @@ package com.starshop.giringrim.member.controller;
 
 import com.starshop.giringrim.member.dto.MemberReqDtos;
 import com.starshop.giringrim.member.dto.MemberRespDtos;
+import com.starshop.giringrim.member.service.MemberService;
 import com.starshop.giringrim.member.service.MemberServiceImpl;
 import com.starshop.giringrim.utils.common.ApiResponseGenerator;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class MemberController {
 
-    private final MemberServiceImpl memberService;
+    private final MemberService memberService;
 
     /*
     * 회원가입

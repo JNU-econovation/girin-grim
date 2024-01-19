@@ -3,6 +3,7 @@ package com.starshop.giringrim.payment.controller;
 import com.starshop.giringrim.payment.dto.PaymentReqDtos;
 import com.starshop.giringrim.payment.dto.PaymentRespDtos;
 import com.starshop.giringrim.payment.service.PaymentService;
+import com.starshop.giringrim.payment.service.PaymentServiceImpl;
 import com.starshop.giringrim.utils.common.ApiResponseGenerator;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
 import jakarta.validation.Valid;
