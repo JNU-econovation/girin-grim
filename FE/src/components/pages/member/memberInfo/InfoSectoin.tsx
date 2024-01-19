@@ -3,7 +3,6 @@ import MemberInfoList from "./MemberInfoList";
 import useUserDetail from "@/hooks/useUserDetail";
 import { formatMemberData } from "@/utils/memberDataFormat";
 import MemberHero from "./MemberHero";
-import SettingBtn from "./SettingBtn";
 import MemberInfoUnivList from "./MemberInfoUnivList";
 
 type Props = {
@@ -21,7 +20,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
 
   return (
     <section
-      className="mt-24 z-50 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
+      className="mt-24 z-30 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
       id="infoSection"
     >
       <MemberHero url={image} />

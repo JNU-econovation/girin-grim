@@ -1,9 +1,4 @@
-import {
-  FundingDetail,
-  FundingOptions,
-  Pledge,
-  SelectedOption,
-} from "@/Model/Funding";
+import { FundingDetail, Pledge, SelectedOption } from "@/Model/Funding";
 import { TPostResponse, TResponse } from "@/Model/Response";
 import { Server } from "./axios";
 import { fundingDetailURL } from "@/constants/urls";

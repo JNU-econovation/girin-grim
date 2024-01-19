@@ -1,16 +1,16 @@
 "use client";
 import { File } from "@/components/common/icon";
-import { useState } from "react";
 import Creator from "./modal/Creator";
-import { useRecoilValue } from "recoil";
-import { imageUrlState } from "@/store/JoinState";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { imageUrlState, onFileModalState } from "@/store/JoinState";
 
 export default function UploadImage() {
-  const [modalOn, setModalOn] = useState(false);
   const imgSrc = useRecoilValue(imageUrlState);
+  const [modalOn, setModalOn] = useRecoilState(onFileModalState);
+
   return (
     <div
-      className="w-52 h-52 bg-colord9d rounded-full mx-auto relative shadow-lg my-12"
+      className="w-52 h-52 bg-colord9d rounded-full mx-auto relative shadow-lg my-12 "
       style={{
         backgroundImage: `url(${imgSrc})`,
         backgroundSize: "cover",

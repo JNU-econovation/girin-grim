@@ -8,7 +8,6 @@ export const getUnivList = async ({
   region,
   q,
 }: UnivState): Promise<TResponse<Univs>> => {
-  console.log(region);
   const data = Server.get(univURL, {
     params: {
       region,

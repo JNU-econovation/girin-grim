@@ -4,18 +4,17 @@ import { imageFileState, imageUrlState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
 export default function Upload({ close }: Readonly<{ close: () => void }>) {
-  const type = ["png", "jpg", "jpeg", "pdf"];
+  const type = ["png", "jpg", "jpeg"];
   const [_, setImageUrl] = useRecoilState(imageUrlState);
-  const [file, setFile] = useRecoilState(imageFileState);
+  const [__, setFile] = useRecoilState(imageFileState);
 
-  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+      const d = e.target.files[0];
+      setFile(d);
       const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        setImageUrl(reader.result as string);
-      };
+      reader.readAsDataURL(d);
+      reader.onload = () => setImageUrl(reader.result as string);
     }
   };
 
@@ -39,6 +38,7 @@ export default function Upload({ close }: Readonly<{ close: () => void }>) {
           type="file"
           className="sr-only"
           onChange={handleUpload}
+          accept={type.map((item) => `.${item}`).join(",")}
         />
       </label>
       <ul className="flex gap-2 mt-4">

@@ -22,7 +22,7 @@ export default function FeedBox({
   memberId,
 }: Readonly<Props>) {
   return (
-    <section className="font-nanum cursor-default">
+    <section className="font-nanum cursor-default h-[27rem] flex flex-col">
       <img
         src={image}
         alt="funding feed image"
@@ -38,9 +38,11 @@ export default function FeedBox({
       <h2 className="text-[1.375rem] font-black mt-[0.375rem] cursor-default">
         {title}
       </h2>
-      <p className="text-[0.75rem] text-color999 leading-4 mt-[0.4rem] cursor-default">
-        {short}
-      </p>
+      <div className="grow">
+        <p className="text-[0.75rem] text-color999 leading-4 mt-[0.4rem] cursor-default">
+          {short}
+        </p>
+      </div>
       <div className="w-full mt-[0.56rem] flex flex-col gap-[0.375rem]">
         <progress max={100} value={rate} />
         <div className="w-full flex justify-between text-[0.87rem] font-[700]">

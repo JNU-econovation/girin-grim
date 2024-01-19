@@ -12,7 +12,7 @@ type Props = {
 
 export default function UserImage({ size = "small" }: Readonly<Props>) {
   const [isOn, setIsOn] = useState(false);
-  const { data, isLoading, error } = useUser();
+  const { data, isLoading } = useUser();
   const sizeClass = HeroFormatSize(size);
   if (isLoading || !data) return <User />;
   let { image, memberId } = data.response;
@@ -22,7 +22,7 @@ export default function UserImage({ size = "small" }: Readonly<Props>) {
     <>
       <Link href={`/member/${memberId}`}>
         <div
-          className="rounded-full relative z-50"
+          className="rounded-full relative z-50 bg-colore7e"
           style={{
             backgroundImage: `url(${image})`,
             backgroundSize: "cover",
@@ -35,7 +35,7 @@ export default function UserImage({ size = "small" }: Readonly<Props>) {
       <button onClick={() => setIsOn((prev) => !prev)}>
         <ToggleArrow />
       </button>
-      {isOn && <UserModal />}
+      {isOn && <UserModal close={() => setIsOn(false)} />}
     </>
   );
 }

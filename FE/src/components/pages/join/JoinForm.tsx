@@ -2,7 +2,7 @@
 import { formComponent } from "@/constants/formComponent";
 import JoinInput from "./JoinInput";
 import SubmitBtn from "./SubmitBtn";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import {
   favUniState,
   imageFileState,
@@ -42,8 +42,7 @@ export default function JoinForm() {
     }
 
     if (file) submitData.image = await uploadFile(file.name, file);
-
-    const { success, response, error } = await join(submitData);
+    const { error } = await join(submitData);
     if (error) {
       alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
       return;

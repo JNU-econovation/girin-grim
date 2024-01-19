@@ -20,7 +20,9 @@ export const checkDuplicate = async ({
   if (type === "name" && nickname.length === 0) return JoinPostResponseError;
 
   const params = type == "email" ? { email } : { nickname };
-  const data = await Server.get(joinURL, { params }).then((res) => res.data);
+  const data = await Server.get(joinURL, { params })
+    .then((res) => res.data)
+    .catch((error) => error.response.data);
   return data;
 };
 
@@ -38,10 +40,7 @@ export const login = async (submitData: LoginUser): Promise<TPostResponse> => {
       setToken(accessToken, refreshToken);
       return res.data;
     })
-    .catch((error) => {
-      console.log(error.message);
-      return error.message;
-    });
+    .catch((error) => error.response.data);
 };
 
 export const getUser = async (): Promise<
@@ -49,7 +48,7 @@ export const getUser = async (): Promise<
     memberId: number;
     image: string;
     email: string;
-    name: string;
+    nickName: string;
   }>
 > => {
   const data = await Server.get(headerMemberUrl, {
