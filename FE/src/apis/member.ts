@@ -87,6 +87,19 @@ export const getBacked = async (
     headers: {
       Authorization: getToken(),
     },
-  }).then((res) => res.data);
+  })
+    .then((res) => res.data)
+    .catch((err) => err.response.data);
+  return data;
+};
+
+export const getMyCreatedFunding = async (memberId: number) => {
+  const data = await Server.get(`/member/${memberId}/created`, {
+    headers: {
+      Authorization: getToken(),
+    },
+  })
+    .then((res) => res.data)
+    .catch((err) => err.response.data);
   return data;
 };

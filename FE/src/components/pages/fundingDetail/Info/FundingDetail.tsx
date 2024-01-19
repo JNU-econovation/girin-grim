@@ -5,6 +5,7 @@ import FundingInfo from "./FundingInfo";
 import Image from "next/image";
 import GaugeBar from "./GaugeBar";
 import { checkIsOnGoing } from "@/utils/date";
+import useReset from "@/hooks/useReset";
 
 type Props = {
   fundingId: number;
@@ -18,6 +19,7 @@ export default function FundingDetail({ fundingId }: Readonly<Props>) {
     fundingData.funding.startTime,
     fundingData.funding.endTime
   );
+  useReset();
 
   return (
     <section className="flex gap-6 font-nanum">

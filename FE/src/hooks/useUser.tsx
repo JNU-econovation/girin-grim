@@ -8,6 +8,7 @@ export default function useUser() {
     queryFn: () => {
       return getUser();
     },
+    staleTime: 1000 * 60 * 60 * 24,
   });
   return { data, isLoading, error };
 }

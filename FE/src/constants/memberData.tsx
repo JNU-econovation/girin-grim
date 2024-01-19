@@ -34,3 +34,6 @@ export type TitleArrType = [
 
 export type IconArrType = [JSX.Element, null, null, null, null];
 export type ArrayArrType = [false, false, false, false, true];
+
+export const mineNavItems = ["올린 펀딩"];
+export const navItems = ["후원한 펀딩", "올린 펀딩"];

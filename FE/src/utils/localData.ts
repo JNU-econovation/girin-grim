@@ -69,6 +69,7 @@ export const initInsufficient = () => {
   localStorage.setItem("require", "0");
 };
 
+/**부족한 금액을 가져옵니다. */
 export const getInsufficient = () => {
   const data = localStorage.getItem("require");
   return data ? parseInt(data) : 0;
@@ -76,4 +77,10 @@ export const getInsufficient = () => {
 
 export const setInsufficient = (cost: number) => {
   localStorage.setItem("require", cost.toString());
+};
+
+export const resetStorate = () => {
+  const member = getMemeberId();
+  localStorage.clear();
+  setMemberId(member);
 };
