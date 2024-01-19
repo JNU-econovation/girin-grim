@@ -1,8 +1,8 @@
 "use client";
-import Grid from "@/components/common/Grid";
-import useUserFeed from "@/hooks/useUserFeed";
 import MemberFundingNav from "./MemberFundingNav";
 import { useState } from "react";
+import SupportGrid from "./SupportedFundings";
+import CreateGrid from "./CreateGrid";
 
 type Props = {
   memberId: number;
@@ -11,10 +11,7 @@ type Props = {
 export default function MemberFundingGridSection({
   memberId,
 }: Readonly<Props>) {
-  const { data, isLoading } = useUserFeed({ memberId });
   const [focused, setFocus] = useState("후원한 펀딩");
-  if (!data || isLoading) return <div>loading...</div>;
-  const { funding } = data.response;
 
   const navItems = ["후원한 펀딩", "올린 펀딩"];
 
@@ -25,7 +22,8 @@ export default function MemberFundingGridSection({
         navItems={navItems}
         setFocus={(f: string) => setFocus(f)}
       />
-      <Grid fundings={funding} page="member" />
+      {focused === "후원한 펀딩" && <SupportGrid memberId={memberId} />}
+      {focused === "올린 펀딩" && <CreateGrid memberId={memberId} />}
     </section>
   );
 }
