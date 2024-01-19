@@ -10,9 +10,10 @@ export const getHomeFeed = async ({
   sort,
   uni,
   q,
+  page,
 }: HomeFeedProps): Promise<TResponse<HomeFeed>> => {
   const data = await Server.get(homeURL, {
-    params: { category, sort, uni, q },
+    params: { category, sort, uni, q, page },
     headers: {
       Authorization: getToken(),
     },

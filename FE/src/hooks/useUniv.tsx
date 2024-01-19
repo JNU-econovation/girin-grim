@@ -13,6 +13,7 @@ export default function useUniv() {
   const { data, isLoading, error } = useQuery<TResponse<Univs>>({
     queryKey: ["univ", region || q],
     queryFn: async () => await getUnivList(univ),
+    staleTime: 1000 * 60 * 60 * 24,
   });
   return { data, isLoading, error };
 }
