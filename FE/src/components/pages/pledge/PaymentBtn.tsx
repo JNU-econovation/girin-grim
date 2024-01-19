@@ -6,7 +6,7 @@ import { useState } from "react";
 import { postPayment } from "@/apis/funding";
 import { useRecoilValue } from "recoil";
 import { addressState } from "@/store/PledgeState";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 type Props = {
   fundingId: number;
@@ -19,13 +19,13 @@ export default function PaymentBtn({
   type,
   address,
 }: Readonly<Props>) {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { memberId, options } = getLocalData();
   let text = isLoading ? "결제중..." : "결제하기";
   address = address ? address : useRecoilValue(addressState);
 
   const onClick = async () => {
-    const router = useRouter();
     const total = type == "DONATE" ? getDonateCost() : calTotalCost(options);
     setIsLoading(true);
     const returnedData = await postPayment(fundingId, {
