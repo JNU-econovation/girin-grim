@@ -35,7 +35,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class PaymentService {
+public class PaymentServiceImpl implements PaymentService{
 
     private final OptionRepository optionRepository;
     private final MemberRepository memberRepository;
@@ -44,6 +44,7 @@ public class PaymentService {
     private final PaymentDetailsRepository paymentDetailsRepository;
     private final ItemRepository itemRepository;
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentDetailsDto getPaymentDetails(Long fundingId, UserDetailsImpl userDetails) {
         //서포터 정보
@@ -69,6 +70,7 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentDetailsDto(creator, supporter, funding);
     }
 
+    @Override
     @Transactional
     public void chargeCoins(PaymentReqDtos.ChargeDto reqDto, UserDetailsImpl userDetails) {
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
@@ -79,6 +81,7 @@ public class PaymentService {
         member.chargeCoins(myCoin);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.ChargeDetailsDto getChargeDetails(UserDetailsImpl userDetails) {
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
@@ -88,6 +91,7 @@ public class PaymentService {
     }
 
 
+    @Override
     @Transactional
     public void fundingPayment(PaymentReqDtos.FundingPaymentDto reqDto, Long fundingId, UserDetailsImpl userDetails) {
 
@@ -201,6 +205,7 @@ public class PaymentService {
 
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentHistoryDto fundingHistory(Long memberId, Long fundingId, UserDetailsImpl userDetails){
 
@@ -250,6 +255,7 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentHistoryDto(totalPrice, creator, member.getAddress(),funding, optionDtos);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentListDto fundingHistoryList(Long memberId, UserDetailsImpl userDetails){
 
@@ -297,6 +303,7 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentListDto(respDtoList);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.CreationListDto fundingCreationList(Long memberId){
         //조회하고자하는 사람의 아이디로 멤버 조회
