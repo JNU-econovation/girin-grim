@@ -5,6 +5,8 @@ import { formatMemberData } from "@/utils/memberDataFormat";
 import MemberHero from "./MemberHero";
 import MemberInfoUnivList from "./MemberInfoUnivList";
 import useReset from "@/hooks/useReset";
+import { useRecoilState } from "recoil";
+import { isMineState } from "@/store/MemberState";
 
 type Props = {
   memberId: number;
@@ -12,13 +14,16 @@ type Props = {
 
 export default function InfoSectoin({ memberId }: Readonly<Props>) {
   const { data, isLoading, error } = useUserDetail({ memberId });
+  const [_, setMine] = useRecoilState(isMineState);
   if (isLoading) return <div>로딩중</div>;
   if (error || !data) return <div>에러</div>;
   const {
     member: { email, nickname, image },
+    isMine,
   } = data.response;
   const InfoData = formatMemberData(data.response.member);
   useReset();
+  setMine(isMine);
   return (
     <section
       className="mt-24 z-30 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
