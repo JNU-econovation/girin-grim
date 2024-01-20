@@ -1,4 +1,4 @@
-package com.starshop.giringrim.payment;
+package com.starshop.giringrim.payment.service;
 
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.funding.entity.FundingType;
@@ -11,8 +11,12 @@ import com.starshop.giringrim.option.Option;
 import com.starshop.giringrim.option.OptionRepository;
 import com.starshop.giringrim.option.item.Item;
 import com.starshop.giringrim.option.item.ItemRepository;
+import com.starshop.giringrim.payment.repository.PaymentRepository;
 import com.starshop.giringrim.payment.details.PaymentDetails;
 import com.starshop.giringrim.payment.details.PaymentDetailsRepository;
+import com.starshop.giringrim.payment.dto.PaymentReqDtos;
+import com.starshop.giringrim.payment.dto.PaymentRespDtos;
+import com.starshop.giringrim.payment.entity.Payment;
 import com.starshop.giringrim.payment.exception.*;
 import com.starshop.giringrim.utils.exception.ErrorMessage;
 import com.starshop.giringrim.utils.security.UserDetailsImpl;
@@ -31,7 +35,7 @@ import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
-public class PaymentService {
+public class PaymentServiceImpl implements PaymentService{
 
     private final OptionRepository optionRepository;
     private final MemberRepository memberRepository;
@@ -40,6 +44,7 @@ public class PaymentService {
     private final PaymentDetailsRepository paymentDetailsRepository;
     private final ItemRepository itemRepository;
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentDetailsDto getPaymentDetails(Long fundingId, UserDetailsImpl userDetails) {
         //서포터 정보
@@ -65,6 +70,7 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentDetailsDto(creator, supporter, funding);
     }
 
+    @Override
     @Transactional
     public void chargeCoins(PaymentReqDtos.ChargeDto reqDto, UserDetailsImpl userDetails) {
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
@@ -75,6 +81,7 @@ public class PaymentService {
         member.chargeCoins(myCoin);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.ChargeDetailsDto getChargeDetails(UserDetailsImpl userDetails) {
         Member member = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
@@ -84,6 +91,7 @@ public class PaymentService {
     }
 
 
+    @Override
     @Transactional
     public void fundingPayment(PaymentReqDtos.FundingPaymentDto reqDto, Long fundingId, UserDetailsImpl userDetails) {
 
@@ -197,6 +205,7 @@ public class PaymentService {
 
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentHistoryDto fundingHistory(Long memberId, Long fundingId, UserDetailsImpl userDetails){
 
@@ -246,12 +255,9 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentHistoryDto(totalPrice, creator, member.getAddress(),funding, optionDtos);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.PaymentListDto fundingHistoryList(Long memberId, UserDetailsImpl userDetails){
-        //로그인 사용자 정보 얻어오기
-        Member loginedMember = memberRepository.findByEmail(userDetails.getEmail()).orElseThrow(
-                () -> new MemberNotExistException(ErrorMessage.MEMBER_NOT_EXIST)
-        );
 
         //존재하지 않는 멤버 예외
         Member member = memberRepository.findById(memberId).orElseThrow(
@@ -297,6 +303,7 @@ public class PaymentService {
         return new PaymentRespDtos.PaymentListDto(respDtoList);
     }
 
+    @Override
     @Transactional(readOnly = true)
     public PaymentRespDtos.CreationListDto fundingCreationList(Long memberId){
         //조회하고자하는 사람의 아이디로 멤버 조회

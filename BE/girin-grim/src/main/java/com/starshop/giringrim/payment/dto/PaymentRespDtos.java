@@ -1,4 +1,4 @@
-package com.starshop.giringrim.payment;
+package com.starshop.giringrim.payment.dto;
 
 
 import com.starshop.giringrim.funding.entity.Funding;

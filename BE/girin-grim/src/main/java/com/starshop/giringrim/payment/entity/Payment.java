@@ -1,4 +1,4 @@
-package com.starshop.giringrim.payment;
+package com.starshop.giringrim.payment.entity;
 
 import com.starshop.giringrim.funding.entity.Funding;
 import com.starshop.giringrim.member.entity.Member;
