@@ -13,7 +13,7 @@ export default function JoinUnivUl() {
     univId: 0,
   });
   const [univs, setUnivs] = useRecoilState(favUniState);
-  const { data, isLoading } = useUniv();
+  const { data } = useUniv();
 
   useEffect(() => {
     if (univ.univId === 0) return;
@@ -31,6 +31,10 @@ export default function JoinUnivUl() {
     ]);
   }, [univ]);
 
+  if (!data)
+    return (
+      <div className="grow bg-colorede rounded-[0.31rem] px-6 py-[0.48rem] overflow-y-auto font-normal text-sm mt-3" />
+    );
   return (
     <>
       {data && (
@@ -38,7 +42,7 @@ export default function JoinUnivUl() {
           data={data.response.university}
           type="univ"
           modify={({ univId, univName }) => {
-            setUniv((prev) => ({ univId, univName }));
+            setUniv(() => ({ univId, univName }));
           }}
         />
       )}
