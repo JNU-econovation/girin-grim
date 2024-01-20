@@ -59,11 +59,11 @@ export default function InfoOptionDetail({
               >
                 -
               </button>
-              <div className="w-9 h-full flex justify-center items-center bg-slate-100 text-[0.875rem] border-y-[1px]">
+              <div className="w-9 h-full flex justify-center items-center bg-slate-100 text-sm border-y-[1px]">
                 {amount}
               </div>
               <button
-                className="w-[1.375rem]  flex justify-center items-center bg-[#cccccc] text-white rounded-r-[0.2rem] border-y-[1px] border-r-[1px]"
+                className="w-[1.375rem] flex justify-center items-center bg-[#cccccc] text-white rounded-r-[0.2rem] border-y-[1px] border-r-[1px]"
                 onClick={() => {
                   if (amount === quantity) return;
                   setAmount(amount + 1);

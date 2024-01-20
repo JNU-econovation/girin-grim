@@ -48,7 +48,7 @@ export const getUser = async (): Promise<
     memberId: number;
     image: string;
     email: string;
-    nickName: string;
+    nickname: string;
   }>
 > => {
   const data = await Server.get(headerMemberUrl, {

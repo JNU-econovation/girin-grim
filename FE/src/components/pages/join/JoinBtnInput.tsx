@@ -21,7 +21,7 @@ export default function JoinBtnInput({
 
   return (
     <div className="my-[1.1rem] ">
-      <h3 className="font-nanum text-input_title text-[1.25rem]">{title}</h3>
+      <h3 className="font-nanum text-input_title text-xl">{title}</h3>
       <div className="w-full bg-slate-50 relative flex">
         <div className="absolute top-1/2 left-[1rem] -translate-y-1/2">
           {icon}

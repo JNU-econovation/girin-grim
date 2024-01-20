@@ -1,3 +1,4 @@
+"use client";
 import { getDonateCost, getLocalTotalCost } from "@/utils/payment";
 import { Coin } from "./icon";
 
