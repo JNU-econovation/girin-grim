@@ -13,7 +13,7 @@ export default function JoinUnivUl() {
     univId: 0,
   });
   const [univs, setUnivs] = useRecoilState(favUniState);
-  const { data, isLoading, error } = useUniv();
+  const { data, isLoading } = useUniv();
 
   useEffect(() => {
     if (univ.univId === 0) return;

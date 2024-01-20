@@ -1,10 +1,17 @@
 "use client";
 import useCharge from "@/hooks/useCharge";
 import { Coin } from "../../common/icon";
+import { useRouter } from "next/navigation";
 
 export default function BalanceDisplay({ total }: Readonly<{ total: number }>) {
+  const router = useRouter();
   const { data, isLoading } = useCharge();
   if (isLoading || !data) return <div>loading...</div>;
+  console.log(data);
+  if (!data.success) {
+    // alert(data.error.message);
+    router.back();
+  }
 
   const prevCoins = data.response.coin;
 

@@ -20,14 +20,12 @@ export default function LoginInput({
     <div className="mt-[1.8rem]">
       <label
         htmlFor="email"
-        className="font-nanum text-[0.625rem] text-[400] text-color656"
+        className="font-nanum text-[0.625rem] text-color656"
       >
         {title}
       </label>
       <div className="relative">
-        <div className="absolute top-1/2 left-[1rem] -translate-y-1/2">
-          {icon}
-        </div>
+        <div className="absolute top-1/2 left-4 -translate-y-1/2">{icon}</div>
         <input
           name={type}
           type={type}

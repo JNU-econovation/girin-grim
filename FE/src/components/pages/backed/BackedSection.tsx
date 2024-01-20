@@ -18,7 +18,6 @@ export default function BackedSection({
 }: Readonly<Props>) {
   const router = useRouter();
   const { data, isLoading } = useBacked({ fundingId, memberId });
-  console.log(data);
   if (isLoading || !data) return <div>로딩중</div>;
   if (!data.success) router.back();
   const { funding, member, options, address, totalPrice } = data.response;

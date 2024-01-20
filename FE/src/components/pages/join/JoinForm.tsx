@@ -81,7 +81,7 @@ export default function JoinForm() {
       })}
       <AgreementCheckbox text="개인정보 수집 및 이용에 대한 동의" />
       <SubmitBtn />
-      <Link href="/login" className="text-color9f9  flex gap-2">
+      <Link href="/login" className="text-color9f9 flex gap-2">
         <span>&larr;</span>
         <span className="text-center border-b-2">로그인 되돌아가기</span>
       </Link>

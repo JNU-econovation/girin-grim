@@ -1,3 +1,4 @@
+"use client";
 import useCharge from "@/hooks/useCharge";
 import Agreement from "./Agreement";
 import PaymentBtn from "./PaymentBtn";

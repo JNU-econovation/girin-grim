@@ -10,7 +10,7 @@ export default function CargeBtn() {
       <StyledBtn
         text="충전"
         handler={() => onCLick()}
-        style="h-full mt-0 text-[1rem] font-nanum font-semibold"
+        style="h-full mt-0 text-base font-nanum font-semibold"
       />
     </div>
   );

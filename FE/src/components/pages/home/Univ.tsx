@@ -19,13 +19,9 @@ export default function Univ({ favUniversity }: Readonly<Props>) {
   const isLoggedIn = CheckIsLoggedIn();
   const router = useRouter();
 
-  // console.log(isSelected);
-  // console.log("univText", univText);
-  // console.log("univHeader", univHeader);
-
   return (
     <div
-      className="mt-[1.2rem] text-colorb9b font-nanum text-[0.875rem] flex gap-[0.4rem] underline cursor-default"
+      className="mt-[1.2rem] text-colorb9b font-nanum text-sm flex gap-[0.4rem] underline cursor-default"
       onClick={() => !isLoggedIn && router.push("/login")}
     >
       <Setting />

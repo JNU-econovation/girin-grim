@@ -19,7 +19,7 @@ export default function HeaderNavSection() {
     <section className="flex justify-between items-center mt-[0.8rem] font-nanum">
       <ul className="flex gap-6 font-semibold text-xl mb-3 items-center cursor-pointer">
         <li
-          className={`flex items-center gap-[2rem] relative ${
+          className={`flex items-center gap-8 relative ${
             hover.category ? "text-[#3d3d3d]" : "text-colorb0b"
           } `}
           onMouseEnter={() => {

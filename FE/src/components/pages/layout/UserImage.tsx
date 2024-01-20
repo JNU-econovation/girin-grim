@@ -1,3 +1,4 @@
+"use client";
 import useUser from "@/hooks/useUser";
 import { ToggleArrow, User } from "../../common/icon";
 import Link from "next/link";

@@ -22,7 +22,7 @@ export default function Category() {
             >
               <li className="mb-[1.43rem]">
                 <div
-                  className={`flex items-center gap-[0.75rem] ${
+                  className={`flex items-center gap-3 ${
                     category == title ? "" : "text-color9f9"
                   }`}
                 >

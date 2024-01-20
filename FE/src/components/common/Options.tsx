@@ -20,11 +20,11 @@ export default function Options({
         </div>
       </div>
 
-      <div className="flex text-[1.25rem] font-semibold w-40 justify-between mt-2">
+      <div className="flex text-xl font-semibold w-40 justify-between mt-2">
         <p className="text-color656">단가</p>
         <p className="font-bold">{`${price * amount}원`}</p>
       </div>
-      <div className="flex text-[1.25rem] font-semibold w-40 justify-between mt-2">
+      <div className="flex text-xl font-semibold w-40 justify-between mt-2">
         <p className="text-color656">수량</p>
         <p className="font-bold">{amount}</p>
       </div>

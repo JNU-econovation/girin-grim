@@ -1,3 +1,4 @@
+"use client";
 type Props = {
   setSelected: () => void;
   selected: number;

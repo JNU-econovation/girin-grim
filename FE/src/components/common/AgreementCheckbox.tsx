@@ -1,6 +1,6 @@
 "use client";
 
-import { joinCheckState, joinState } from "@/store/JoinState";
+import { joinCheckState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
 type Props = {
@@ -24,7 +24,7 @@ export default function AgreementCheckbox({ text, style }: Readonly<Props>) {
         onChange={(e) => handleAgreement(e.target.checked)}
         checked={check.agree}
       />
-      <label htmlFor="scales" className="text-[0.875rem] text-color656 text-sm">
+      <label htmlFor="scales" className="text-color656 text-sm">
         {text}
       </label>
     </div>

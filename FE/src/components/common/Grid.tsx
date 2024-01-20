@@ -9,7 +9,7 @@ type Props = {
 
 export default function Grid({ fundings, page }: Readonly<Props>) {
   return (
-    <div className="w-full mt-[0.5rem] grid grid-cols-3 gap-[2rem] gap-y-[2.75rem]">
+    <div className="w-full mt-2 grid grid-cols-3 gap-8 gap-y-11">
       {fundings.map(
         ({
           image,
