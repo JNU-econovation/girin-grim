@@ -1,4 +1,8 @@
-import JoinForm from "@/components/pages/join/JoinForm";
+// import JoinForm from "@/components/pages/join/JoinForm";
+import dynamic from "next/dynamic";
+const JoinForm = dynamic(() => import("@/components/pages/join/JoinForm"), {
+  ssr: false,
+});
 
 export default function JoinPage() {
   return (
