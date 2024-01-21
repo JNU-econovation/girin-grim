@@ -72,8 +72,9 @@ const initInsufficient = () => {
 
 /**부족한 금액을 가져옵니다. */
 export const getInsufficient = (): number => {
+  if (!localStorage) return 0;
   initInsufficient();
-  const data = localStorage.getItem("require")!;
+  const data = localStorage?.getItem("require")!;
   return +data || 0;
 };
 
