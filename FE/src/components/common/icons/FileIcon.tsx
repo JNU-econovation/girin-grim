@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function File({ colored }: Readonly<{ colored?: boolean }>) {
+export default function FileIcon({ colored }: Readonly<{ colored?: boolean }>) {
   return (
     <>
       {colored ? (

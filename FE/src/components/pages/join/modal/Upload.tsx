@@ -1,5 +1,5 @@
 "use client";
-import { Delete, File } from "@/components/common/icon";
+import { Delete, FileIcon } from "@/components/common/icon";
 import { imageFileState, imageUrlState } from "@/store/JoinState";
 import { useRecoilState } from "recoil";
 
@@ -30,7 +30,7 @@ export default function Upload({ close }: Readonly<{ close: () => void }>) {
         htmlFor="file-upload"
         className="relative cursor-pointer font-semibold grow bg-colorede flex justify-center items-center flex-col rounded-lg mt-3"
       >
-        <File colored />
+        <FileIcon colored />
         <span className="mt-2">Upload a file</span>
         <input
           id="file-upload"

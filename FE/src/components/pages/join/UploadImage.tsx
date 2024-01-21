@@ -1,5 +1,5 @@
 "use client";
-import { File } from "@/components/common/icon";
+import { FileIcon } from "@/components/common/icon";
 import Creator from "./modal/Creator";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { imageUrlState, onFileModalState } from "@/store/JoinState";
@@ -25,7 +25,7 @@ export default function UploadImage() {
           setModalOn(true);
         }}
       >
-        <File />
+        <FileIcon />
       </button>
       {modalOn && <Creator close={() => setModalOn(false)} id="image" />}
     </div>
