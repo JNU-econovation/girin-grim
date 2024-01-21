@@ -1,6 +1,9 @@
-import LoginForm from "@/components/pages/login/LoginForm";
 import LoginHeader from "@/components/pages/login/LoginHeader";
 import LoginRedirect from "@/components/pages/login/LoginRedirect";
+import dynamic from "next/dynamic";
+const LoginForm = dynamic(() => import("@/components/pages/login/LoginForm"), {
+  ssr: false,
+});
 
 export default function LoginPage() {
   return (
