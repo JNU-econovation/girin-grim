@@ -32,21 +32,16 @@ export default function JoinForm() {
   };
 
   const submitJoinForm = async () => {
-    if (passwordCheck !== password) {
-      alert("비밀번호가 일치하지 않습니다.");
-      return;
-    }
-    if (!emailCheck || !nameCheck || !agree) {
-      alert("중복 확인 및 필수 동의사항을 동의해주세요!");
-      return;
-    }
+    if (passwordCheck !== password)
+      return alert("비밀번호가 일치하지 않습니다.");
+
+    if (!emailCheck || !nameCheck || !agree)
+      return alert("중복 확인 및 필수 동의사항을 동의해주세요!");
 
     if (file) submitData.image = await uploadFile(file.name, file);
+
     const { error } = await join(submitData);
-    if (error) {
-      alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
-      return;
-    }
+    if (error) return alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
     alert("회원가입이 완료되었습니다.");
     router.push("/login");
   };

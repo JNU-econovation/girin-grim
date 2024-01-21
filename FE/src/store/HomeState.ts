@@ -1,3 +1,4 @@
+import { Feed } from "@/Model/Feed";
 import { atom } from "recoil";
 
 export type THomeState = {
@@ -38,4 +39,9 @@ export const HomeState = atom<THomeState>({
 export const HomeUniSelectedState = atom({
   key: "HomeUniSelectedState",
   default: false,
+});
+
+export const HomeFundingListState = atom<Feed[]>({
+  key: "HomeFundingListState",
+  default: [],
 });
