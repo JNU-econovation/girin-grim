@@ -1,6 +1,7 @@
 import ChargeNoticet from "./ChargeNoticet";
-import ChargingCoin from "./ChargingCoin";
 import ChargeOption from "./ChargeOption";
+import dynamic from "next/dynamic";
+const ChargingCoin = dynamic(() => import("./ChargingCoin"), { ssr: false });
 
 export default function ChargeOptionSection() {
   return (
