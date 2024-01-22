@@ -4,7 +4,7 @@ import React from "react";
 export default function ToggleArrow() {
   return (
     <Image
-      src="/Assets/ToggleArrow.svg"
+      src="/assets/ToggleArrow.svg"
       width={10}
       height={7}
       alt="User icon toggleArrow"
