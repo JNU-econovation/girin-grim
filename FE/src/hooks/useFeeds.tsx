@@ -32,6 +32,7 @@ export default function useFeeds() {
       });
       return response;
     },
+    staleTime: 1000 * 5,
   });
   return { data, isLoading, error };
 }

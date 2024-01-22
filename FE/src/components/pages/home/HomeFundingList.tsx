@@ -7,33 +7,28 @@ import HomeHeader from "./HomeHeader";
 import Univ from "./Univ";
 import ExtendBtn from "./ExtendBtn";
 import useReset from "@/hooks/useReset";
-import { HomeFundingListState, HomeState } from "@/store/HomeState";
-import { Feed } from "@/Model/Feed";
+import { HomeState } from "@/store/HomeState";
 
 export default function HomeFundingList() {
-  const { page } = useRecoilValue(HomeState);
-  const [fundingList, setFundingList] =
-    useRecoilState<Feed[]>(HomeFundingListState);
+  const [{ category, q, sort, uni }, setHomeState] = useRecoilState(HomeState);
   const { data, isLoading } = useFeeds();
 
   useEffect(() => {
-    if (data && data.response) {
-      const { funding } = data.response;
-      setFundingList((prev) => [...prev, ...funding]);
-    }
-  }, [data, setFundingList]);
+    setHomeState((prev) => ({ ...prev, page: 0 }));
+  }, [category, q, sort, uni]);
+
   if (isLoading || !data) {
-    return <div>loading...</div>;
+    return <></>;
   }
-  const { favUniversity } = data.response;
+  const { favUniversity, funding } = data.response;
   useReset();
 
   return (
     <section>
       <Univ favUniversity={favUniversity} />
       <HomeHeader />
-      <Grid fundings={fundingList} page="home" />
-      {!page && <ExtendBtn />}
+      <Grid fundings={funding} page="home" />
+      <ExtendBtn />
     </section>
   );
 }
