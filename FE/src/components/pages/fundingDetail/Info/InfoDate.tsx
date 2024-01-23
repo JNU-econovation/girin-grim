@@ -38,14 +38,14 @@ export default function InfoDate({
         <p className="">
           모인 금액 / 목표 금액 | {` ${curMoney} / ${goalMoney}원`}
         </p>
-        <p className="text-main font-bold font-esaman">{rate}%</p>
+        <p className="text-main font-black font-esaman">{rate}%</p>
       </div>
       <div className="flex justify-between text-color999 my-1">
         <p className="">
           펀딩 기간 |{" "}
           {`${startYear}.${startMonth}.${startDay} ~ ${endYear}.${endMonth}.${endDay}`}
         </p>
-        <p className="text-main font-bold font-esaman">D{Dday}</p>
+        <p className="text-main font-black font-esaman">D{Dday}</p>
       </div>
       <p className="text-color999">
         예상 실행일 |{" "}

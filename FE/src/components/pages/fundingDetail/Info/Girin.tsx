@@ -1,4 +1,4 @@
-import { Bubble } from "@/components/common/icon";
+import Bubble from "@/components/common/icons/Bubble";
 import Image from "next/image";
 
 export default function Girin({
@@ -18,12 +18,7 @@ export default function Girin({
         height={140}
         className={`z-30 -top-32 translate-x-1 translate-y-2 scale-125`}
       />
-      <div className="absolute z-40 translate-x-24 -translate-y-11">
-        <Bubble />
-        <span className="absolute block w-12 h-4 translate-x-5 -translate-y-7 text-white font-semibold">
-          {rate}%
-        </span>
-      </div>
+      <Bubble rate={rate} />
     </div>
   );
 }

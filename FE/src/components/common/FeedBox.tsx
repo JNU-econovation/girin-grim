@@ -28,18 +28,18 @@ export default function FeedBox({
         alt="funding feed image"
         className="w-full h-[17rem] rounded-[0.3rem]"
       />
-      <div className="flex text-[0.75rem] gap-[0.3rem] mt-[0.44rem]">
+      <div className="flex text-[0.75rem] gap-[0.2rem] mt-[0.6rem]">
         <h4 className="font-extrabold">{university}</h4>
         <Link href={`/member/${memberId}`}>
           <span> | </span>
           <span>{nickname}</span>
         </Link>
       </div>
-      <h2 className="text-[1.375rem] font-black mt-[0.375rem] cursor-default">
+      <h2 className="text-[1.375rem] font-black mt-[0.12rem] cursor-default">
         {title}
       </h2>
       <div className="grow">
-        <p className="text-[0.75rem] text-color999 leading-4 mt-[0.4rem] cursor-default">
+        <p className="text-[0.75rem] text-color999 leading-4 mt-[0.2rem] cursor-default">
           {short}
         </p>
       </div>

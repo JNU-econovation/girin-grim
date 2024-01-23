@@ -10,7 +10,7 @@ type Props = {
 
 export default function page({ params: { memberId } }: Props) {
   return (
-    <section className="w-full max-w-7xl mx-auto font-nanum">
+    <section className="w-full max-w-7xl mx-auto font-nanum min-h-screen">
       <PageTitle title="마이페이지" />
       <MemberInfoSection memberId={memberId} />
       <MemberFundingGridSection memberId={memberId} />

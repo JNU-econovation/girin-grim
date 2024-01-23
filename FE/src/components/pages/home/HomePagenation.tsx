@@ -1,3 +1,4 @@
+import { ArrowLeft, ArrowRight } from "@/components/common/icon";
 import { HomeState } from "@/store/HomeState";
 import { useRecoilState } from "recoil";
 
@@ -18,20 +19,22 @@ export default function HomePagenation() {
   const [{ page }, setPage] = useRecoilState(HomeState);
   const isFirstPage = page == 0;
   return (
-    <section className="flex gap-2 justify-center w-full mt-20">
+    <section className="flex gap-3 justify-center w-full mt-20">
       <button
-        className="bg-colord9d rounded-lg px-3 text-center py-1"
+        className={`${
+          page === 0 ? "bg-colorede" : "border-colorede border"
+        }  rounded-lg px-3 text-center py-1`}
         onClick={() =>
           !isFirstPage && setPage((prev) => ({ ...prev, page: prev.page - 1 }))
         }
       >
-        &lt;
+        <ArrowLeft isBlocked={page === 0} />
       </button>
-      {pageConst.map(({ id, isFirst, text }) => (
+      {pageConst.map(({ id, text }) => (
         <button
           key={id}
           className={`px-3 py-1 border rounded-lg ${
-            page === id && " border-main"
+            page === id && " border-main text-main"
           }`}
           onClick={() => setPage((prev) => ({ ...prev, page: id }))}
         >
@@ -39,12 +42,14 @@ export default function HomePagenation() {
         </button>
       ))}
       <button
-        className="bg-colord9d rounded-lg px-3 text-center py-1"
+        className={`${
+          page === 1 ? "bg-colorede" : "border-colorede border"
+        }  rounded-lg px-3 text-center py-1`}
         onClick={() =>
           isFirstPage && setPage((prev) => ({ ...prev, page: prev.page + 1 }))
         }
       >
-        &gt;
+        <ArrowRight isBlocked={page === 1} />
       </button>
     </section>
   );

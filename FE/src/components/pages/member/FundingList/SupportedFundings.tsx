@@ -6,5 +6,9 @@ export default function SupportGrid({ memberId }: { memberId: number }) {
   if (!data || isLoading) return <div>loading...</div>;
   const { funding } = data.response;
 
-  return <Grid fundings={funding} page="member" />;
+  return (
+    <section className="mt-6">
+      <Grid fundings={funding} page="member" />
+    </section>
+  );
 }

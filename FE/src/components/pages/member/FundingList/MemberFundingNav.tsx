@@ -13,8 +13,9 @@ export default function MemberFundingNav({
   focused,
   isMine,
 }: Props) {
+  console.log(isMine);
   return (
-    <div className={`${isMine ? "w-32" : "w-64"}`}>
+    <div className={`${isMine ? "w-64" : "w-32"}`}>
       <NavBar navItems={navItems} setFocus={setFocus} focused={focused} />
     </div>
   );

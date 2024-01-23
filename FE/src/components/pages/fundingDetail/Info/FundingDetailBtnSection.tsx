@@ -28,7 +28,7 @@ export default function FundingDetailBtnSection({
 
   const isOkToPledge = cost > 0;
   return (
-    <section className="flex gap-[0.63rem] mt-4">
+    <section className="flex gap-[0.63rem] mt-2">
       <button className="w-[4.375rem] h-[4.375rem] shrink-0 rounded-[0.25rem] flex justify-center items-center border ">
         <Share />
       </button>
