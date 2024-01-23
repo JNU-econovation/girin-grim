@@ -35,28 +35,6 @@ export const metadata: Metadata = {
     },
     { name: "geongyu09", url: "https://github.com/geongyu09" },
   ],
-  openGraph: {
-    title: "너와 그린 기린 그림",
-    description:
-      "지역 기반 펀딩 플렛폼 너와 그린 기린 그림 입니다! 저희는 전남대학교 에코노베이션 동아리 소속 *23#팀입니다. 너와 그린 기린 그림은 23년도 2학기에 진행된 프로젝트입니다.",
-    url: "https://girin-grim.shop",
-    siteName: "girin-grim",
-    images: [
-      {
-        url: "https://girin-grim.s3.ap-northeast-2.amazonaws.com/upload/Mascot+2.jpg",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "https://girin-grim.s3.ap-northeast-2.amazonaws.com/upload/Mascot+2.jpg",
-        width: 1800,
-        height: 1600,
-        alt: "girin grim mascot",
-      },
-    ],
-    locale: "ko_KR",
-    type: "website",
-  },
 };
 
 export default function RootLayout({
@@ -66,6 +44,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body>
         <ReactQuery>
           <Recoil>
