@@ -111,7 +111,9 @@ public class SecurityConfig {
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080", "http://43.202.249.173:8080",
                 "http://localhost:3000",
                 "https://localhost:3000",
-                "http://43.202.249.173:3000"));
+                "http://43.202.249.173:3000",
+                "https://www.girin-grim.shop",
+                "https://girin-grim.shop"));
         configuration.setAllowCredentials(true); // 클라이언트에서 쿠키 요청 허용
         configuration.addExposedHeader("Authorization");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
