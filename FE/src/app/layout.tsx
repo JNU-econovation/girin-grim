@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/pages/layout/Header";
 import { ReactQuery } from "@/context/ReackQuery";
 import Recoil from "@/context/Recoil";
-import { Footer } from "@/components/common/icon";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -27,7 +23,6 @@ export default function RootLayout({
             {children}
           </Recoil>
         </ReactQuery>
-        <Footer />
       </body>
     </html>
   );
