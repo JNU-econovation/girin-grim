@@ -29,6 +29,7 @@ export { default as Kakao } from "./icons/Kakao";
 export { default as Credit } from "./icons/Credit";
 export { default as BankTransfer } from "./icons/BankTransfer";
 export { default as DevBtn } from "./icons/DevBtn";
-export { default as Bubble } from "./icons/Bubble";
 export { default as FileIcon } from "./icons/FileIcon";
 export { default as Footer } from "./icons/Footer";
+export { default as ArrowLeft } from "./icons/ArrowLeft";
+export { default as ArrowRight } from "./icons/ArrowRight";
