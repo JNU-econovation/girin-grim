@@ -1,7 +1,6 @@
 import PageTitle from "@/components/common/PageTitle";
 import MemberFundingGridSection from "@/components/pages/member/FundingList/SupportGrid";
 import MemberInfoSection from "@/components/pages/member/memberInfo/MemberInfoSection";
-import useReset from "@/hooks/useReset";
 
 type Props = {
   params: {
