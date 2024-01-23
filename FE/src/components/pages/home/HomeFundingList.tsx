@@ -5,9 +5,10 @@ import useFeeds from "@/hooks/useFeeds";
 import Grid from "../../common/Grid";
 import HomeHeader from "./HomeHeader";
 import Univ from "./Univ";
-import ExtendBtn from "./ExtendBtn";
+// import ExtendBtn from "./ExtendBtn";
 import useReset from "@/hooks/useReset";
 import { HomeState } from "@/store/HomeState";
+import HomePagenation from "./HomePagenation";
 
 export default function HomeFundingList() {
   const [{ category, q, sort, uni }, setHomeState] = useRecoilState(HomeState);
@@ -28,7 +29,8 @@ export default function HomeFundingList() {
       <Univ favUniversity={favUniversity} />
       <HomeHeader />
       <Grid fundings={funding} page="home" />
-      <ExtendBtn />
+      {/* <ExtendBtn /> */}
+      <HomePagenation />
     </section>
   );
 }
