@@ -23,7 +23,7 @@ export default function InfoOption({ options }: Readonly<Props>) {
   return (
     <>
       <select
-        className="border-2 mt-2 mb-3 py-4 px-4 rounded-md outline-none text-color999 font-nanum"
+        className="border-2 mt-2 mb-3 py-4 px-4 rounded-md outline-none text-colorb9b border-colorb9b font-nanum appearance-none"
         onChange={(e) => {
           const value = +e.target.value;
           if (!value) return;
@@ -39,6 +39,12 @@ export default function InfoOption({ options }: Readonly<Props>) {
           ) {
             setSelected([...selected, selectedOption]);
           }
+        }}
+        style={{
+          backgroundImage: "url(/assets/ArrowDown.svg)",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "right 1rem center",
+          backgroundSize: "1rem",
         }}
       >
         <option value={0}>상품을 선택해주세요!</option>

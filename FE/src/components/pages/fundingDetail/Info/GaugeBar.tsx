@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function GaugeBar({ rate, isOnGoing }: Readonly<Props>) {
-  const height = rate * 0.29;
+  const height = (rate + 10) * 0.27;
   return (
     <section className="relative flex flex-col justify-end items-center pb-2">
       <Girin height={height} rate={rate} />
@@ -21,7 +21,7 @@ export default function GaugeBar({ rate, isOnGoing }: Readonly<Props>) {
           }}
         />
         <div
-          className={`w-9 h-9  rounded-full relative z-20 ${
+          className={`w-8 h-8  rounded-full relative z-20 ${
             isOnGoing ? "bg-main" : "bg-color999"
           }`}
         />

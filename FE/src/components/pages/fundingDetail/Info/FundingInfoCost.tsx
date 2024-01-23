@@ -15,7 +15,7 @@ export default function FundingInfoCost({ coin, type }: Readonly<Props>) {
     : useRecoilValue(TotalCostState);
 
   return (
-    <section className="w-full text-end">
+    <section className="w-full text-end mt-2">
       <p className="text-color999 font-semibold">My Coin : {coin} ( 충전 )</p>
       <p className="text-4xl font-extrabold flex justify-end gap-2 items-center">
         <span className="opacity-70">{cost ? cost : 0}</span>

@@ -12,7 +12,7 @@ export default function SuppotInfo({ supporter, type }: Readonly<Props>) {
   const suppotData = formatSuppotData(supporter.address);
   return (
     <section className="m-[1.14rem]">
-      <div className="flex text-xl px-6 py-4 bg-colore7e rounded-md gap-6">
+      <div className="flex text-xl px-6 py-4 bg-colorede rounded-md gap-6">
         <ul className="flex flex-col gap-3">
           {suppotData.map(({ icon, title, value }) => {
             if (type === "DONATE" && title === "주소") return <></>;

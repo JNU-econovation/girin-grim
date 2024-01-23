@@ -1,6 +1,6 @@
 "use client";
 import MemberFundingNav from "./MemberFundingNav";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SupportGrid from "./SupportedFundings";
 import CreateGrid from "./CreateGrid";
 import { mineNavItems, navItems } from "@/constants/memberData";
@@ -16,11 +16,16 @@ export default function MemberFundingGridSection({
 }: Readonly<Props>) {
   const isMine = useRecoilValue(isMineState);
   const [focused, setFocus] = useState(isMine ? "후원한 펀딩" : "올린 펀딩");
+
+  useEffect(() => {
+    setFocus(isMine ? "후원한 펀딩" : "올린 펀딩");
+  }, [isMine]);
+
   return (
     <section className="mt-40">
       <MemberFundingNav
         focused={focused}
-        navItems={isMine ? mineNavItems : navItems}
+        navItems={isMine ? navItems : mineNavItems}
         setFocus={(f: string) => setFocus(f)}
         isMine={isMine}
       />

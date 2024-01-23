@@ -19,7 +19,7 @@ export default function UploadImage() {
       }}
     >
       <button
-        className="px-2 py-2 bg-white shadow-lg rounded-full absolute bottom-3 right-3"
+        className="px-2 py-2 bg-white shadow-lg rounded-full absolute bottom-3 right-3 focus:outline-none"
         onClick={(e) => {
           e.preventDefault();
           setModalOn(true);

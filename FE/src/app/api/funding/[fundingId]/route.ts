@@ -24,7 +24,7 @@ export async function GET(
           startTime: "2024-01-03T09:36:00",
           endTime: "2024-10-13T22:36:00",
           estimateStartTime: "2024-10-12T22:36:00",
-          rate: 0,
+          rate: 10,
           curMoney: 0.0,
           goalMoney: 10000.0,
         },

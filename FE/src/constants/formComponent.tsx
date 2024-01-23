@@ -41,7 +41,7 @@ export const formComponent: FormComponent = [
       component: <ToggleBtn />,
     },
     type: "password",
-    notice: " • 영어와 숫자를 포함, 6-20자 이내",
+    notice: " • 영어와 숫자, 특수문자를 포함한 6-20자 이내",
   },
   {
     id: "passwordCheck",

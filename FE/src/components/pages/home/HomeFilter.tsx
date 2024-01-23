@@ -15,12 +15,12 @@ export default function HomeFilter() {
 
   return (
     <button
-      className="flex items-center gap-2 cursor-default"
+      className="flex items-center gap-2 cursor-default translate-y-2"
       onClick={() => {
         setFilter((prev) => (prev - 1) ** 2);
       }}
     >
-      <span className="text-colorb9b">{filterText[filter]}</span>
+      <span className="text-[#757678]">{filterText[filter]}</span>
       <FilterToggle />
     </button>
   );
