@@ -9,6 +9,7 @@ export default function MemberInfoUnivList({
   title,
   content,
 }: Readonly<Props>) {
+  if (!content.length) return null;
   return (
     <div className={`w-full grid grid-cols-[2fr_6fr] gap-7 my-1 `}>
       <div className="w-full font-bold text-xl flex justify-between">
