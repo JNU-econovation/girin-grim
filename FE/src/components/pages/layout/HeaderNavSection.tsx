@@ -52,9 +52,9 @@ export default function HeaderNavSection() {
           {univ && <University />}
         </li>
         <li className="text-colorb0b">추천</li>
-        <button onClick={() => postFunding()}>
-          <li className=" text-main">펀딩 올리기</li>
-        </button>
+        {/* <button onClick={() => postFunding()}> */}
+        <li className=" text-main">펀딩 올리기</li>
+        {/* </button> */}
       </ul>
       <HeaderForm />
     </section>
