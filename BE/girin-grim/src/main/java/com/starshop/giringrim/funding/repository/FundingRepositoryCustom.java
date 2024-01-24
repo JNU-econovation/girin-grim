@@ -38,7 +38,7 @@ public class FundingRepositoryCustom {
                         funding.image,
                         funding.university.name.as("university"),
                         funding.currentMoney.divide(funding.goalMoney).multiply(BigDecimal.valueOf(100)).as("rate"),
-                        Expressions.dateTimeTemplate(Integer.class,"TIMESTAMPDIFF(DAY, {0}, {1})", funding.startTime, funding.endTime).as("dueDate"),
+                        Expressions.dateTimeTemplate(Integer.class,"TIMESTAMPDIFF(DAY, {0}, {1})", Expressions.currentDate(), funding.endTime).as("dueDate"),
                         funding.shortDescription,
                         funding.member.id,
                         funding.member.nickname))
@@ -66,7 +66,8 @@ public class FundingRepositoryCustom {
                         funding.image,
                         funding.university.name.as("university"),
                         round(funding.currentMoney.divide(funding.goalMoney), 2).multiply(BigDecimal.valueOf(100)).as("rate"),
-                        Expressions.dateTimeTemplate(Integer.class,"TIMESTAMPDIFF(DAY, {0}, {1})", funding.startTime, funding.endTime).as("dueDate"),
+                        Expressions.dateTimeTemplate(Integer.class,"TIMESTAMPDIFF(DAY, {0}, {1})", Expressions.currentDate(), funding.endTime).as("dueDate"),
+                        funding.
                         funding.shortDescription,
                         funding.member.id.as("memberId"),
                         funding.member.nickname))
