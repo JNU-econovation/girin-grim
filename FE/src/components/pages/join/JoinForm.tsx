@@ -41,7 +41,9 @@ export default function JoinForm() {
     if (file) submitData.image = await uploadFile(file.name, file);
 
     const { error } = await join(submitData);
-    if (error) return alert("회원가입에 실패했습니다. 다시 시도해주세요 ㅠ");
+    if (error) {
+      return alert(error.message);
+    }
     alert("회원가입이 완료되었습니다.");
     router.push("/login");
   };
