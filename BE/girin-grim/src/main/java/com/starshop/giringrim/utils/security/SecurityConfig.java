@@ -114,7 +114,8 @@ public class SecurityConfig {
                 "http://43.202.249.173:3000",
                 "https://43.202.249.173:8080",
                 "https://www.girin-grim.shop",
-                "https://girin-grim.shop"));
+                "https://girin-grim.shop",
+                "https://be.girin-grim.shop"));
         configuration.setAllowCredentials(true); // 클라이언트에서 쿠키 요청 허용
         configuration.addExposedHeader("Authorization");
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
