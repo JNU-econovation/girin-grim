@@ -24,7 +24,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
   useReset();
   setMine(isMine);
   return (
-    <>
+    <section className="min-h-[40rem] w-full">
       {isMine && (
         <MineInfoSection
           email={email}
@@ -40,6 +40,6 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
           instroduce={InfoData[0].content as string}
         />
       )}
-    </>
+    </section>
   );
 }

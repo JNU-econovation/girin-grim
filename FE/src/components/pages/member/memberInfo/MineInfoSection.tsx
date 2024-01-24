@@ -41,7 +41,6 @@ export default function MineInfoSection({
           );
         })}
       </div>
-      {/* <SettingBtn /> */}
     </section>
   );
 }

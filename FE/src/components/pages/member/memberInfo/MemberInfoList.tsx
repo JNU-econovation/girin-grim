@@ -15,8 +15,8 @@ export default function MemberInfoList({
   const isCoin = title === "크레파스";
   if (!content) return null;
   return (
-    <div className={`w-full grid grid-cols-[2fr_6fr] gap-7 my-1 `}>
-      <div className="w-full font-bold text-xl flex justify-between">
+    <div className={`w-full grid grid-cols-[2fr_6fr] gap-7 my-1`}>
+      <div className="w-full font-bold text-xl flex justify-between shrink-0">
         {title.split("").map((line) => (
           <span key={line}>{line}</span>
         ))}

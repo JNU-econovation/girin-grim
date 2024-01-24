@@ -17,7 +17,7 @@ export default function MemberInfoUnivList({
           <span key={line}>{line}</span>
         ))}
       </div>
-      <div className="h-full max-h-24 overflow-scroll">
+      <div className="h-full max-h-24 overflow-y-scroll">
         {content.map(({ name, universityId }) => (
           <span key={universityId} className="block">
             {name}

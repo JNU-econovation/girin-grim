@@ -10,12 +10,17 @@ type Props = {
 export default function User({ size = "small", url }: Readonly<Props>) {
   const px = HeroFormatSize(size);
   return (
-    <Image
-      src={url ?? defaultUerImageUrl}
-      width={px}
-      height={px}
-      alt="Logo"
-      className="rounded-full -z-50 relative"
+    <div
+      className="rounded-full -z-50 relative shadow-sm"
+      style={{
+        width: px + "px",
+        height: px + "px",
+        backgroundColor: "#E5E5E5",
+        backgroundImage: `url(${url || defaultUerImageUrl})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     />
   );
 }

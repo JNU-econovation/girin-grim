@@ -22,7 +22,7 @@ export default function MemberFundingGridSection({
   }, [isMine]);
 
   return (
-    <section className="mt-40">
+    <section className="mt-20">
       <MemberFundingNav
         focused={focused}
         navItems={isMine ? navItems : mineNavItems}
