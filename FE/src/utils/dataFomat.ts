@@ -58,3 +58,8 @@ export const formatPledgeFundingToBack = (
 ): BackedFunding => {
   return { ...input, type: input.fundingType };
 };
+
+export const formatHeight = (rate: number) => {
+  rate = rate > 99 ? 99 : rate;
+  return (rate + 10) * 0.27;
+};
