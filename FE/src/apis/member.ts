@@ -27,7 +27,9 @@ export const checkDuplicate = async ({
 };
 
 export const join = async (submitData: UserForm) => {
-  const data = Server.post(joinURL, submitData).then((res) => res.data.success);
+  const data = Server.post(joinURL, submitData)
+    .then((res) => res.data.success)
+    .catch((error) => error.response.data);
   return data;
 };
 
