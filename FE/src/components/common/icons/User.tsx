@@ -3,7 +3,7 @@ import { HeroFormatSize } from "@/utils/cssFormat";
 import Image from "next/image";
 
 type Props = {
-  size?: "small" | "medium" | "large";
+  size?: "small" | "medium" | "large" | "xlarge";
   url?: string | null;
 };
 

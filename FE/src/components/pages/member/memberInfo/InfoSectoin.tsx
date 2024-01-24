@@ -29,7 +29,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
       className="mt-24 z-30 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
       id="infoSection"
     >
-      <MemberHero url={image} />
+      <MemberHero url={image} isMine={isMine} />
       <h1 className="text-[1.7rem] font-black mt-2 cursor-default">
         {nickname}
       </h1>
