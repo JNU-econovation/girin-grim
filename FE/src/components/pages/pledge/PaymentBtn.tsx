@@ -39,7 +39,6 @@ export default function PaymentBtn({
     setIsLoading(false);
     if (!success) {
       text = "결제 실패";
-      console.error;
       alert(error.message);
       if (error.message == "코인이 부족합니다.") {
         setInsufficient(total);
@@ -48,6 +47,7 @@ export default function PaymentBtn({
       return;
     }
     alert("결제가 완료되었습니다.");
+    router.back();
   };
 
   return (

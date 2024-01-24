@@ -1,3 +1,4 @@
+import { formatHeight } from "@/utils/dataFomat";
 import GaugeBg from "./GaugeBg";
 import Girin from "./Girin";
 
@@ -7,7 +8,7 @@ type Props = {
 };
 
 export default function GaugeBar({ rate, isOnGoing }: Readonly<Props>) {
-  const height = (rate + 10) * 0.27;
+  const height = formatHeight(rate);
   return (
     <section className="relative flex flex-col justify-end items-center pb-2">
       <Girin height={height} rate={rate} />
