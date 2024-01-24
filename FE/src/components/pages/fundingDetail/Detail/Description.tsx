@@ -8,7 +8,7 @@ export default function Description({
   if (isLoading || !data) return <div>loading...</div>;
   const imageUrl = data?.response.longDescription;
   return (
-    <section className="max-w-xl mx-auto">
+    <section className="max-w-6xl mx-auto">
       <Image src={imageUrl} alt="DetailImage" width={1280} height={720} />
     </section>
   );
