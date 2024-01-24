@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
 @Getter
@@ -89,7 +90,8 @@ public class Funding extends BaseEntity {
     }
 
     public int getDueDate() {
-        long minutes = ChronoUnit.MINUTES.between(startTime, endTime);
+        ZoneId zid = ZoneId.of("Asia/Seoul");
+        long minutes = ChronoUnit.MINUTES.between(LocalDateTime.now(zid), endTime);
         return (int) (minutes / (60 * 24));
     }
 
