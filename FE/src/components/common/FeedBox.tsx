@@ -23,10 +23,13 @@ export default function FeedBox({
 }: Readonly<Props>) {
   return (
     <section className="font-nanum cursor-default h-[27rem] flex flex-col">
-      <img
-        src={image}
-        alt="funding feed image"
+      <div
         className="w-full h-[17rem] rounded-[0.3rem]"
+        style={{
+          backgroundImage: `url(${image})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       />
       <div className="flex text-[0.75rem] gap-[0.2rem] mt-[0.6rem]">
         <h4 className="font-extrabold">{university}</h4>
