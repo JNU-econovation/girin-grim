@@ -24,7 +24,8 @@ export default function ChargingCoin() {
         type="number"
         min={0}
         max={9999999999}
-        onChange={(e) => setTotal(+e.target.value)}
+        maxLength={7}
+        onChange={(e) => e.target.value.length < 8 && setTotal(+e.target.value)}
       />
       <div className="bg-main mt-2 pt-1" />
       {paymentUnits.map((unit) => (
