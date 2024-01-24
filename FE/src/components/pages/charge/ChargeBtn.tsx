@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { SelectedOption } from "@/store/ChargeState";
 import { postCharge } from "@/apis/charge";
 import { useRouter } from "next/navigation";
-import { getInsufficient } from "@/utils/localData";
+// import { getInsufficient } from "@/utils/localData";
 
 type Props = {
   totalCost: number;

@@ -1,12 +1,11 @@
 "use client";
-import MemberInfoList from "./MemberInfoList";
 import useUserDetail from "@/hooks/useUserDetail";
 import { formatMemberData } from "@/utils/memberDataFormat";
-import MemberHero from "./MemberHero";
-import MemberInfoUnivList from "./MemberInfoUnivList";
 import useReset from "@/hooks/useReset";
 import { useRecoilState } from "recoil";
 import { isMineState } from "@/store/MemberState";
+import MineInfoSection from "./MineInfoSection";
+import NotMineInfoSection from "./NotMineInfoSection";
 
 type Props = {
   memberId: number;
@@ -25,31 +24,22 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
   useReset();
   setMine(isMine);
   return (
-    <section
-      className="mt-24 z-30 flex flex-col items-center max-w-[20rem] w-full mx-auto relative"
-      id="infoSection"
-    >
-      <MemberHero url={image} />
-      <h1 className="text-[1.7rem] font-black mt-2 cursor-default">
-        {nickname}
-      </h1>
-      <span className="text-md text-[#696969] mb-5">{email}</span>
-      <div className="flex flex-col">
-        {InfoData.map(({ content, icon, title }) => {
-          if (title == "관심대학")
-            return <MemberInfoUnivList content={content} title={title} />;
-
-          return (
-            <MemberInfoList
-              key={title}
-              title={title}
-              content={content}
-              icon={icon}
-            />
-          );
-        })}
-      </div>
-      {/* <SettingBtn /> */}
+    <section className="min-h-[40rem] w-full">
+      {isMine && (
+        <MineInfoSection
+          email={email}
+          image={image}
+          nickname={nickname}
+          InfoData={InfoData}
+        />
+      )}
+      {!isMine && (
+        <NotMineInfoSection
+          image={image}
+          nickname={nickname}
+          instroduce={InfoData[0].content as string}
+        />
+      )}
     </section>
   );
 }
