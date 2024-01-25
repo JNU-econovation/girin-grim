@@ -7,7 +7,7 @@ type Props = {
 
 export default function MemberInfoSection({ memberId }: Readonly<Props>) {
   return (
-    <section className="flex flex-col relative items-center justify-center text-color121">
+    <section className="flex flex-col relative items-center justify-center text-color121 -z-50">
       <InfoBg />
       <InfoSectoin memberId={memberId} />
     </section>

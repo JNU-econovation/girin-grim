@@ -45,7 +45,9 @@ export default function InfoDate({
           펀딩 기간 |{" "}
           {`${startYear}.${startMonth}.${startDay} ~ ${endYear}.${endMonth}.${endDay}`}
         </p>
-        <p className="text-main font-black font-esaman">D{Dday}</p>
+        <p className="text-main font-black font-esaman">
+          D{Dday < -1 ? Dday : "day"}
+        </p>
       </div>
       <p className="text-color999">
         예상 실행일 |{" "}

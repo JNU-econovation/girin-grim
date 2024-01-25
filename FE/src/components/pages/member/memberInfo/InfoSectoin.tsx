@@ -24,7 +24,7 @@ export default function InfoSectoin({ memberId }: Readonly<Props>) {
   useReset();
   setMine(isMine);
   return (
-    <section className="min-h-[40rem] w-full">
+    <section className="min-h-[40rem] w-full relative z-0">
       {isMine && (
         <MineInfoSection
           email={email}
