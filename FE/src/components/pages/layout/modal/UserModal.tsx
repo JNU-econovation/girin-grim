@@ -44,7 +44,7 @@ export default function UserModal({ close }: Readonly<Props>) {
         </button>
       </section>
       <button
-        className="fixed top-0 left-0 w-full h-full z-10"
+        className="fixed top-0 left-0 w-full h-full z-10 bg-slate-400"
         onClick={(e) => {
           if (e.target === e.currentTarget) close();
         }}
